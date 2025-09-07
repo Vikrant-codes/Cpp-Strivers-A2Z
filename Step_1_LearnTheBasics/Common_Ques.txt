@@ -1,0 +1,32 @@
+Que ❓Why Some Headers Have .h and Others Don’t?
+
+🔹Older C-style Headers (With .h)
+These come from the C standard library and were used in early C++ versions.
+Example: #include <stdio.h>, #include <math.h>, #include <string.h>.
+These headers require namespace handling manually (std:: doesn’t apply).
+
+🔹Modern C++ Headers (Without .h)
+C++ introduced standardized headers without .h, placed inside the std namespace.
+Example: #include <iostream>, #include <cmath>, #include <cstring>.
+These are more consistent with the C++ Standard Library. ✅
+
+Que ❓What About #include<bits/stdc++.h>?
+
+<bits/stdc++.h> is NOT a standard header.
+It's a GCC-specific shortcut that includes almost all standard headers in one go.
+Advantage: Saves time in competitive programming.
+Disadvantage: Increases compilation time and is not portable across compilers like MSVC or Clang. ✅
+
+Header Type	    Example	            Used In	                Namespace Required?
+C-style (.h)	<stdio.h>	        C & Old C++	            ❌ No (printf() works directly)
+C++ Standard	<iostream>	        Modern C++	            ✅ Yes (std::cout)
+GCC-Specific	<bits/stdc++.h>	    Competitive Coding	    ✅ Yes
+
+Que ❓ What is std Namespace in C++?
+The std namespace is a container that holds all the standard C++ library functions, objects, and types (like cout, cin, vector, string, etc.).
+Without it, you must explicitly specify std:: before standard components. ✅
+
+Que ❓ Why Does std Make a Difference?
+C++ uses namespaces to organize code and prevent name conflicts.
+For example, multiple libraries might define a function named sort(). Without namespaces, there would be ambiguity in function calls.
+The C++ Standard Library places all its functions inside std, so they don’t conflict with user-defined functions. ✅

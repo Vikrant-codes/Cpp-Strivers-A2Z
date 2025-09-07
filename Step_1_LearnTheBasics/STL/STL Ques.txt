@@ -1,0 +1,191 @@
+<-- Iterators -->
+
+Que ❓What are iterators ?
+🔹An iterator is an object that allows you to traverse a container (like arrays, vectors, lists, etc.) element by element. It acts like a pointer 
+and provides access to container elements without exposing the underlying structure.
+🔹It provides an abstraction for accessing elements in a container sequentially, but it is not necessarily a raw memory address. It behaves like 
+a pointer but can be more complex, depending on the container.
+🔹It is not exactly a reference or a raw memory address, but it behaves like a pointer. It abstracts access to elements inside a container.
+🔹It can be dereferenced (*it) like a pointer to access elements.
+🔹It can be incremented/decremented (++it, --it) like a pointer.
+🔹However, it's not necessarily a memory address, as containers like map & list use iterators to traverse elements without guaranteeing contiguous storage.
+
+Internally, an iterator can be:
+🔹A pointer (for contiguous containers like vector or array).
+Example: vector<int>::iterator often behaves like int*.
+🔹A wrapper around a pointer (for non-contiguous containers like list or map).
+Example: list<int>::iterator internally stores a pointer to a node in a linked list.
+🔹A class with overloaded operators that manages access to elements.  ✅
+
+Que ❓Why can we perform arithmetic operations on iterators of vector,deque and arrays ?
+Arithmetic operations like += are valid for random-access iterators, which are supported by containers such as vector, deque, and array.  ✅
+
+Que ❓What's the difference between vector iterators (random-access iterators) and set/multiset iterators (bidirectional iterators) ?
+The difference between vector iterators and set or multiset iterators lies in the type of iterator they provide and the operations that are supported 
+by these iterators.
+
+> Vector Iterators : vector iterators are random-access iterators. This means they support a wide range of operations, including:
+🔹Increment (++) and decrement (--)
+🔹Addition and subtraction of an integer (it + n, it - n)
+🔹Compound assignment (+=, -=)
+🔹Comparison (<, <=, >, >=)
+🔹Difference between two iterators (it2 - it1)
+These operations are possible because vector elements are stored in contiguous memory locations, allowing direct access to any element by calculating 
+its address.
+
+> Set and Multiset Iterators : These are bidirectional iterators. They support a more limited set of operations compared to random-access iterators:
+🔹Increment (++) and decrement (--)
+🔹Comparison for equality (==, !=)
+These iterators do not support arithmetic operations like addition or subtraction because set and multiset elements are not stored in contiguous 
+memory locations. Instead, they are typically stored in a balanced tree structure, which allows efficient insertion, deletion, and lookup but does 
+not allow direct access to elements by index. ✅
+
+Que ❓How to advance bidirectional iterators as direct arithmetic operations are not possible on them ?
+To advance iterators to certain position forward or backward, we can use two functions : std::advance() and std::next()
+Syntax : std::advance(iterator, position) -> +ve position moves the iteartor forward while -ve moves backward. Same syntax is used for std::next()
+
+1️⃣ std::advance : It is part of the <iterator> header and can be used to move an iterator forward or backward by a specified number of positions.
+🔹It modifies the given iterator to move it forward or backward by a specified number of positions.
+2️⃣ std::next : It is a useful utility for advancing iterators. It is part of the <iterator> header and can be used to obtain an iterator that is a 
+specified number of positions ahead of a given iterator. This function works with all types of iterators, including bidirectional & random-access iterators.
+🔹It returns a new iterator that is a specified number of positions ahead of the given iterator without modifying the original iterator. ✅
+
+<-- Pairs -->
+
+Que ❓How make_pair() Helps Create Pairs Quickly?
+make_pair() automatically deduces the data types of the pair elements, making code cleaner and reducing the need for explicit type specification.
+Consider the below code for example :-
+auto p = make_pair(1, "Alice");  // Type is automatically deduced
+cout << p.first << " " << p.second << endl;   ✅
+
+<-- Vectors -->
+
+Que ❓Difference between push_back() and emplace_back() in C++ Vectors.
+Both push_back() and emplace_back() are used to add elements to a vector, but emplace_back() is faster in certain cases.
+🔹push_back() (Uses Copy/Move Constructor)
+Creates a temporary object first and then copies/moves it into the vector.
+More overhead when dealing with complex objects.
+
+🔹emplace_back() (Constructs In-Place)
+Constructs the object directly inside the vector (no temporary object).
+Avoids unnecessary copies/moves, making it more efficient.  ✅
+
+Que ❓When to Use What?
+Use push_back() if you already have an existing object.
+Use emplace_back() if you're creating a new object, as it's faster and avoids extra overhead.  ✅
+
+Que ❓Time Complexity of Insert operation in vectors. 
+Time Complexity -->
+🔹Insert at end (push_back())	O(1) (Amortized)
+🔹Insert at beginning or middle	O(N) (Shifts elements)  ✅
+
+Que ❓When to use push_back / insert ?
+🔹Use push_back() if inserting at the end (fastest).
+🔹Use insert() only when position matters.
+
+Que ❓Why Is emplace() More Efficient Than insert() ?
+1️⃣ insert() (Creates Temporary Object)
+🔹When you use insert(), it first constructs an object separately, then copies/moves it into the vector.
+🔹This adds extra overhead for complex objects.
+2️⃣ emplace() (Constructs In-Place)
+🔹emplace() constructs the object directly in the vector’s memory, avoiding extra copies/moves.
+🔹More efficient, especially for complex objects.    ✅
+
+Que ❓Can emplace() Replace insert() Completely?
+emplace() can perform all types of insertions like insert(), but it only works when constructing new objects in place.
+📌 When emplace() is better?
+🔹When inserting a single new object at a specific position.
+🔹When inserting complex objects (avoids extra copies/moves).
+
+📌 When insert() is required?
+🔹When inserting multiple elements at once.
+🔹When inserting a range from another container.
+
+1️⃣ Inserting a Single Element : Both insert() and emplace() work fine here.
+2️⃣ Inserting Multiple Copies (n copies) : ✅ Works with insert(), but emplace() does NOT support this.
+3️⃣ Inserting a Range (Another Vector, List, etc.) : ✅ Works with insert(), but emplace() does NOT support ranges.
+
+4️⃣ Inserting Complex Objects (Best for emplace()) : For objects like pair or classes, emplace() is more efficient. ex ->
+vector<pair<int, string>> v;
+v.insert(v.begin(), make_pair(1, "Alice"));
+v.emplace(v.begin(), 1, "Alice");  // Directly constructs in-place
+
+🔹 Conclusion: When to Use What?
+Operation	                    Use insert()	     Use emplace()
+Insert a single element	        ✅ Works	            ✅ More efficient
+Insert multiple copies	        ✅ Yes	            ❌ Not supported
+Insert range of elements	    ✅ Yes	            ❌ Not supported
+Insert complex objects	        ✅ Works	            ✅ More efficient
+
+<< Use emplace() when inserting one new object (best for complex types). Use insert() for multiple copies or inserting a range. >>   ✅
+
+Que ❓Explain upper_bound and lower_bound functions in vectors (also used in other containers like set, map , multiset) ?
+🔹lower_bound() and upper_bound() functions are available in ordered containers like vector, set, map or multiset.
+🔹These functions are used to perform binary search in sorted vectors or other containers efficiently.
+1️⃣ lower_bound() : Finds the first element that is greater than or equal to a given value.
+2️⃣ upper_bound() : Finds the first element that is strictly greater than the given value.
+3️⃣ Practical Use Case: Count Frequency of an Element. We can find the frequency of an element using upper_bound() - lower_bound().
+
+🔹 Summary
+            Function	                  |                Returns
+lower_bound(v.begin(), v.end(), X)        |           First element ≥ X
+upper_bound(v.begin(), v.end(), X)	      |           First element > X
+upper_bound() - lower_bound()	          |               Count of X
+
+<-- Queue -->
+
+Que ❓Explain different types of queues available in C++.
+1. Queue (std::queue)  : #include <queue>
+🔹FIFO (First In, First Out) data structure.
+🔹Elements are added at the back (push()) and removed from the front (pop()).
+
+2. Priority Queue (std::priority_queue) : #include <queue>
+🔹Elements are stored in sorted order (default: max heap, highest element first).
+🔹Uses a binary heap internally.
+🔹Example (Max Heap by default):                            priority_queue<int> pq;
+🔹Min Heap (Smallest element first) using greater<int>:     priority_queue<int, vector<int>, greater<int>> minHeap;
+
+3. Deque (std::deque) : #include <deque>
+🔹Double-ended queue, allows insertions and deletions at both ends.
+🔹More flexible than queue, but slightly more overhead. ✅
+
+<-- Set -->
+
+Que ❓How to access set elements ?
+1️⃣ Access Elements Using Iterators (begin(), end())
+🔹Example : - 
+    set<int> s = {10, 20, 30, 40};
+    for (auto it = s.begin(); it != s.end(); it++) {
+        cout << *it << " "; 
+    }
+
+2️⃣ Access Elements Using Range-Based Loop 
+🔹Example : - 
+    for (int x : s) {
+        cout << x << " ";
+    }
+
+3️⃣ Access the First and Last Element
+Although set does not support direct indexing ([]), you can get: First element: *s.begin(), Last element: *s.rbegin()
+🔹Example : - 
+    cout << "First: " << *s.begin() << "\n";
+    cout << "Last: " << *s.rbegin() << "\n";
+
+4️⃣ Access Specific Elements Using find()
+If you need to check whether an element exists in the set, use find().
+🔹Example : - 
+    auto it = s.find(20);
+    if (it != s.end()) 
+        cout << "Found: " << *it;
+    else 
+        cout << "Not Found";
+🔹Efficient O(log N) lookup instead of O(N) loop.
+
+✅ Summary: Best Ways to Access Set Elements
+____________Operation_____________|___________________________Method______________________________ 
+Traverse all elements	          |          for (int x : s) ✅
+Use iterators	                  |          for (auto it = s.begin(); it != s.end(); it++)
+Get first element	              |          *s.begin()
+Get last element	              |          *s.rbegin()
+Find an element	                  |          s.find(x) != s.end() ✅
+Reverse traversal	              |          for (auto it = s.rbegin(); it != s.rend(); it++)

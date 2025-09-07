@@ -1,0 +1,5 @@
+1.) Dutch National Flag Algorithm --> Problem : Sort012 (Array - Easy)
+2.) Moore's Voting Algorithm --> Problem : Majority Element (Array - Medium)
+3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
+4.) Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
+5.) Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)

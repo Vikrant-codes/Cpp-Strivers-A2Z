@@ -1,0 +1,83 @@
+> STL stands for standard template library which contains a lot of pre-defined templates in terms of containers and classes which makes it very easy for 
+developers or programmers to implement different data structures easily without having to write complete code and worry about space-time complexities.
+
+> C++ STL contains various Algorithms, Containers, Functions and Iterators.
+
+> Containers in STL
+🔹Sequence Containers : Vector, list, queue, deque, priority_queue, stack
+🔹Associative Containers : Set, multiset, unordered_set, unordered_multiset, map, multimap, unordered_map, unordered_multimap 
+
+<-- Sequence Containers -->
+1. Vector
+🔹Dynamic array that can grow and shrink in size.
+🔹Provides random access to elements.
+🔹Efficient for insertion and deletion at the end.
+
+2. List
+🔹Doubly linked list.
+🔹Allows efficient insertion and deletion at both ends and at any position.
+🔹Does not provide random access.
+
+3. Deque (Double-ended Queue)
+🔹Dynamic array that allows insertion and deletion at both ends.
+🔹Provides random access to elements.
+🔹Efficient for insertion and deletion at both ends.
+
+4. Queue
+🔹FIFO (First-In-First-Out) data structure.
+🔹Allows insertion at the back and deletion from the front.
+🔹Does not provide random access.
+
+5. Priority Queue
+🔹A special type of queue where elements are ordered by priority.
+🔹The element with the highest priority is at the front.
+🔹Typically implemented as a max-heap or min-heap.
+
+6. Stack
+🔹LIFO (Last-In-First-Out) data structure.
+🔹Allows insertion and deletion at the top.
+🔹Does not provide random access.
+
+<-- Associative Containers -->
+1. Set
+🔹Stores unique elements in a sorted order.
+🔹Provides efficient insertion, deletion, and lookup.
+🔹Does not allow duplicate elements.
+
+2. Multiset
+🔹Similar to set, but allows duplicate elements.
+🔹Stores elements in a sorted order.
+
+3. Unordered Set
+🔹Stores unique elements in an unordered manner.
+🔹Provides average constant-time complexity for insertion, deletion, and lookup.
+🔹Does not allow duplicate elements.
+
+4. Unordered Multiset
+🔹Similar to unordered_set, but allows duplicate elements.
+🔹Stores elements in an unordered manner.
+
+5. Map
+🔹Stores key-value pairs in a sorted order based on the keys.
+🔹Provides efficient insertion, deletion, and lookup.
+🔹Keys are unique.
+
+6. Multimap
+🔹Similar to map, but allows duplicate keys.
+🔹Stores key-value pairs in a sorted order based on the keys.
+
+7. Unordered Map
+🔹Stores key-value pairs in an unordered manner.
+🔹Provides average constant-time complexity for insertion, deletion, and lookup.
+🔹Keys are unique.
+
+8. Unordered Multimap
+🔹Similar to unordered_map, but allows duplicate keys.
+🔹Stores key-value pairs in an unordered manner.
+
+
+next_permutation in STL
+__builtin_popcount() in STL
+sort() 
+min_element() 
+max_element() 
