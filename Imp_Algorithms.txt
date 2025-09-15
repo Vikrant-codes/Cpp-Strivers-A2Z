@@ -3,3 +3,7 @@
 3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
 4.) Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
 5.) Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
+
+_____________________________________________________________________________________________________
+
+> Sieve of Eratosthenes --> Used to count primes --> Problem : Leetcode - 204. Count Primes
