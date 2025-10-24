@@ -6,4 +6,5 @@
 
 _____________________________________________________________________________________________________
 
+> Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)
 > Sieve of Eratosthenes --> Used to count primes --> Problem : Leetcode - 204. Count Primes

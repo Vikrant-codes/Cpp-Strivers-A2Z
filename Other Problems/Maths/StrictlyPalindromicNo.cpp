@@ -1,5 +1,5 @@
 /*
-Leetcode - 2396. Strictly Palindromic Number
+Leetcode - 2396. Strictly Palindromic Number : Medium
 
 An integer n is strictly palindromic if, for every base b between 2 and n - 2 (inclusive), the string representation of the integer n in base b 
 is palindromic.

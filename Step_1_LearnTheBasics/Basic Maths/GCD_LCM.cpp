@@ -3,7 +3,6 @@
 using namespace std;
 
 vector<int> lcmAndGcd(int a, int b) {
-    // code here
     vector<int> v;
     int gcd;
     long long mul = 1LL * a * b;
@@ -13,7 +12,7 @@ vector<int> lcmAndGcd(int a, int b) {
     }
     if(a == 0) gcd = b;
     else gcd = a;
-    v.push_back(mul/gcd);
+    v.push_back(mul/gcd);       // LCM = mul / GCD
     v.push_back(gcd);
     return v;
 }
