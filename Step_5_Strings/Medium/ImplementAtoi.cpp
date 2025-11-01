@@ -2,7 +2,6 @@
 Leetcode - 8. String to Integer (atoi) : Medium
 
 Implement the myAtoi(string s) function, which converts a string to a 32-bit signed integer.
-
 The algorithm for myAtoi(string s) is as follows:
 - Whitespace: Ignore any leading whitespace (" ").
 - Signedness: Determine the sign by checking if the next character is '-' or '+', assuming positivity if neither present.
@@ -36,8 +35,8 @@ Explanation : '2147483650' is beyond integer range so we return the maximum posi
 Input: s = "-2147483648" __ Output: -2147483648
 
 Constraints :-
-0 <= s.length <= 200
-s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.
+- 0 <= s.length <= 200
+- s consists of English letters (lower-case and upper-case), digits (0-9), ' ', '+', '-', and '.'.
 */
 
 #include <bits/stdc++.h>
@@ -83,7 +82,7 @@ We parse the string carefully step-by-step to handle:
 int myAtoi(string s) {
     int n = s.size();
     int i = 0;          // pointer to traverse the string
-    int sign = 0;       // sign bit: 0 means no is +ve and 1 means -ve
+    int sign = 0;       // sign bit: 0 means no. is +ve and 1 means -ve
     int mx_lim = INT_MAX / 10;      // to check for maximum limit 
     // ignore leading whitespaces
     while (i < n && s[i] == ' ') i++;
@@ -115,6 +114,5 @@ int myAtoi(string s) {
 }
 
 int main() {
-
     return 0;
 }

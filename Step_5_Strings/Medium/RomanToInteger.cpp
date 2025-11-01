@@ -42,7 +42,8 @@ It is guaranteed that s is a valid roman numeral in the range [1, 3999].
 #include <bits/stdc++.h>
 using namespace std;
 
-// Time Complexity : O(n) __ Space Complexity : O(1)
+// For all approaches :- Time Complexity : O(n) __ Space Complexity : O(1)
+
 /*
 We traverse the string from start to end and for every character we add the corresponding value to the sum. Now in case
 of subtractions like 'IV', 'IX', 'XL', 'XC', 'CD', 'CM' we keep a last variable to keep track of the last variable encountered.
@@ -72,7 +73,7 @@ int romanToInt(string s) {
     return sum;
 }
 
-// Time Complexity : O(n) __ Space Complexity : O(1)
+// Using Map (to map roman characters to integer values) :- Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 We use a hashmap to retrieve the corresponding values of a character. 
 Move through the string from the end and add corresponding char values to the sum. 
@@ -94,7 +95,34 @@ int romanToIntHashMap(string s) {
     return sum;
 }
 
-int main() {
+// Striver Sheet Approach :- Time Complexity : o(n) __ Space Complexity : O(1)
+/*
+Algorithm
+1. Understand that Roman numerals are generally written in descending order of value, and their values are added.
+2. However, when a smaller value appears before a larger one, it indicates subtraction instead of addition.
+3. To handle this, scan the string from left to right and compare each character with the one after it.
+4. If the current symbol is smaller than the next, treat it as a subtractive pair.
+5. Otherwise, treat the symbol as a standalone value and add it normally.
+6. The final character is always added since there's nothing after it to compare.
+*/
+int romanToInt(string s) {
+    int res = 0;
+    // Map of Roman numerals to their integer values
+    unordered_map<char, int> roman = {
+        {'I', 1}, {'V', 5}, {'X', 10},
+        {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000}
+    };
+    // Iterate through the string, except the last character
+    for (int i = 0; i < s.size() - 1; i++) {
+        // Subtract if current numeral is less than the next
+        if (roman[s[i]] < roman[s[i + 1]]) res -= roman[s[i]];
+        // Otherwise, add the current value
+        else res += roman[s[i]];
+    }
+    // Add the value of the last character
+    return res + roman[s.back()];
+}
 
+int main() {
     return 0;
 }
