@@ -6,6 +6,9 @@ using namespace std;
 
 int main() {
     // <-- Strings -->
+    
+    // General Constructor :- string variable_name(length, character);
+    string new_str(10, '|');        // creates a string of size 10 filled with '|' characters
 
     // string s1,s2,s3;
     // cout << "Input s1 (A B): ";
