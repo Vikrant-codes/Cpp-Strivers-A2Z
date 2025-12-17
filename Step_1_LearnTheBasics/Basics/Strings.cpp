@@ -78,6 +78,22 @@ int main() {
     str2.reserve(100); // Pre-allocates memory for at least 100 characters
     cout << "\nCapacity after reserve(100): " << str2.capacity() << "\nSize after reserve(100): " << str2.size() << endl;
 
+    /*
+    What is String Concatenation Overhead ?
+    In C++, when we use concatenation operator repeatedly inside a loop, the string may reallocate memory as it grows.
+    Example, consider this code for copying the chars from a string to a sentence :- 
+    string s = "";  for (char c : sentence) s += c;
+    - Initially, s might have space for a few characters.
+    - When it runs out of space, it allocates a bigger buffer, copies the old characters into it, and then adds the new one.
+    - This reallocation + copying is the overhead.
+    So, even though appending a single character is amortized O(1), multiple reallocations cause small extra cost overall.
+    This is known as string concatenation overhead.
+
+    | Term                   | Meaning                                               | Fix (if needed)         | Impact                          |
+    | ---------------------- | ----------------------------------------------------- | ----------------------- | ------------------------------- |
+    | Concatenation overhead | Cost from repeated resizing & copying when using `+=` | `ans.reserve(s.size())` | Very small — usually negligible |
+    */
+
     // to_string(value) : a utility function that converts numeric values into a string representation. 
     // value → can be an int, long, long long, float, double, etc.
     int num = 73;

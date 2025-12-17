@@ -138,7 +138,32 @@ int main() {
     vector<int> vec_from_set(s.begin(), s.end()); // Create a vector from a set
     for(int x : vec_from_set) cout << x << " ";
 
+    // reserve function in Vectors 
+    vector<int> new_vc;
+    new_vc.reserve(10);   // // Pre-allocates memory for 10 elements
+    /*
+    Que> Does vector dynamic resizing happens when we use reserve or not ?
 
+    | Scenario                     | Reallocations?       | When resizing happens    |
+    | ---------------------------- | -------------------  | ------------------------ |
+    | No `reserve()`               | Yes, multiple times  | Whenever capacity full   |
+    | `reserve(10)` + ≤10 elements | ❌ No                | Never (fits perfectly)   |
+    | `reserve(10)` + >10 elements | ✅ Once              | When adding 11th element |
+    */
 
+    // reserve works for strings, vectors, unordered_map & unordered_set
+    /*
+    ✅ Containers that support .reserve()
+    | Container                                  | Works?  | Purpose                                         |
+    | ------------------------------------------ | ------- | ----------------------------------------------- |
+    | `std::string`                              | ✅      | Preallocate memory for characters               |
+    | `std::vector`                              | ✅      | Preallocate memory for elements                 |
+    | `std::deque`                               | ❌      | Doesn’t use contiguous storage                  |
+    | `std::list`                                | ❌      | Linked list — no contiguous memory              |
+    | `std::forward_list`                        | ❌      | Singly linked list — no contiguous memory       |
+    | `std::array`                               | ❌      | Fixed size — cannot reserve                     |
+    | `std::unordered_map`, `std::unordered_set` | ✅      | Preallocate *buckets* to reduce rehashing       |
+    | `std::map`, `std::set`                     | ❌      | Tree-based — dynamic nodes, no reserving memory |
+    */
     return 0;
 }
