@@ -113,7 +113,7 @@ vector<int> smallerNumbersThanCurrentBetter(vector<int>& nums) {
 }
 
 /* To get the first occurrence index of we can also traverse the array from the end, so even when duplicates comes, the 
-map will update the ind value so that the first occurrence index is stored at last. */
+map will update the ind value so that the first occurrence index will be the final value for the element. */
 vector<int> smallerNumbersThanCurrentBetter2(vector<int>& nums) {
     vector<int> ans;
     vector<int> sorted = nums;
@@ -129,6 +129,14 @@ vector<int> smallerNumbersThanCurrentBetter2(vector<int>& nums) {
     
     return ans;
 }
+/*
+Binary Search Approach :- Sorting + Binary Search
+We could've also used binary search instead of map to get the first occurrence index of each element in the sorted array.
+To implement this approach we would've to use binary search on sorted_array to get the first occurrence index of every element 
+'x' of the original array. This means O(n) * O(log n) time.
+Doing so will save us O(n) space of map but will then take O(n * log n) time to get the first occurrence index of each element.
+*/
+
 
 // Optimal Approach (Counting Sort) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
@@ -148,7 +156,7 @@ freq[8] = 1
 (all others = 0)
 
 - In previous approach we had firstly sorted then used the first occurrence index to get the count of smaller elements 
-but here we use the counting sort approach to efficiently sort the elements and then to get the count of smaller elements
+but here we use the counting sort approach to efficiently sort the elements and then to get the count of smaller elements,
 we check the sum of frequencies upto current element as this cumulative_sum of frequencies tell the count of smaller elements.
 - Build a cumulative frequency array, where cumulative_freq[i] tells you how many numbers are smaller than i.
 Build cumulative frequency: cumulative_freq[i] = how many numbers are strictly smaller than i.
