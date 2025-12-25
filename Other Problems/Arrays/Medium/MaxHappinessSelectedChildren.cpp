@@ -42,6 +42,12 @@ using namespace std;
 
 // Sorting + Greedy Approach : Time Complexity : O(n * log n) __ Space Complexity : O(1)
 /*
+"
+| Since all the unselected numbers are decreasing at the same rate, we should greedily select k largest values.
+| The ith largest number (i = 1, 2, 3,…k) should decrease by (i - 1) when it is picked.
+| Add 0 if the decreased value is negative.
+"
+
 We need to select k children in such a way the the total sum of selected children's happiness is the maximum possible.
 Also, when we select a child the happiness of the remaining unselected children decrements by 1 ('not becomes negative').
 
