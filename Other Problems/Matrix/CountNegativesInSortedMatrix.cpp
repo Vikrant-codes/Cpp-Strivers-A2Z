@@ -94,12 +94,28 @@ int countNegatives(vector<vector<int>>& grid) {
     int m = grid.size(), n = grid[0].size();
     int i = m-1, j = 0;
     while(i >= 0 && j < n) {
-        // if current element is negative, then, all the elements to the right in the row are also -ve
+        // if current element is -ve, then all the elements to the right in the row are also -ve
         if (grid[i][j] < 0) {
             cnt += (n - j);
             i--;
         }
         else j++;
+    }
+    return cnt;
+}
+
+/* Same staircase traversal approach but this time we start from the top-right starting point */
+int countNegatives2(vector<vector<int>>& grid) {
+    int cnt = 0;
+    int m = grid.size(), n = grid[0].size();
+    int i = 0, j = n-1;
+    while (i < m && j >= 0) {
+        // if current element is -ve, then all the column elements to the bottom of it are also -ve
+        if (grid[i][j] < 0) {
+            cnt += (m - i);
+            j--;
+        }
+        else i++;
     }
     return cnt;
 }
