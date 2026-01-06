@@ -1,5 +1,5 @@
 /*
-Leetcode - 682. Baseball Game
+Leetcode - 682. Baseball Game : Easy
 
 You are keeping the scores for a baseball game with strange rules. At the beginning of the game, you start with an empty record.
 You are given a list of strings operations, where operations[i] is the ith operation you must apply to the record & is one of the following:

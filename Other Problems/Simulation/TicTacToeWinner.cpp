@@ -1,5 +1,5 @@
 /*
-Leetcode - 1275. Find Winner on a Tic Tac Toe Game
+Leetcode - 1275. Find Winner on a Tic Tac Toe Game : Easy
 
 Tic-tac-toe is played by two players A and B on a 3 x 3 grid. The rules of Tic-Tac-Toe are:
 
