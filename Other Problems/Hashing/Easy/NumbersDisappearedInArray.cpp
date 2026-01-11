@@ -22,6 +22,45 @@ You may assume the returned list does not count as extra space.
 #include <bits/stdc++.h>
 using namespace std;
 
+// Sorting Approach : Time Complexity : O(n log n) __ Space Complexity : O(1)
+/*
+Sorting approach : Idea ->
+1. Sort the array
+2. After sorting, the array should ideally be : 1, 2, 3, 4, ..., n
+3. Any gap in this sequence means a number is missing
+4. Traverse the sorted array and find the missing elements from the expected sequence
+*/
+vector<int> findDisappearedNumbers(vector<int>& nums) {
+    int n = nums.size();
+    sort(nums.begin(), nums.end());
+    vector<int> ans;
+
+    int expected = 1;
+    for (int i = 0; i < n; i++) {
+        // skip duplicates
+        if (i > 0 && nums[i] == nums[i-1]) 
+            continue;
+
+        // fill missing numbers
+        while (nums[i] > expected) {
+            ans.push_back(expected);
+            expected++;
+        }
+
+        // move expected forward if matched/found in array
+        if (nums[i] == expected) 
+            expected++; 
+    }
+
+    // if numbers at the end are missing
+    while (expected <= n) {
+        ans.push_back(expected);
+        expected++;
+    }
+
+    return ans;
+}
+
 // HashArray Approach : Time Complexity : O(n) __ Space Complexity : O(n)
 vector<int> findDisappearedNumbers(vector<int>& nums) {
     int n = nums.size();
