@@ -2,12 +2,13 @@
 using namespace std;
 
 int main(){
+    // Numbers : Integers & Floats
     /*
     <-- Integer Types -->
     Data Type	                        Size (bytes)	  Range (Signed)                                                Range (Unsigned)
     short / short int	                2	              -32,768 to 32,767	                                            0 to 65,535
     int	                                4	              -2,147,483,648 to 2,147,483,647	                            0 to 4,294,967,295 
-    long / long int 	                4	              
+    long / long int 	                4/8 (32 bits on Windows & 64 bits on Linux/MacOS 64-bit)            
     long long/long long int           	8                 -9,223,372,036,854,775,808 to 9,223,372,036,854,775,807	    0 to 18,446,744,073,709,551,615
     
     <-- Floating-Point Types -->
@@ -20,13 +21,20 @@ int main(){
     // <-- Integers and Floats -->
     short s = 32767;        // same as, short int s = 32767
     int i = 2147483647;
-    long l = 2147483647;
-    long long ll = 9223372036854775807;
+    long l = 2147483647L;
+    long long ll = 9223372036854775807LL;
+    /*
+    --> long k = 1000L;              The 'l'/'L' suffix explicitly tells the compiler that 1000 is a long integer.
+    --> long long k = 10000000LL;    The 'll'/'LL' suffix explicitly tells the compiler that 1000 is a long long integer.
+    Integer literal defaults :- An integer literal like 123 is: int, if it fits, otherwise long, then long long.
+    So, using suffix like 'L' or 'LL' can explicitly forces the compiler to make the literal long or long long.
+    */
+
     float f = 3.14f;
     double d = 3.1415926535;
     long double ld = 3.141592653589793238;
     /*
-    --> float k = 3.14f;      The f suffix explicitly tells the compiler that 3.14 is a float literal.
+    --> float k = 3.14f;      The 'f'/'F' suffix explicitly tells the compiler that 3.14 is a float literal.
     The value is stored directly as a 32-bit floating-point number without any conversion.
     --> float k = 3.14;       3.14 is a double literal by default (64-bit).
     The compiler implicitly converts the double to a float, which may involve a small performance cost and potential precision loss.
@@ -44,7 +52,15 @@ int main(){
     cout << ch2 << endl;
 
     int char_int = 'a';         // 97 .. the char value is automatically typecasted to the corresponding integer ASCII value
-    cout << char_int;
+    cout << char_int << endl;
+
+    // <-- Boolean -->
+    bool bt = true;
+    bool bf = false;
+
+    // <-- String (objects that represents a sequence of text) --> 
+    string s = "This is a string.";
+    cout << s << endl;
 
     return 0;
 }
