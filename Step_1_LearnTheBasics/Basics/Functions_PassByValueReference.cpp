@@ -1,11 +1,11 @@
-#include<bits/stdc++.h>
+#include <iostream>
 using namespace std;
+
 // Functions are set of code which perform something for you.
 // Used to modularise code, increase readability snd reusability.
 
+// <-- Categorization of Functions -->
 /*
-<-- Categorization of Functions -->
-
 1. Based on Return Type
     Void Functions: No return value.
     Non-Void (Value-Returning) Functions: Return a value of a specific type.
@@ -35,6 +35,7 @@ using namespace std;
     Virtual Functions: Support runtime polymorphism in inheritance.
     Lambda Functions: Anonymous functions defined using [].
 */
+
 /*
 Functions can be categorized as -->
 1. Non-Parameterized Void     : takes nothing return nothing
@@ -42,9 +43,10 @@ Functions can be categorized as -->
 3. Parameterized Void         : takes something return nothing
 4. Parameterized Non-Void     : takes something return something
 */
+
 // Non-Parameterized Void (Takes Nothing, Returns Nothing)
 void greet() {
-    cout << "Hello, World!" << endl;
+    cout << "Hello World !!" << endl;
 }
 // Non-Parameterized Non-Void (Takes Nothing, Returns Something)
 int getNumber() {
@@ -55,17 +57,69 @@ void printSum(int a, int b) {
     cout << "Sum: " << a + b << endl;
 }
 // Parameterized Non-Void (Takes Something, Returns Something)
-int add(int a, int b) {
-    return a + b;
-}
-int max(int a, int b) {
+int getMax(int a, int b) {
     return a>=b ? a : b;
 }
+
+// Parameter Passing
+/*
+<-- Pass-by-Value (Copy is passed) -->
+> Behavior: The function receives a copy of the argument.
+> Effect: Changes inside the function do not affect the original variable.
+
+<-- Pass-by-Reference (Original is passed) -->
+> Behavior: The function receives a reference to the argument.
+> Effect: Changes inside the function do affect the original variable.
+*/
+
+void passByValue(int x) {
+    x = x * 2; // Modify the copy
+    cout << "Inside passByValue: " << x << endl;
+}
+
+void passByReference(int& x) {
+    x = x * 2; // Modify the original
+    cout << "Inside passByReference: " << x << endl;
+}
+
+void displayArray(int arr[], int len) {
+    for(int i = 0; i < len; i++) {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+}
+void modifyArray(int arr[], int len) {
+    for(int i=0; i<len; i++) {
+        arr[i] *= 2;
+    }
+    cout << "Inside modifyArray : ";
+    displayArray(arr, len);
+}
+
 int main() {
     greet();
-    cout << getNumber() << endl;
+    int number = getNumber();
+    cout << number << endl;
     printSum(2, 3);
-    cout << add(2, 3) << endl;
-    cout << max(2, 3) << endl;
+    int max = getMax(2, 3);
+    cout << max << endl;
+
+    cout << "\nFn Pass by Value & Reference \n\n";
+    int a = 5;
+    passByValue(a);
+    cout << "After passByValue: " << a << endl; // Original remains unchanged
+    passByReference(a);
+    cout << "After passByReference: " << a << endl; // Original value is changed
+
+    // Arrays are special cases. These are not passed by value. They decay to pointers (acts like pass by reference)
+    int arr[5] = {1,2,3,4,5};
+    cout << "Before Modifying : ";
+    displayArray(arr, 5);
+    modifyArray(arr, 5);
+    cout << "After modifyArray : ";
+    displayArray(arr, 5);
+
+    // vectors are not like arrays in this regard. Vectors can be passed by value or reference just like variables. 
+
     return 0;
 }

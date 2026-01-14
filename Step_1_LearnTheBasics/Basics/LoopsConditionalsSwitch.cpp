@@ -1,16 +1,17 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int main(){
+int main() {
     int age;
-    cout << "Enter age : ";
+    cout << "Enter your age : ";
     cin >> age;
     if(age >= 18) {
-        cout << "You are an adult";
+        cout << "You have the right to vote !!";
     }
     else {
-        cout << "You are not an adult";
+        cout << "Sorry, you are not old enough to vote.";
     }
+    cout << '\n';
 
     /*
     Grading System
@@ -19,7 +20,7 @@ int main(){
     */
 
     int marks;
-    cout << '\n' << "Input Marks : ";
+    cout << "Enter your Marks (out of 100) : ";
     cin >> marks;
     if(marks < 0 || marks > 100) {
         cout << "Invalid Marks";
@@ -42,9 +43,10 @@ int main(){
     else {
         cout << "Grade : A";
     }
-    
+    cout << '\n';
+
     // Switch
-    cout << "\nInput day no. : ";
+    cout << "Enter day of the week (1-7) : ";
     int day;
     cin >> day;
     switch(day) {
@@ -72,6 +74,28 @@ int main(){
         default:
             cout << "Invalid Input";
     }
+    cout << "\n \n";
 
+    // for loop
+    for(int i = 1; i <= 7; i = i + 1) {
+        cout << "I love C++ x " << i << endl;
+    }
+    cout << '\n';
+
+    // while loop
+    int i = 1;
+    while(i <= 7) {
+        cout << "Wizard Codes x " << i << endl;
+        i++;
+    }
+    cout << '\n';
+
+    // do-while loop
+    int num;
+    do {
+        cout << "Enter a positive number : ";
+        cin >> num;
+    } while (num <= 0);
+    
     return 0;
 }

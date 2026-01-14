@@ -27,10 +27,10 @@ int main() {
     cout << "Size : " << s.size() << endl;  // 5
     cout << "Is empty ? : " << s.empty() << endl; // false
     cout << "Capacity : " << s.capacity() << endl;
-    s.resize(4);      // resize string
+    s.resize(4);      // resize string, s becomes 'Hell'
     cout << "String s after resizing : " << s << endl;
     s.clear();        // now s = ""
-    cout << "After clearing s becomes : " << s << "Is Empty ? :" << s.empty() << endl;
+    cout << "After clearing s becomes : " << s << "Is Empty ? : " << s.empty() << endl;
 
     /*
     🔹 2. Access Characters
