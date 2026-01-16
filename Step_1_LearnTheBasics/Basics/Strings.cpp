@@ -1,7 +1,4 @@
 #include <iostream>
-#include <sstream>  // required for ostringstream, istringstream & stringstream
-#include <iomanip> // required for setprecision
-#include <vector>
 using namespace std;
 
 int main() {
@@ -106,107 +103,6 @@ int main() {
     // Converts float 3.14159 to string "3.141590" -- By default, floating-point values are converted with 6 digits after the decimal.
     cout << "String representation of num: " << str_num << endl; // Outputs: String representation of num: 73
     cout << "String representation of pi: " << str_pi << endl;   // Outputs: String representation of pi: 3.141590
-
-
-    // ostringstream : Comes from the <sstream> header. It stands for output string stream.
-    // Think of it as a "stream" (like cout) but instead of sending output to the console, it writes into a string buffer.
-    ostringstream oss; // Create an output string stream object
-    // conversion of numeric data type to string directly using ostringstream
-    oss << pi; // Insert float pi into the stream
-    string pi_string = oss.str(); // Extract the string from the stream
-    cout << "String representation of pi using ostringstream: " << pi_string << endl;       // pi_string = "3.14159"
-    // using ostringstream for float doesn't limit to 6 decimal places like to_string() does. ex- pi = 3.14159 doesn't become "3.141590"
-
-    // You can use ostringstream to build complex strings with multiple data types
-    int age = 21;
-    oss.str(""); // Clear the stream's content
-    oss << "I am " << age << " years old." << endl;
-    string myage = oss.str();
-    cout << myage;
-
-    oss.str(""); // Clear the stream's content
-    // Formatting floating-point numbers to a specific precision using ostringstream & setprecision 
-    // setprecision(n) sets the total number of significant digits displayed in the output to n. #include<iomanip> is required
-    double pi_long = 3.1415926535;
-    oss << fixed << setprecision(3) << pi_long;
-    string s = oss.str();
-    cout << s;   // Output: 3.142
-    /*
-    🔹 Difference :- ostringstream vs to_string()
-    Feature	                                                to_string()	                     ostringstream
-    Simple conversion	                                    ✅ Yes	                        ✅ Yes
-    Concatenate multiple values	                            ❌ (need +)	                    ✅ directly with <<
-    Control formatting (precision, fixed, scientific, etc.)	❌ No control	                ✅ Full control
-    Performance	                                            Faster for single conversions	  Slightly heavier but more powerful
-    */
-
-
-    // istringstream : Stands for input string stream. Lets you extract values from a string as if you were reading from cin.
-    // Parse integers from a string
-    istringstream iss;
-    string input = "100 200 300";
-    iss >> input; // Initialize the stream with the input string
-    int a, b, c;
-    iss >> a >> b >> c; // Extract integers from the stream
-    cout << "\nExtracted integers using istringstream: " << a << " " << b << " " << c << endl;
-    // Parse mixed data types from a string
-    istringstream iss2("21 3.14 Hello");
-    int z;
-    float f;
-    string word;
-    iss2 >> z >> f >> word; // Extracts 21, 3.14, and "Hello"
-    cout << "Extracted using istringstream: " << z << " " << f << " " << word << endl;
-    // Loop through all words in a sentence using istringstream
-    string sentence = "I love C++ programming";
-    istringstream iss3(sentence);
-    while (iss3 >> word) {
-        cout << word << endl;
-    }
-
-    // stringstream : Comes from <sstream>. It’s a bidirectional string stream → can read (>>) and write (<<) into the same buffer.
-    // Think of it as cin + cout, but working on a string instead of the console.
-    stringstream ss;
-
-    // Example 1 : Build + Parse with the Same Stream
-    // Write into the stream
-    ss << 42 << " " << 3.14 << " Hello";
-    // Read back from the same stream
-    int x;
-    double piee;
-    ss >> x >> piee >> word;
-    cout << x << " | " << piee << " | " << word;              // Output: 42 | 3.14 | Hello
-
-    // Example 2: Split a String into Words (very common in CP!)
-    sentence = "I love competitive programming";
-    ss.str(sentence); // Initialize with the input string
-    vector<string> words;
-    while (ss >> word) { // Extract words one by one
-        words.push_back(word);
-    }
-    for (string w : words) {
-        cout << w << " ";
-    }
-    cout << endl;
-
-    // Example 3: Convert Number ↔ String (flexible version of to_string / stoi)
-    num = 1234;
-    // Number → String
-    ss.clear(); // reset stream state
-    ss << num;
-    string str = ss.str();
-    cout << "String: " << str << endl;  // Output: "1234"
-    // String → Number
-    ss.clear();        // reset stream state
-    ss.str("5678");    // load new string
-    ss >> x;
-    cout << "Number: " << x << endl;    // Output: 5678
-
-    /*
-    🔄 Summary: sstream Family
-    ostringstream → output to string (build strings).
-    istringstream → input from string (parse strings).
-    stringstream → can do both.
-    */
     
     return 0;
 }

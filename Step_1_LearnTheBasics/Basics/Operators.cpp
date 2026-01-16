@@ -85,6 +85,8 @@ int main() {
     |  .       | Access member             |
     |  ->      | Access member via pointer |
     |  ::      | Scope resolution          |
+    :: scope resolution operator is used to access a global variable when a local variable has the same name, 
+    or to access class members, namespaces, etc.
 
     🔟 Special Operators
     | Operator | Meaning            |
