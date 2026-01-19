@@ -82,6 +82,14 @@ int main() {
     }
     cout << '\n';
 
+    // for-each loop: loop that eases the traversal over an iterable data set
+    // for-each loop is less flexible as here we can only traverse the iterable data-set from left to right.
+    int arr[] = {1, 2, 3, 4, 5, 6, 7};
+    for (int& x : arr) {
+        cout << x << " "; 
+    }
+    cout << '\n';
+
     // while loop
     int i = 1;
     while(i <= 7) {

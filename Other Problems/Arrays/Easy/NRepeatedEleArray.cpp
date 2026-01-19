@@ -42,7 +42,7 @@ int repeatedNTimesHash2(vector<int>& nums) {
     return -1;
 }
 
-// Optimal Approach : Time Complexity : O(n) __ Space Complexity : O(1)
+// Optimal Approach (Pigeonhole Principle) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 Problem fact
 • Array size = 2N

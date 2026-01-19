@@ -3,8 +3,12 @@ using namespace std;
 
 int main() {
     int arr[7];
+    // sizeof operator : determine the size in bytes of a: variable, data type, class, objects, etc.
+    // sizeof(arr) -> Total size of array in bytes, sizeof(arr[0]) -> Size of single element in bytes 
+    int arr_size = sizeof(arr);
+    int arr_ele_size = sizeof(int);         // since elements are of 'int' datatype
+    // Length = Total size / Size of single element
     int len = sizeof(arr) / sizeof(arr[0]);
-    // sizeof(arr) -> Total size of array in bytes, sizeof(arr[0]) -> Size of single element in bytes, Length = Total size / Size of single element
 
     cout << "Enter 7 elements : ";
     for(int i=0; i<7; i++) {
