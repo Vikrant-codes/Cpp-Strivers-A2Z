@@ -33,12 +33,21 @@ int main() {
         cout << '\n';
     }
 
+    // fill function: Fills a range of elements with specified value .... fill(begin, end, value)
     // arr having default value as 9
     int exm[10] = {9};          // 9 is assigned to arr[0] only rest others are 0
     for(int x : exm) cout << x << ' '; 
     fill(exm, exm+10, 9); // Fill all elements with 9
     cout << '\n';
     for(int x : exm) cout << x << ' ';
+    cout << "\n";
+    // filling the array with the values 10, 20, 30 in three halves
+    int size = 30;
+    int a[size];
+    fill(a, a + (size / 3), 10);
+    fill(a + (size / 3), a+ (size / 3) * 2, 20);
+    fill(a + (size / 3) * 2, a + size, 30);
+    for (int& x : a) cout << x << " ";
 
     return 0;
 }
