@@ -64,13 +64,48 @@ int getMax(int a, int b) {
 // Parameter Passing
 /*
 <-- Pass-by-Value (Copy is passed) -->
-> Behavior: The function receives a copy of the argument.
+A copy of the variable is passed to the function.
+> Behavior: The function receives a copy of the argument. 
 > Effect: Changes inside the function do not affect the original variable.
 
 <-- Pass-by-Reference (Original is passed) -->
+The function receives an alias of the original variable. 
+It works on the original variable (passed as argument) through reference variables/pointers.
 > Behavior: The function receives a reference to the argument.
 > Effect: Changes inside the function do affect the original variable.
 */
+
+/*
+Pass by Reference can be done through two ways 
+1. Pointers: 
+    - Pointers are used to directly access and modify the passed arguments.
+    - Pointers are created as int *ptr = &var;
+    - So, instead of passing the variables as arguments, we pass their memory addresses.
+    - The function parameters contains pointers to accept the memory address being passed to them.
+    - We can then directly access & modify the variables' values with the help of dereferencing operator (*)
+2. Reference variables:
+    - Instead of using pointers to access the variables directly, we can use references & reference variables.
+    - Reference variables are created as int &ref = var;
+    - So, we use reference variables as the function parameters and pass the variable as arguments.
+    - The variables' values can be accessed with the help of reference variable names (ref).
+
+The use of reference variables for pass by reference is much better as-
+    - we don't need to pass memory addresses as arguments.
+    - no need to use dereferencing operator each time to access the values (can be directly used by reference variable names)
+    - no separate memory will be created for refernce variables inside of the function.
+*/
+
+void swapPointers(int *x, int *y) {
+    int temp = *x;
+    *x = *y;
+    *y = temp;
+}
+
+void swapReferences(int &x, int &y) {
+    int temp = x;
+    x = y;
+    y = temp;
+}
 
 void passByValue(int x) {
     x = x * 2; // Modify the copy
@@ -104,12 +139,21 @@ int main() {
     int max = getMax(2, 3);
     cout << max << endl;
 
+    // Pass by Value & References
     cout << "\nFn Pass by Value & Reference \n\n";
     int a = 5;
     passByValue(a);
     cout << "After passByValue: " << a << endl; // Original remains unchanged
     passByReference(a);
     cout << "After passByReference: " << a << endl; // Original value is changed
+
+    // Pass by Reference -- through pointers and/or through reference variables
+    int x = 10, y = 20;
+    swapPointers(&x, &y);
+    cout << "After swapping -- x : " << x << " _ y : " << y << '\n';
+    swapReferences(x, y);
+    cout << "After swapping -- x : " << x << " _ y : " << y << '\n';
+
 
     // Arrays are special cases. These are not passed by value. They decay to pointers (acts like pass by reference)
     int arr[5] = {1,2,3,4,5};

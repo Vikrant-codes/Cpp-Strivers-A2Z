@@ -89,13 +89,15 @@ int main() {
     or to access class members, namespaces, etc.
 
     🔟 Special Operators
-    | Operator | Meaning            |
-    | -------- | ------------------ |
-    |  []      | Array subscript    |
-    |  ()      | Function call      |
-    |  ,       | Comma operator     |
-    |  new     | Dynamic allocation |
-    |  delete  | Deallocation       |
+    | Operator | Meaning              |
+    | -------- | -------------------- |
+    |  &       | Address-of operator  |
+    |  *       | Dereference operator |
+    |  []      | Array subscript      |
+    |  ()      | Function call        |
+    |  ,       | Comma operator       |
+    |  new     | Dynamic allocation   |
+    |  delete  | Deallocation         |
     */
 
     return 0;
