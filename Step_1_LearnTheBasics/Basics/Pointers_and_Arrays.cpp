@@ -136,6 +136,8 @@ int main() {
     cout << "De-referencing 2d Array name : *arr2D = " << *arr2D << '\n';   
     // If we try to de-reference it, it will still return memory location (since it is a pointer to a 1D array)
 
+    // 2D Array names acts as row pointers (pointer to 1D arrays)
+
     // <-- Row Pointers in 2D Array -->
     int (*rowPtr)[4] = arr2D;
     for (int i = 0; i < 3; i++) {
