@@ -77,7 +77,7 @@ int findFinalValue1(vector<int>& nums, int original) {
     return original;
 }
 
-// HashSet Approach : Time Complexity : O(n) __ Space Complexity : O(1)
+// HashSet Approach : Time Complexity : O(n) __ Space Complexity : O(n)
 int findFinalValue2(vector<int>& nums, int original) {
     unordered_set<int> s;
     for (int& x : nums)
@@ -89,8 +89,19 @@ int findFinalValue2(vector<int>& nums, int original) {
     return original;
 }
 
-
-
+// HashArray Approach : Time Complexity : O(n) __ Space Complexity : O(1)
+// Approach: Since elements are in range [1,1000], 
+// we can use a fixed 1000 sized array to hash the array elements for easier existence check.
+int findFinalValue(vector<int>& nums, int original) {
+    vector<int> hashArr(1000);
+    for (int& x : nums)
+        hashArr[x-1]++;
+    // we check original <= 1000 because for larger values ( >1000 ) we will get error since array has at most index 999. 
+    while (original <= 1000 && hashArr[original-1])
+        original *= 2;
+    
+    return original;
+}
 
 int main() {
     return 0;

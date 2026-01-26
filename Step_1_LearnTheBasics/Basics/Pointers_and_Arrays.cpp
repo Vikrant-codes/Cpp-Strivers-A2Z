@@ -1,6 +1,13 @@
 #include <iostream>
 using namespace std;
 
+// function declarations
+void fun1Darr_1(int arr[]);
+void fun1Darr_2(int *ptr);
+void fun2Darr_1(int arr[][4]);
+void fun2Darr_2(int (*ptr)[4]);
+void getElementsRowPointers(int (*ptr)[4]);
+
 int main() {
     /*
     <-- Array-to-pointer Decay --> 
@@ -144,7 +151,90 @@ int main() {
         cout << "Row pointer to row " << i << " : " << rowPtr << '\n';
         rowPtr++;
     }
-    
+
+    int TwoDArr[3][4] = { {2, 3, 5, 7}, {11, 13, 17, 19}, {23, 29, 31, 37} };
+    // Passing 2D arrays to functions
+    fun2Darr_1(TwoDArr);
+    fun2Darr_2(TwoDArr);
+
+    // Accessing 2D array elements through row pointers
+    getElementsRowPointers(TwoDArr);
 
     return 0;
+}
+
+/*
+When 1D arrays are passed to functions, they decay to pointers. 
+This is why sizeof operator doesn't work inside of a function for arrays.
+As we know array name acts as a pointer to the first element of the array, thus when passed to a function,
+the array decays to pointer.
+The below given functions are logically same in case of arrays as when accepting arrays, they are converted to pointers.
+*/
+void fun1Darr_1(int arr[]) {
+    cout << "Just a function";
+}
+
+void fun1Darr_2(int *ptr) {
+    cout << "Just a function";
+}
+
+/*
+Similar to 1D arrays, when 2D arrays are passed to function, they decay to row pointers.
+So, both the below functions are equivalent and will work fine taking 2D arrays as arguments.
+The first function is accepting a 2D array having 4 elements in its rows,
+while the other function is accepting a row pointer pointing to a 1D array of size 4.
+*/
+void fun2Darr_1(int arr[][4]) {
+    cout << "Address of row 0 : " << arr << '\n';
+    cout << "Address of row 1 : " << arr+1 << '\n';
+    cout << "Address of row 2 : " << arr+2 << '\n';
+}
+
+void fun2Darr_2(int (*ptr)[4]) {
+    cout << "Address of row 0 : " << ptr << '\n';
+    cout << "Address of row 1 : " << ptr+1 << '\n';
+    cout << "Address of row 2 : " << ptr+2 << '\n';
+}
+
+// arr[i][j] is equivalent to *( *(arr + i) + j ). Compiler reads arr[i][j] as *( *(arr + i) + j ).
+/*
+Accessing 2D array elements through row pointers: the element arr[i][j] can be accessed as *(*(arr+i) + j)
+Row pointers need to be de-referenced twice to get the value of the first row element,
+because 1st de-referencing would give pointer to the 1st element location (not its value),
+so it is again de-referenced to get its value.
+
+Now to get all elements' value of a row, we first de-reference the row pointer to get the first element's location,
+then we add the element position to this location to reach jth element of the row. 
+This is then de-referenced to get the jth elements' value.
+So, to access arr[i][j], the pointer equivalent of this is : *( *(arr+i) + j )
+Break-down of syntax *( *(arr+i) + j ) :
+- arr + i : This will give the ith row pointer (pointer to the entire ith row)
+- *(arr + i) : This will give the memory address of the 1st element of the ith row
+- *(arr + i) + j : Adding j to the memory address of 1st element will give us the address of the jth element in the row
+- *(*(arr + i) + j) : By de-referencing, we can get the value of the jth element of the ith row.
+*/ 
+void getElementsRowPointers(int (*ptr)[4]) {
+    // There are 3 rows, we can get each row pointer by doing ptr + i for i in range [0,2]
+    for (int i = 0; i < 3; i++) {
+        // we can get each row pointer by doing ptr + i
+        int (*rowptr)[4] = ptr + i;
+        // By de-referencing the row pointer, we can get the address of the 1st element of the row
+        int *first_element_of_row_i = *(rowptr);
+        
+        cout << "Row " << i << " :- ";
+        for (int i = 0; i < 4; i++) {
+            cout << *(first_element_of_row_i) << " _ ";
+            first_element_of_row_i++;
+        }
+        cout << '\n';
+    }
+
+    // The above code is same as below one
+    for (int i = 0; i < 3; i++) {
+        cout << "Row " << i << " :- ";
+        for (int j = 0; j < 4; j++) {
+            cout << *(*(ptr + i) + j) << " _ ";
+        }
+        cout << '\n';
+    }
 }
