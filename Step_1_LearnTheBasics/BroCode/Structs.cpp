@@ -1,8 +1,8 @@
 #include <iostream>
 using namespace std;
 
+// <-- struct -->
 /*
-<-- struct -->
 • | A struct is a user-defined data type that groups different types of variables under one name.
 • members : variables in struct are known as "members". 
 • These members can be accessed with the dot operator (.) (also called "Class Member Access Operator").
@@ -24,7 +24,10 @@ struct Student {
     float marks;
 };
 ----------------------------------
+*/
 
+// <-- struct variables : Declaration & Initialization -->
+/*
 >> Structure Variable : a variable defined with a user-defined struct.
 
 ### Declaration of struct variables
@@ -153,6 +156,45 @@ struct Student {
     // This value would remain same for all structure variables unless we explicitly change it for some particular variable
 };
 
+// <-- Functions accepting struct arguments -- structs as parameters inside functions -->
+// To use structs as function parameters, we use struct_name variable_name inside paramter
+// structs are passed by value by default, to pass them by reference we have to use refernce variables method
+
+struct Car {
+    string model;
+    int year;
+    string color;
+};
+
+// Pass by value
+void displayCar(Car car) {
+    cout << "Model : " << car.model << " __ Year : " << car.year << " __ Color : " << car.color << '\n';
+}
+
+// Pass by reference
+void paintCar(Car &car, string new_color) {
+    car.color = new_color;
+}
+
+// <-- Struct with functions -->
+struct Book {
+    string name;
+    string author;
+
+    void bookInfo() {
+        cout << name << " - by " << author << '\n';
+    }
+};
+
+// Struct vs Class
+/*
+| Feature            | struct        | class   |
+| ------------------ | ------------- | ------- |
+| Default access     | public        | private |
+| Usage              | Data grouping | OOP     |
+| Can have functions | Yes           | Yes     |
+*/
+
 int main() {
     Student s1;
     s1.rollNo = 1;
@@ -167,6 +209,39 @@ int main() {
     cout << "Student 1 -> " << s1.rollNo << " __ " << s1.name << " __ " << s1.marks << '\n'; 
     cout << "Student 2 -> " << s2.rollNo << " __ " << s2.name << " __ " << s2.marks << '\n'; 
     cout << "Student 3 -> " << s3.rollNo << " __ " << s3.name << " __ " << s3.marks << '\n'; 
+
+    // Array of structs
+    Car cars[5];
+    cars[0] = {"Koenigsegg Jesko", 2022, "White"};
+    cars[1] = {"Porsche 911 GT3", 2021, "Orange"};
+    cars[2] = {"Ford Mustang GT", 2020, "Red"};
+    cars[3] = {"BMW M8 Competition", 2025, "Black"};
+    cars[4] = {"Lamborghini Huracan EVO", 2022, "Yellow"};
+    /*
+    Car cars[5] = {
+        {"Koenigsegg Jesko", 2022, "White"},
+        {"Porsche 911 GT3", 2021, "Orange"},
+        {"Ford Mustang GT", 2020, "Blue"},
+        {"BMW M8 Competition", 2025, "Black"},
+        {"Lamborghini Huracan EVO", 2022, "Green"}
+    };
+    */
+
+    // Passing structs as function arguments
+    for (int i = 0; i < 5; i++) 
+        displayCar(cars[i]);
+
+    paintCar(cars[2], "Blue");
+    paintCar(cars[4], "Green");
+
+    displayCar(cars[2]);
+    displayCar(cars[4]);
+
+    // Struct with functions
+    Book b1 = {"The White Nights", "Fyodor Dostoevsky"};
+    Book b2 = {"Propaganda", "Edward Bernays"};
+    b1.bookInfo();
+    b2.bookInfo();
 
     return 0;
 }

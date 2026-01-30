@@ -21,6 +21,8 @@ int main(){
     // <-- Integers and Floats -->
     short sh = 32767;        // same as, short int s = 32767
     int i = 2147483647;
+    unsigned int ui1 = 10u; // Explicitly unsigned
+    unsigned int ui2 = 10;  // Implicitly converted from signed int
     long l = 2147483647L;
     long long ll = 9223372036854775807LL;
     /*
@@ -40,6 +42,37 @@ int main(){
     The compiler implicitly converts the double to a float, which may involve a small performance cost and potential precision loss.
     */
    
+    /*
+    1️⃣ Integer literal suffixes
+    ### Size modifiers
+        • l or L → long
+        • ll or LL → long long
+    ### Sign modifier
+        • u or U → unsigned
+    ### Combinations (order doesn’t matter)
+        • ul, lu → unsigned long
+        • ull, llu → unsigned long long
+    
+    2️⃣ Floating-point literal suffixes
+    ### Precision modifiers
+        • f or F → float
+        • l or L → long double
+        • (no suffix) → double (default)
+    
+    ❌ No s, i, short, int suffix
+    ❌ No d for double
+    ❌ No suffix for bool
+
+    ### Suffixes and use-cases
+    | Suffix | Meaning     |
+    | ------ | ----------- |
+    | `u`    | unsigned    |
+    | `l`    | long        |
+    | `ll`   | long long   |
+    | `f`    | float       |
+    | `L`    | long double |
+    */
+
     // <-- Char -->
     char ch = 'X';
     char ch2;
