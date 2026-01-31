@@ -131,6 +131,68 @@ int findComplement2(int num) {
 }
 
 // There is another way to get the mask without using the log2 function to find the no. of Bits.
+/*
+Code - 
+    int mask = 0;
+    int temp = num;
+
+    while (temp) {
+        mask = (mask << 1) | 1;
+        temp >>= 1;
+    }
+
+>> Goal of mask
+We want a number that has all 1s in binary, with the same number of bits as num.
+Example -
+    If num = 5 → binary 101 (3 bits)
+    We want mask = 111 (also 3 bits)
+
+>> What this line does
+    | mask = (mask << 1) | 1;
+It does two things:-
+• 'mask << 1' → shift bits left (adds a 0 at the right)
+• '| 1' → OR 1 → forces the last bit to be 1.
+
+So effectively:
+👉 “shift left and add a 1 at the end”
+
+This 'shift left and add a 1 at the end' is done as many times as the temp doesn't become zero during right shifting.
+This right shifting works only till the significant bits of the 32-bits of the integer. 
+
+### Step-by-step example
+
+-- Let’s say:
+    num = 5;        // 101
+    temp = num;
+    mask = 0;      // 000
+
+-- Iteration 1
+    temp = 101 (5)
+    mask = (000 << 1) | 1 = 000 | 1 = 001
+    temp >>= 1 → 101 >> 1 → temp = 10
+
+-- Iteration 2
+    temp = 10 (2)
+    mask = (001 << 1) | 1 = 010 | 1 = 011
+    temp >>= 1 → 10 >> 1 → temp = 1
+
+-- Iteration 3
+    temp = 1
+    mask = (011 << 1) | 1 = 110 | 1 = 111
+    temp >>= 1 → 1 >> 1 → temp = 0
+
+-- Iteration 4
+    temp = 0 → loop stops as condition fails
+
+✅ Final mask = 111
+
+### Why the loop count matches the bit length
+    temp >>= 1;
+This removes one bit from temp each time.
+So:
+- Loop runs once per bit in num
+- Each iteration adds one 1 to mask
+*/
 int findComplement3(int num) {
     int mask = 0;
     int temp = num;
