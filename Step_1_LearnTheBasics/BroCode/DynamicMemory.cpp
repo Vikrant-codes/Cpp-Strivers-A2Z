@@ -134,6 +134,29 @@ int main() {
 
     delete pNum;        // release the memory 
     
+    int *p;
+    p = new int(10);
+    /*
+    -- int *p: p is a pointer.
+
+    -- new int(10)
+    • Allocates memory on the heap for one integer
+    • Initializes that integer with value 10
+    • Returns the address of that memory
+
+    -- p = new int(10)
+    • The address returned by new int(10) is stored in p
+    Now: p  --->  10
+
+    Full picture in context
+    int* p;
+    p = new int(10);
+    • p lives on the stack
+    • 10 lives on the heap
+    • p points to that heap memory
+    */
+    delete p;
+
     // Dynamic Arrays
     char* pName = NULL;
 

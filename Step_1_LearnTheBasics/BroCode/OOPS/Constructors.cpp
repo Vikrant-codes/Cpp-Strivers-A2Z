@@ -97,6 +97,7 @@ public:
     int age;
     char gender;        // 'M' for Male, 'F' for female
 
+    // Constructor
     Student( int id, string name, int age, char gender) {
         // `this` keyword used when parameters and attributes have same name
         this->id = id;
