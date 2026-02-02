@@ -6,6 +6,7 @@ using namespace std;
 • | A struct is a user-defined data type that groups different types of variables under one name.
 • members : variables in struct are known as "members". 
 • These members can be accessed with the dot operator (.) (also called "Class Member Access Operator").
+• If we use pointers to structs/class, then we use the arrow operator (->) to access the members.
 
 ### Basic syntax
 struct structure_name {
@@ -193,6 +194,42 @@ struct Book {
 | Default access     | public        | private |
 | Usage              | Data grouping | OOP     |
 | Can have functions | Yes           | Yes     |
+*/
+
+// Struct & Class 
+/*
+In C++, struct and class are fundamentally the same language construct. 
+A struct is not a weaker or limited version of a class; it is essentially a class with different defaults. 
+The C++ standard treats them equivalently in terms of what they can do.
+
+The only built-in differences between struct and class are:
+- Default access level
+    struct → members are public by default
+    class → members are private by default
+- Default inheritance access
+    struct → public inheritance
+    class → private inheritance
+Beyond these defaults, there is no capability difference.
+
+A struct in C++ can have:
+- Constructors (default, parameterized, copy, move)
+- Destructors
+- Member functions
+- private, protected, and public sections
+- Inheritance
+- Virtual functions and polymorphism
+- Templates and operator overloading
+
+In other words, a C++ struct is fully capable of behaving exactly like a class. 
+We can even write a struct that is indistinguishable from a class simply by explicitly setting access specifiers.
+
+Conceptually, the distinction is semantic, not technical:
+- struct is typically used to represent plain data objects where public access makes sense.
+- class is typically used to represent encapsulated abstractions where data hiding is the default.
+
+So, it is accurate and correct to say:
+| In C++, a struct is essentially a class with default public access, 
+| and it fully supports object-oriented features such as constructors, destructors, and inheritance.
 */
 
 int main() {

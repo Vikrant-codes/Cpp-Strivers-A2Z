@@ -33,13 +33,56 @@ What’s happening:
 
 📌 Important: pNum itself is on the stack, but the int it points to is on the heap
 
+<-- The `new` keyword -->
+
+| In C++, new is an operator used for dynamic memory allocation—i.e., allocating memory at runtime from the heap.
+
+>> What new actually does
+When you write:
+|   int* p = new int;
+new does two things:- 
+- Allocates memory on the heap large enough for the object
+- Constructs the object in that memory (calls its constructor, if any)
+So p stores the address of a dynamically allocated int.
+
+>> Basic usages
+1. Allocate a single variable
+|   int* p = new int(10);  // initialized
+
+2. Allocate an object
+|   class A {
+|   public:
+|       A() { }
+|   };
+|
+|   A* obj = new A;  // constructor is called
+
+3. Allocate an array
+|   int* arr = new int[5];
+
+>> Deallocation: delete
+Memory allocated with new must be released using delete.
+
+|   delete p;        // for single object
+|   delete[] arr;    // for array
+
+- delete calls the destructor, then frees the memory.
+
+>> Why dynamic allocation is needed
+— Stack memory (int x;)
+    • Automatically managed
+    • Limited size
+    • Lifetime tied to scope
+— Heap memory (new)
+    • Manually managed
+    • Much larger
+    • Lifetime controlled by the programmer
+
 >> Why pointers are mandatory for dynamic memory
 We cannot directly access heap memory without a pointer. Dynamic memory = always accessed via pointers.
 
 >> Releasing dynamic memory (delete)
 Unlike stack memory, heap memory is NOT auto-destroyed. To release/delete the allocated memory, we use delete keyword
-Single variable: delete pNum;
-Array: delete[] arr;
 
 >> What happens if you DON’T delete it?
 🔴 Memory Leak

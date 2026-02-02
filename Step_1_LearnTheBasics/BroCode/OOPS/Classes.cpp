@@ -10,6 +10,8 @@ using namespace std;
 • Methods : class methods (also called member functions) are functions that define an object's behavior and manipulate its data. 
 Both attributes & methods collectively referred to as class members and are core components of OOP.
 
+Similar to structs, the members of a class can be accessed using the dot operator (.) & arrow operator (->) (in case of pointers)
+
 ### Basic syntax
 class className {
     attribute1;
@@ -38,14 +40,108 @@ public:
 
 // <-- Access specifiers -->
 /*
+>> What are access specifiers?
+| Access specifiers control who can access class members (variables & functions).
+
+In C++, there are three:-
+1. public → Accessible from anywhere
+2. private → Accessible only inside the class
+3. protected → Used in inheritance
+
 1. public
-Accessible from anywhere
+• Accessible from anywhere
+• Used for interface (what the outside world can use)
+----------------------------
+    class Student {
+    public:
+        int roll;
+        void display() {
+            cout << roll;
+        }
+    };
+----------------------------
+✔ Accessible from main()
+✔ Accessible by other classes
 
 2. private
-Accessible only inside the class
+• Accessible only inside the same class
+• Used to hide implementation details
+------------------------
+    class Student {
+    private:
+        int marks;
+    };
+------------------------
+❌ NOT accessible from main()
+❌ NOT accessible by derived classes
+👉 Default access specifier in C++ classes is private
 
 3. protected
-Used in inheritance
+• Accessible:
+    - Inside the same class
+    - Inside derived (child) classes
+• NOT accessible from outside
+------------------------
+    class Student {
+    protected:
+        int age;
+    };
+------------------------
+✔ Accessible in child classes
+❌ Not accessible from main()
+
+>> Real-world analogy
+Think of a company:
+- private → Internal documents (HR only)
+- protected → Managers + company staff
+- public → Company website info
+
+### Using MULTIPLE access specifiers in ONE class
+
+Rule (very important):
+| All members declared after an access specifier belong to that specifier until another specifier appears.
+
+Example:-
+------------------------
+    class Demo {
+    private:
+        int a;
+        int b;
+
+    public:
+        int c;
+        void show();
+
+    protected:
+        int d;
+
+    public:
+        void print();
+    };
+------------------------
+How to read this:-
+• a, b → private
+• c, show() → public
+• d → protected
+• print() → public
+👉 Access specifier does not apply to a single line,
+👉 it applies to everything below it until changed.
+
+Visual mapping (easy to remember)
+------------------------------------------------
+    class Example {
+        int x;        // private (default)
+
+    public:
+        int y;        // public
+
+    protected:
+        int z;        // protected
+
+    private:
+        int w;        // private again
+    };
+------------------------------------------------
 */
 
 class Human {
