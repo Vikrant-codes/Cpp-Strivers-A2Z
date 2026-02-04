@@ -97,16 +97,20 @@ vector<int> repeatingMissing1(vector<int> nums) {
     long long n = nums.size();
         long long sum = 0;
         long long sqsum = 0;
+
         long long exp_sum = (n * (n + 1)) / 2;
         long long exp_sqsum = (n * (n + 1) * (2*n + 1)) / 6;
+        
         for(int i=0; i<n; i++) {
             sum += (long long) nums[i];
             sqsum += (long long) nums[i] * (long long) nums[i];
         }
-        int p = sum - exp_sum;
-        int q = (sqsum - exp_sqsum) / p;
-        int x = (p + q) / 2;
-        int y = x - p;
+
+        int p = sum - exp_sum;                      // Repeated - Missing
+        int q = (sqsum - exp_sqsum) / p;            // Repeated + Missing
+        
+        int x = (p + q) / 2;                        // repeated
+        int y = x - p;                              // missing
         return {x, y};
 }
 
