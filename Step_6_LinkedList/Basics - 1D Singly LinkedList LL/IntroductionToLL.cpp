@@ -57,6 +57,8 @@ public:
 
 // function that creates a linked list from an array
 Node* arr2LL(vector<int> arr) {
+    if (arr.empty()) return NULL;
+    
     Node* head = new Node(arr[0]);
     Node* curr = head;
 
