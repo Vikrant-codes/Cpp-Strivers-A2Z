@@ -51,6 +51,17 @@ int sizeOfLL(Node* head) {
     return cnt;
 }
 
+// search an element in linked list
+bool searchInLL(Node* head, int key) {
+    Node* curr = head;
+    while (curr) {
+        if (curr->data == key)
+            return true;
+        curr = curr->next;
+    }
+    return false;
+}
+
 // delete head node of the linked list
 Node* deleteHead(Node* head) {
     if (head == NULL) 
