@@ -41,6 +41,7 @@ Student s3(10, "Rahul");    // calls Student(int, string)
 
 ### Constructor delegation (C++11)
 - One constructor can call another constructor of the same class.
+Syntax : ConstructorName(parameters) : OtherConstructor(arguments) {}
 ---------------------------------------------
 class Student {
 public:

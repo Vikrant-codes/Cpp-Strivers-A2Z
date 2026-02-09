@@ -9,8 +9,50 @@ Pre-requisites for LinkedList Implementation :-
 */
 
 /*
+### Singly Linked List (SLL)
+A singly linked list is a linear data structure made up of nodes where each node stores:
+1. Data
+2. Pointer to the next node
+The nodes are connected sequentially using pointers, forming a chain.
+
+1. Node Structure
+Each node contains two parts: [ data | next ]
+• data → value stored in the node
+• next → address of the next node in the list
+
+2. Basic Organization
+- The first node is called the head.
+- The last node is called the tail.
+    tail->next = nullptr
+Example:
+    [10] → [20] → [30] → [40] → NULL
+- The list starts from the head and ends where the next pointer becomes nullptr.
+
+3. Traversal
+- Traversal always starts from the head and proceeds using the next pointer:
+    head → head->next → head->next->next ...
+- Traversal stops when a node’s next becomes nullptr.
+
+4. Linking Principle
+- For two consecutive nodes:
+    A->next = B
+- Each node stores only the address of the next node, maintaining a one-directional chain.
+
+5. Memory Representation
+- Nodes are dynamically allocated in memory.
+- Nodes are not stored in contiguous locations.
+- Connections between nodes are maintained using pointers instead of indices.
+
+6. Basic Operations Supported
+A singly linked list supports:
+• Insertion (beginning, end, or middle)
+• Deletion of nodes
+• Traversal
+• Searching
+All operations involve updating the next pointer appropriately.
+
 >> What is a 1D Linked List?
-• A 1D (singly) linked list is a linear data structure where:
+A 1D (singly) linked list is a linear data structure where:
 • Each element is called a node
 • Each node contains:
     - Data
