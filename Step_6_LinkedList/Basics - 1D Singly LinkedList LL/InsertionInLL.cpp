@@ -3,7 +3,6 @@ using namespace std;
 
 // Insertion in Linked List
 /*
-
 1. Insertion at Head (Beginning)
 Logic:
 • Create a new node.
