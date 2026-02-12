@@ -4,6 +4,7 @@ using namespace std;
 // <-- Constructor -->
 /*
 | A constructor is a special member function of a class that is automatically called when an object is created.
+
 • It is a special method that is automatically called when an object is instantiated (represented as or by an instance).
 • Useful for assigning values to attributes as arguments.
 
@@ -13,9 +14,10 @@ using namespace std;
     • Used to initialize data members
     • Called once per object
 
+--------------------------------------------------
 1. Default constructor
 Called when no arguments are passed.
---------------------------------------------------
+
     class Student {
     public:
         int id;
@@ -26,11 +28,10 @@ Called when no arguments are passed.
     };
 
     Student s;   // default constructor called
---------------------------------------------------
 
 2. Parameterized constructor
 Used when values are passed at object creation.
------------------------------
+
     class Student {
     public:
         int id;
@@ -41,17 +42,81 @@ Used when values are passed at object creation.
     };
     
     Student s(10);
------------------------------
+--------------------------------------------------
 
+### Constructor Initializer List (IMPORTANT)
+
+Syntax:
+    Constructor(parameters) : member1(value1), member2(value2) {}
+
+Example:
+    Student(int id, string name)
+        : id(id), name(name) {}
+
+
+>> What is this syntax?
+
+The part after ':' is called the **initializer list**.
+It initializes data members directly when the object is created, before the constructor body executes.
+
+>> How it works internally
+
+Without initializer list:
+    Student(int id) {
+        this->id = id;
+    }
+
+Steps:
+    1. id is first default-initialized
+    2. then assigned a new value
+
+With initializer list:
+    Student(int id) : id(id) {}
+
+Steps:
+    1. id is directly initialized with value
+
+So initialization happens only once.
+
+
+>> Why initializer list is more efficient
+
+• Avoids extra default initialization + assignment
+• Direct construction of members
+• Required for:
+    - const data members
+    - reference members
+    - objects without default constructors
+
+Example:
+    const int id;   // must use initializer list
+
+
+>> Difference from constructor delegation
+
+Initializer list:
+    Student(int x) : id(x) {}
+    --> initializes members
+
+Constructor delegation:
+    Student(int x) : Student(x, "Unknown") {}
+    --> calls another constructor
+
+>> Key takeaway
+Initializer list = direct member initialization
+Constructor body assignment = initialize then assign
+
+--------------------------------------------------
 >> Why constructors are important
 • Prevent uninitialized variables
 • Guarantee object starts in a valid state
 • Centralize initialization logic
 
+--------------------------------------------------
 <-- The `this` keyword -->
 | this is a pointer to the current object that called the member function.
 
->> Why this is needed
+>> Why `this` is needed
 When data members and parameters have the same name.
 ------------------------------
     class Student {
@@ -64,17 +129,17 @@ When data members and parameters have the same name.
     };
 ------------------------------
 
-Without this:
+Without `this`:
     id = id;   // ❌ both refer to parameter
 
-With this:
+With `this`:
     this->id = id;   // ✅ object member = parameter
 
->> What this actually is
+>> What `this` actually is
 • Type: Student* ... (pointer to object)
 • Points to the current object in memory
 
->> Constructor without this
+>> Constructor without `this`
 If names are different:
 -------------------------
     Student(int x) {
@@ -114,12 +179,12 @@ public:
     int year;
     string color;
 
-    Car(string mk, string md, int y, string c) {
-        maker = mk;
-        model = md;
-        year = y;
-        color = c;
+    // Constructor initializer list
+    Car(string mk, string md, int y, string c) : maker(mk), model(md), year(y), color(c) {
+        // constructor body can be empty
+        // members already initialized
     }
+
 };
 
 int main() {
