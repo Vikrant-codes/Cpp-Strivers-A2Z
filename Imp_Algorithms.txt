@@ -1,9 +1,9 @@
-1.) Dutch National Flag Algorithm --> Problem : Sort012 (Array - Easy)
+1.) Dutch National Flag Algorithm --> Problem : Sort012 (Array - Medium) / SortColors (Leetcode - Medium)
 2.) Moore's Voting Algorithm --> Problem : Majority Element (Array - Medium)
 3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
 4.) Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
 5.) Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
-
+6.) Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Proble : Detect loop in Linked List
 _____________________________________________________________________________________________________
 
 > Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)

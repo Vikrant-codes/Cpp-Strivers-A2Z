@@ -93,7 +93,7 @@ ListNode* middleNodeNaiveStriver(ListNode* head) {
     return temp;
 }
 
-// Optimal Approach (TortoiseHare Method) (Slow & Fast Pointers) : Time Complexity : O(n / 2) __ Space Complexity : O(1)
+// Optimal Approach (TortoiseHare Method -- Slow & Fast Pointers) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 The idea is based on moving at different speeds.
 
