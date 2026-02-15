@@ -57,6 +57,14 @@ public:
     }
 };
 
+// HashMap Approach : Time Complexity : O(n) __ Space Complexity : O(n)
+/*
+We know that we can use hashing (map / set) to detect whether a loop exists by checking if any node re-appears while traversing.
+In case of loop's existence, we can find its length by considering when was the last time we saw the re-appearing node.
+Use a map to store Nodes & their index values (1-indexed or 0-indexed) in the map (use a counter variable to do that).
+When a node re-appears, we find the difference between the current index/counter value and the value stored in map.
+This difference is the length of loop.
+*/
 int lengthOfLoop(Node *head) {
     unordered_map<Node*, int> mpp;
     Node* curr = head;
@@ -69,6 +77,40 @@ int lengthOfLoop(Node *head) {
         mpp[curr] = i;
         i++;
         curr = curr->next;
+    }
+    
+    return 0;
+}
+
+// Optimal Approach (Floyd's Loop Detection + Loop Traversal): Time Complexity : O(n) __ Space Complexity : O(1)
+/*
+• Use Floyd’s Cycle Detection Algorithm to detect whether a loop exists, using two pointers (slow & fast).
+• If the pointers meet, a cycle is confirmed. The meeting point lies somewhere inside the loop.
+• To find the loop length:
+    - Keep one pointer fixed at the meeting point.
+    - Move the other pointer one step at a time through the loop.
+    - Count the number of steps taken until it reaches the same collision point again (the other pointer is standing here).
+    - The total number of steps counted is the length of the loop.
+    - (This is because length of loop = no. of steps required from any node to reach itself after traversing the loop once)
+• If the fast pointer reaches NULL, no loop exists, so return 0.
+*/
+int lengthOfLoop(Node *head) {
+    Node* slow = head;
+    Node* fast = head;
+    
+    while (fast != NULL && fast->next != NULL) {
+        slow = slow->next;
+        fast = fast->next->next;
+        // if loop exists
+        if (slow == fast) {
+            int len = 1;
+            slow = slow->next;
+            while (slow != fast) {
+                len++;
+                slow = slow->next;
+            }
+            return len;
+        }
     }
     
     return 0;
