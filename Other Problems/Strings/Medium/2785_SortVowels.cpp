@@ -106,7 +106,7 @@ string sortVowelsMy2(string s)
     return s;
 }
 
-// Optimal Approach : Time Complexity : O(n) __ Space Complexity : O(1)
+// Optimal Approach (Counting Sort) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 🔑 Intuition
 - Vowels are from a fixed small set (A,E,I,O,U,a,e,i,o,u) — only 10 possibilities.
@@ -136,16 +136,16 @@ string sortVowels(string s)
     vector<int> freq(10, 0); // stores frequency of each vowel
     for (char c : s) {
         switch (c) {
-        case 'A': freq[0]++;break;
-        case 'E': freq[1]++;break;
-        case 'I': freq[2]++;break;
-        case 'O': freq[3]++;break;
-        case 'U': freq[4]++;break;
-        case 'a': freq[5]++;break;
-        case 'e': freq[6]++;break;
-        case 'i': freq[7]++;break;
-        case 'o': freq[8]++;break;
-        case 'u': freq[9]++;break;
+            case 'A': freq[0]++;break;
+            case 'E': freq[1]++;break;
+            case 'I': freq[2]++;break;
+            case 'O': freq[3]++;break;
+            case 'U': freq[4]++;break;
+            case 'a': freq[5]++;break;
+            case 'e': freq[6]++;break;
+            case 'i': freq[7]++;break;
+            case 'o': freq[8]++;break;
+            case 'u': freq[9]++;break;
         }
     }
     int ind = 0;
