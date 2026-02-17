@@ -80,6 +80,38 @@ string frequencySort(string s) {
     return ans;
 }
 
+// Comparators & lambda expressions ? Go to : 'Step_1 > Advanced > LambdaFn_and_Comparators.cpp' to understand them
+/*
+The comparator used here
+    [] (auto &a, auto &b) {
+        return a.second > b.second;
+    }
+This is a lambda function (anonymous function).
+Meaning: a and b are two elements from vector v, each element is pair<char, int>.
+So:
+- a.second  -> frequency of first character
+- b.second  -> frequency of second character
+The comparator says: return a.second > b.second;
+Which means: place the element with higher frequency first.
+So sorting becomes descending order of frequency.
+
+>> How sort actually uses it (step-by-step idea)
+
+Suppose vector contains: [('a',3), ('b',1), ('c',2)]
+sort repeatedly compares elements:
+Example comparison: 
+- comparator(('a',3), ('b',1))
+  Checks: 3 > 1 → true
+  So 'a' stays before 'b'.
+
+- Another comparison: comparator(('c',2), ('a',3))
+  Checks:
+  2 > 3 → false
+  So 'a' should come before 'c'.
+
+After many such comparisons, final order becomes: ('a',3), ('c',2), ('b',1)
+*/
+
 int main() {
     return 0;
 }
