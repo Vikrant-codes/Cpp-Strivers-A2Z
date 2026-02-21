@@ -99,6 +99,8 @@ void bubble_sort(int arr[], int n){
 void insertion_sort(int arr[], int n){
     for(int i=1; i<n; i++){
         int j = i;
+        // insert the ith element to its correct position in sorted half.
+        // By repeatedly right-pushing the bigger elements and inserting the ith element in the empty space
         while(j>0 && arr[j-1] > arr[j]){
             swap(arr[j-1], arr[j]);
             j--;

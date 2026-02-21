@@ -93,7 +93,7 @@ void mergeOpt1(vector<int>& arr1, int n, vector<int>& arr2, int m) {
     sort(arr2.begin(), arr2.end());
 }
 
-// Optimal Approach 2 (using Gap method) :
+// Optimal Approach 2 (using Gap method) : Time Complexity : O((n+m)*log(n+m)) __ Space Complexity : O(1)
 /*
 This gap method is based on a sorting technique called shell sort. 
 
