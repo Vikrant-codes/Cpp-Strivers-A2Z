@@ -54,20 +54,20 @@ the head pointer can be reached using *head_ref.
 
 head_ref is used because we want to modify the original head pointer inside the function without returning it.
 
-Why normal Node* head doesn’t work?
+>> Why normal Node* head doesn’t work?
 When you pass:
     void func(Node* head)
-A copy of the head pointer is passed.
-If you do head = head->next, only the copy changes.
-Original head outside the function remains unchanged ❌
+- A copy of the head pointer is passed.
+- If you do head = head->next, only the copy changes.
+- Original head outside the function remains unchanged ❌
 
-Why Node** head_ref works?
+>> Why Node** head_ref works?
 When you pass:
     void func(Node** head_ref)
-You pass the address of the head pointer.
-Inside the function, *head_ref refers to the original head.
-So changing:
-*head_ref = (*head_ref)->next;
+- You pass the address of the head pointer.
+- Inside the function, *head_ref refers to the original head.
+So changing: 
+    *head_ref = (*head_ref)->next;
 modifies the real head pointer ✅
 */
 void deleteAllOccurOfX(struct Node** head_ref, int x) {
