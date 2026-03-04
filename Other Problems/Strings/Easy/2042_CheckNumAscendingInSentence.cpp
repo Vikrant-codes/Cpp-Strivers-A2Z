@@ -183,17 +183,19 @@ bool areNumbersAscending3(string s) {
 
     // extract words from the sentence
     while (ss >> word) {
-        // if the extracted word is a number, compare it with the previous number
+        // if the extracted word is a number, compare it with previous number
         if ( isdigit(word[0]) ) {
-            // convert the word to integer :- using stringstream or manually converting digits to integer
+            // convert the word to integer - using stringstream or manually converting digits to integer
+            
             istringstream iss(word);
             int x;
-            iss >> x;
+            iss >> x;     // Now, x stores the current number as its been converted from string -> int using istringstream
+            // compare this current integer with the previous one
             if (x <= prev) return false;
             prev = x;
         }
     }
-
+    
     return true;
 }
 
