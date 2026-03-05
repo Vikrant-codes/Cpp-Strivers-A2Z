@@ -56,6 +56,10 @@ vector<pair<int, int>> findPairsWithGivenSumNaive(Node *head, int target) {
                 ans.push_back({a, b});      // push the pair to answer
                 break;                      // break since elements are distinct so no more pair exists for current node
             }
+            else if (a + b > target) 
+                break; 
+                // since dll is sorted, moving temp ahead will only increase the sum further, so break out of loop in that case
+            
             temp = temp->next;
         }
         
@@ -134,6 +138,32 @@ vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target) {
         }
         else if (a + b < target) i = i->next;
         else j = j->prev;
+    }
+    
+    return ans;
+}
+
+// Striver's implementation
+vector<pair<int, int>> findPairsWithGivenSumStriver(Node *head, int target) {
+    vector<pair<int, int>> ans;
+    
+    Node* left = head;     // left pointer, at head
+    Node* right = head;     // right pointer should point to tail
+    // move right pointer to tail node
+    while (right->next)
+        right = right->next;
+    
+    while (left->data < right->data) {
+        int a = left->data;
+        int b = right->data;
+        
+        if (a + b == target) {
+            ans.push_back({a, b});
+            left = left->next;
+            right = right->prev;
+        }
+        else if (a + b < target) left = left->next;
+        else right = right->prev;
     }
     
     return ans;
