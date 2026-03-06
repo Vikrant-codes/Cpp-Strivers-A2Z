@@ -101,7 +101,7 @@ vector<pair<int, int>> findPairsWithGivenSumBetter(Node *head, int target) {
     return ans;
 }
 
-// Optimal Approach (2 Pointers) : Time Complexity : O(n) __ Space Complexity : O(1)
+// Optimal Approach (2 Pointers) : Time Complexity : O(2*n) __ Space Complexity : O(1)
 /*
 Approach :-
 Since the doubly linked-list is sorted, we can use 2 pointers to find pairs which sum up to target.
@@ -117,6 +117,10 @@ Stepwise Approach:
 8. If the sum is greater than the target, move j backward to decrease the sum.
 9. Continue this process while the pointers have not met or crossed.
 10. Return the list of all valid pairs.
+
+Time Complexity : 
+- O(n) : to reach the tail node for the right pointer
+- O(n) : to traverse the two pointers
 */
 vector<pair<int, int>> findPairsWithGivenSum(Node *head, int target) {
     vector<pair<int, int>> ans;
