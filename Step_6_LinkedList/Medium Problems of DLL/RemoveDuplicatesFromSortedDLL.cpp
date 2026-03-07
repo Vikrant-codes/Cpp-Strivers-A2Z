@@ -70,8 +70,8 @@ If yes, we skip all those nodes having the same value.
 The list is sorted, so if duplicates exist, they will always appear next to each other.
 Example: 1 ⇄ 2 ⇄ 2 ⇄ 2 ⇄ 3 ⇄ 4
 So instead of deleting nodes one by one, the idea is:
-When we encounter duplicates, skip the entire block of duplicates and 
-directly connect the current node to the first different node.
+  When we encounter duplicates, skip the entire block of duplicates and 
+  directly connect the current node to the first different node.
 This avoids unnecessary deletions and makes the traversal simpler.
 
 Step-wise Approach
