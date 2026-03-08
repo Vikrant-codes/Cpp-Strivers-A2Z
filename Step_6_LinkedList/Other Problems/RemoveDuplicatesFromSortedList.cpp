@@ -15,6 +15,8 @@ Constraints :-
 • The list is guaranteed to be sorted in ascending order.
 */
 
+// There is a similar problem for doubly linked list also
+
 #include <bits/stdc++.h>
 using namespace std;
 
