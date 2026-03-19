@@ -25,7 +25,7 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-// Time Complexity : O(n log n) since using 'set', 'unordered_set would have taken O(n)' __ Space Complexity : O(n)
+// Time Complexity : O(n log n) __ Space Complexity : O(n)
 /*
 Idea:
 The problem statements includes : 
@@ -39,6 +39,15 @@ Thus, we use a set to store the points while moving North/East/West/South.
 If during movement, any point re-appears, this would mean paths are being crossed.
 We can easily check for this re-appearance of a point using set.
 If set already contains some point, it means the point is being re-visited.
+
+✅ Core Idea
+- Treat each move as a coordinate change.
+- Track visited coordinates using a set.
+- If a coordinate repeats → path crosses.
+
+⏱ Complexity
+Time: O(n log n) (due to set)
+Space: O(n)
 */
 bool isPathCrossing(string path) {
     set<vector<int>> points;
@@ -60,6 +69,60 @@ bool isPathCrossing(string path) {
     
     return false;
 }
+
+// Same Approach, we are just using two variables 'x' & 'y' to keep track of current x & y co-ordinates of the point.
+bool isPathCrossing(string path) {
+    set<pair<int,int>> points;
+    points.insert({0, 0});
+
+    int x = 0, y = 0;               // Initial Co-ordinates (x & y) of origin (0, 0) : x = 0, y = 0
+    
+    for (char& c : path) {
+        if (c == 'N') y++;
+        else if (c == 'S') y--;
+        else if (c == 'E') x++;
+        else x--;
+    
+        if (points.count({x, y})) return true;
+
+        points.insert({x, y});
+    }
+    
+    return false;
+}
+
+/*
+<-- Why are we using 'set' and not 'unordered_set' -->
+
+We need to store the points in a set / hash data structure. 
+To store the points coordinates, we either use a pair<int, int> or vector<int>.
+
+- set/map uses balanced BST (Red-Black Tree) → needs ordering (<)
+- unordered_set/unordered_map uses hash table → needs hash function
+
+# Data structures like 'set' and 'map' works fine with both or them, i.e.,
+
+    set<vector<int>> points; 
+    set<pair<int,int>> points;
+    map<pair<int,int>, int> mp;
+    map<vector<int>, int> mp;
+
+These works fine because 'map' and 'set' uses ordering (<), not hashing.
+
+# But if we use 'unordered_set' or 'unordered_map', these are troublesome.
+unordered_set / unordered_map needs a hash function, 
+and pair<int,int> / vector<int> doesn’t have a default hash in standard C++.
+So, 
+    unordered_set<vector<int>> points; 
+    unordered_set<pair<int,int>> points;
+    unordered_map<pair<int,int>, int> mp;
+    unordered_map<vector<int>, int> mp;
+These gives error, as pair<int, int> and vector<int> doesn't have a default hash function.
+Why Eror?
+- unordered_set / unordered_map → uses hashing
+- pair<int,int> / vector<int> → no built-in hash
+So, to make it work this way, we need to use a custom hash function.
+*/
 
 int main() {
     return 0;
