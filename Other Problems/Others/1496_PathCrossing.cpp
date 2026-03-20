@@ -49,7 +49,7 @@ If set already contains some point, it means the point is being re-visited.
 Time: O(n log n) (due to set)
 Space: O(n)
 */
-bool isPathCrossing(string path) {
+bool isPathCrossing1(string path) {
     set<vector<int>> points;
     points.insert({0, 0});
 
@@ -71,7 +71,7 @@ bool isPathCrossing(string path) {
 }
 
 // Same Approach, we are just using two variables 'x' & 'y' to keep track of current x & y co-ordinates of the point.
-bool isPathCrossing(string path) {
+bool isPathCrossing2(string path) {
     set<pair<int,int>> points;
     points.insert({0, 0});
 
@@ -96,6 +96,8 @@ bool isPathCrossing(string path) {
 
 We need to store the points in a set / hash data structure. 
 To store the points coordinates, we either use a pair<int, int> or vector<int>.
+But, pairs & vectors don't have any defualt hashing functions in standard C++. 
+So, we need to create custom hashing functions for them.
 
 - set/map uses balanced BST (Red-Black Tree) → needs ordering (<)
 - unordered_set/unordered_map uses hash table → needs hash function
@@ -123,6 +125,32 @@ Why Eror?
 - pair<int,int> / vector<int> → no built-in hash
 So, to make it work this way, we need to use a custom hash function.
 */
+
+// Using Custom Hashing + Unordered_Set: Time Complexity : O(n) __ Space Complexity : O(n)
+// custom hash function for pair hash
+struct pair_hash {
+    size_t operator() (const pair<int, int>& p) const {
+        return hash<int>()(p.first) ^ ( (hash<int>()(p.second)) << 1);
+    }
+};
+
+bool isPathCrossingCustomHash(string path) {
+    unordered_set<pair<int, int>, pair_hash> s;
+    int x = 0, y = 0;
+    s.insert({x, y});           // Insert initial position (origin {0, 0})
+
+    for (char &c : path) {
+        if (c == 'N') y++;
+        else if (c == 'S') y--;
+        else if (c == 'E') x++;
+        else x--;
+    
+        if (s.count({x, y})) return true;
+        s.insert({x, y});
+    }
+    
+    return false;
+}
 
 int main() {
     return 0;

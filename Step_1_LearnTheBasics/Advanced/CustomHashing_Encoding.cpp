@@ -104,59 +104,6 @@ This would have caused ❌ collisions, which is a sign of bad hashing (bad hashi
 So, we need to combine them such that different pairs give different numbers.
 */
 
-
-// ### Custom hash function use in STL (with unordered_map / unordered_set)
-/*
-This custom pair hash function can be used to hash pairs and thus help in using 
-unordered_set / unordered_map of 'pair' data types.
-
-Since, C++ don't have any default functions for hashing 'pairs', 
-we can't directly use unordered_set / unordered_map having pair elements.
-Because such data structures (like unordered_set / unordered_map) needs a hash function.
-
-Thus, statements like 
-    unordered_set<pair<int, int>> ❌
-    unordered_map<pair<int, int>, int> ❌ 
-are invalid. This is because C++ don't have any default hash function for pairs and 
-unordered_set / unordered_map needs the hash function for its elements.
-
-Thus, if we want to use pair as elements of unordered_set / unordered_map, 
-we need to pass the custom hash function for the pair elements.
-Thus, we need to use 
-    unordered_set<pair<int, int>, pair_hash> ✅
-    unordered_map<pair<int, int>, int, pair_hash> ✅
-Now, this would work fine as we have passed the custom hash function which enables the map/set to hash pair elements.
-
-If we were using set / map instead of unordered_set / unordered_map, we would have had no need for the custom pair hash fn.
-This is because set/map don't need hash function for their elements
-- set/map uses balanced BST (Red-Black Tree) → needs ordering (<)
-- unordered_set/unordered_map uses hash table → needs hash function
-
-Thus, Data structures like 'set' and 'map' works fine with pairs or vectors, i.e.,
-
-    set<vector<int>> points; ✅
-    set<pair<int,int>> points; ✅
-    map<pair<int,int>, int> mp; ✅
-    map<vector<int>, int> mp; ✅
-
-These works fine because 'map' and 'set' uses ordering (<), not hashing.
-
-But if we use 'unordered_set' or 'unordered_map', these are troublesome, since
-unordered_set / unordered_map needs a hash function, 
-and pair<int,int> / vector<int> doesn’t have a default hash in standard C++.
-So, 
-    unordered_set<vector<int>> points; ❌
-    unordered_set<pair<int,int>> points; ❌
-    unordered_map<pair<int,int>, int> mp; ❌
-    unordered_map<vector<int>, int> mp; ❌
-These gives error, as pair<int, int> and vector<int> doesn't have a default hash function.
-Why Eror?
-- unordered_set / unordered_map → uses hashing
-- pair<int,int> / vector<int> → no built-in hash
-So, to make it work this way, we need to use a custom hash function.
-
-*/
-
 struct pair_hash {
     size_t operator()(const pair<int, int>& p) const {
         int a = p.first, b = p.second;      // get the pair elements
@@ -176,6 +123,7 @@ struct vector_hash {
         return h;
     }
 };
+// vector_hash function
 /*
 Goal of the custom vector hash fn -> Convert: {a, b, c} into a single number (h) such that:
 - Order matters
@@ -236,6 +184,56 @@ Uses shifting + constant
 Prevents simple cancellations like XOR-only
 */
 
+// ### Custom hash function use in STL (with unordered_map / unordered_set)
+/*
+This custom pair hash function can be used to hash pairs and thus help in using 
+unordered_set / unordered_map of 'pair' data types.
+
+Since, C++ don't have any default functions for hashing 'pairs', 
+we can't directly use unordered_set / unordered_map having pair elements.
+Because such data structures (like unordered_set / unordered_map) needs a hash function.
+
+Thus, statements like 
+    unordered_set<pair<int, int>> ❌
+    unordered_map<pair<int, int>, int> ❌ 
+are invalid. This is because C++ don't have any default hash function for pairs and 
+unordered_set / unordered_map needs the hash function for its elements.
+
+Thus, if we want to use pair as elements of unordered_set / unordered_map, 
+we need to pass the custom hash function for the pair elements.
+Thus, we need to use 
+    unordered_set<pair<int, int>, pair_hash> ✅
+    unordered_map<pair<int, int>, int, pair_hash> ✅
+Now, this would work fine as we have passed the custom hash function which enables the map/set to hash pair elements.
+
+If we were using set / map instead of unordered_set / unordered_map, we would have had no need for the custom pair hash fn.
+This is because set/map don't need hash function for their elements
+- set/map uses balanced BST (Red-Black Tree) → needs ordering (<)
+- unordered_set/unordered_map uses hash table → needs hash function
+
+Thus, Data structures like 'set' and 'map' works fine with pairs or vectors, i.e.,
+
+    set<vector<int>> points; ✅
+    set<pair<int,int>> points; ✅
+    map<pair<int,int>, int> mp; ✅
+    map<vector<int>, int> mp; ✅
+
+These works fine because 'map' and 'set' uses ordering (<), not hashing.
+
+But if we use 'unordered_set' or 'unordered_map', these are troublesome, since
+unordered_set / unordered_map needs a hash function, 
+and pair<int,int> / vector<int> doesn’t have a default hash in standard C++.
+So, 
+    unordered_set<vector<int>> points; ❌
+    unordered_set<pair<int,int>> points; ❌
+    unordered_map<pair<int,int>, int> mp; ❌
+    unordered_map<vector<int>, int> mp; ❌
+These gives error, as pair<int, int> and vector<int> doesn't have a default hash function.
+Why Eror?
+- unordered_set / unordered_map → uses hashing
+- pair<int,int> / vector<int> → no built-in hash
+So, to make it work this way, we need to use a custom hash function.
+*/
 
 // Encoding
 /*
@@ -295,6 +293,53 @@ Can overflow if:
 Encoding = pack multiple values into one number using base multiplication
 */
 
+long long encodePair(pair<int, int>& p) {
+    int a = p.first;
+    int b = p.second;
+    long long N = 1e9;              // 1e9 = 10^9 ... Note : 1e9 is considered double by default
+
+    return 1LL * a * N + b;         // assuming that both a & b < 1e9 (10^9)
+}
+
+// Example Problem Statement :- 
+// Given a vector of pairs, return the count of distinct pairs in the vector (not considering the duplicates).
+/*
+If we use set/map to store the pair elements, we can do it without needing any custom hashing or encoding, but, 
+set and map takes O(n log n) time.
+If we want to use unordered_set / unordered_map to reduce the time to O(n), we need custom hashing / encoding.
+*/
+int distinctPairs1(vector<pair<int, int>>& pairs) {
+    set<pair<int, int>> s;          // or, we can use map also, map<pair<int, int>, int> mpp;
+
+    for (auto& p : pairs) 
+        s.insert(p);                // or, mpp[p]++;
+    
+    return s.size();                // or, return mpp.size();
+}
+
+int distinctPairs2(vector<pair<int, int>>& pairs) {
+    unordered_set<pair<int, int>, pair_hash> s;            
+    // The custom hashing fn 'pair_hash' is passed alongwith element data_type (pair<int, int>) while defining the unordered_set
+
+    for (auto& p : pairs)
+        s.insert(p);
+
+    return s.size();           
+}
+
+int distinctPairs3(vector<pair<int, int>>& pairs) {
+    unordered_set<long long> s;
+    // We are using encoding so we encode the pairs into a long long value and use this value for hashing.
+
+    for (auto& p : pairs) {
+        long long key = encodePair(p);          // get the corresponding encoded value for the current pair
+        s.insert(key);                          // use the encoded value as the unique generated key for the pair
+        // Same pairs would generate the same key and thus unqiueness will remain in the set.
+    }
+
+    return s.size();
+}
+
 int main() {
     hash<int> h;            // this creates a struct object for the struct 'hash<int>'
     cout << h(5);           // calls the operator function of the hash<int> struct taking parameter '5'
@@ -308,6 +353,9 @@ int main() {
 
     vector<int> v = {1, 2, 3, 4, 5};
     cout << vector_hash()(v) << '\n';
+
+    vector<pair<int, int>> pairs = { {0,0}, {0,1}, {1,0}, {0,0}, {2,1}, {1,2}, {1,1}, {2,2}, {1,0} };
+    cout << "Distinct Pairs count : " << distinctPairs3(pairs);
     
     return 0;
 }
