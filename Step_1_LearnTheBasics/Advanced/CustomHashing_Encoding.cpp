@@ -340,6 +340,8 @@ int distinctPairs3(vector<pair<int, int>>& pairs) {
     return s.size();
 }
 
+// Check out "Other Problems/Others/1496_PathCrossing.cpp" to see a problem using Custom Hashing / Encoding
+
 int main() {
     hash<int> h;            // this creates a struct object for the struct 'hash<int>'
     cout << h(5);           // calls the operator function of the hash<int> struct taking parameter '5'

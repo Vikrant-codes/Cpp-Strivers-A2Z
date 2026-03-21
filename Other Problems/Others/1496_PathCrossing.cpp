@@ -127,6 +127,8 @@ So, to make it work this way, we need to use a custom hash function.
 */
 
 // Using Custom Hashing + Unordered_Set: Time Complexity : O(n) __ Space Complexity : O(n)
+// Read "Step_1_LearnTheBasics/Advanced/CustomHashing_Encoding.cpp" to understand custom hashing and encoding
+
 // custom hash function for pair hash
 struct pair_hash {
     size_t operator() (const pair<int, int>& p) const {
@@ -149,6 +151,38 @@ bool isPathCrossingCustomHash(string path) {
         s.insert({x, y});
     }
     
+    return false;
+}
+
+// Encoding : Time Complexity : O(n) __ Space Complexity : O(1)
+/*
+Trick: Encode a pair in a way that it generates a unqiue key for that pair.
+Pair (x, y) can be encoded as (x * N + y), where 'N' is a large no. such that N > y.
+This encoded number can be directly used for hashing so no need for any custom hash function.
+
+Give the contraints 1 <= path.length <= 10^4. Initially point would be {0, 0} i.e., x = 0, y = 0.
+Now, the maximum string length can be 10^4, so even if the path moved only in one direction (like all 'N' or all 'E').
+If it had all N's then y would increase 10^4 times, making its final value = 10^4.
+So, the maximum value of x & y coordinates can be 10^4 only.
+So, we use 1e5 i.e. (10^5) for encoding since (10^5 is always greater than x & y)
+*/
+bool isPathCrossing(string path) {
+    unordered_set<long long> s;
+    int x = 0, y = 0;
+    s.insert(0);            // encoded value for origin {0, 0} = 0 * N + 0 = 0
+
+    for (char &c : path) {
+        if (c == 'N') y++;
+        else if (c == 'S') y--;
+        else if (c == 'E') x++;
+        else x--;
+
+        long long key = 1LL * x * 1e5 + y;      // encode for the current {x,y} pair
+
+        if (s.count(key)) return true;
+        s.insert(key);
+    }
+
     return false;
 }
 
