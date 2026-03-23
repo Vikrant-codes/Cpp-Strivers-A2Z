@@ -22,11 +22,13 @@ m == matrix.length __ n == matrix[i].length
 #include <bits/stdc++.h>
 using namespace std;
 
-// Time Complexity : O(n^2) __ Space Complexity : O(1)
+// Time Complexity : O(m*n) __ Space Complexity : O(m*n)
 /*
-The matrix is not necessarily a square matrix. For a irregular matrix of size m x n. 
-The tranpose would be of size n x m, having rows which were columns of original matrix. 
+The matrix is not necessarily a square matrix. 
+For an irregular matrix (rectangular matrix) of size m x n, the transpose matrix would be of size n x m. 
+The rows of original matrix becomes columns for the transpose matrix.
 So, if an element was at indices (i, j) in original matrix then it would exist at index (j, i) in transpose. 
+For the rectangluar matrix, we need to use extra space (new matrix) to store the transposed values. 
 So, we simply iterate through each element mat[i][j] and copy its value at transpose[j][i].
 */
 vector<vector<int>> transpose(vector<vector<int>>& matrix) {
@@ -40,6 +42,30 @@ vector<vector<int>> transpose(vector<vector<int>>& matrix) {
     } 
     return transpose;
 }
+
+// What if the given matrix was square matrix ?
+/*
+If it was a square matrix of size n x n, then we wouldn't have needed any extra space and 
+could've directly get the transpose by changing values in original matrix (in-place).
+
+Idea: Swap elements across the diagonal: a[i][j] ↔ a[j][i]
+
+Since we know that to get transpose, we have to flip the values over its main diagonal (swap values),
+we can simply iterate any one triangluar region (above or down the main diagonal) and 
+swap its elements (mat[i][j]) values with the mat[j][i] to get the transpose matrix.
+
+The code for that would've been : 
+
+    vector<vector<int>> transpose(vector<vector<int>>& mat) {
+        int n = mat.size();
+        for (int i = 0; i < n; i++) {
+            for (int j = i+1; j < n; j++) {
+                swap(mat[i][j], mat[j][i]);
+            }
+        }
+        return mat;
+    }
+*/
 
 int main() {
 
