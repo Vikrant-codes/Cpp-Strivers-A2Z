@@ -148,6 +148,42 @@ ListNode* reverseListIterative(ListNode *head) {
 }
 
 // Recursive Approach
+/*
+In Recursion approaches, we try to divide a bigger problem into smaller subproblems and solve them.
+How can we do that here...?
+Imagine we are given a big linked list with 'n' nodes, so we could use recursion to solve (i.e. to reverse) 
+the next 'n-1' nodes which lie ahead of the head node.
+So, for given head, we call the reverse function for head->next to reverse the forward portion first.
+We then attach the current node to the last node of the forwarded reverse portion.
+
+>> What's the smallest subproblem case (base-condition) ?
+If the passed linked list is empty or has only one element, we don't have to reverse it.. so just return head.
+This condition "if (head == NULL || head->next == NULL)" serves as the base condition.
+
+Ex- Assume the linked list was 1 -> 2 -> 3 -> 4
+- we call reverse fn for the head node (1) i.e. reverse(1):  | 1 | -> 2 -> 3 -> 4
+    - it calls reverse function for the next node ahead of it i.e. reverse(2): 1 -> | 2 | -> 3 -> 4
+        - reverse(3): 1 -> 2 -> | 3 | -> 4
+            - reverse(4): 1 -> 2 -> 3 -> | 4 |
+                - Now, the head node for this fn (reverse(4)) is a single node (base condition)
+                  So, we just return it as it is, without doing anything, this will become new head after reversal.
+            Now, we have been returned 4 as the newHead, we need to attach the current node which is '3' at the tail of the 
+            reversed portion (which is the next node to current node (as 3 is pointing to 4))
+            So, we instead of 3 -> 4, we need to turn the link around and make it 4 -> 3 (this way reversal happens)
+            We do something like curr->next->next = curr (this way 4 (which is 3->next) will point its next to 3)
+            We also need to remove 3's next which is pointing to 4, we make it poin to NULL
+            The list becomes: 1 -> 2 -> | 3 | <- 4 .... 3 is pointing to NULL
+        4 is returned as the head, the reversed forward portion ahead of the curr node includes : 4 -> 3
+        we need to add current node at its tail (at 3's next).. this tail is being pointed to by curr->next 
+        as we can see, 1 -> 2 -> | 3 | <- 4, 2 is pointing to 3 which is tail of forward reversed portion
+        we simply make 3's next point to 2 and 2's next point to NULL
+        list becomes: 1 -> | 2 | <- 3 <- 4 ... 2 is pointing to NULL
+    4 is returned as head, 2 is the current tail of reversed portion and also currNode = 1 and 1's next = 2.
+    We do 2's next = 1 and 1's next = NULL
+    list becomes: | 1 | <- 2 <- 3 <- 4 ... 1 is pointing to NULL
+
+This way the whole list is reversed.
+*/
 ListNode* reverseLL(ListNode* prev, ListNode* curr) {
     if (curr == NULL)
         return prev;
