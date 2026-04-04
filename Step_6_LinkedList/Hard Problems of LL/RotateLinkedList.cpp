@@ -143,6 +143,11 @@ As seen in naive approach, we can do k = k % len so that k remains less than n a
 • detach newHead and newTail -> make newTail's next point to NULL.
 • join the previous tail's next to previous head. (to link the two portions, to move the last k nodes to the front)
 • return newHead
+
+🔹 Key Insight
+| Rotation is just changing the breaking point of a circular list, not moving nodes repeatedly.
+When we do tail->next = head, we are making the list circular and then we break the list at a particular node 
+to get the rotated list.
 */
 
 ListNode* rotateRight1(ListNode* head, int k) {
