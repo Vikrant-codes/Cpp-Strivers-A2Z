@@ -8,7 +8,7 @@ int main() {
     cout << "max of 3 & 5 : " << max(3,5) << '\n';
     cout << "min of 3 & 5 : " << min(3,5) << '\n';
 
-    cout << "2 raised to the power 3 : " << pow(2, 3) << '\n'; 
+    cout << "2 raised to the power 3 : " << pow(2, 3) << '\n';
     cout << "square root of 100 : " << sqrt(100) << '\n';
 
     cout << "absolute value of -13 : " << abs(-13) << '\n';

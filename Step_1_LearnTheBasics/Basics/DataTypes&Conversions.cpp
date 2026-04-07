@@ -19,7 +19,7 @@ int main(){
     */
 
     // <-- Integers and Floats -->
-    short sh = 32767;        // same as, short int s = 32767
+    short sh = 32767;        // same as, short int sh = 32767
     int i = 2147483647;
     unsigned int ui1 = 10u; // Explicitly unsigned
     unsigned int ui2 = 10;  // Implicitly converted from signed int
