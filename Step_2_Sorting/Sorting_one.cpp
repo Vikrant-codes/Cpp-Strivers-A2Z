@@ -1,7 +1,7 @@
 /* 
 Selection Sort, Bubble Sort & Insertion Sort
     --> Selection Sort : Find the minimum element in the array and swap it with the first element. Repeat for n-1 passes.
-    --> Bubble Sort : Push the maximum element to the last by adjacent swaps in each pass... n-1 passes reuired
+    --> Bubble Sort : Push the maximum element to the last by adjacent swaps in each pass... n-1 passes required
     --> Insertion Sort : Insert the current element at its correct position in the already sorted part of the array.
 
 # Stable Sort : A sorting algorithm is said to be stable if it preserves the relative order of equal elements in the sorted output.
@@ -18,16 +18,16 @@ They are useful for streaming or dynamic data where continuous updates occur. Ex
 Insertion Sort is online sorting algo as it inserts incoming elements into their correct position in a sorted list.
 Selection Sort and Bubble Sort are offline sorting algorithms, as they require the entire input to be available before sorting can begin.
 
-# Sorting Algorithms Comarison
+# Sorting Algorithms Comparison
 Algorithm	    Best Case     Average Case     Worst Case     Space Complexity     Stable?     Online?     In-Place?     Adaptive?
-
-Selection Sort	𝑂(𝑛²)	        𝑂(𝑛²)            𝑂(𝑛²)	       𝑂(1)	             ❌ No      ❌ No       ✅ Yes	      ❌ No
+----------------------------------------------------------------------------------------------------------------------------------
+Selection Sort 	𝑂(𝑛²)	        𝑂(𝑛²)            𝑂(𝑛²)	       𝑂(1)	             ❌ No      ❌ No       ✅ Yes	      ❌ No
 Bubble Sort	    𝑂(𝑛)	        𝑂(𝑛²)	           𝑂(𝑛²)  	   𝑂(1)	             ✅ Yes     ❌ No       ✅ Yes	      ✅ Yes
-Insertion Sort	𝑂(𝑛)	        𝑂(𝑛²)	           𝑂(𝑛²) 	       𝑂(1)	             ✅ Yes     ✅ Yes      ✅ Yes	      ✅ Yes
+Insertion Sort 	𝑂(𝑛)	        𝑂(𝑛²)	           𝑂(𝑛²) 	       𝑂(1)	             ✅ Yes     ✅ Yes      ✅ Yes	      ✅ Yes
 Quick Sort	    𝑂(𝑛 log𝑛)	 𝑂(𝑛 log𝑛)	     𝑂(𝑛²)         𝑂(log 𝑛) (recursive)	❌ No	  ❌ No       ✅ Yes	     ❌ No
 Merge Sort	    𝑂(𝑛 log𝑛)	 𝑂(𝑛 log𝑛)	     𝑂(𝑛 log 𝑛)	  𝑂(𝑛) (extra array)	 ✅ Yes	   ❌ No       ❌ No	      ❌ No
 Heap Sort	    𝑂(𝑛 log𝑛)	 𝑂(𝑛 log𝑛)	     𝑂(𝑛 log 𝑛)	  𝑂(1) (in-place)	    ❌ No	  ✅ Yes      ✅ Yes	     ❌ No
-Counting Sort	𝑂(𝑛+𝑘)	     𝑂(𝑛+𝑘)	         𝑂(𝑛+𝑘)	      𝑂(𝑛+𝑘)	              ✅ Yes	    ❌ No       ❌ No	       ❌ No
+Counting Sort  	𝑂(𝑛+𝑘)	     𝑂(𝑛+𝑘)	         𝑂(𝑛+𝑘)	      𝑂(𝑛+𝑘)	              ✅ Yes	    ❌ No       ❌ No	       ❌ No
 Radix Sort	    𝑂(𝑛𝑘)	     𝑂(𝑛𝑘)	         𝑂(𝑛𝑘)	      𝑂(𝑛+𝑘)	              ✅ Yes	    ❌ No       ❌ No	       ❌ No
 Bucket Sort	    𝑂(𝑛+𝑘)	     𝑂(𝑛+𝑘)	         𝑂(𝑛²)	     𝑂(𝑛+𝑘)	             ✅ Yes	   ❌ No       ❌ No	      ❌ No
 
