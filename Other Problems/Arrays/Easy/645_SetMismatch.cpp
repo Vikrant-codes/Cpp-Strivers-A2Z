@@ -59,6 +59,20 @@ vector<int> repeatingMissingHash(vector<int> arr) {
     return {repeating, missing};
 }
 
+vector<int> findErrorNumsHash(vector<int>& nums) {
+    int n = nums.size();
+    unordered_map<int, int> freq;
+    for (int x : nums) freq[x]++;
+
+    int miss_no = -1, rep_no = -1;
+    for (int i = 1; i <= n; i++) {
+        if (freq[i] == 0) miss_no = i;
+        if (freq[i] == 2) rep_no = i;
+    }
+
+    return {rep_no, miss_no};
+}
+
 // Optimal Approach 1 (using Maths) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 Approach :- The idea is to convert the given problem into mathematical equations. Since we have two variables i.e. missing and repeating, 
