@@ -1,6 +1,85 @@
 #include<iostream>
 using namespace std;
 
+/*
+🧾 C++ Data Types
+Basic Idea :- A data type decides:
+- what kind of value can be stored
+- how much memory it uses
+- what range of values it can hold
+
+🔹Integer Data Types
+| Type        | Typical Size | Notes               |
+| ----------- | ------------ | ------------------- |
+| `short`     | 2 bytes      | small integers      |
+| `int`       | 4 bytes      | most used           |
+| `long`      | 4 or 8 bytes | platform dependent  |
+| `long long` | 8 bytes      | very large integers |
+
+🔹Floating Point Types
+| Type          | Size        | Precision      |
+| ------------- | ----------- | -------------- |
+| `float`       | 4 bytes     | ~6–7 digits    |
+| `double`      | 8 bytes     | ~15–16 digits  |
+| `long double` | 12/16 bytes | more precision |
+
+🔹Character Type (char)
+Size: 1 byte (8 bits)
+
+🔹Boolean Type
+- Stores: true or false
+- Internally: 1 or 0
+- Size: 1 bit
+*/
+
+/*
+## Important Concepts
+
+>> char as integer
+char is actually just a small integer type internally
+    char c = 'a';   // stored as 97
+    int x = 'a';    // x = 97
+👉 You can also store small integers directly:
+    char c = 65;
+    cout << c;   // 'A'
+✔️ So:
+- char = integer type of size 1 byte
+- Used for characters, but can store numbers too
+
+>> Signed vs Unsigned
+# Signed
+- Stores both positive & negative numbers
+- One bit is used for sign (the MSB is sign bit and this bit tells whether a number is -ve or +ve)
+# Unsigned
+- Stores only positive values
+- No sign bit → more space for value
+
+>> Why unsigned stores more values
+Example: int (4 bytes = 32 bits)
+
+Signed:
+- 1 bit → sign
+- 31 bits → value
+- Range: -2^31 to 2^31 - 1
+
+Unsigned: 
+- All 32 bits → value
+- Range: 0 to 2^32 - 1
+
+👉 So: Unsigned stores ~2× more positive values
+
+>> How Range is Decided
+For n bits:
+- Signed: -2^(n-1)  to  2^(n-1) - 1
+- Unsigned: 0  to  2^n - 1
+
+Example: 1 byte (8 bits)
+Signed: -2^7 to 2^7 - 1 = -128 to 127
+Unsigned: 0 to 2^8 - 1 = 0 to 255
+
+| Data type = memory size + value range → decided by number of bits and whether it is signed or unsigned.
+*/
+
 int main(){
     // Numbers : Integers & Floats
     /*
