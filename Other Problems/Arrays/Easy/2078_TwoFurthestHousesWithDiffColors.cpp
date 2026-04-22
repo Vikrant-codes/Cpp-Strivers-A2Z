@@ -62,158 +62,74 @@ int maxDistanceNaive(vector<int>& colors) {
 
 // Optimal Approach (Greedy 2 pointers approach) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
-Observations :-
-We need the maximum distance between two different coloured houses... 
-For all pairs, this difference would be maximum when one of the two houses is at the extreme ends (left or right end)
-The maximuim distance between any two array elements (house pairs) would be the difference between both extreme ends,
-i.e., when i = 0 & j = n - 1... this difference = j - i = n - 1 - 0 = n - 1.
+We need to find the maximum difference between two different coloured houses.
+For that we need two different coloured houses which are located at the farthest possible index positions.
+For that we would prefer the two houses to be as far as possible from each other.
+So, we would try to pick those different coloured house pairs which are present nearer to different ends
+(one house near to right end and another near to left end).
 
-So, if the left end house (0th element) is different coloured than right end house (n-1th element), then we can directly 
-return 'n-1' as the maximum required distance, but this is not always the case since the two end houses can be same coloured.
+The best case for us would be when the houses at the two array ends are different coloured, in this case, 
+we can simply choose these two houses at positions 0 & n - 1 and the maximum difference would be (n - 1) - 0 = n - 1.
 
-In this case we move inwards from both ends and find the first house which is different coloured than the extreme ends houses.
-When we find the first different coloured house, then the maximum distance would be 
-the maximum of the difference of position of this house from the two extreme ends. 
-We can return this as the answer.
+But, if these two houses are coloured the same, then we need to find a different house whose difference is maximum possible.
 
-Example -> [1, 1, 1, 2, 3, 1, 1, 1, 1]
-The different colours in this array are {1, 2, 3}, there are many possible pairs but the one with the maximum distance is 
-pair of indices (3, 8). 
-Here, one pair house is situated at the extreme end (right end) and other one is stretched far to it nearer the second end.
-Choosing both houses which are closer to center will only decrease the difference, so we should look for houses 
-which are closer to opposite end.
+If array has only one such different coloured house like ex- arr = [1, 1, 2, 1, 1] or [1, 2, 1, 1, 1]
+then, this house coloured '2' is definitely one of the pair houses but we have multiple house positions we can pair it with.
+We want the other house to be as far as possible, so it would be natural to pick the extreme end houses.. 
+for array -> [1, 1, 2, 1, 1] both the left & right houses are equally distant, 
+so we can choose any of the index positions '0' or '4' to pair up with 2 (index = 2), and max_diff = |2 -0| = |2-4| = 2
 
-Both the left end & right end house are same coloured, so we need to move from both ends simultaneously 
-and find the first different coloured house. 
+But, for array -> [1, 2, 1, 1, 1], this time the right end is farther to this '2' coloured house.
+So, to get the maximum difference, we must choose the right end (n-1 = 4) house, max_diff = |1-4| = 3
 
-We use two pointers 'i' & 'j' to move inwards from both ends and find the first different coloured house.
+If array had multiple coloured houses (in the above cases, there were only two distinct colours {1 & 2})
+then also, the best choice would be to find find the different coloured house pair such that both the houses are 
+present nearer to opposite ends (one near left end & other near right end).
+Since, we need the house which is nearer to the end, 
+we can traverse from end to middle in search of the different coloured house.
+The answer pair would always have either the left end house or right end house.
+For array = [1, 2, 1, 1, 1], we choose the right end house to form a pair and get the max difference = 3
+In this case, '2' which is the different coloured house is nearer to the left end, so we chose the right end house to form a 
+pair with it and thus maximize the position difference
 
-While comparing for different coloured house, 
-we can take either of the left house or right house for reference as both colours are same.
+For array = [1, 1, 1, 2, 1], we must choose the left end house to form a pair and get the max difference = 3.
+In this case, '2' is near to right end and hence we choose left end house to form a pair with it.
 
-We are moving from both ends simultaneously because if we just move from one end, 
-then the first different coloured house is not guaranteed to be at the optimal answer position. 
-So, in that case, we would need to traverse the whole array and find the maximum distance for all different coloured houses.
+If array was something like [1, 1, 3, 1, 1, 2, 1], now if we cosndier the first different coloured house from left end
+it is 3 (at index 2), this 3 can form pair with right end, giving us the position difference of 4 units.
+From right end, the first different coloured house is 2 (at index 5), this 2 forms pair with left house giving us the 
+position difference of 5 units.
+We see that we get the maximum possible difference when we choose 2 which is comparatively more nearer to the right end 
+than 3 being nearer to left end.
+So, we need to find the first different coloured house from both ends, considering both ends simultaneously. 
+In this way, we can actually find the house which is nearest to either left end or right end and 
+pair it up with the farther end and maximize the difference.
 
-We know that the maximum distance house would be the one which is nearer to either of the two extreme ends of the array
-(since in this way the index difference between it and either the left or right end house would be maximized).
-So, we use 2 pointers and find the first different coloured house which is nearer to the end and 
-this house would be our pair house.
-If this house is closer to right end, then maximum answer = house position - 0 (position of left house)
-If this house is closer to left end, then maximum answer = (n-1) (position of right house) - house position
-*/
+To do so, we use two pointers i & j which starts from indices 1 & 'n-1' and move inwards and the moment any of the two 
+pointers reach a different coloured house, this is the house which gives us the best pair, we return the position 
+difference of this house along with the pairing array end house (right house or left house).
 
-/*
-Goal:
-We need the maximum distance between two houses having different colors.
+Suppose arr = [a, b, c, d, e, f, g, h], where a,b,c... are some integer values and may be eqaul
+then, we first check if a != i, if yes, we immediately get the max. difference houses and return n-1.
+Else, we place two pointers i & j at positions 0 & n - 2.. (i points to b and j points to h)
+We check both houses at i & j and chek if it is different coloured, if yes, we consider that house for pair 
+and return its position differnece from the farther end house.
+If both i & j houses are same coloured, then we move ahead, both i & j moves towards center 
+i -> .... <- j
+The next time, i moves to 'c' house and j to 'f' house
+if both c & f are same coloured as a, then again i & j moves ahead
+if c is different coloured than a, we get our first nearest to the end different coloured house, 
+    we pair it up with the right end and the diff = right house - i = n - 1 - i
+if f is different coloured than a, then, f is the first nearest to the end different coloured house,
+    we pair it up with the left end, diff = j - left house = j - 0 = j
+Loop stops when i and j crosses, i.e. when i becomes > j
 
-Key Observation:
-The maximum possible distance between any two indices is:
-    n - 1  (i.e., between index 0 and index n-1)
-
-So naturally, we should try to involve the extreme ends of the array.
-
-------------------------------------------------------------
-
-Case 1:
-If colors[0] != colors[n-1]:
-    → These two endpoints already have different colors
-    → Distance = n - 1 (maximum possible)
-    → Return immediately
-
-------------------------------------------------------------
-
-Case 2:
-If colors[0] == colors[n-1]:
-    → Endpoints cannot form a valid pair
-    → So we must look for another house with a different color
-
-Now the question becomes:
-    Which house should we pair with an endpoint to maximize distance?
-
-------------------------------------------------------------
-
-Key Greedy Insight:
-To maximize distance, one index should remain at an extreme (0 or n-1),
-and the other should be as far as possible from it.
-
-So we try:
-    1. Fix left end (index 0), move from right inward
-    2. Fix right end (index n-1), move from left inward
-
-------------------------------------------------------------
-
-Why move from BOTH ends?
-
-Because:
-- The optimal answer will come from the house which is
-  "closest to either end" but has a different color.
-- That ensures maximum stretch with the opposite end.
-
-------------------------------------------------------------
-
-Approach:
-
-Use two pointers:
-    i → starts from left (1 → n-1)
-    j → starts from right (n-2 → 0)
-
-Since colors[0] == colors[n-1], we can use colors[0] as reference.
-
-------------------------------------------------------------
-
-Check from left side:
-    Find first index i such that:
-        colors[i] != colors[0]
-
-    Then distance = (n - 1) - i
-    (pair this house with right end)
-
-------------------------------------------------------------
-
-Check from right side:
-    Find first index j such that:
-        colors[j] != colors[0]
-
-    Then distance = j
-    (pair this house with left end)
-
-------------------------------------------------------------
-
-Why this works:
-
-- Any pair formed completely inside the array
-  will always have smaller distance than using an endpoint.
-
-- So we only need to consider pairs involving index 0 or n-1.
-
-- Among those, the best pair is formed with the
-  first different-colored house encountered from either side,
-  because it maximizes the index gap.
-
-------------------------------------------------------------
-
-Final Answer:
-Return the first valid maximum distance found while scanning
-from both ends.
-
-Time Complexity: O(n)
-Space Complexity: O(1)
-*/
-
-/*
-The maximum distance is achieved when we use the endpoints of the array.
-
-- If colors[0] != colors[n-1], return n - 1 directly.
-- Otherwise, endpoints are same, so we:
-    // - Scan from left to find first index i where colors[i] != colors[0] → distance = n - 1 - i
-    // - Scan from right to find first index j where colors[j] != colors[0] → distance = j
-    // - Return the maximum of these.
-    Instead of scanning for both ends one at a time, we can simultaneously traverse from both ends and find the first 
-    different coloured house (as this would be the nearest to either of the two ends and this will be the answer pair house).
-- return the difference of this house from the farthest end.
-
-This works because the optimal pair must include at least one endpoint to maximize distance.
+Key Idea --
+- The greedy approach suggests the either of the left house or right house always forms the optimal maximum distance pair.
+- The second pair house of the optimal pair is the one which is nearer to the end.
+- We need to consider both left end and right end while finding the nearest to the end house.
+- We can use two pointers to find this nearest to the end house from both ends.
+- When we find the nearest to the end house, we can pair it up with the farther end and return the position diff of the pair.
 */
 
 int maxDistance(vector<int>& colors) {
@@ -227,7 +143,8 @@ int maxDistance(vector<int>& colors) {
         i++;
         j--;
     }
-    return -1;
+    return -1;         
+     // this will never run as the constraints provides that there is always at least two different colours are present
 }
 
 int main() {
