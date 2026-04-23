@@ -49,7 +49,7 @@ Total Complexity : O(log n)
 
 💾 Space Complexity : Only constant variables : O(1)
 */
-int numberOfStepsSimulation(int num) {
+int numberOfSteps1(int num) {
     int steps = 0;
     while (num != 0) {
         if (num % 2 == 0) num = num / 2;
@@ -61,16 +61,17 @@ int numberOfStepsSimulation(int num) {
 
 // Bit Manipulation Approach : Time Complexity : O(log n) __ Space Complexity : O(1)
 /*
-Intuition 
+>> Intuition :
 If the no is even then we divide by 2, if odd we subtract 1. 
 This subtraction of 1 will then make the no. even and then again we will have to divide by 2 in the next step.
-So, in a way we need to divide by 2 but if the no is odd our works increments 1 step due to firstly dividing by 1 then dividing.
+So, in a way we need to divide by 2 but if the no is odd our works increments by 1 step 
+since we need to subtract 1 from the no. before dividing it.
 
 Now, if we think about binary, even no. ends with Least Significant Bit (LSB) 0, while odds have LSB 1.
 So, if we traverse the binary representation of the no. then 
     for each 1 bit we will have to work 2 steps, and,  
     for 0 we just need 1 step.
-This division by 2 can be easily done by right shifting the binary representation.
+This division by 2 can be easily done by right shifting the binary representation by 1 bit.
 
 Binary insight
 1️⃣ If the last bit is 0 (no. is even) : ...0
@@ -88,7 +89,9 @@ Binary insight
 Now, for the MSB, we don't need to work 2 steps as our main goal is to make the no. zero and for that, 
 if we subtract 1 from MSB, the no. will become 0 and we won't have to right shift / divide by 2 for the MSB.
 Thus, The most significant 1 does not need : subtract 1 and divide by 2 (it only needs subtract 1)
-Thus, we subtract 1 from the total steps calculated this way due to the MSB case 
+But, since MSB 1 will be odd, our logic would do 'steps += 2' even for this MSB 1 bit.
+Due to this, the total steps woulbe be 1 more than required due to counting 2 steps even when num becomes 1 (MSB 1),
+thus, we do steps - 1 before returnin it. 
 
 | Each 0 costs one divide, each 1 costs a subtract + divide — except the last 1.
 
@@ -130,7 +133,7 @@ steps = 7.
 return steps - 1 = 7 - 1 = 6. (since we consider only 1 step for MSB thus subtract 1 from total steps)
 */
 
-int numberOfSteps(int num) {
+int numberOfSteps2(int num) {
     if (num == 0) return 0;
     
     int steps = 0;
@@ -141,6 +144,34 @@ int numberOfSteps(int num) {
             steps += 1; // even → divide by 2
         
         num >>= 1;      // move to next bit by shifting bits to right
+    }
+    return steps - 1;
+}
+
+// Other Implementation 
+/*
+We can implement the same core intuition without using bit manipulation also--
+-> Observations --
+We observed that if a number is even we just need to perform 1 operation on it i.e. division by 2.
+If the no. is odd, we need to perform 2 stpes (subtract 1 and then the number becomes even, so divide by 2)
+Thus, instead of performing 2 steps for odd case, we can simply increment the total steps count by 2 for odd and by 1 for even
+after that we can do num = num / 2 to divide by 2.
+We don't actually need to subbtract 1 from num before diving in odd no. case as in C++, 
+num / 2 will be integer divisor so it will work fine.
+Ex- num = 17, ideally we shold have done 17 - 1 to get 16 and then do 16 / 2 to get 8 in 2 steps
+But we can directly make steps count = 8 since 17 is odd and 17 / 2 = 8 in C++ (integer division).
+*/
+int numberOfSteps3(int num) {
+    if (num == 0) return 0;
+    
+    int steps = 0;
+    while (num > 0) {
+        if (num % 2 == 1)
+            steps += 2; // odd → subtract 1 + divide by 2
+        else 
+            steps += 1; // even → divide by 2
+        
+        num /= 2;      // divide by 2
     }
     return steps - 1;
 }
