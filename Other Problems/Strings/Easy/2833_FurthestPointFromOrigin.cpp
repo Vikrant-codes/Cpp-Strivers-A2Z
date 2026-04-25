@@ -33,6 +33,14 @@ using namespace std;
 
 // Greedy Approach : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
+Let cntL be the number of ’L’ characters in moves, cntR be the number of ’R’ characters in moves, 
+and cnt_ be the number '_' characters in moves.
+
+The distance from the current position to the origin, ignoring undescores ('_'), is ∣cntL − cntR∣. 
+To maximize the final distance from the origin, all '_' characters should be assigned in the same direction 
+as the current movement, resulting in a maximum distance of ∣cntL - cntR∣ + cnt_
+*/
+/*
 Observations --
 - 'L' contributes to -1 as L means moving left i.e. moving -1 place back on the number line.
 - 'R' contributes to +1 as R means moving right i.e. moving 1 place ahead on the number line.

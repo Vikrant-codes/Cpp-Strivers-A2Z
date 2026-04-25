@@ -59,7 +59,7 @@ int numberOfSteps1(int num) {
     return steps;
 }
 
-// Bit Manipulation Approach : Time Complexity : O(log n) __ Space Complexity : O(1)
+// Better Approach : Time Complexity : O(log n) __ Space Complexity : O(1)
 /*
 >> Intuition :
 If the no is even then we divide by 2, if odd we subtract 1. 
@@ -76,8 +76,7 @@ This division by 2 can be easily done by right shifting the binary representatio
 Binary insight
 1️⃣ If the last bit is 0 (no. is even) : ...0
     Number is even
-    Operation: divide by 2
-    In binary → right shift
+    Operation: divide by 2 (In binary → right shift)
     Cost = 1 step
 2️⃣ If the last bit is 1 (odd, except MSB)
     Operation sequence :-
@@ -95,42 +94,7 @@ thus, we do steps - 1 before returnin it.
 
 | Each 0 costs one divide, each 1 costs a subtract + divide — except the last 1.
 
-Algorithm (binary method) :-
-1. Convert number to binary
-2. Traverse each bit:
-    • If bit = 0 → steps += 1
-    • If bit = 1 → steps += 2
-3. Return steps - 1
-
-⏱ Time Complexity
-• Each loop iteration removes one binary digit (num >>= 1)
-• Number of iterations = number of bits in num = ⌊log₂(num)⌋ + 1
-| Total time complexity : O(log n)
-
-💾 Space Complexity : Uses only a few integer variables : O(1)
-*/
-/*
->> How to “traverse binary” without converting ?
-Two facts
-| num & 1 → tells you if the last bit is 1 or 0
-    because 1's binary representation is (00..1) and for any binary no. xxxxxx, 
-    this num & 1 will depend only on the last bit of num 
-    (because & needs both bits 1 and '1' has only the last bit set to 1, so num & 1 depends on last bit of 1)
-| num >> 1 → removes the last bit (divide by 2)
-    Right shifting 1 bit is the same as dividing the no. by 2.
-
-So, in the code, while traversing, we check the last bit by num & 1.
-    If num & 1 is true (means last bit of num is 1, num is odd), so steps increment by 2.
-    Else (last bit of num is 0, num is even), so steps increment by 1.
-
-Dry run Example → num = 14, binary = 1110
-Iteration :- 
-1) 14 & 1 = 1110 & 0001 → 0 (num & 1 is false, last bit is 0, num is even) → +1 (add 1 to steps), right shift → 7 (num becomes 7)
-2) 7 & 1 = 111 & 001 → 1 (num & 1 is true, last bit 1 is 1, num is odd) → +2 (add 2 to steps), right shift → 3
-3) 3 & 1 = 11 & 01 → 1 (last bit 1) → +2 (add 2 to steps), right shift → 1
-4) 1 & 1 = 1 & 1 → 1 (last bit 1) → +2 (add 2 to steps), right shift → 0
-steps = 7. 
-return steps - 1 = 7 - 1 = 6. (since we consider only 1 step for MSB thus subtract 1 from total steps)
+Time Complexity : O(log n) since we are dividing number 'n' by two till it becomes zero.
 */
 
 int numberOfSteps2(int num) {
@@ -148,19 +112,6 @@ int numberOfSteps2(int num) {
     return steps - 1;
 }
 
-// Other Implementation 
-/*
-We can implement the same core intuition without using bit manipulation also--
--> Observations --
-We observed that if a number is even we just need to perform 1 operation on it i.e. division by 2.
-If the no. is odd, we need to perform 2 stpes (subtract 1 and then the number becomes even, so divide by 2)
-Thus, instead of performing 2 steps for odd case, we can simply increment the total steps count by 2 for odd and by 1 for even
-after that we can do num = num / 2 to divide by 2.
-We don't actually need to subbtract 1 from num before diving in odd no. case as in C++, 
-num / 2 will be integer divisor so it will work fine.
-Ex- num = 17, ideally we shold have done 17 - 1 to get 16 and then do 16 / 2 to get 8 in 2 steps
-But we can directly make steps count = 8 since 17 is odd and 17 / 2 = 8 in C++ (integer division).
-*/
 int numberOfSteps3(int num) {
     if (num == 0) return 0;
     
@@ -174,6 +125,73 @@ int numberOfSteps3(int num) {
         num /= 2;      // divide by 2
     }
     return steps - 1;
+}
+
+// Optimal Approach :- Time Complexity : O(1) __ Space Complexity : O(1)
+/*
+Think in terms of what operations actually happen in binary, not decimal.
+The rules are:
+- If even → divide by 2 → right shift
+- If odd → subtract 1 → makes it even
+
+Key observation
+In binary:
+- Dividing by 2 = removing the last bit (right shift)
+- Subtracting 1 from an odd number = turning the last 1 into 0
+
+Now imagine processing the number bit by bit (from right to left)
+Take an example: 14 = 1110
+We process from rightmost bit:
+• If bit is 0 → just one operation (divide by 2)
+• If bit is 1 → two operations:
+    • subtract 1 → make it 0
+    • divide by 2 → remove it
+
+So contribution of each bit:
+• 0 → 1 step
+• 1 → 2 steps
+
+BUT there's a catch 👇
+For the most significant 1 (leftmost bit): We do NOT need the final divide
+Because once we reach 1, we just subtract → 0 (done)
+So:
+- Every 1 contributes 2 steps
+- Except the last (leftmost) 1, which contributes only 1 step
+
+Putting it together
+Let:
+- total bits = bitsSize
+- number of 1s = cnt1bits
+Then:
+- Each bit → at least 1 step → contributes 'bitsSize'
+- Each 1 → needs one extra step (subtract operation) → contributes 'cnt1bits'
+- But we overcounted 1 extra step (for the last MSB). So: answer = bitsSize + cnt1bits - 1
+| answer = bitsSize + cnt1bits - 1
+*/
+// Using built-in methods -- These methods are effectively O(1)
+int numberOfSteps(int num) {
+    if (num == 0) return 0;
+    
+    return __builtin_popcount(num) + (32 - __builtin_clz(num)) - 1;
+    // __builtin_popcount(num) -> returns no. of set bits in binary representation of num
+    // __builtin_clz(num) -> returns no. of leading zeros in binary represntation of num
+    // (32 - __builtin_clz(num)) -> This will give us the count of bits required to represent the number num
+}
+
+// Without Using built-in methods ... if we try to implement the built-in methods, it would take O(log n) complexity
+int numberOfSteps_2(int num) {
+    if (num == 0) return 0;
+    
+    int cnt1bits = 0;       // no. of set bits
+    int bitsSize = 0;       // no. of total bits required to represent the number
+
+    while (num) {
+        if (num & 1) cnt1bits++;
+        bitsSize++;
+        num >>= 1;
+    }
+
+    return bitsSize + cnt1bits - 1;
 }
 
 int main() {
