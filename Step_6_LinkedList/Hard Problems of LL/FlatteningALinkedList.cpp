@@ -100,6 +100,7 @@ Create a new flattened linked list using the sorted values by linking nodes via 
 Use a dummy node to simplify list construction.
 
 Time Complexity:
+Let N = total no. of nodes (considering nodes count in main list and sub linked list)
 • Traversing all nodes (main + bottom lists): O(N)
 • Sorting the array: O(N log N)
 • Creating new linked list: O(N)
@@ -187,8 +188,6 @@ Node *flatten2(Node *root) {
     
     return root;
 }
-
-
 
 int main() {
     return 0;
