@@ -138,8 +138,24 @@ Node *flattenNaive(Node *root) {
     return dummy->bottom;
 }
 
-// Optimal Approach :- 
-// merge function to merge 2 sorted bottom-linked lists
+// Optimal Approach :- Time Complexity :- O(n * m) __ Space Complexity : O(1)
+// n = no. of head nodes (horizontal length), m = average no. of nodes in bottom linked list
+/*
+We know how to merge two sorted linked lists, but here we are supposed to merge multiple sorted linked lists into one.
+So, we can use the merge function to add the sorted linked lists two at a time into a final linked list, and return its head.
+
+Since the given linked list contains head nodes in sorted order, the final flattened linked list will have root as its head.
+So, we can traverse the head linked lists and merge each one of them in the root linked list, 
+this way all linked list will be merged.
+
+Assume, linked list = [a] -> [b] -> [c] -> [d] -> ... -> [z]
+where, [a], [b], etc are all head nodes of bottom linked lists,
+then the a, b, c, etc nodes are also sorted. So, a will be the smallest value node and thus head node of flattened linked list.
+We iterate from [b] to [z] and merge the curr linked list to the root linked list ([a]), 
+this way, all the linked list will be merged into one single list [a] and this is our flattened list.
+We use merge function to merge the bottom linked lists, since root will always remain the head of the flattened list, 
+we don't need to explicitly return the head of merged list after each merging, hence return type of merge is void.
+*/
 void merge(Node* head1, Node* head2) {
     Node* dummy = new Node(-1);
     Node* temp = dummy;
@@ -174,6 +190,26 @@ Node *flatten1(Node *root) {
     return root;
 }
 
+/*
+In the previous approach we were merging each list with the root linked list and comparison starts from root every time.
+But, we know that when we iteratively traverse from root, all the head nodes are also in sorted order, 
+so assume for linked list [a] -> [b] -> [c] -> [d] -> [e] -> ... -> [z]
+say, we merged [b] with [a] which is root node, now in next iteration we need to merge [c].
+We merge it comparing it with [a] (root node), but that means we need to traverse all bottom nodes of root node again,
+we know that [c] is definitely greater than (or equal to) [b], thus, instead of merging [c] with [a], 
+we can compare its nodes with nodes of [b] and get their positions early.
+
+Assume [a] was linked to [a] -> a1 -> a2 -> a3
+Similarly, [b], [c], etc are also linked to their respective bottom linked lists,
+now assume after merging of [a] & [b], merged list became [a] -> a1 -> a2 -> [b] -> b1 -> a3 -> b2,
+Now, when [c] comes, in the previous approach, we passed, [a] & [c] to merge function, 
+so [c] will be compared to ([a], a1, a2) nodes, but we know for sure that c is at least equal to [b],
+so the linked list [c] nodes, must comes after [b] and hence this traversal of ([a] -> a1 -> a2 -> ) nodes will be in vain, 
+as [c] nodes will only come after [b].
+So, we use two pointers to track the positions of previous linked list and curr linked list and merge the two.
+
+This is small optimization over the previous approach.
+*/
 Node *flatten2(Node *root) {
     if (root == NULL || root->next == NULL) return root;
     
@@ -187,6 +223,63 @@ Node *flatten2(Node *root) {
     }
     
     return root;
+}
+
+// Recursive Approach :- Time Complexity : O(N x (2M)) ~ O(2N x M) __ Space Complexity : O(N)
+/*
+Algorithm :-
+- Establish base case conditions by checking if the head is null or has no next pointer. 
+  If either condition is met, return the head, as there is no further flattening or merging required.
+- Recursively initiate the flattening process by calling flattenLinkedList on the next node (head -> next). 
+  The result of this recursive call will be the head of the flattened and merged linked list.
+- Within the recursive call, perform merge operations by calling a merge function. 
+  This function merges the current list with the already flattened and merged list based on their data values. 
+  The merged list is then updated in the head and returned as the result of the flattening process.
+
+>> Complexity Analysis
+
+-> Time Complexity: O(N x (2M)) ~ O(2N x M), 
+where N is the length of the linked list along the next pointer and M is the length of the linked list along the child pointers.
+
+The merge operation in each recursive call takes time complexity proportional to the length of the linked lists being merged, 
+as they have to iterate over the entire lists. 
+Since the vertical depth of the linked lists is assumed to be M, 
+the time complexity for a single merge operation is proportional to O(2M).
+This operation is performed N number of times (to each and every node along the next pointer list), 
+hence the resultant time complexity becomes O(N x 2M).
+
+Space Complexity: O(1), as this code uses no external space or additional data structures to store values. 
+But a recursive stack uses O(N) space to build the recursive calls for each node along the next pointer list.
+*/
+Node* mergeRec(Node* head1, Node* head2) {
+    Node* dummy = new Node(-1);
+    Node* temp = dummy;
+    Node *t1 = head1, *t2 = head2;
+    
+    while (t1 && t2) {
+        if (t1->data <= t2->data) {
+            temp->bottom = t1;
+            t1 = t1->bottom;
+        }
+        else {
+            temp->bottom = t2;
+            t2 = t2->bottom;
+        }
+        temp = temp->bottom;
+    }
+    
+    if (t1) temp->bottom = t1;
+    if (t2) temp->bottom = t2;
+    
+    return dummy->bottom;
+}
+
+Node *flatten(Node *root) {
+    if (root == NULL || root->next == NULL) return root;
+
+    Node* mergedHead = flatten(root->next);
+    
+    return mergeRec(root, mergedHead);
 }
 
 int main() {
