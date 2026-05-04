@@ -65,6 +65,29 @@ void rotate(vector<vector<int>>& mat) {
     }
 }
 
+// Using a helper function reverseRow
+void reverseRow(vector<int>& row) {
+    int n = row.size();
+    int l = 0, r = n - 1;
+    while (l < r) {
+        swap(row[l], row[r]);
+        l++; r--;
+    }
+}
+
+void rotate(vector<vector<int>>& mat) {
+    int n = mat.size();
+
+    // transpose the matrix
+    for(int i=0; i<n; i++)
+        for(int j=0; j<i; j++)
+            swap(mat[i][j], mat[j][i]);
+
+    // reverse each row
+    for(int i=0; i<n; i++)
+        reverseRow(mat[i]);
+}
+
 /*
 Using this transpose + reverse row approach, we can derive a formula for rotated matrix.
 
