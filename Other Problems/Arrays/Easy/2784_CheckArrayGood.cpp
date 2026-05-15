@@ -41,12 +41,7 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-void display(vector<int>& nums) {
-    for (int i = 0; i < nums.size(); i++) 
-        cout << i << " -> " << nums[i] << endl; 
-}
-
-bool isGood(vector<int>& nums) {
+bool isGood1(vector<int>& nums) {
     vector<int> hashArr(201);
 
     for (int x : nums) hashArr[x]++;
@@ -64,51 +59,47 @@ bool isGood(vector<int>& nums) {
     return i == 0;
 }
 
-bool isGood(vector<int>& nums) {
-        unordered_map<int, int> freq;
-        int mx = 0;
+bool isGood2(vector<int>& nums) {
+    unordered_map<int, int> freq;
+    int mx = 0;
 
-        for (int x : nums) {
-            freq[x]++;
-            if (x > mx) mx = x;
-        }
-
-        if (nums.size() != mx + 1) return false;
-
-        for (int x : nums) {
-            if (x == mx) {
-                if (freq[x] != 2)
-                    return false;
-            }
-            else if (freq[x] != 1)
-                return false;
-
-            // if ((x == mx && freq[x] != 2) || (x != mx && freq[x] != 1)) 
-            //     return false;
-        }
-
-        return true;
+    for (int x : nums) {
+        freq[x]++;
+        if (x > mx) mx = x;
     }
+
+    if (nums.size() != mx + 1) return false;
+
+    for (int x : nums) {
+        if (x == mx) {
+            if (freq[x] != 2)
+                return false;
+        }
+        else if (freq[x] != 1)
+            return false;
+
+        // if ((x == mx && freq[x] != 2) || (x != mx && freq[x] != 1)) 
+        //     return false;
+    }
+
+    return true;
+}
 
 // not submitted yet 
 bool isGood(vector<int>& nums) {
-        unordered_map<int, int> freq;
-        int mx = 0;
-
-        for (int x : nums) {
-            freq[x]++;
-            if (x > mx) mx = x;
-        }
-
-        if (nums.size() != mx + 1) return false;
-        if (freq[mx] != 2) return false;
-
-        for (int i = 1; i < mx; i++)
-            if (freq[i] != 1)
-                return false;
-
-        return true;
+    unordered_map<int, int> freq;
+    int mx = 0;
+    for (int x : nums) {
+        freq[x]++;
+        if (x > mx) mx = x;
     }
+    if (nums.size() != mx + 1) return false;
+    if (freq[mx] != 2) return false;
+    for (int i = 1; i < mx; i++)
+        if (freq[i] != 1)
+            return false;
+    return true;
+}
 
 int main() {
     vector<int> nums = {1, 3, 3, 2};

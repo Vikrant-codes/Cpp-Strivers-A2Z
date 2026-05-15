@@ -188,7 +188,7 @@ vector<int> separateDigits(vector<int>& nums) {
     return digits;
 }
 
-// We could also use stringstream to convert integer to string, the code would look like  
+// We could also use stringstream to convert integer to string, the code would look like this
 vector<int> separateDigits4(vector<int>& nums) {
     vector<int> digits;
     stringstream ss;
