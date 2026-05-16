@@ -29,6 +29,37 @@ Called when no arguments are passed.
 
     Student s;   // default constructor called
 
+Default constructors can be classified in 2 types --> 
+    (a) User-defined default constructor
+    (b) Compiler-generated default constructor : If we don't define any constructor, the compiler automatically creates one.
+
+>> Important point
+A constructor with default arguments can also act as a default constructor.
+
+    class A {
+    public:
+        A(int x = 0) {
+            cout << x;
+        }
+    };
+
+    int main() {
+        A a;      // valid
+        A b(5);   // also valid
+    }
+
+Because the constructor can be called with no arguments, it is considered a default constructor.
+
+>> Why is it useful?
+It helps:
+- initialize member variables
+- set default values
+- ensure objects start in a valid state
+
+| If we define our own default constructor and don't initialize the data members, 
+| then built-in types like int, float, char, etc. will contain garbage values.
+| So, it is necessary to initialize the data members with default values using default constructors.
+
 2. Parameterized constructor
 Used when values are passed at object creation.
 
