@@ -29,8 +29,8 @@ target would lie in sorted half if it's >= the first element of that half and <=
 target lies in the left half if nums[low] <= target <= nums[mid]
 target lies in the right half if nums[mid] <= target <= nums[high]
 
-once the sorted half is identified we check whether the target lies in that half or not. If it does we adjust the search space accordingly 
-otherwise we serach in other half
+once the sorted half is identified we check whether the target lies in that half or not. 
+If it does we adjust the search space accordingly otherwise we search in the other half.
 */
 
 int search(vector<int>& nums, int target) {
@@ -56,6 +56,40 @@ int search(vector<int>& nums, int target) {
     }
     return -1;
 }
+
+/*
+int search(vector<int>& nums, int target) {
+    int n = nums.size();
+    int low = 0, high = n - 1;
+
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (nums[mid] == target) return mid;
+    
+        // if left half is sorted
+        else if (nums[low] <= nums[mid]) {
+            // if target exists in the left sorted half range... eliminate the right half
+            if (nums[low] <= target && target <= nums[mid])
+                high = mid - 1;
+            // else eliminate the left half
+            else 
+                low = mid + 1;
+        }
+    
+        // right half is sorted
+        else {
+            // if target exists in the right sorted half range... eliminate the left half
+            if (nums[mid] <= target && target <= nums[high])
+                low = mid + 1;
+            // else eliminate the right half
+            else 
+                high = mid - 1;
+        }
+    }
+    
+    return -1;
+}
+*/
 
 int main() {
     vector<int> nums = {6,7,0,1,2,3,4,5};
