@@ -11,6 +11,20 @@ Note: An array A rotated by x positions results in an array B of the same length
 #include <vector>
 using namespace std;
 
+bool check(vector<int>& nums) {
+    int n = nums.size();
+    int drop = 0;
+
+    for (int i=0; i<n; i++) {
+        if (nums[i] > nums[(i+1)%n])
+            drop++;
+    }
+
+    return drop <= 1;
+}
+
+
+// this code does early exit when drop count exceeds 1 as there is no need to check any further.
 bool checkSorted(vector<int> arr){
     int n = arr.size();
     int drop = 0;
