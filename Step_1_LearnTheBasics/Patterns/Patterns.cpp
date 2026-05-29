@@ -1,6 +1,13 @@
 #include<iostream>
 using namespace std;
 
+/*
+* * * * * 
+* * * * * 
+* * * * * 
+* * * * * 
+* * * * * 
+*/
 void ptrn1(int n) {
 	for(int i=0; i<n; i++) {
 		for(int j=0; j<n; j++) {
@@ -9,6 +16,14 @@ void ptrn1(int n) {
 		cout << endl;
 	}
 }
+
+/*
+* 
+* * 
+* * * 
+* * * * 
+* * * * * 
+*/
 void ptrn2(int n) {
 	for(int i=0; i<n; i++) {
 		for(int j=0; j<=i; j++) {
@@ -17,6 +32,14 @@ void ptrn2(int n) {
 		cout << endl;
 	}
 }
+
+/*
+1 
+1 2 
+1 2 3 
+1 2 3 4 
+1 2 3 4 5
+*/
 void ptrn3(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=1; j<=i; j++) {
@@ -25,6 +48,14 @@ void ptrn3(int n) {
 		cout << endl;
 	}
 }
+
+/*
+1 
+2 2 
+3 3 3 
+4 4 4 4 
+5 5 5 5 5 
+*/
 void ptrn4(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=1; j<=i; j++) {
@@ -33,6 +64,14 @@ void ptrn4(int n) {
 		cout << endl;
 	}
 }
+
+/*
+* * * * * 
+* * * * 
+* * * 
+* * 
+* 
+*/
 void ptrn5(int n) {
 	for(int i=n; i>0; i--){
 		for(int j=1; j<=i; j++){
@@ -41,6 +80,14 @@ void ptrn5(int n) {
 		cout << endl;
 	}
 }
+
+/*
+1 2 3 4 5 
+1 2 3 4 
+1 2 3 
+1 2 
+1 
+*/
 void ptrn6(int n) {
 	for(int i=n; i>0; i--) {
         for(int j=1; j<=i; j++) {
@@ -49,6 +96,14 @@ void ptrn6(int n) {
         cout << endl;
     }
 }
+
+/*
+    *
+   ***
+  *****
+ *******
+*********
+*/
 void ptrn7(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=1; j<=n-i; j++) {
@@ -60,6 +115,14 @@ void ptrn7(int n) {
 		cout << "\n";
 	}
 }
+
+/*
+*********
+ *******
+  *****
+   ***
+    *
+*/
 void ptrn8(int n) {
 	for(int i=n; i>0; i--) {
 		for(int j=1; j<=n-i; j++) {
@@ -71,10 +134,35 @@ void ptrn8(int n) {
 		cout << "\n";
 	}
 }
+
+/*
+    *
+   ***
+  *****
+ *******
+*********
+*********
+ *******
+  *****
+   ***
+    *
+*/
 void ptrn9(int n) {
 	ptrn7(n);
 	ptrn8(n);
 }
+
+/*
+*
+**
+***
+****
+*****
+****
+***
+**
+*
+*/
 void ptrn10(int n) {
 	/*
 	ptrn2(n);
@@ -88,6 +176,14 @@ void ptrn10(int n) {
 		cout << endl;
 	}
 }
+
+/*
+1 
+0 1 
+1 0 1 
+0 1 0 1 
+1 0 1 0 1 
+*/
 void ptrn11(int n) {
 	/*
 	for(int i=1; i<=n; i++) {
@@ -108,6 +204,14 @@ void ptrn11(int n) {
 		cout << endl;
 	}
 }
+
+/*
+1                 1 
+1 2             2 1 
+1 2 3         3 2 1 
+1 2 3 4     4 3 2 1 
+1 2 3 4 5 5 4 3 2 1 
+*/
 void ptrn12(int n) {
 	for(int i=1; i<=n; i++) {
         for(int j=1; j<=i; j++) {
@@ -122,6 +226,14 @@ void ptrn12(int n) {
         cout << endl;
     }
 }
+
+/*
+1 
+2 3 
+4 5 6 
+7 8 9 10 
+11 12 13 14 15 
+*/
 void ptrn13(int n) {
 	int st = 1;
     for(int i=0; i<n; i++) {
@@ -132,6 +244,14 @@ void ptrn13(int n) {
         cout << endl;
     }
 }
+
+/*
+A 
+A B 
+A B C 
+A B C D 
+A B C D E
+*/
 void ptrn14(int n) {
 	for(int i=0; i<n; i++) {
 		for(char ch = 'A'; ch <= 'A'+i; ch++) {
@@ -140,6 +260,14 @@ void ptrn14(int n) {
 		cout << endl;
 	}
 }
+
+/*
+A B C D E 
+A B C D 
+A B C 
+A B 
+A 
+*/
 void ptrn15(int n) {
 	for(int i=n; i>0; i--) {
         for(char ch='A'; ch < 'A'+i; ch++) {
@@ -148,6 +276,14 @@ void ptrn15(int n) {
         cout << endl;
     }
 }
+
+/*
+A 
+B B 
+C C C 
+D D D D 
+E E E E E 
+*/
 void ptrn16(int n) {
 	for(int i=0; i<n; i++) {
 		char ch = 'A' + i;
@@ -157,6 +293,14 @@ void ptrn16(int n) {
 		cout << endl;
 	}
 }
+
+/*
+    A
+   ABA
+  ABCBA
+ ABCDCBA
+ABCDEDCBA
+*/
 void ptrn17(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=0; j<n-i; j++) {
@@ -171,6 +315,14 @@ void ptrn17(int n) {
 		cout << endl;
 	}
 }
+
+/*
+E 
+D E 
+C D E 
+B C D E 
+A B C D E 
+*/
 void ptrn18(int n) {
 	for(int i = 1; i<=n; i++) {
 		for(char ch = 'A'+n-i; ch < 'A' + n; ch++) {
@@ -179,6 +331,19 @@ void ptrn18(int n) {
 		cout << endl;
 	}
 }
+
+/*
+* * * * * * * * * * 
+* * * *     * * * * 
+* * *         * * * 
+* *             * * 
+*                 * 
+*                 * 
+* *             * * 
+* * *         * * * 
+* * * *     * * * * 
+* * * * * * * * * * 
+*/
 void ptrn19(int n) {
 	// Increasing Void
 	for(int i=0;i<n;i++) {
@@ -207,6 +372,18 @@ void ptrn19(int n) {
 		cout << endl;
 	}
 }
+
+/*
+*                 * 
+* *             * * 
+* * *         * * * 
+* * * *     * * * * 
+* * * * * * * * * * 
+* * * *     * * * * 
+* * *         * * * 
+* *             * * 
+*                 * 
+*/
 void ptrn20(int n) {
 	int spaces = 2*n-2;
 	for(int i=1; i<=2*n-1; i++) {
@@ -225,6 +402,14 @@ void ptrn20(int n) {
 		else spaces+=2;
 	}
 }
+
+/*
+* * * * * 
+*       * 
+*       * 
+*       * 
+* * * * * 
+*/
 void ptrn21(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=1; j<=n; j++) {
@@ -234,6 +419,18 @@ void ptrn21(int n) {
 		cout << endl;
 	}
 }
+
+/*
+5 5 5 5 5 5 5 5 5 
+5 4 4 4 4 4 4 4 5 
+5 4 3 3 3 3 3 4 5 
+5 4 3 2 2 2 3 4 5 
+5 4 3 2 1 2 3 4 5 
+5 4 3 2 2 2 3 4 5 
+5 4 3 3 3 3 3 4 5 
+5 4 4 4 4 4 4 4 5 
+5 5 5 5 5 5 5 5 5
+*/
 void ptrn22(int n) {
 	for(int i=0; i<2*n-1; i++) {
 		for(int j=0; j<2*n-1; j++) {
