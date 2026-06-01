@@ -444,7 +444,34 @@ void ptrn22(int n) {
 	}
 }
 
-void (*patterns[22])(int) = {ptrn1, ptrn2, ptrn3, ptrn4, ptrn5, ptrn6, ptrn7, ptrn8, ptrn9, ptrn10, ptrn11, ptrn12, ptrn13, ptrn14, ptrn15, ptrn16, ptrn17, ptrn18, ptrn19, ptrn20, ptrn21, ptrn22};
+void (*patterns[22])(int) = {
+	ptrn1, ptrn2, ptrn3, ptrn4, ptrn5, ptrn6, ptrn7, ptrn8, ptrn9, ptrn10, ptrn11, 
+	ptrn12, ptrn13, ptrn14, ptrn15, ptrn16, ptrn17, ptrn18, ptrn19, ptrn20, ptrn21, ptrn22
+};
+// This is a declaration and initialization of an array of function pointers in C/C++.
+/*
+void (*patterns[22])(int) = {
+    ptrn1, ptrn2, ptrn3, ptrn4, ptrn5, ptrn6, ptrn7, ptrn8, ptrn9, ptrn10, ptrn11, 
+	ptrn12, ptrn13, ptrn14, ptrn15, ptrn16, ptrn17, ptrn18, ptrn19, ptrn20, ptrn21, ptrn22
+};
+
+Break it down:-
+void → each function returns nothing.
+(*patterns[22]) → patterns is an array of 22 pointers.
+(int) → each pointed-to function takes one int parameter.
+
+So: patterns is an array containing 22 functions, where each function has this signature:
+	void someFunction(int);
+
+We can call them like this:
+	patterns[0](5);   // calls ptrn1(5)
+	patterns[1](10);  // calls ptrn2(10)
+
+A simpler mental model: 
+patterns[i] means: “the i-th function”
+and
+patterns[i](x) means: “call the i-th function with argument x”
+*/
 
 void printall(int n) {
 	for(int i=0; i<22; i++) {
