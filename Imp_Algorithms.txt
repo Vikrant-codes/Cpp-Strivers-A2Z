@@ -3,7 +3,7 @@
 3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
 4.) Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
 5.) Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
-6.) Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Proble : Detect loop in Linked List
+6.) Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Problem : Detect loop in Linked List
 _____________________________________________________________________________________________________
 
 > Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)
