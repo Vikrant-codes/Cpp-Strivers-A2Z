@@ -9,8 +9,8 @@ using namespace std;
 * * * * * 
 */
 void ptrn1(int n) {
-	for(int i=0; i<n; i++) {
-		for(int j=0; j<n; j++) {
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n; j++) {
 			cout << "* ";
 		}
 		cout << endl;
@@ -25,8 +25,8 @@ void ptrn1(int n) {
 * * * * * 
 */
 void ptrn2(int n) {
-	for(int i=0; i<n; i++) {
-		for(int j=0; j<=i; j++) {
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j <= i; j++) {
 			cout << "* ";
 		}
 		cout << endl;
@@ -41,8 +41,8 @@ void ptrn2(int n) {
 1 2 3 4 5
 */
 void ptrn3(int n) {
-	for(int i=1; i<=n; i++) {
-		for(int j=1; j<=i; j++) {
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= i; j++) {
 			cout << j << " ";
 		}
 		cout << endl;
@@ -57,8 +57,8 @@ void ptrn3(int n) {
 5 5 5 5 5 
 */
 void ptrn4(int n) {
-	for(int i=1; i<=n; i++) {
-		for(int j=1; j<=i; j++) {
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= i; j++) {
 			cout << i << " ";
 		}
 		cout << endl;
@@ -73,12 +73,21 @@ void ptrn4(int n) {
 * 
 */
 void ptrn5(int n) {
-	for(int i=n; i>0; i--){
-		for(int j=1; j<=i; j++){
+	for(int i = n; i > 0; i--){
+		for(int j = 1; j <= i; j++){
 			cout << "* ";
 		}
 		cout << endl;
 	}
+
+	/*
+	for (int i = 0; i < n; i++) {
+        for (int j = 0; j < n-i; j++) {
+            cout << "* ";
+        }
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -89,12 +98,20 @@ void ptrn5(int n) {
 1 
 */
 void ptrn6(int n) {
-	for(int i=n; i>0; i--) {
-        for(int j=1; j<=i; j++) {
+	for(int i = n; i > 0; i--) {
+        for(int j = 1; j <= i; j++) {
             cout << j << " ";
         }
         cout << endl;
     }
+	/*
+	for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= n-i+1; j++) {
+            cout << j << " ";
+        }
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -105,11 +122,11 @@ void ptrn6(int n) {
 *********
 */
 void ptrn7(int n) {
-	for(int i=1; i<=n; i++) {
-		for(int j=1; j<=n-i; j++) {
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= n-i; j++) {
 			cout << " ";
 		}
-		for(int j=1; j <= 2*i-1; j++) {
+		for(int j = 1; j <= 2*i-1; j++) {
 			cout << "*";
 		}
 		cout << "\n";
@@ -124,11 +141,11 @@ void ptrn7(int n) {
     *
 */
 void ptrn8(int n) {
-	for(int i=n; i>0; i--) {
-		for(int j=1; j<=n-i; j++) {
+	for(int i = n; i > 0; i--) {
+		for(int j = 1; j <= n-i; j++) {
 			cout << " ";
 		}
-		for(int j=1; j <= 2*i-1; j++) {
+		for(int j = 1; j <= 2*i-1; j++) {
 			cout << "*";
 		}
 		cout << "\n";
@@ -168,7 +185,7 @@ void ptrn10(int n) {
 	ptrn2(n);
 	ptrn5(n-1);
 	*/
-	for(int i=1; i<=2*n-1; i++) {
+	for(int i = 1; i <= 2*n-1; i++) {
 		int stars = i <= n ? i : 2*n-i;
 		for(int j = 0; j<stars; j++) {
 			cout << "*";
@@ -186,9 +203,20 @@ void ptrn10(int n) {
 */
 void ptrn11(int n) {
 	/*
-	for(int i=1; i<=n; i++) {
-		for(int j=i; j>0; j--) {
-			int x = j%2==0 ? 0 : 1;
+	for(int i = 1; i <= n; i++) {
+        int bit = i % 2 == 0 ? 0 : 1;
+        for (int j = 1; j <= i; j++) {
+            cout << bit << " ";
+            // bit = (bit == 0) ? 1 : 0;
+            bit = 1 - bit;      // flip the bit
+        }
+        cout << endl;
+    }
+	*/
+	/*
+	for(int i = 1; i <= n; i++) {
+		for(int j = i; j > 0; j--) {
+			int x = j % 2 == 0 ? 0 : 1;
 			cout << x << " ";
 		}
 		cout << endl;
