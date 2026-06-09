@@ -2,9 +2,11 @@
 using namespace std;
 
 int main() {
-    bool t = true;
-    int x = t;
-    cout << x << " " << t;
+    int i = 0;
+    while (i--) {
+        cout << i << " ";
+    }
+    cout << i << " ";
     
     return 0;
 }
