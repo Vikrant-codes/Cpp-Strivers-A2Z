@@ -37,6 +37,17 @@ int getDigitSqSum(int x) {
 }
 
 bool isHappy(int n) {
+    if (n == 1) return true;
+    set<int> s;
+    while (true) {
+        n = getDigitSqSum(n);
+        if (n == 1) return true;
+        if (s.count(n)) return false;
+        s.insert(n);
+    }
+}
+
+bool isHappy2(int n) {
     while (n >= 10) {
         n = getDigitSqSum(n);
     }
@@ -44,5 +55,6 @@ bool isHappy(int n) {
 }
 
 int main() {
+
     return 0;
 }
