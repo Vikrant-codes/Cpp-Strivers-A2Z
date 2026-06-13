@@ -168,6 +168,12 @@ Therefore, if a number is happy, it will become 1 or
 else it will become 4 during transformations and then loop in the endless cycle.
 
 So, we can simply do the transformations until we either get 1 (happy number) or 4 (unhappy number).
+
+----
+For any number undergoing these transformations, there are only two possibilties :-
+- It either reaches 1 (happy number) or
+- It reaches 4 (unhappy number) and then loops endlessly in the cycle: 4 → 16 → 37 → 58 → 89 → 145 → 42 → 20 → 4.
+This can be seen by doing transformations for all numbers in range [2, 810] and all of them will either reach 1 or 4.
 */
 
 bool isHappy3(int n) {
