@@ -9,7 +9,8 @@ void swapTemp(int &a, int &b) {
     a = temp;
 }
 
-// Method 2 -- using Addition and Subtraction __ Limitations : Be careful with overflow in some languages with fixed integer sizes.
+// Method 2 -- using Addition and Subtraction
+// Limitations : Be careful with overflow in some languages with fixed integer sizes.
 void swapAddSub(int &a, int &b) {
     a = a+b;
     b = a-b;
