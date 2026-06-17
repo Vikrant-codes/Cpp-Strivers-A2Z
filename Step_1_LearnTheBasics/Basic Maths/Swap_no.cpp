@@ -11,7 +11,7 @@ void swapTemp(int &a, int &b) {
 
 // Method 2 -- using Addition and Subtraction
 // Limitations : Be careful with overflow in some languages with fixed integer sizes.
-void swapAddSub(int &a, int &b) {
+void swapMath(int &a, int &b) {
     a = a+b;
     b = a-b;
     a = a-b;
@@ -36,7 +36,7 @@ int main() {
     int y = 11;
     cout << "Swapping using Addition and Subtraction" << endl;
     cout << "Before swapping : " << x << " " << y << endl;
-    swapAddSub(x,y);
+    swapMath(x,y);
     cout << "After swapping : " << x << " " << y << endl; 
 
     int p = 2;
