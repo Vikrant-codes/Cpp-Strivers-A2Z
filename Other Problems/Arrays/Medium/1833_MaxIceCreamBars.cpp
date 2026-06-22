@@ -142,6 +142,16 @@ int maxIceCream1(vector<int>& costs, int coins) {
     return -1;
 }
 
+/*
+Instead of manually counting each ice cream bar of a given cost, 
+we can calculate how many bars we can afford at that cost in one step.
+We can compute the remaining coins we have (remCoins = coins - sum) and 
+determine how many bars of the current cost we can buy (canBuy = min(freq[i], remCoins / i)).
+ex- assume we have 10 coins left and the current cost is 3,
+then we can buy at most 3 bars (10 / 3 = 3). 
+but if there are only 2 bars of that cost available, we can only buy 2 bars.
+so, canBuy = min(freq[i], remCoins / i).
+*/
 int maxIceCream2(vector<int>& costs, int coins) {
     int n = costs.size();
     vector<int> freq(1e5 + 1);
@@ -169,6 +179,7 @@ int maxIceCream2(vector<int>& costs, int coins) {
 }
 
 // ChatGPT's solution 
+// no need to use sum variable, we can directly use coins variable and update it (spend the coins) as we purchase bars
 int maxIceCream(vector<int>& costs, int coins) {
     vector<int> freq(100001, 0);
 
