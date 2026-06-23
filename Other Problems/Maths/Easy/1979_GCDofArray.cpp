@@ -24,7 +24,9 @@ The smallest number in nums is 3.
 The largest number in nums is 3.
 The greatest common divisor of 3 and 3 is 3.
 
-Constraints :- 2 <= nums.length <= 1000 __ 1 <= nums[i] <= 1000
+Constraints :- 
+- 2 <= nums.length <= 1000
+- 1 <= nums[i] <= 1000
 */
 
 #include <bits/stdc++.h>
@@ -34,8 +36,7 @@ using namespace std;
 int GCD(int a, int b)
 {
     int rem = b % a;
-    while (rem != 0)
-    {
+    while (rem != 0) {
         b = a;
         a = rem;
         rem = b % a;
@@ -46,10 +47,9 @@ int GCD(int a, int b)
 int findGCD(vector<int> &nums)
 {
     int mn = 9999, mx = 0;
-    for (int x : nums)
-    {
-        mn = min(x, mn);
-        mx = max(x, mx);
+    for (int x : nums) {
+        if (x < mn) mn = x;
+        if (x > mx) mx = x;
     }
     return GCD(mn, mx);
 }

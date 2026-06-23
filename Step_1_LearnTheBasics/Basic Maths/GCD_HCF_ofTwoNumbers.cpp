@@ -105,17 +105,17 @@ Subtraction Property
 Repeated Subtraction Algorithm
     ↓ (optimize many subtractions into one modulo)
 Euclidean Algorithm
+
+Steps :-
+1) Given two numbers a and b (a > b), compute a mod b
+2) Replace a with b and b with a mod b
+3) Repeat until b becomes zero at which a is the gcd
+Ex - gcd(12,9) = gcd(9, 12%9) = gcd(9,3) = gcd(3, 9%3) = gcd(3,0) = 3
 */
+
+// Euclidean Algorithm : Time Complexity : O( log Φ (min(a, b)) ), base of log is Φ (which is golden ratio), Φ ≈ 1.618
 int gcd(int a, int b) {
     while (a > 0 && b > 0) {
-        // code for subtraction-property is :
-        /*
-        if (a > b)
-            a = a - b
-        else 
-            b = b - a
-        */
-
         if (a > b) 
             a = a % b;          // equivalent to doing a = a - b multiple times till a > b
         else 
@@ -126,17 +126,29 @@ int gcd(int a, int b) {
     return a;
 }
 
-// GCD (HCF) & LCM pre-defined methods in C++
-/*
-- The pre-defined methods to get hcf & lcm of two numbers are available in the 'numeric' header (#include <numeric>)
-- Available from C++17 onwards.
-- Works for integral types (int, long long, etc.).
+// my implementation
+int myGCD(int a, int b) {
+    int rem = b % a;
+    while (rem != 0) {
+        b = a;
+        a = rem;
+        rem = b % a;
+    }
+    return a;
+}
 
-    #include <numeric>
+// Code using Subtraction property of GCD (Not as efficient as the above approach)
+int gcdSubtraction(int a, int b) {
+    while (a > 0 && b > 0) {
+        if (a > b)
+            a = a - b;
+        else 
+            b = b - a;
+    }
     
-    int g = std::gcd(48, 18);  // 6
-    int l = std::lcm(48, 18);  // 144
-*/ 
+    if (a == 0) return b;
+    return a;
+}
 
 int main() {
     return 0;
