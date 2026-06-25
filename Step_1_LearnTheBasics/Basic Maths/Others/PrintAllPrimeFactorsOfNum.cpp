@@ -143,14 +143,98 @@ void printPrimeFactorsEff(int n) {
     cout << endl;
 }
 
-// Optimal Approach :- Time Complexity : O(sqrt(n) * log n)
+// Optimal Approach :- Time Complexity : O(√n + log n) ~ O(√n)
 /*
-This approach corrects the short-comings of the previous approach. 
-Instead of looping till n while updating n's value. We loop till sqrt(n), 
-that way would still give us the prime divisors if available.
-As for the case when n itself is prime, the loop will run for sqrt(n) and n would remain unchanged instead of becoming 1
-So outside the loop, we will check if n is not equal to 1, 
-in that case, we will add this current value of n to the answer vector.
+Intuition:
+
+The key intuition comes from a very important property of factors:
+| Every composite number has a factor ≤ √n
+
+A composite number n can be written as a * b.
+If both a and b were greater than √n, then a * b > √n * √n => a * b > n, which is impossible.
+Therefore, at least one factor must be ≤ √n.
+
+Therefore, every composite number has at least one factor <= √n.
+
+Consider n = 8
+Factors :- 1 x 8, 2 x 4, 4 x 2, 8 x 1.
+We know that after reaching √n, the factors starts appearing in reverse (like how 4 x 2 and 8 x 1 appeared again). 
+So checking beyond √n gives no new information.
+
+We iterate only up to √n and whenever we find a factor,
+we keep dividing by it to remove all its occurrences from n.
+This gradually strips away prime factors and shrinks n.
+
+After processing all factors <= sqrt(current n), if n > 1, the remaining n must be prime. 
+If it were composite, it would have had a factor <= sqrt(n), which we would have already found.
+
+Example:
+n = 315
+Prime factorization: 315 = 3 × 3 × 5 × 7
+
+Step 1: Check 2 => Not divisible.
+Step 2: Check 3 => Divisible.
+    315 / 3 = 105
+    105 / 3 = 35
+    Current n = 35.
+Step 3: Check 5 => Divisible.
+    35 / 5 = 7
+    Current n = 7.
+Step 4: Continue?
+    The loop condition is: i * i <= n
+    Current n = 7.
+    3 * 3 <= 7  -> true
+    5 * 5 <= 7  -> false
+    Loop stops.
+
+Why can we directly print 7?
+At this point, we've already tested every possible factor up to √7.
+If 7 were composite, it would have some factor ≤ √7.
+But we found none.
+Therefore 7 must be prime.
+So:
+if (n > 1)
+    cout << n;
+prints the last prime factor.
+
+>> The deeper intuition
+Think of the algorithm as stripping away prime factors one by one.
+For 315:
+    315
+     ↓ divide by 3
+    105
+     ↓ divide by 3
+    35
+     ↓ divide by 5
+    7
+Now only 7 remains.
+Since every smaller factor has already been checked and removed, the leftover number can only be:
+- 1 (nothing left), or
+- A prime number.
+It can never be a composite number.
+*/
+// Complexity Analysis
+/*
+The time complexity is O(√n).
+
+Why?
+
+The outer loop checks divisors:
+2, 3, 4, 5, 6, 7, 8. 9, ... up to roughly √n.
+The number of iterations is therefore about: O(√n)
+
+What about the inner while loop?
+A common doubt is: "If there's a nested loop, shouldn't it be O(n√n)?"
+No.
+Every time the inner loop runs, n is divided by some factor: n /= i;
+So n decreases rapidly.
+For example: n = 2^20
+The inner loop runs 20 times, not millions of times.
+Across the entire algorithm, the total number of divisions is bounded by O(log n).
+
+Thus the actual complexity is: O(√n + log n)
+and since log n << √n
+for large n, we simplify O(√n + log n) to O(√n).
 */
 
 void printPrimeFactors(int n) {
@@ -173,6 +257,30 @@ void printPrimeFactors(int n) {
     cout << endl;
 }
 
+// ChatGPT's optimal solution
+/*
+- First remove all factors of 2.
+- Then check only odd numbers from 3 to √n.
+- Whenever a factor is found, keep dividing until it is no longer a factor.
+- If after the loop n > 1, then n itself is a prime factor.
+*/
+void printPrimeFactors(int n) {
+    while (n % 2 == 0) {
+        cout << 2 << " ";
+        n /= 2;
+    }
+
+    for (int i = 3; i * i <= n; i += 2) {
+        while (n % i == 0) {
+            cout << i << " ";
+            n /= i;
+        }
+    }
+
+    if (n > 1) {
+        cout << n << " ";
+    }
+}
 
 int main() {
 
