@@ -136,15 +136,19 @@ void sieveOfEratosthenes(int n) {
     vector<bool> isPrime(n+1, true);
 
     // core logic of Sieve of Eratosthenes
-    for (int i = 2; i * i <= n; i++)
-        if (isPrime[i])
-            for (int j = i * i; j <= n; j += i)
+    for (int i = 2; i * i <= n; i++) {
+        if (isPrime[i]) {    
+            for (int j = i * i; j <= n; j += i) {
                 isPrime[j] = false;
+            }
+        }
+    }
 
     // print the prime numbers
-    for (int i = 2; i <= n; i++)
+    for (int i = 2; i <= n; i++) {
         if(isPrime[i])
             cout << i << " ";
+    }
 }
 
 int main() {

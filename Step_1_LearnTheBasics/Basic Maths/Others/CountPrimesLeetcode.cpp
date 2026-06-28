@@ -1,20 +1,37 @@
 /*
 Leetcode - 204. Count Primes : Medium
+
 Given an integer n, return the number of prime numbers that are strictly less than n.
 
-Ex -> 
+Examples :-
+
 Input: n = 10 __ Output: 4
+Explanation: There are 4 prime numbers less than 10, they are 2, 3, 5, 7.
+
 Input: n = 0 __ Output: 0
+
 Input: n = 1 __ Output: 0
+
+Constraints :- 0 <= n <= 5 * 10^6
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
 /*
+For the given constraints :- 0 <= n <= 5 * 10^6
+The naive approach to loop till and check each number for prime will take O(n * sqrt(n)).
+Since, n can be 5 * 10^6, this naive approach will exceed the time limit and is thus inefficient.
+So, we need a faster approach to find the count of primes till n.
+This is where Sieve of Eratosthenes comes in play.
+*/
+
+/*
 🔹 Sieve of Eratosthenes – 
-It’s called the “Sieve of Eratosthenes” because it was invented by the ancient Greek mathematician Eratosthenes of Cyrene (around 240 BC).
-The word sieve comes from the physical tool used to separate finer particles from coarser ones (like flour from bran, or sand from pebbles).
+It’s called the “Sieve of Eratosthenes” because it was invented by the ancient Greek mathematician Eratosthenes of Cyrene 
+(around 240 BC).
+The word sieve comes from the physical tool used to separate finer particles from coarser ones 
+(like flour from bran, or sand from pebbles).
 Similarly, the algorithm “sifts out” the non-primes step by step, leaving only primes behind.
 
 Algorithm & Intuition :- 
@@ -59,6 +76,25 @@ So the total work is: 𝑂 ⁣(𝑛⋅loglog𝑛)
 >> Space Complexity : O(n)
 */
 
+
+int countPrimes(int n) {
+    vector<bool> isPrime(n, true);
+
+    for (int i = 2; i * i <= n; i++)
+        if (isPrime[i])
+            for (int j = i * i; j < n; j += i)
+                isPrime[j] = false;
+    
+    int cnt = 0;
+    for (int i = 2; i < n; i++)
+        if (isPrime[i])
+            cnt++;
+
+    return cnt;
+}
+
+// Previous Implementations
+
 // My implementation 
 int countPrimesMy(int n) {
     if (n == 0 || n == 1) return 0;
@@ -83,7 +119,7 @@ int countPrimesMy(int n) {
 }
 
 // Best Implementation --- Some guy on Leetcode
-int countPrimes(int n) {
+int countPrimesX(int n) {
     vector<int> prime(n,1);
     for(int i=2;i*i <=n;i++){
         if(prime[i]){
