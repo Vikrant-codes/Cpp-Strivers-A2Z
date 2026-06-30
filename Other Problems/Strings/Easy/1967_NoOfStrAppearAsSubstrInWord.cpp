@@ -47,8 +47,14 @@ The C++ Standard : The standard only guarantees at most O(mn) comparisons in the
 
 So, if patterns array has 'k' patterns (i.e. patterns.size() = k), and averge length of string in pattern is 'n',
 then, total time complexity : O(k m n).
+
+The built-in method is usually much faster in practice because standard library 
+implementations use highly optimized substring-search algorithms.
+
+The exact algorithm is implementation-dependent; different standard library 
+implementations (or compilers' libraries) may use different algorithms.
 */
-int numOfStrings2(vector<string>& patterns, string word) {
+int numOfStrings1(vector<string>& patterns, string word) {
     int ans = 0;
 
     for (string sub : patterns) 
@@ -58,6 +64,7 @@ int numOfStrings2(vector<string>& patterns, string word) {
     return ans;
 }
 
+// Time Complexity : O(k m n)
 /*
 >> Complexity Analysis :-
 
@@ -68,30 +75,24 @@ The outer loop runs:
 which is approximately (m − n + 1) times.
 For each starting position, the inner while loop may compare up to n characters.
 
-:Worst case
-
+++ Worst case
 Example:
-
 word = "aaaaaaaaaa"
 s    = "aaaaab"
-
 At every position, almost all characters match before failing.
-
 So,
-
 Outer loop → O(m - n + 1)
 Inner loop → O(n)
+Total: O((m−n+1)×n), which is commonly written as O(mn)
 
-Total:
-
-O((m−n+1)×n)
-
-which is commonly written as
-
-O(mn)
-	​
-
-
+-> numOfStrings(vector<string>& patterns, string word)
+Suppose
+- k = patterns.size()
+- m = word.length()
+- L = average pattern length
+Each call to substrExists() costs: O(mL)
+Doing this for all k patterns: O(k×m×L)
+If you simply denote each pattern length by n, then O(k m n)
 */
 
 // helper method -> returns true if the string 'word' contains string 's' as substring
@@ -113,7 +114,7 @@ bool substrExists(string word, string s) {
     return false;
 }
 
-int numOfStrings1(vector<string>& patterns, string word) {
+int numOfStrings2(vector<string>& patterns, string word) {
     int ans = 0;
 
     for (string sub : patterns) 
@@ -122,8 +123,6 @@ int numOfStrings1(vector<string>& patterns, string word) {
     
     return ans;
 }
-
-
 
 int main() {
     return 0;
