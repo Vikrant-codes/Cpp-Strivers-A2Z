@@ -26,6 +26,11 @@ Constraints :- 1 <= left <= right <= 10^6
 #include <bits/stdc++.h>
 using namespace std;
 
+// Optimal Approach : Time Complexity : O(n log(log n)) + O(n) ~ O(n log(log n)) __ Space Complexity : O(n)
+/*
+
+*/
+
 vector<bool> getSieve(int n) {
     vector<bool> isPrime(n+1, true);
 
@@ -40,7 +45,7 @@ vector<bool> getSieve(int n) {
     return isPrime;
 }
 
-vector<int> closestPrimes(int left, int right) {
+vector<int> closestPrimes1(int left, int right) {
     vector<bool> isPrime = getSieve(right);
 
     vector<int> ans = {-1, -1};
@@ -58,11 +63,39 @@ vector<int> closestPrimes(int left, int right) {
     for (int r = l+1; r <= right; r++) {
         if (isPrime[r]) {
             if (ans[0] == -1 || ans[1] - ans[0] > (r - l)) {
-                ans[0] = l;
-                ans[1] = r;
+                // ans[0] = l;
+                // ans[1] = r;
+                // or we can do this in one line as below
+                ans = {l , r};
             }
             l = r;
         }
+    }
+
+    return ans;
+}
+
+vector<int> closestPrimes2(int left, int right) {
+    vector<bool> isPrime = getSieve(right);
+
+    vector<int> ans = {-1, -1};
+    int prevPrime = -1;
+    int minDiff = INT_MAX;
+
+    for (int i = left; i <= right; i++) {
+        if (!isPrime[i]) 
+            continue;
+        
+        if (prevPrime != -1) {
+            int diff = i - prevPrime;
+            
+            if (diff < minDiff) {
+                minDiff = diff;
+                ans = {prevPrime, i};
+            }
+        }
+    
+        prevPrime = i;
     }
 
     return ans;
