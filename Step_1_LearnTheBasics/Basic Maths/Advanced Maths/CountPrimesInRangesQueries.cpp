@@ -76,9 +76,48 @@ vector<int> getSieve(int n) {
     vector<int> isPrime(n+1, 1);
     isPrime[0] = 0;
     isPrime[1] = 0;
+
+    for (int i = 2; i * i <= n; i++)
+        if (isPrime[i])
+            for (int j = i * i; j <= n; j+=i)
+                isPrime[j] = false;
+
+    return isPrime;
+}
+
+vector<int> countPrimesInRangeBetter(vector<vector<int>>& queries) {
+    int n = queries.size();
+    vector<int> ans(n);
+
+    // find the maximum value of 'r' across all queries to know the maximum limit upto which sieve must be created
+    int maxR = 0;
+    for (vector<int> query : queries)
+        maxR = max(maxR, query[1]);
+
+    // create sieve containing data of primes upto maximum r
+    vector<int> isPrime = getSieve(maxR);
+
+    // for each query [l,r], count the no. of primes in range l to r using sieve to check for prime
+    for (int i = 0; i < n; i++) {
+        int l = queries[i][0], r = queries[i][1];
+        int cnt = 0;
+
+        for (int x = l; x <= r; x++) 
+            cnt += isPrime[x];
+
+        ans[i] = cnt;
+    }
+
+    return ans;
 }
 
 
 int main() {
+    vector<vector<int>> queries = {{1, 10}, {5, 10}, {11, 20}};
+    vector<int> ans = countPrimesInRangeBetter(queries);
+
+    for (int x : ans) 
+        cout << x << " ";
+
     return 0;
 }
