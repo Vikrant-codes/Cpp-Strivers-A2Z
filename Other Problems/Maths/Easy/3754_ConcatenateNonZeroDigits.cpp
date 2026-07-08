@@ -29,7 +29,23 @@ Constraints: 0 <= n <= 10^9
 #include<bits/stdc++.h>
 using namespace std;
 
-long long sumAndMultiply(int n) {
+long long sumAndMultiply1(int n) {
+    int x = 0, sum = 0;
+
+    string s = to_string(n);
+    for (char c : s) {
+        int dig = c - '0';
+        
+        if (dig != 0) {
+            x = x * 10 + dig;
+            sum += dig;
+        }
+    }
+
+    return 1LL * x * sum;
+}
+
+long long sumAndMultiply2(int n) {
     int x = 0;
     int mul = 1;
     int sum = 0;
