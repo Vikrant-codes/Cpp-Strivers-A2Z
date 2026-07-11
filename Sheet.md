@@ -13,6 +13,19 @@
 
 **Learn C++ STL / Java Collections**
 
+<details>
+<summary> **Know Basic Maths** </summary>
+
+- Count Digits of a Number
+- Reverse a Number
+- Palindrome Number
+- GCD / HCF of two numbers
+- Armstrong Numbers
+- Print all Divisors
+- Prime Number
+
+</details>
+
 **Know Basic Maths**
 - Count Digits of a Number
 - Reverse a Number

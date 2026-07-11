@@ -1,4 +1,15 @@
 // Print all prime factors of a number (positive integer) n
+/*
+Given a positive integer n, print all the prime factors of n in ascending order.
+
+Example :-
+
+Input: n = 14
+Output: 2 7
+
+Input: n = 16
+Output: 2
+*/
 
 #include <iostream>
 #include <vector>
@@ -265,21 +276,22 @@ void printPrimeFactors(int n) {
 - If after the loop n > 1, then n itself is a prime factor.
 */
 void printPrimeFactors(int n) {
-    while (n % 2 == 0) {
+    if (n % 2 == 0) {
         cout << 2 << " ";
-        n /= 2;
+        while (n % 2 == 0) 
+            n /= 2;
     }
-
+    
     for (int i = 3; i * i <= n; i += 2) {
-        while (n % i == 0) {
+        if (n % i == 0) {
             cout << i << " ";
-            n /= i;
+
+            while (n % i == 0)
+                n /= i;
         }
     }
 
-    if (n > 1) {
-        cout << n << " ";
-    }
+    if (n > 1) cout << n << " ";
 }
 
 int main() {
