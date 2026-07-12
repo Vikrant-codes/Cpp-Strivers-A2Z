@@ -14,7 +14,8 @@ Explanation: LCM of 14 and 8 is 56, while their GCD is 2.
 Input: a = 1 , b = 1 __ Output: [1, 1]
 Explanation: LCM of 1 and 1 is 1, while their GCD is 1.
 
-Constraints :- 1 ≤ a, b ≤ 10^4
+Constraints :- 
+• 1 ≤ a, b ≤ 10^4
 */
 
 #include <bits/stdc++.h>

@@ -29,7 +29,8 @@ least prime factor of 3 = 3,
 least prime factor of 4 = 2.
 So answer is[1, 2, 3, 2]. 
 
-Constraints: 2 <= n <= 10^5
+Constraints :-
+• 2 <= n <= 10^5
 */
 
 #include <bits/stdc++.h>
@@ -82,7 +83,6 @@ vector<int> leastPrimeFactor(int n) {
     for (int i = 0; i <= n; i++)
         spf[i] = i;
         
-    
     for (int i = 2; i * i <= n; i++) {
         if (spf[i] == i) {
             for (int j = i * i; j <= n; j += i) {
@@ -97,7 +97,6 @@ vector<int> leastPrimeFactor(int n) {
     
     return spf;
 }
-
 
 int main() {
     return 0;

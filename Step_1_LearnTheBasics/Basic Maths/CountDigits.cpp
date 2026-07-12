@@ -11,7 +11,8 @@ Explanation: There are 4 digits in 1567, which are 1, 5, 6 and 7.
 Input: n = 99999 __ Output: 5
 Explanation: Number of digit in 99999 is 5
 
-Constraints :- 1 ≤ n ≤ 10^9
+Constraints :- 
+• 1 ≤ n ≤ 10^9
 */
 
 #include<bits/stdc++.h>

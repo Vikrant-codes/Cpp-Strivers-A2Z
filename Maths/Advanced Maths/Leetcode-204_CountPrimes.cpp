@@ -12,7 +12,8 @@ Input: n = 0 __ Output: 0
 
 Input: n = 1 __ Output: 0
 
-Constraints :- 0 <= n <= 5 * 10^6
+Constraints :- 
+• 0 <= n <= 5 * 10^6
 */
 
 #include <bits/stdc++.h>

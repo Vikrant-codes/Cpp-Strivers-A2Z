@@ -83,8 +83,6 @@ if we have the smallest prime factor (SPF) of each number precomputed.
 So, we can use the Sieve of Eratosthenes to precompute the smallest prime factor (SPF) for each number up to 
 the maximum number in queries. 
 Then, for each number in queries, we can get its prime factorization in O(log n) time using the SPF array.
-
-
 */
 vector<int> getSieveSPF(int n) {
     vector<int> spf(n+1);
@@ -130,7 +128,6 @@ vector<vector<int>> primeFactors(vector<int>& queries){
 
     return ans;
 }
-
 
 int main() {
     return 0;

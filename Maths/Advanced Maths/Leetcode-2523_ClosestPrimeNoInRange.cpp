@@ -20,7 +20,8 @@ Since 11 is smaller than 17, we return the first pair.
 Input: left = 4, right = 6 __ Output: [-1,-1]
 Explanation: There exists only one prime number in the given range, so the conditions cannot be satisfied.
 
-Constraints :- 1 <= left <= right <= 10^6
+Constraints :- 
+• 1 <= left <= right <= 10^6
 */
 
 #include <bits/stdc++.h>

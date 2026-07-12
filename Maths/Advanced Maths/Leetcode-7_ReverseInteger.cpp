@@ -8,10 +8,13 @@ Assume the environment does not allow you to store 64-bit integers (signed or un
 Examples :-
 
 Input: x = 123 __ Output: 321
+
 Input: x = -123 __ Output: -321
+
 Input: x = 120 __ Output: 21
 
-Constraints:- -2^31 <= x <= 2^31 - 1
+Constraints :- 
+• -2^31 <= x <= 2^31 - 1
 */
 
 #include <bits/stdc++.h>

@@ -17,9 +17,11 @@ Note: Don't use the inbuilt gcd function
 Examples :-
 
 Input: a = 20, b = 28 __ Output: 4
+
 Input: a = 60, b = 36 __ Output: 12
 
-Constraints:- 1 ≤ a, b ≤ 10^9
+Constraints :- 
+• 1 ≤ a, b ≤ 10^9
 */
 
 #include <iostream>

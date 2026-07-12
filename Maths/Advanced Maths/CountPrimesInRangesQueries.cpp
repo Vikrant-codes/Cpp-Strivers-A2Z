@@ -16,8 +16,8 @@ Query [5, 10]: The prime numbers are 5, 7, so the answer is 2.
 Query [11, 20]: The prime numbers are 11, 13, 17, 19, so the answer is 4.
 
 Constraints:-
-- 1 <= n <= 10^5
-- 1 <= l <= r <= 10^6
+• 1 <= n <= 10^5
+• 1 <= l <= r <= 10^6
 */
 
 #include <bits/stdc++.h>

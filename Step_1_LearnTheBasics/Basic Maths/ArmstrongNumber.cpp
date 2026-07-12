@@ -7,19 +7,15 @@ where each digit is raised to the power of the total number of digits
 | A number is called an Armstrong number if the sum of its digits raised to the power of the number of digits 
 | is equal to the number itself.
 
-Examples :-
+Examples: 153, 1634 are armstrong numbers
 
-- 153 :- 
+• 153 :- 
 Count of digits (n) = 3, 
-sum of digits raised to the power of n (=3) = 1^3 + 5^3 + 3^3 
-                                            = 1 + 125 + 27 
-                                            = 153
+sum of digits raised to the power of n (=3) = 1^3 + 5^3 + 3^3 = 1 + 125 + 27 = 153
 
-- 1634 :- 
+• 1634 :- 
 Count of digits (n) = 4
-sum of digits raised to the power of n (=4) = 1^4 + 6^4 + 3^4 + 4^4 
-                                            = 1 + 1296 + 81 + 256 
-                                            = 1634
+sum of digits raised to the power of n (=4) = 1^4 + 6^4 + 3^4 + 4^4 = 1 + 1296 + 81 + 256 = 1634
 */
 
 #include<iostream>
@@ -62,7 +58,8 @@ Explanation: 372 is not an Armstrong number since 33 + 73 + 23 = 378.
 Input: n = 100 __ Output: false
 Explanation: 100 is not an Armstrong number since 13 + 03 + 03 = 1. 
 
-Constraints:- 100 ≤ n <1000 
+Constraints :-
+• 100 ≤ n < 1000
 */
 bool armstrongNumber(int n) {
     int sum = 0;

@@ -14,7 +14,8 @@ Input: n = 25
 Output: [5, 5]
 Explanation: Prime Factorization of 25 is 5^2.
 
-Constraints: 1 <= n <= 10^9
+Constraints :-
+• 1 <= n <= 10^9
 */
 
 #include <bits/stdc++.h>

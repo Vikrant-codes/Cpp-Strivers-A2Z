@@ -6,10 +6,13 @@ You are given an integer n. Your task is to reverse the digits, ensuring that th
 Examples :-
 
 Input: n = 122 __ Output: 221
+
 Input : n = 200 __ Output: 2
+
 Input : n = 12345 __ Output: 54321
 
-Constraints :- 1 <= n <= 10^6
+Constraints :- 
+• 1 <= n <= 10^6
 */
 
 #include <bits/stdc++.h>

@@ -15,7 +15,8 @@ Output: [2, 3, 5]
 Explanation:
 The prime numbers between 2 and 5 are 2, 3 and 5.
 
-Constraints :- 1 ≤ l ≤ r ≤ 10^6
+Constraints :- 
+• 1 ≤ l ≤ r ≤ 10^6
 */
 
 #include <bits/stdc++.h>

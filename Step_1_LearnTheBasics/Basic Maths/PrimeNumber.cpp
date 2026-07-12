@@ -1,4 +1,5 @@
 // GFG - Prime Number : Easy
+
 /*
 >> Prime Number
 A prime number is a natural number greater than 1 that has exactly two factors: 1 and itself.
@@ -17,10 +18,13 @@ Note: A prime number is a number greater than 1 that has no positive divisors ot
 Examples :-
 
 Input: n = 7 __ Output: true
+
 Input: n = 25 __ Output: false
+
 Input: n = 1 __ Output: false
 
-Constraints:- 1 ≤ n ≤ 10^9
+Constraints :- 
+• 1 ≤ n ≤ 10^9
 */
 
 #include <iostream>

@@ -5,7 +5,7 @@
 #include <algorithm>
 using namespace std;
 
-// <-- printing all divisors of a number n -->
+// <-- Print all divisors of a Number n -->
 
 // Naive Approach :- Time Complexity : O(n) __ Space Complexity : O(1)
 // Check for all numbers from 1 to n and print the number if it divides n completely.
@@ -15,13 +15,16 @@ void printDivisors(int n) {
             cout << i << " ";
 }
 
-// Efficient Approach :- Time Complexity : O(sqrt(n)) __ Space Complexity : O(1)
-// we can find the factors in pairs. For example, if 2 is a factor of 20, then 20/2 = 10 is also a factor of 20.
-// using this, we can iterate from 1 to sqrt(n) and for every factor, we can print both the factors in the pair.
+// Efficient Approach :- Time Complexity : O(√n) __ Space Complexity : O(1)
+/*
+We can find the factors in pairs, as we know factors always occur in pairs (if i is factor then n/i is also a factor).
+For example, if 2 is a factor of 20, then 20/2 = 10 is also a factor of 20.
+Using this, we can iterate from 1 to √n and for every factor, we can print both the factors in the pair.
+*/
 void printDivisors2(int n) {
     vector<int> factors;
 
-    // O(sqrt(n)) -- finding factors in pairs
+    // O(√n) -- finding factors in pairs
     for (int i = 1; i * i <= n; i++) {
         if (n % i == 0) {
             factors.push_back(i);
@@ -51,7 +54,8 @@ Explanation: 20 is completely divisible by 1, 2, 4, 5, 10 and 20.
 Input: n = 21191 __ Output: 1 21191
 Explanation: As 21191 is a prime number, it has only 2 factors(1 and the number itself).
 
-Constraints:- 1 ≤ n ≤ 10^9
+Constraints :- 
+• 1 ≤ n ≤ 10^9
 */
 
 // Naive Approach :- Time Complexity : O(n) __ Space Complexity : O(1)
@@ -65,8 +69,7 @@ vector<int> getDivisorsNaive(int n) {
     return factors;
 }
 
-// Efficient Approach :- Time Complexity : O(sqrt(n)) + O(k log k) __ Space Complexity : O(1)
-// where k is the number of factors
+// Efficient Approach :- Time Complexity : O(√n) + O(k log k) __ Space Complexity : O(1), where k = no. of factors
 vector<int> getDivisors(int n) {
     vector<int> factors;
     
@@ -90,7 +93,7 @@ thus eliminating the need for sorting at the end.
 However, this approach is less efficient than the previous one 
 because inserting elements in the middle of a vector has a time complexity of O(k),
 where k is the number of elements in the vector, 
-leading to an overall time complexity of O(sqrt(n) * k) which can be worse than O(sqrt(n) + k log k) when k is large.
+leading to an overall time complexity of O(√n * k) which can be worse than O(√n + k log k) when k is large.
 
 vector<int> getDivisors(int n) {
     vector<int> v;
@@ -131,7 +134,9 @@ This gives divisors in sorted order with:
 
 This uses an extra vector to store the large divisors, 
 but it is more efficient than sorting or inserting in the middle of the vector.
+So, its space complexity is O(l), where l = no. of factors greater than √n which are stored in large divisors array
 */
+// Time Complexity : O(√n) __ Space Complexity : O(l), where l = no. of factors greater than √n 
 vector<int> getDivisors(int n) {
     vector<int> small, large;
         
@@ -151,6 +156,5 @@ vector<int> getDivisors(int n) {
 }
 
 int main() {
-    
     return 0;
 }
