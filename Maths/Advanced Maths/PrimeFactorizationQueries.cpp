@@ -75,14 +75,28 @@ vector<vector<int>> primeFactorsNaive(vector<int>& queries){
     return ans;
 }
 
-// Optimal Approach 
+// Optimal Approach : Time Complexity : O(max log log max) + O(n * log x) __ Space Complexity : O(max)
+// where max = max. value of queries vector
 /*
 We know that we can easily get the prime factorization of a number in O(log n) time 
 if we have the smallest prime factor (SPF) of each number precomputed.
 
-So, we can use the Sieve of Eratosthenes to precompute the smallest prime factor (SPF) for each number up to 
+So, we can use the Sieve of Eratosthenes to pre-compute the smallest prime factor (SPF) for each number up to 
 the maximum number in queries. 
 Then, for each number in queries, we can get its prime factorization in O(log n) time using the SPF array.
+
+>> Complexity Analysis :-
+- We must compute sieve so that we can get the spf for all concerned numbers in the queries vector.
+  So, we find firstly find the maximum value of the queries vector to know the max. limit for computing sieve.
+  O(n) to find the maximum value of the queries vector
+- O(m log log m) to compute the sieve, where m = max. value of the queries vector
+- Then, we need to iterate the queries vector to get each number and find its prime factorization using sieve
+- O(n) to iterate the queries vector, and, O(log x) to get the prime factorization of a number x using sieve
+- So, after pre-computating sieve, it takes O(n * log x) to get the prime factorization of all numbers of queries
+
+- Total Time Complexity : O(n) + O(max log log max) + O(n * log x)
+
+-> Space Complexity : O(max) to store the spf sieve upto 'max' value
 */
 vector<int> getSieveSPF(int n) {
     vector<int> spf(n+1);
@@ -107,13 +121,16 @@ vector<vector<int>> primeFactors(vector<int>& queries){
     int n = queries.size();
     vector<vector<int>> ans(n);
 
+    // O(n) to find the maximum value of queries vector
     int mx = 1;
     for (int x : queries) 
         if (x > mx)
             mx = x;
             
+    // O(mx log log mx) to get the spf sieve
     vector<int> spf = getSieveSPF(mx);
 
+    // O(n * log x) to find the prime factorization for all number x in queries vector
     for (int i = 0; i < n; i++) {
         int x = queries[i];
         vector<int> temp;

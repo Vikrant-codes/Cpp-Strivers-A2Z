@@ -16,7 +16,7 @@ using namespace std;
 
 // The code for Naive Approach is available in 'GFG_LeastPrimeFactor.cpp'
 
-// Sieve of Eratosthenes for Computing SPF
+// Sieve of Eratosthenes for Computing SPF : Time Complexity : O(n log log n) __ Space Complexity : O(n)
 /*
 The Sieve of Eratosthenes can be used to precompute the Smallest Prime Factor (SPF) for all numbers from 1 to n. 
 Here's the basic idea behind the algorithm:

@@ -29,7 +29,16 @@ using namespace std;
 
 // Optimal Approach : Time Complexity : O(n log(log n)) + O(n) ~ O(n log(log n)) __ Space Complexity : O(n)
 /*
+Since the range of numbers can be from 1 to 10^6, 
+we must use Sieve of Eratosthenes to quickly check for prime numbers in the range.
 
+So, we firstly generate a sieve of prime numbers from 1 to right (O(right log(log right)) time complexity).
+Then we iterate through the range [left, right] and check for prime numbers.
+
+We have to find the closest prime numbers in the range, 
+so we keep track of the last prime number seen and whenever we find a new prime number, 
+we check the distance between this new prime and the last prime seen.
+If the distance is smaller than the previous minimum distance, we update our answer.
 */
 
 vector<bool> getSieve(int n) {
@@ -97,6 +106,44 @@ vector<int> closestPrimes2(int left, int right) {
         }
     
         prevPrime = i;
+    }
+
+    return ans;
+}
+
+// Early exit condition
+/*
+We know that 2 is the only even prime number, and all other prime numbers are odd.
+Due to this, all consecutive pair of prime numbers have a minimum distance of 2 at least (since only odd numbers are prime)
+The prime pair (2, 3) is the only exception apart from this pair, any other prime pair would have at least a min. gap of 2.
+
+Ex -> pairs (5, 7), (11, 13), (17, 19) etc. have a gap of 2
+
+Since, we are supposed to find the prime pairs with the min. gap and 
+in case of same gap, we need to consider the smaller prime pair, 
+thus if our pair has a gap of 1 or 2, we know that we won't be able to find any other pair with a smaller gap available.
+
+So, in case the current prime pair has a gap of 1 or 2 (gap 1 for prime pair (2, 3)), then we can simply return that pair.
+*/
+vector<int> closestPrimes(int left, int right) {
+    vector<bool> isPrime = getSieve(right);
+
+    vector<int> ans = {-1, -1};
+
+    int l = left;
+    while (l <= right && !isPrime[l]) l++;
+
+    for (int r = l+1; r <= right; r++) {
+        if (isPrime[r]) {
+            int gap = r - l;
+            int ansGap = ans[1] - ans[0];
+            if (ans[0] == -1 || gap < ansGap) {
+                ans = {l, r};
+                if (gap == 1 || gap == 2) 
+                    return ans;
+            }
+            l = r;
+        }
     }
 
     return ans;

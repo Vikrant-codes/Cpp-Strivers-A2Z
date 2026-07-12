@@ -20,6 +20,7 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Time Complexity : O(log10(x)) - The number of digits in x
 int reverse(int x) {
     int rev = 0;
 
@@ -39,7 +40,7 @@ int reverse(int x) {
     return rev;
 }
 
-// My original approach for Leetcode variant (works fine but is a bit lengthy and has some redundant code)
+// My 1st approach (works fine but is a bit lengthy and has some redundant code)
 /*
 int reverse(int x) {
     int rev = 0;
