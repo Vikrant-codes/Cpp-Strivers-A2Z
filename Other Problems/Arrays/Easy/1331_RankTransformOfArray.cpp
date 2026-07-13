@@ -28,6 +28,26 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Optimal Approach (Sorting + HashMap) : Time Complexity : O(n log n) + O(n) + O(n) __ Space Complexity : O(2*n)
+/*
+The optimal solution is:
+- Copy the array.
+- Sort the copy.
+- Assign ranks only to unique elements using a hash map.
+- Traverse the original array and replace each element with its rank from the map.
+
+>> Time Complexity
+- Sorting: O(n log n)
+- Building map: O(n)
+- Creating answer: O(n)
+-> Overall: O(n log n)
+
+>> Space Complexity
+- Copy of array: O(n)
+- Hash map: O(n)
+-> Overall: O(n)
+*/
+
 vector<int> arrayRankTransform(vector<int>& arr) {
     int n = arr.size();
     
@@ -49,6 +69,31 @@ vector<int> arrayRankTransform(vector<int>& arr) {
 
     return ans;
 }
+
+// ChatGPT's solution (Same Approach Same solution)
+/*
+vector<int> arrayRankTransform(vector<int>& arr) {
+    vector<int> sorted = arr;
+    sort(sorted.begin(), sorted.end());
+
+    unordered_map<int, int> rank;
+    int currRank = 1;
+    
+    for (int num : sorted) {
+        if (rank.find(num) == rank.end()) {
+            rank[num] = currRank++;
+        }
+    }
+    
+    vector<int> ans;
+    
+    for (int num : arr) {
+        ans.push_back(rank[num]);
+    }
+    
+    return ans;
+}
+*/
 
 int main() {
     return 0;
