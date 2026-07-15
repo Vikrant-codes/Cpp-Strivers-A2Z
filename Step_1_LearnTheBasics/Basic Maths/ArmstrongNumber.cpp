@@ -1,3 +1,5 @@
+// GFG - Armstrong Numbers : Easy
+
 /*
 >> Armstrong Numbers 
 
