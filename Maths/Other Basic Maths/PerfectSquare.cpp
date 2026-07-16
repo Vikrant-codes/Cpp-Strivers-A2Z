@@ -21,6 +21,7 @@ To quickly identify whether a number is a perfect square, look for these mathema
     the result will always be 1, 4, 7, or 9.
 */
 
+// Leetcode Variant
 /*
 Leetcode - 367. Valid Perfect Square : Easy
 
@@ -43,6 +44,7 @@ Constraints :-
 • 1 <= num <= 2^31 - 1
 */
 
+// GFG Variant
 /*
 GFG - Check Perfect Square : Basic
 
@@ -65,7 +67,7 @@ Constraints :-
 using namespace std;
 
 // Using inbuilt sqrt() function: Time Complexity : O(1) __ Space Complexity : O(1)
-
+// For the leetcode problem, we are not supposed to use this built-in sqrt function 
 bool isPerfectSquare1(int n) {
     // negative numbers can't be perfect squares
     if (n < 0) return false;
@@ -83,8 +85,127 @@ bool isPerfectSquare2(int n) {
     return (root == (int) root);
 }
 
-// For leetcode variant, we are not supposed to use the sqrt function
-// Using Binary Search 
+// Using Mathematical Properties : Time Complexity : O(√n) __ Space Complexity : O(1)
+/*
+The idea is based on the fact that every perfect square is equal to the sum of the first few consecutive odd numbers. 
+Therefore, we repeatedly subtract consecutive odd numbers (1, 3, 5...) from the given number. 
+If it becomes exactly 0, the number is a perfect square; otherwise, it is not.
+
+1 + 3 = 4
+1 + 3  + 5 = 9
+1 + 3 + 5 + 7 = 16
+1 + 3 + 5 + 7 + 9 = 25
+1 + 3 + 5 + 7 + 9 + 11 = 36 and so on.
+
+- If the given number is negative, return false since negative numbers cannot be perfect squares.
+- Initialize the first odd number as 1.
+- Repeatedly subtract the current odd number from the given number and increment the odd number by 2.
+- Continue this process until the given number becomes 0 or negative.
+- If the remaining value is 0, return true; otherwise, return false.
+*/
+bool isPerfectSquare3(int n) {
+    // Negative numbers can't be perfect squares
+    if (n < 0) return false;
+    // 0 is a perfect square
+    if (n == 0) return true;
+    
+    // Start with the first odd number 1
+    int odd = 1;
+    // keep subtracting consecutive odd numbers till n becomes 0 or negative
+    while (n > 0) {
+        n -= odd;
+        odd += 2;
+    } 
+    
+    // if n has become 0, it means original value is a perfect square
+    return n == 0;
+}
+
+// Time Complexity : O(√n) __ Space Complexity : O(1) 
+/*
+A perfect square is a number that can be written as k × k for some integer k.
+So, we only need to try values of i starting from 1 and check whether i × i equals n.
+    for (int i = 1; i * i <= n; i++)
+We stop when i * i becomes greater than n because after that, the squares will only get larger and can never equal n.
+
+For example, if n = 36:
+    1² = 1
+    2² = 4
+    3² = 9
+    4² = 16
+    5² = 25
+    6² = 36  ✓ Found
+
+If n = 20:
+    1² = 1
+    2² = 4
+    3² = 9
+    4² = 16
+    5² = 25  (>20) Stop
+Since no square matched 20, it isn't a perfect square.
+
+Time Complexity: O(√n), because i only goes up to √n, not all the way to n.
+*/
+bool isPerfectSquare4(int n) {
+    if (n < 0) return false;
+    if (n == 0) return true;
+    
+    for (int i = 1; i * i <= n; i++)
+        if (i * i == n) 
+            return true;
+    
+    return false;
+}
+
+// Optimal Approach (Using Binary Search) : Time Complexity : O(log n) __ Space Complexity : O(1)
+/*
+Since, we are not allowed to use the inbuilt sqrt method, we need to think of some other way to check for perfect square.
+If a number n is perfect square, then it must be square of an integer number in the range [1, n]
+So, we find to find an integer x in range [1, x] such that square of x = n, i.e., x * x == n.
+If such an integer exists, we can conclude that n is a perfect square.
+So, we can use binary search to find this x in this range.
+
+- Initialize low = 1, high = n
+- While low <= high
+    - Calculate mid = (low + high)/2
+    - Calculate square of mid. Check if that square equals n.
+    - If mid * mid == n: We have found the x we have been looking for, which means n is a perfect square
+    - Else if mid * mid > n: 
+        We need to eliminate the right half since the square of all integers of right half would also be greater than n 
+    - Else: 
+        We need to eliminate the left half since the square of all integers of left half would also be less than n
+- Loop exits when low & high crosses, which means x doesn't exists... So return false
+
+>> Time Complexity ; O(log n)
+*/
+bool isPerfectSquare(int n) {
+    // negative numbers can't be perfect squares
+    if (n < 0) 
+        return false;
+    
+    // 0 & 1 are perfect squares
+    if (n == 0 || n == 1) 
+        return true;
+
+    // Apply binary search in range [1, n] to find a number x such that square of x is n.
+    // If such element is found -> n is a perfect square, else n is not a perfect square
+
+    int low = 1, high = n;
+    
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        long long square = 1LL * mid * mid;
+        
+        if (square == n) 
+            return true;
+        else if (square > n)
+            high = mid - 1;
+        else 
+            low = mid + 1;
+    }
+
+    return false;
+}
 
 int main() {
     return 0;
