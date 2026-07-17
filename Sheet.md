@@ -62,10 +62,43 @@
 </details>
 <br>
 
-
-
 ## Step - 2 : Learn Important Sorting Techniques
+
 ## Step - 3 : Arrays
+<details>
+<summary>Easy</summary>
+
+- Largest Element
+- Second Largest Element
+- Check if the Array is Sorted
+- Check if the Array is Sorted II - Sorted & Rotated 
+- Remove Duplicates from Sorted Array
+- Left Rotate Array by one place
+- Left Rotate Array by k places
+- Move Zeros to end
+- Linear Search
+- Union of Two Sorted Arrays
+- Find Missing Number
+- Maximum Consecutive Ones
+- Find the number that appears once, and other numbers twice
+- Longest SubArray with given sum K (positives)
+- Longest SubArray with sum K
+
+</details>
+<br>
+
+<details>
+<summary>Medium</summary>
+
+</details>
+<br>
+
+<details>
+<summary>Hard</summary>
+
+</details>
+<br>
+
 ## Step - 4 : Binary Search
 ## Step - 5 : Strings [Basics & Medium]
 ## Step - 6 : Linked List
@@ -90,6 +123,7 @@
 - Swap Two Numbers
 - GFG - LCM and GCD
 - Implementation of GCD & LCM
+- Perfect Square
 
 </details>
 <br>

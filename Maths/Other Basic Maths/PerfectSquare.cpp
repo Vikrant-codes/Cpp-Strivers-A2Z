@@ -207,6 +207,28 @@ bool isPerfectSquare(int n) {
     return false;
 }
 
+// Leetcode Solution :- No need to check for conditions like (n < 0) or (n == 0), as constraints guarantee that n >= 1
+bool isPerfectSquareLeetcode(int n) {
+    int low = 1, high = n;
+
+    while (low <= high) {
+        int mid = low + (high - low) / 2;
+        long long square = 1LL * mid * mid;
+    
+        if (square == n) 
+            return true;
+
+        else if (square > n)
+            high = mid - 1;
+        
+        else 
+            low = mid + 1;
+    }
+    
+    return false;
+}
+
+
 int main() {
     return 0;
 }
