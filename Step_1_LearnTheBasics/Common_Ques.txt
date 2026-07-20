@@ -10,7 +10,7 @@ C++ introduced standardized headers without .h, placed inside the std namespace.
 Example: #include <iostream>, #include <cmath>, #include <cstring>.
 These are more consistent with the C++ Standard Library. ✅
 
-Que ❓What About #include<bits/stdc++.h>?
+Que ❓What is #include<bits/stdc++.h>?
 
 <bits/stdc++.h> is NOT a standard header.
 It's a GCC-specific shortcut that includes almost all standard headers in one go.

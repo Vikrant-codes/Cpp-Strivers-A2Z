@@ -49,6 +49,16 @@
 <details>
 <summary> Learn Basic Recursion </summary>
 
+- Understand recursion by printing something n times
+- Print name n times using recursion
+- Print 1 to n using recursion
+- Print n to 1 using recursion
+- Sum of first n numbers
+- Factorial of a given number
+- Reverse an array
+- Check if string is palindrome
+- Fibonacci Number
+
 </details>
 <br>
 
@@ -71,7 +81,7 @@
 - Largest Element
 - Second Largest Element
 - Check if the Array is Sorted
-- Check if the Array is Sorted II - Sorted & Rotated 
+- Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
 - Remove Duplicates from Sorted Array
 - Left Rotate Array by one place
 - Left Rotate Array by k places

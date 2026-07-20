@@ -35,7 +35,7 @@ So, we have to think about getting the count of distinct prime factors of the pr
 without actually calculting the product.
 */
 
-// Approach 1 : Time Complexity : O(N * √M) __ Space Complexity : O(1)
+// Approach 1 : Time Complexity : O(N * √M) __ Space Complexity : O(k)
 /*
 We know that the product of array will form by multiplying all the numbers of the array,
 so the product will have all the prime factors of the array elements.
@@ -51,6 +51,10 @@ as it will represent the count of distinct prime factors the product of array (a
     So each number takes O(√n) in the worst case.
 
 Thus, for an array of size N: Time Complexity = O(N * √M) where M is the maximum element in nums
+
+>> Space Complexity : 
+- We are using a set to store the distinct factors, so this will take O(k) extra space,
+  where k = no. of distinct factors
 */
 int distinctPrimeFactors1(vector<int>& nums) {
     set<int> factors;
@@ -78,7 +82,7 @@ int distinctPrimeFactors1(vector<int>& nums) {
     return factors.size();
 }
 
-// Optimal Approach : Time Complexity : O(M log log M) + O(N log M)  __ Space Complexity : O(M)
+// Optimal Approach : Time Complexity : O(M log log M) + O(N log M)  __ Space Complexity : O(k) + O(M)
 /*
 We can use the concept of Smallest Prime Factor Sieve (SPF Sieve) & Prime Factorization calculation using sieve
 to quickly get the prime factors for each element n of the array.
@@ -93,6 +97,7 @@ and then using this sieve, we can quickly get the prime factors for the array el
 So, total time complexity : O(M log log M) + O(N log M)
 
 >> Space Complexity : 
+- Just like previous approach, the set takes O(k) where k = no. of distinct factors
 - We are using an extra space to store the spf sieve, since we are computing sieve till M (which is 1000), so O(M).
 */
 // Helper method -- returns spf sieve upto n 
