@@ -82,7 +82,7 @@
 - Second Largest Element
 - Check if the Array is Sorted
 - Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
-- Remove Duplicates from Sorted Array
+- Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
 - Left Rotate Array by one place
 - Left Rotate Array by k places
 - Move Zeros to end

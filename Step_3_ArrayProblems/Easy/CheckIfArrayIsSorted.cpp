@@ -16,7 +16,32 @@ Constraints :-
 
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
+
+// Naive Approach : Time Complexity : O(n log n) __ Space Complexity : O(n)
+/*
+>> Naive Approach
+If arr is sorted, then if we sort arr and store that sorted values in a different vector (temp), 
+then temp and arr should remain same.
+
+Ex: assume arr = [1, 2, 3, 5, 4]
+    if we sort these values and store them in temp: temp = [1, 2, 3, 4, 5]
+    Now, since temp != arr, this means arr is not sorted
+- Use a temporary vector initialized with same values as arr
+- Sort this temporary vector
+- If arr is sorted, then this sorted temporary vector and arr must still be equal
+- Check if temp == arr, if true arr is sorted, else not sorted
+*/
+bool isSortedNaive(vector<int>& arr) {
+    int n = arr.size();
+
+    vector<int> temp = arr;
+
+    sort(temp.begin(), temp.end());
+
+    return temp == arr;
+}
 
 // Optimal Approach : Time Complexity : O(n) __ Space Complexity : O(1)
 

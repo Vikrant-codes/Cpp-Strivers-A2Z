@@ -56,7 +56,7 @@ int largestNaive(vector<int> &arr) {
 int largest(vector<int> &arr) {
     int n = arr.size();
     int mx = arr[0];
-    // we can also initialize 'mx' with a minimum value that arr[i] can have, like INT_MIN or -1 depending on constraints
+    // we can also initialize 'mx' with the minimum value that arr[i] can have, like INT_MIN or -1 depending on constraints
     
     for (int i = 0; i < n; i++)
         if (arr[i] > mx)
