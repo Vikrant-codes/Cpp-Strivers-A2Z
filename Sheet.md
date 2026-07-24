@@ -78,8 +78,8 @@
 <details>
 <summary>Easy</summary>
 
-- Largest Element
-- Second Largest Element
+- Largest & Smallest Element
+- Second Largest & Second Smallest Element 
 - Check if the Array is Sorted
 - Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
 - Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
