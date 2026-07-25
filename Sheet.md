@@ -88,6 +88,7 @@
 - Move Zeros to end
 - Linear Search
 - Union of Two Sorted Arrays
+- Intersection of Two Sorted Arrays
 - Find Missing Number
 - Maximum Consecutive Ones
 - Find the number that appears once, and other numbers twice

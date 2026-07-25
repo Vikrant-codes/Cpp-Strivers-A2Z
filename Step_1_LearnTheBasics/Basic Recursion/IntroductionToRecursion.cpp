@@ -1,21 +1,32 @@
 #include <iostream>
 using namespace std;
 
-void fun(int n) {
-    if (n == 0) return;
-    cout << n << '\n';
-    fun(n-1);
+void printHello(int n) {
+    // Base Condition
+    if (n == 0)
+        return;
+
+    cout << "Hello World !! \n";
+
+    printHello(n-1);
 }
 
-void infiniteFun() {
-    cout << "Hello World\n";
-    infiniteFun();
+// Infinite Recursion -- Base condition doesn't exist or is never reached
+void printHii() {
+    cout << "Hii \n";
+
+    printHii();
 }
 
-int x = 1;
-void print() {
-    cout << x++ << '\n';
-    print();
+void printHii2(int n) {
+    // Base Condition 
+    if (n == 0)
+        return;
+
+    cout << "Hii \n";
+
+    printHii2(n);   
+    // since inside the recursive call, n is not decremented while passing, base condition never executes 
 }
 
 int fibonacci(int n) {
@@ -26,9 +37,7 @@ int fibonacci(int n) {
 }
 
 int main() {
-    // print();
-    // fun(5);
-    // infiniteFun();
+    printHello(5);
 
     for (int i = 1; i <= 10; i++)
         cout << fibonacci(i) << " ";
