@@ -26,7 +26,10 @@ void leftRotate(vector<int>& arr) {
     arr[n-1] = temp;
 }
 
+// ------------------------------------------------------------------------------------------------------------------------------
+
 // Right Rotate an Array by 1 Place
+
 /*
 Right-rotating an array by one place means shifting every element one position to the right 
 and moving the last element to the first position. 

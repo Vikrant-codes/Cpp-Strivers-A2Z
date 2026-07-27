@@ -72,7 +72,10 @@ int largestElement(vector<int>& arr) {
     // so to get the maximum value, we use the derefence operator (*) to get the value :- *max_element()
 }
 
-// <-- Finding Smallest Element in Array -->
+// ------------------------------------------------------------------------------------------------------------------------------
+
+// Finding Smallest Element in Array
+
 // Smallest Element can also be found in similar way
 
 // Naive Approach : Time Complexity : O(n log n) __ Space Complexity : O(1)

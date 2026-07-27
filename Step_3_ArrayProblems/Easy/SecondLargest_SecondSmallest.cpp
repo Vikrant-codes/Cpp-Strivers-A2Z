@@ -161,7 +161,10 @@ int getSecondLargest(vector<int> &arr) {
     return secondMax;
 }
 
-// <-- Finding the second smallest element in the array -->
+// ------------------------------------------------------------------------------------------------------------------------------
+
+// Finding the second smallest element in the array
+
 /*
 Asssume for the given same constraints, we need to find the second smallest element in the array.
 

@@ -139,6 +139,14 @@ int myGCD(int a, int b) {
     return a;
 }
 
+// Recursive Implementation of Euclidean Algo.
+int gcdRecursive(int a, int b) {
+    if (b == 0)
+        return a;
+        
+    return gcd(b, a % b);
+}
+
 // Code using Subtraction property of GCD (Not as efficient as the above approach)
 int gcdSubtraction(int a, int b) {
     while (a > 0 && b > 0) {

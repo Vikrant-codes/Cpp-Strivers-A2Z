@@ -77,7 +77,6 @@ void rotateArrNaive(vector<int>& arr, int d) {
     }
 }
 
-
 // Better Approach 1 : Time Complexity : O(2n) __ Space Complexity : O(n)
 /*
 >> Approach 
@@ -173,7 +172,7 @@ void rotateArrBetter2(vector<int>& arr, int d) {
         arr[i] = temp[i - (n - d)];
 }
 
-// Optimal Approach : Time Complexity : O(2n) __ Space Complexity : O(1)
+// Optimal Approach (Reversal Algorithm) : Time Complexity : O(2n) __ Space Complexity : O(1)
 /*
 >> Approach 
 The approach is based on some observations using reverse of array portions
@@ -210,7 +209,7 @@ void reverse(vector<int>& arr, int start, int end) {
         end--;
     }
 }
-void rotateArr(vector<int>& arr, int d) {
+void rotateArrReversal(vector<int>& arr, int d) {
     int n = arr.size();
     d = d % n;
     
@@ -219,7 +218,207 @@ void rotateArr(vector<int>& arr, int d) {
     reverse(arr, 0, n-1);
 }
 
+// Most Optimal Approach (Juggling Algorithm) : Time Complexity : O(n) __ Space Complexity : O(1)
+/*
+| Juggling Algorithm
 
+>> Intuition
+The brute-force approach repeatedly shifts the array one position to the left, which takes O(n × k) time. 
+We can do better by observing that every element has a fixed destination after the rotation.
+
+Instead of shifting the array multiple times, we directly move each element to its final position. 
+However, moving an element immediately overwrites the value already present at its destination. 
+The Juggling Algorithm solves this by processing the array in cycles, ensuring that no value is lost.
+
+The idea behind Juggling Algorithm is that we can rotate all elements of array using cycles. 
+Each cycle is independent and represents a group of elements that will shift among themselves during the rotation. 
+If the starting index of a cycle is i, then next elements of the cycle will be present at indices 
+(i + d) % n, (i + 2d) % n, (i + 3d) % n ... 
+and so on till we reach back to index i. 
+
+So for any index i, we know that after rotation we will have arr[(i + d) % n] at index i. 
+Now, for every index in the cycle, we will place the element which should be present at that index after the array is rotated.
+
+Each cycle is traversed using a single temporary variable, making the algorithm both in-place and O(n).
+
+>> Key Observation
+For a left rotation by k positions:
+- The element currently at index i should eventually be replaced by the element at: 
+    (i + k) % n
+, where n is the size of the array.
+Thus, starting from an index i, we repeatedly jump by k positions (modulo n) until we return to the starting index. 
+This sequence of indices forms a cycle.
+
+>> Why Do We Need Cycles?
+Suppose we have:
+arr = [1, 2, 3, 4, 5, 6, 7]
+k = 2
+
+If we immediately perform
+arr[0] = arr[2]
+the value at index 0 (which is 1) is overwritten.
+To avoid losing it:
+1. Store the first value in a temporary variable.
+2. Move each subsequent element into its predecessor's position.
+3. Once the cycle returns to the starting index, place the stored value into the last vacant position.
+Thus, every element is moved exactly once.
+
+>> Why Does gcd(n, k) Determine the Number of Cycles?
+The indices are visited by repeatedly adding k modulo n.
+Depending on whether n and k are coprime, two cases arise:
+• If gcd(n, k) = 1, every index is reachable from any starting point. 
+    The entire array forms a single cycle.
+• If gcd(n, k) > 1, the indices split into multiple independent groups. 
+    Each group forms its own cycle, so we must process each cycle separately.
+
+Each cycle contains n / gcd(n, k) elements.
+Since there are n total elements, the number of disjoint cycles is
+    cycle_count = total elements / count of element in each cycle 
+                = n / (n / gcd(n, k))
+                = gcd(n, k)
+
+>> Example 1 n and k are Coprime
+arr = [1, 2, 3, 4, 5, 6, 7] 
+n = 7
+k = 2
+gcd(n, k) = gcd(7, 2) = 1
+Only one cycle exists for this example case.
+
+The visited indices are: 0 → 2 → 4 → 6 → 1 → 3 → 5 → 0
+Every index is visited exactly once before returning to the start.
+
+Movement of values:
+    Store arr[0]
+
+    arr[0] ← arr[2]
+    arr[2] ← arr[4]
+    arr[4] ← arr[6]
+    arr[6] ← arr[1]
+    arr[1] ← arr[3]
+    arr[3] ← arr[5]
+    arr[5] ← stored value
+
+Final array: [3, 4, 5, 6, 7, 1, 2]
+Since every index belongs to the same cycle, processing this single cycle rotates the entire array.
+
+>> Example 2: n and k are Not Coprime
+arr = [1, 2, 3, 4, 5, 6, 7, 8]
+n = 8
+k = 2
+gcd(8,2) = 2
+Now there are two independent cycles.
+
+Cycle 1: 0 → 2 → 4 → 6 → 0
+Moves:
+    Store arr[0]
+
+    arr[0] ← arr[2]
+    arr[2] ← arr[4]
+    arr[4] ← arr[6]
+    arr[6] ← stored value
+
+Cycle 2: 1 → 3 → 5 → 7 → 1
+Moves:
+    Store arr[1]
+
+    arr[1] ← arr[3]
+    arr[3] ← arr[5]
+    arr[5] ← arr[7]
+    arr[7] ← stored value
+
+Final array: [3, 4, 5, 6, 7, 8, 1, 2]
+Notice that starting from index 0, we never visit any odd index.
+Likewise, starting from index 1, we never visit any even index.
+Therefore, the array naturally splits into two disjoint cycles, and both must be processed.
+
+>> Algorithm
+1. Compute k %= n.
+2. Compute cycles = gcd(n, k).
+3. For each cycle:
+    • Store the starting element in a temporary variable.
+    • Repeatedly jump by k positions (modulo n), shifting elements one step backward in the cycle.
+    • Stop when the traversal returns to the starting index.
+    • Place the stored element into the final vacant position.
+4. After processing all cycles, every element has reached its correct position.
+
+>> Correctness
+The algorithm works because:
+• Every index belongs to exactly one cycle.
+• Every cycle is processed independently.
+• Within a cycle, one temporary variable prevents data from being overwritten.
+• Every element is moved exactly once.
+• The union of all cycles covers every index in the array.
+Therefore, the array is correctly rotated in-place.
+
+>> Complexity Analysis
+
+| Time Complexity: O(n)
+• Every element is visited and moved exactly once.
+
+| Space Complexity: O(1)
+• Only one temporary variable is used regardless of the array size.
+*/
+
+// Helper method to get the gcd of two elements
+int gcd(int a, int b) {
+    if (b == 0)
+        return a;
+        
+    return gcd(b, a % b);
+}
+
+// My Implementation
+void rotateArr1(vector<int>& arr, int k) {
+    int n = arr.size();
+    k = k % n;
+    
+    if (k == 0) return;
+    
+    int cycles = gcd(n, k);
+    
+    for (int i = 0; i < cycles; i++) {
+        int temp = arr[i];
+        
+        int j = i;
+        
+        do {
+            int next = (j + k) % n;
+            
+            if (next != i) arr[j] = arr[next];
+            else arr[j] = temp;
+            
+            j = next;
+        } while(j != i);
+    }
+}
+
+// Other Implementation
+void rotateArr(vector<int>& arr, int k) {
+    int n = arr.size();
+    k = k % n;
+    
+    if (k == 0) return;
+    
+    int cycles = gcd(n, k);
+    
+    for (int i = 0; i < cycles; i++) {
+        int startEle = arr[i];
+        
+        int currIdx = i, nextIdx;
+        
+        while (true) {
+            nextIdx = (currIdx + k) % n;
+            
+            if (nextIdx == i) {
+                arr[currIdx] = startEle;
+                break;
+            }
+            
+            arr[currIdx] = arr[nextIdx];
+            currIdx = nextIdx;
+        }
+    }
+}
 
 int main() {
     return 0;
