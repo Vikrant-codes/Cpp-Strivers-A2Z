@@ -393,7 +393,7 @@ void rotateArr1(vector<int>& arr, int k) {
 }
 
 // Other Implementation
-void rotateArr(vector<int>& arr, int k) {
+void rotateArr2(vector<int>& arr, int k) {
     int n = arr.size();
     k = k % n;
     
