@@ -218,7 +218,9 @@ void rotateArrReversal(vector<int>& arr, int d) {
     reverse(arr, 0, n-1);
 }
 
-// Most Optimal Approach (Juggling Algorithm) : Time Complexity : O(n) __ Space Complexity : O(1)
+// ⚠️ Juggling Algorithm -- Not for beginners
+
+// Most Optimal Approach (Juggling Algo) : Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 | Juggling Algorithm
 
@@ -419,6 +421,12 @@ void rotateArr2(vector<int>& arr, int k) {
         }
     }
 }
+
+// ------------------------------------------------------------------------------------------------------------------------------
+
+// Right Rotate Array by K places
+// The similar approaches can be applied for right rotation as well
+// See "Other Similar Problems -> 189_RotateArray"
 
 int main() {
     return 0;
