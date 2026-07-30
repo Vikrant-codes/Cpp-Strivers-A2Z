@@ -1,7 +1,7 @@
+// Factorial of a given number n using recursion
+
 #include <iostream>
 using namespace std;
-
-// Factorial of a given number n
 
 // Time Complexity : O(n) __ Space Complexity : O(n)
 /*
@@ -21,7 +21,6 @@ fact(0)
 ---
 There are about n stack frames.
 */
-
 
 // Using Parameterized Recursion
 
@@ -43,6 +42,7 @@ int factX(int n, int ans) {
 }
 
 // Using Functional Recursion
+
 int fact(int n) {
     if (n == 0)
         return 1;
