@@ -114,6 +114,52 @@
 ## Step - 5 : Strings [Basics & Medium]
 ## Step - 6 : Linked List
 ## Step - 7 : Recursion
+<details>
+<summary>Get a Strong Hold</summary>
+
+- Recursive Implementation of atoi
+- Pow(x, n)
+- Count Good Numbers
+- Sort a Stack using Recursion
+- Reverse a Stack
+
+</details>
+<br>
+
+<details>
+<summary>Subsequences Pattern</summary>
+
+- Generate Binary Strings without consecutive 1s
+- Generate Parentheses
+- Power Set
+- Learn All Patterns of Subsequences (Theory)
+- Count all subsequences with sum K
+- Check if there exists a subsequence with sum K
+- Combination Sum
+- Combination Sum II
+- Subsets I
+- Subsets II
+- Combination Sum III
+- Letter Combinations of a Phone Number
+
+</details>
+<br>
+
+<details>
+<summary>Trying out all Combos / Hard</summary>
+
+- Palindrome partitioning
+- Word Search
+- N Queen
+- Rat in a Maze
+- Word Break
+- M Coloring Problem
+- Sudoku Solver
+- Expression Add Operators
+
+</details>
+<br>
+
 ## Step - 9 : Bit Manipulation
 ## Step - 8 : Stack & Queues
 ## Step - 10 : Sliding Window & Two Pointers
