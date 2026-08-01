@@ -86,6 +86,8 @@ int myAtoi(string s) {
     int mx_lim = INT_MAX / 10;      // to check for maximum limit 
     // ignore leading whitespaces
     while (i < n && s[i] == ' ') i++;
+
+    if (i == n) return 0;
     
     // check sign bit (if present)
     if (s[i] == '-' || s[i] == '+') {
@@ -94,7 +96,7 @@ int myAtoi(string s) {
     }
     
     int num = 0;
-    while ( isdigit(s[i]) ) {
+    while ( i < n && isdigit(s[i]) ) {
         int digit = s[i] - '0';     // current digit
         // INT_MAX = 2,147,483,647 , INT_MIN = -2,147,483,648
         if (num >= mx_lim) {
