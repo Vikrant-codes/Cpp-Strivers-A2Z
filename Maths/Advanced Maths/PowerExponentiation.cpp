@@ -128,10 +128,41 @@ double myPow(double x, int n) {
     return ans;
 }
 
-int main() {
-    cout << myPow(5, 2) << endl;
-    cout << myPow(5, -2) << endl;
-    cout << myPow(1.1, 2) << endl;
+// Recursive Implementation
 
+// helper method: calculates power considering n is +ve
+// it uses `n` as long long for the reason that if initially n == INT_MIN, then its absolute value is outside int range.
+double power(double x, long long n) {
+    if (n == 0)
+        return 1;
+    
+    if (n % 2 == 0) 
+        return power(x * x, n / 2);
+    
+    return x * power(x * x, n / 2);
+
+    /*
+    double half = power(x, n / 2);
+    
+    if (n % 2 == 0) 
+        return half * half;
+    
+    return x * half * half;
+    */
+}
+
+double myPowRecursive(double x, int n) {
+    // if n == INT_MIN, for that case, taking abs(n) will be outside int limits, so we store its absolute value in long long
+    long long N = n;
+
+    if (N < 0) {
+        x = 1.0 / x;
+        N = -N;
+    }
+
+    return power(x, N);
+}
+
+int main() {
     return 0;
 }

@@ -26,16 +26,17 @@ Constraints :-
 using namespace std;
 
 // Time Complexity : O(log n)
-double myPow1(double x, int n) {
+double myPowIterative(double x, int n) {
     if (n == 0) return 1;
     
     // for cases when n == INT_MIN, doing abs(n) will make n value overflow int, so we use long long variable to store n
     long long N = n;
-    bool isNegative = false;
+    // bool isNegative = false;
+    // we don't need to maintain a boolean variable, we can simply check if (n < 0) for negative check at the end
 
     if (N < 0) {
         N = -N;
-        isNegative = true;
+        // isNegative = true;
     }
 
     double ans = 1;
@@ -51,7 +52,8 @@ double myPow1(double x, int n) {
         }
     }
 
-    if (isNegative) ans = 1.0/ans;
+    // if (isNegative) ans = 1.0/ans;
+    if (n < 0) ans = 1.0/ans;
 
     return ans;
 }
@@ -88,17 +90,30 @@ so that multiplying x would then be equivalent to dividing by x (core idea of -v
 Also, it makes n positive and then calls the power(x, n).
 Since x value has been turned to x = 1/x... multiplying by x inside power would be equivalent to dividing by x.
 */
-double power(double x, int n) {
+
+// helper method: calculates power considering n is +ve
+// it uses `n` as long long for the reason that if initially n == INT_MIN, then its absolute value is outside int range.
+double power(double x, long long n) {
     if (n == 0)
         return 1;
-
+    
     if (n % 2 == 0) 
         return power(x * x, n / 2);
     
     return x * power(x * x, n / 2);
+
+    /*
+    double half = power(x, n / 2);
+    
+    if (n % 2 == 0) 
+        return half * half;
+    
+    return x * half * half;
+    */
 }
 
-double myPowEff(double x, int n) {
+double myPowRecursive(double x, int n) {
+    // if n == INT_MIN, for that case, taking abs(n) will be outside int limits, so we store its absolute value in long long
     long long N = n;
 
     if (N < 0) {
@@ -108,6 +123,7 @@ double myPowEff(double x, int n) {
 
     return power(x, N);
 }
+
 
 int main() {
     return 0;
