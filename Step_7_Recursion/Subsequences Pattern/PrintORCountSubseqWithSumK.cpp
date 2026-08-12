@@ -1,7 +1,9 @@
-// Print subsequeneces whose sum is k
+// Print all subsequences whose sum is k
+// Print any 1 subsequence with sum k
+// Count all subsequences with sum k
 
 #include<bits/stdc++.h>
-using namespace std; 
+using namespace std;
 
 void print(const vector<int>& list) {
     cout << "[ ";
