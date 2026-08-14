@@ -73,6 +73,26 @@
 <br>
 
 ## Step - 2 : Learn Important Sorting Techniques
+<details>
+<summary>Sorting - I</summary>
+
+- Selection Sort
+- Bubble Sort
+- Insertion Sort
+
+</details>
+<br>
+
+<details>
+<summary>Sorting - II</summary>
+
+- Merge Sort
+- Recursive Bubble Sort
+- Recursive Insertion Sort
+- Quick Sort
+
+</details>
+<br>
 
 ## Step - 3 : Arrays
 <details>

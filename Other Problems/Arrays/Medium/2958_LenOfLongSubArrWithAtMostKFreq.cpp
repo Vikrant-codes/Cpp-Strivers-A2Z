@@ -68,13 +68,20 @@ Space: O(n)
 bool validSubArr(vector<int>& subArr, int k) {
     unordered_map<int, int> freq;
     int mx_freq = 0;
-
     for (int x : subArr) {
         freq[x]++;
         mx_freq = max(mx_freq, freq[x]);
     }
-
     return mx_freq <= k;
+    
+    // we can also check for valid subarray in the following way
+    /*  
+    for (int x : subArr) {
+        freq[x]++;
+        if (freq[x] > k) return false;
+    }
+    return true;
+    */
 }
 
 int maxSubarrayLengthBrute(vector<int>& nums, int k) {
