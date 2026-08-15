@@ -22,6 +22,11 @@ Time Complexity: O(n) best, O(n^2) average, O(n^2) worst
 Best Case: O(n)
 - Array is already sorted.
 - Each element is compared once with its predecessor and no shifting is needed.
+- For each element, the algorithm checks if it is smaller than the element to its left. 
+  Because the array is already sorted, this comparison immediately returns false.
+- The inner loop never executes its body, meaning zero element swaps or shifts take place. 
+  The algorithm only performs a single comparison for each position to verify the order, 
+  resulting in exactly n - 1 total comparisons.
 
 Average Case: O(n²)
 - Elements generally need some shifting.
