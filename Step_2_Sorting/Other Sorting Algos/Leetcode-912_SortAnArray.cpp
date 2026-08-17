@@ -80,7 +80,54 @@ vector<int> sortArray(vector<int>& nums) {
 }
 
 
-// 2️⃣ Using Merge Sort
+// 2️⃣ Using 3-Way QuickSort / Dutch National Flag Sort with Median of Three
+
+// 3-Way Partition with "Median of three" as pivot
+void partition3Way(vector<int>& arr, int low, int high, int& lt, int& gt) {
+    int mid = (low + high) / 2;
+    int pivot = getMedian(arr[low], arr[mid], arr[high]);       // Median of 3 - pivot
+
+    lt = low;           // lt points at < pivot element position (lt -> less than)
+    int i = low;        // i for traversal
+    gt = high;          // gt points at > pivot element position (gt -> greater than)
+    
+    while (i <= gt) {
+        if (arr[i] < pivot) {
+            swap(arr[lt], arr[i]);
+            lt++;
+            i++;
+        }
+        else if (arr[i] > pivot) {
+            swap(arr[i], arr[gt]);
+            gt--;
+        }
+        else {
+            i++;
+        }
+    }
+}
+
+// 3-Way QuickSort
+void quickSort3Way(vector<int>& arr, int low, int high) {
+    if (low >= high) 
+        return;
+
+    int lt, gt;
+    partition3Way(arr, low, high, lt, gt);
+    
+    quickSort3Way(arr, low, lt-1);
+    quickSort3Way(arr, gt+1, high);
+}
+
+vector<int> sortArray2(vector<int>& nums) {
+    quickSort3Way(nums, 0, nums.size() - 1);
+    
+    return nums;
+}
+
+
+// 3️⃣ Using Merge Sort
+
 void merge(vector<int>& arr, int low, int mid, int high) {
     vector<int> temp;
     int i = low, j = mid+1;
@@ -122,7 +169,7 @@ void mergeSort(vector<int>& arr, int low, int high) {
     merge(arr, low, mid, high);
 }
 
-vector<int> sortArray2(vector<int>& nums) {
+vector<int> sortArray3(vector<int>& nums) {
     mergeSort(nums, 0, nums.size()-1);
 
     return nums;
