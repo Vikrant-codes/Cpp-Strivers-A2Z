@@ -155,7 +155,7 @@
 - Learn All Patterns of Subsequences (Theory)
 - Count all subsequences with sum K
 - Check if there exists a subsequence with sum K
-- Combination Sum
+- Combination Sum => Leetcode - 39. Combination Sum
 - Combination Sum II
 - Subsets I
 - Subsets II
