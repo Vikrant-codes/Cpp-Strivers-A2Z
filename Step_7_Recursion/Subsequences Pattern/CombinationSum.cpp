@@ -78,14 +78,17 @@ The complexity is a little more subtle than simply saying O(2^n), because pickin
 Let:
 • n = number of candidates
 • T = target
-• M = maximum number of elements that can appear in a valid combination
+• m = minimum candidate
+• M = ⌊T/m⌋ = maximum possible length of a combination
+• K = number of valid combinations produced
 
 Since candidates are positive, if the smallest candidate is m, then: M = M = ⌊ T / m ​⌋ i.e., floor (T / m)
 ex- T = 40, m = 2, 2 can be choosen at most 20 times resulting in a valid combination (2, 2, ..., 2) of length 20.
 Thus, M = 20 = (40 / 2)
 
->> Time Complexity
+>> Time Complexity: O(2 ^ (n + M) + KM)
 
+1. Recursive Search
 At every state we have up to two choices:
 • pick     -> findCombination(ind, k - arr[ind], ...)
 • not pick -> findCombination(ind + 1, k, ...)
@@ -95,15 +98,21 @@ Because picking can happen repeatedly, the recursion depth is not bounded by n; 
 A useful way to describe the worst-case search complexity is: O(2 ^ (n+M) )
 where, M = T / min(candidate)
 
-This captures the fact that the recursion can make up to n "not-pick" decisions and up to M consecutive "pick" decisions.
-(since picking up more than M consecutive would just make sum exceed k (or, k becomes negative)).
+This captures the fact that along a path we can make up to `M` pick decisions and up to `n` not-pick decisions.
+(since picking up an element more than M consecutive times would just make the combination sum exceed k (k becomes negative)).
 
-There's also the cost of:
-    ans.push_back(ds);
-When a valid combination is found, copying ds costs O(M). So a more complete output-sensitive view is:
-    O(number of explored states+total size of output)
+2. ans.push_back(ds)
+There's also the cost of: ans.push_back(ds);
+When a valid combination is found, `ans.push_back(ds)` is executed and ds has to be copied into res.
+If the combination contains at most M elements, each insertion costs: O(M)
+If there are K valid combinations, total output-copying cost is: O(KM)
+So, in total this statement takes O(KM) time.
 
->> Space Complexity
+So, total time taken will be O(number of explored states + total size of output)
+
+| Final Time Complexity: O(2 ^ (n + M) + KM)
+
+>> Space Complexity: O(n + M), excluding the output
 There are three different things to consider.
 
 1. Recursion stack
@@ -129,7 +138,7 @@ If there are K combinations and each has at most M elements: O(KM)
 | Output `ans`                     |                                      `O(KM)` |
 | Auxiliary space excluding output |                                   `O(n + M)` |
 
-where, M = ⌊ T / min(candidates) ​⌋
+where, M = ⌊ T / min(candidates) ​⌋, K = number of valid combinations produced
 */
 
 // Striver's solution
