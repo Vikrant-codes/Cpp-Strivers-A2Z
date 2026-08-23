@@ -1,4 +1,5 @@
 #include<iostream>
+#include<iomanip>
 using namespace std;
 
 /*
@@ -152,6 +153,34 @@ int main(){
     | `L`    | long double |
     */
 
+    // <-- Binary (2), Octal (8) and Hexadecimal (16) representations -->
+    int bin = 0b11001;       // '11001' -> 1 * 2^4 + 1 * 2^3 + 0 * 2^2 + 0 * 2^1 + 1 * 2^0 = 16 + 8 + 0 + 0 + 1 = 25
+    int octal = 031;          // '31' -> 3 * 8^1 + 1 * 8^0 = 24 + 1 = 25
+    int hexa = 0x19;          // '19' -> 1 * 16^1 + 9 * 16^0 = 16 + 9 = 25
+    // if we print these values using cout, we will get the decimal equivalent values and 
+    // not the base specific representations, like 'cout << bin' will print 25 and not '11001'
+
+    cout << "Binary '1101' represents the decimal value : " << bin << endl;
+    cout << "Octal '15' represents the decimal value : " << octal << endl;
+    cout << "Hexadecimal 'D' represents the decimal value : " << hexa << endl;
+
+    int num = 100;
+    // we can use the `std::oct`, `std::dec` and `std::hex` stream manipulators
+    // they shift the output stream to speicific bases (8, 10, 16) until we manually change it back using std::dec.
+
+    cout << "Octal: " << std::oct << num << " __ Hexadecimal: " << std::hex << num << endl;
+    // Now, we need to switch-back to decimal so the output stream prints the later values as decimal
+    cout << std::dec;
+
+    // Using `std::setbase(base)` stream manipulator: this can shift the output stream to bases 8, 10 and 16.
+    // setbase() doesn't support any other base apart from them, 
+    // if we pass any other base-value, it resets the stream behavior to base 10 (decimal).
+    cout << "Octal: " << setbase(8) << num << " __ Hexadecimal: " << setbase(16) << num << endl;
+
+    // The stream manipulators `std::oct`, `std::dec`, `std::hex` and `std::setbase()` are all sticky manipulators
+    // these changes the state of the output stream permanently until we explicitly change it back.
+    cout << setbase(10);    // we can also use cout << std::dec;
+
     // <-- Char -->
     char ch = 'X';
     char ch2;
@@ -169,6 +198,7 @@ int main(){
     // <-- Boolean -->
     bool bt = true;
     bool bf = false;
+    bool bln = 100;     // compiler treats all numeric values as 'true' except '0' which is considered 'false'
 
     // <-- String (objects that represents a sequence of text) --> 
     string s = "This is a string.";
