@@ -156,9 +156,9 @@
 - Count all subsequences with sum K
 - Check if there exists a subsequence with sum K
 - Combination Sum => Leetcode - 39. Combination Sum
-- Combination Sum II
+- Combination Sum II => Leetcode - 40. Combination Sum II
 - Subsets I
-- Subsets II
+- Subsets II => Leetcode - 90. Subsets II
 - Combination Sum III
 - Letter Combinations of a Phone Number
 
