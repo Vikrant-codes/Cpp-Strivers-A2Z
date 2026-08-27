@@ -59,6 +59,9 @@ bool isSmaller(string& s1, string& s2) {
     while (i < len && s1[i] == s2[i]) 
         i++;
     
+    if (i == len) 
+        return false;     // both strings are equal
+    
     return s1[i] < s2[i];
 }
 
@@ -136,6 +139,53 @@ string shortestBeautifulSubstring(string s, int k) {
     return ans;
 }
 
+// consider two substrings of s[ansStart .... ansStart + len-1], s[substrStart ... substrStart + len-1]
+// returns true if the `substrStart` substring is lexicographically smaller than `ansStart` one
+bool isSubstrSmaller(string& s, int ansStart, int substrStart, int len) {
+    int i = ansStart, j = substrStart;
+    while (i < ansStart + len && s[i] == s[j]) {
+        i++; j++;
+    }
+    if (i == len) return false;     // both strings are equal
+
+    return s[i] > s[j];
+}
+
+string shortestBeautifulSubstring2(string s, int k) {
+    int n = s.length();
+    int start = 0;
+    // place start at the index where first '1' is present
+    while (start < n && s[start] == '0') start++;
+    if (start == n) return "";      // string contains all 0s only
+    if (k == 1) return "1";         // if k = 1, then "1" is the shortest & smallest beautiful string
+    int ansLen = 0;
+    int ansStart = start;
+    int cnt1 = 0;
+    for (int end = start; end < n; end++) {
+        if (s[end] == '1') cnt1++;
+        // when cnt1 becomes `k`, that means current window substring is beautiful
+        // update ans if needed and shrink the window until start points at the next `1`
+        if (cnt1 == k) {
+            int substrLen = end - start + 1;
+            // update ans to make sure ans remains the shortest and lexicographically smallest
+            if ( ansLen == 0 || ansLen > substrLen || 
+            (ansLen == substrLen && isSubstrSmaller(s, ansStart, start, ansLen)) ) 
+            {
+                ansLen = substrLen;
+                ansStart = start;
+            }
+            // shirnk the window to move start at the next 1
+            start++;
+            while (s[start] != '1') start++;
+            cnt1--;     // since one '1' has been removed from the current window
+        }
+    }
+    return s.substr(ansStart, ansLen);
+}
+
+
+
 int main() {
+
     return 0;
 }
