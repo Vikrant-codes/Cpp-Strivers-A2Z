@@ -76,7 +76,7 @@ vector<int> leastPrimeFactorNaive(int n) {
 }
 
 // Optimal Approach : Time Complexity : O(n log log n) __ Space Complexity : O(n)
-// See 'SmallestPrimeFactor.cpp' to understand the approach
+// See 'SmallestPrimeFactorSieve.cpp' to understand the approach
 vector<int> leastPrimeFactor(int n) {
     vector<int> spf(n+1);
     

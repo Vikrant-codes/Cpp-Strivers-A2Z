@@ -1,3 +1,5 @@
+// Problem Statement: Given a number N, find the least prime factors for all numbers from 1 to N.
+
 /*
 -- Smallest / Least Prime Factor --
 The least prime factor of an integer 'n' is the smallest prime number that divides the number. 

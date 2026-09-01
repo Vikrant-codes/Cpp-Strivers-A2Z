@@ -1,4 +1,4 @@
-# Striver's A2Z Sheet
+# Striver's A2Z Sheet + Some other problems
 
 ## Step - 1 : Learn The Basics
 
@@ -159,7 +159,7 @@
 - Combination Sum II => Leetcode - 40. Combination Sum II
 - Subsets I
 - Subsets II => Leetcode - 90. Subsets II
-- Combination Sum III
+- Combination Sum III => Leetcode - 216. Combination Sum III
 - Letter Combinations of a Phone Number
 
 </details>
@@ -201,6 +201,8 @@
 - GFG - LCM and GCD
 - Implementation of GCD & LCM
 - Perfect Square
+- Disarium Number
+- Piecewise Calculation Problems
 
 </details>
 <br>
@@ -218,10 +220,11 @@
 - Leetcode - 204. Count Primes
 - Leetcode - 2523. Closest Prime Numbers in Range
 - Count Primes in Range L to R (Queries)
-- Smallest/Least Prime Factor (SPF) using Sieve
+- Smallest/Least Prime Factor (SPF) Sieve
 - GFG - Least Prime Factor
 - GFG - Prime Factorization Using Sieve
 - Prime Factorization using Sieve (Queries)
+- Leetcode - 2521. Distinct Prime Factors of Product of Array
 
 </details>
 <br>

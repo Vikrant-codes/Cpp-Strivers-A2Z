@@ -1,7 +1,8 @@
 /*
 GFG - Subset Sums : Medium
 
-Given an array arr of integers, return the sums of all subsets in the list.  Return the sums in any order.
+Given an array arr of integers, return the sums of all subsets in the list.
+Return the sums in any order.
 
 Examples :-
 
