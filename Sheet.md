@@ -151,7 +151,7 @@
 
 - Generate Binary Strings without consecutive 1s
 - Generate Parentheses
-- Power Set
+- Power Set => Leetcode - 78. Subsets
 - Learn All Patterns of Subsequences (Theory)
 - Count all subsequences with sum K
 - Check if there exists a subsequence with sum K

@@ -70,6 +70,18 @@ For example:
 */
 
 int main() {
+    int array[26];      // uninitialized (local array)
+    int array[26] = {}; // all zeros
+    /*
+    with an empty initializer {}, the elements are value-initialized.
+    int     → 0
+    bool    → false
+    double  → 0.0
+    char    → '\0'
+
+    thus, int array will have all 0s, bool array would have all false, ... , if initialized with empty initializer {}.
+    */
+
     int arr[7];
     // sizeof operator : determine the size in bytes of a: variable, data type, class, objects, etc.
     // sizeof(arr) -> Total size of array in bytes, sizeof(arr[0]) -> Size of single element in bytes 
@@ -113,6 +125,7 @@ int main() {
     }
 
     // fill function: Fills a range of elements with specified value .... fill(begin, end, value)
+
     // arr having default value as 9
     int exm[10] = {9};          // 9 is assigned to arr[0] only rest others are 0
     for(int x : exm) cout << x << ' '; 
@@ -120,6 +133,7 @@ int main() {
     cout << '\n';
     for(int x : exm) cout << x << ' ';
     cout << "\n";
+    
     // filling the array with the values 10, 20, 30 in three halves
     int size = 30;
     int a[size];
