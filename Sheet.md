@@ -150,7 +150,7 @@
 <summary>Subsequences Pattern</summary>
 
 - Generate Binary Strings without consecutive 1s
-- Generate Parentheses
+- Generate Parentheses => Leetcode - 22. Generate Parentheses
 - Power Set => Leetcode - 78. Subsets
 - Learn All Patterns of Subsequences (Theory)
 - Count all subsequences with sum K

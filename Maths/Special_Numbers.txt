@@ -1,5 +1,35 @@
 -------------------------------------------------------------------------------------------
-🟡 1. Golden Ratio (φ ≈ 1.618)
+🟡 Catalan numbers
+-------------------------------------------------------------------------------------------
+The Catalan numbers are a sequence of natural numbers that occur in various counting problems, 
+often involving recursively defined objects. 
+They solve many counting problems in mathematics and computer science.
+They are named after Eugène Catalan, though they were previously discovered in the 1730s by Minggatu.
+
+The n-th Catalan number (Cₙ) can be expressed directly in terms of the central binomial coefficients by
+
+          1                                       1             2n!                  2n!
+Cₙ  =  _______   *   Combination(2n , n)   =   _______  *   __________    =     _____________       , for n >= 0
+       (n + 1)                                 (n + 1)       n!  *  n!          (n + 1)! * n!
+
+The first Catalan numbers for n = 0, 1, 2, 3, ... are
+1, 1, 2, 5, 14, 42, 132, 429, 1430, 4862, 16796, 58786, ... 
+
+Asymptotically, the Catalan numbers grow as
+                  4ⁿ
+Cₙ  ~       ______________
+            n^(3/2) * √ π
+
+>> Common Applications
+Catalan numbers show up when counting
+
+- Parentheses: Valid ways to match `n` pairs of parentheses (e.g., for n=3, [ ((())), ()()(), (()()), (())(), ()(()) ] ).
+- Binary Trees: Unique binary search trees or full binary trees with n + 1 leaves.
+- Polygons: Ways to cut a convex (n+2)-sided polygon into triangles using non-intersecting diagonals.
+- Grid Paths: Routes on an n * n grid that do not cross the diagonal.
+
+-------------------------------------------------------------------------------------------
+🟡 Golden Ratio (φ ≈ 1.618)
 -------------------------------------------------------------------------------------------
 🔹 The golden ratio is: 𝜑 = (1 + √5) / 2 
 🔹 Represented by Phi (φ or 𝜑)
@@ -25,7 +55,7 @@ Fibonacci numbers grow like: 𝐹(𝑛) ≈ 𝜑^𝑛
 👉 Golden ratio = perfect distribution without patterns
 
 -------------------------------------------------------------------------------------------
-🟢 2. 1e9+7 (1000000007)
+🟢 1e9+7 (1000000007)
 -------------------------------------------------------------------------------------------
 🔹 What it is: A large prime number: 1e9 + 7 = 10^9 + 7 = 1000000007
 
@@ -57,7 +87,7 @@ We do: (a * b) % mod
 👉 1e9+7 = safe + prime + overflow protection
 
 -------------------------------------------------------------------------------------------
-🔵 3. 0x9e3779b9 = 2654435769 (Golden Ratio Constant)
+🔵 0x9e3779b9 = 2654435769 (Golden Ratio Constant)
 -------------------------------------------------------------------------------------------
 🔹 What it is: 
 Hex value: 0x9e3779b9
