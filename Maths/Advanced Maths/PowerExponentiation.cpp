@@ -1,7 +1,18 @@
-// Implement the pow method (pow(x, n))
+// Implement the power method (pow(x, n)) which calculates x ^ n (i.e., x raised to the power n)
 /*
-pow(x, n) :- It is a pre-defined method which returns x ^ n. 
-Its return type is double and can work with double x & n.
+pow(x, n) :- It is a pre-defined method which returns x ^ n.
+
+The built-in method signature is somewhat like `double pow(double x, double n)` 
+It calculates power of x ^ n, where x and n are of `double` data type.
+It returns a `double` value as result of exponentiation.
+
+For now, our goal is to implement the power method which can calculate x ^ n, 
+where x is some double variable and n is some integer.
+i.e., something like `double pow(double x, int n)`
+
+We are considering that the input will always be valid such that x^n is a valid & mathematically determinate value.
+So, inputs like 0 ^ 0, or 0 raised to negative power will never be given.
+(0 ^ 0 is indeterminate. 0 raised to -ve power is same as divide by 0.)
 */
 
 #include<bits/stdc++.h>
@@ -12,14 +23,18 @@ using namespace std;
 // Naive Approach :- Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 | x raised to the power n => x ^ n = x * x * x ... n times
-So, run a loop n times and multiply for x each iteration to get x ^ n.
-Initially keep ans = 1, and for each iteration do ans = ans * x. 
-The loop will run n times and when it ends ans will be storing x ^ n. 
+So, we can initialize a result/answer variable as `1` and iterate n times and multiply ans by `x` in each iteration.
 */
 int myPowNaive(int x, int n) {
+    // Early return statements
+    if (x == 0) return 0;   // 0 raised to any power is 0.
+    if (n == 0) return 1;   // any value raised to the power 0 is 1.
+
     int ans = 1;
+
     for (int i = 1; i <= n; i++)
         ans *= x;
+    
     return ans;
 }
 
@@ -27,7 +42,7 @@ int myPowNaive(int x, int n) {
 /*
 We want to compute x^n
 The naive way is : x * x * x * x * ... (n times)
-which takes O(n) multiplications.
+which takes O(n) to perform multiplication iteratively.
 Can we somehow reduce the exponent much faster?
 
 >> Observe what happens when n is even
@@ -76,6 +91,10 @@ We are doing n / 2 repeatedly when n is even and we do n=n-1 when n is odd (maki
 This whole iterations will be done only till n doesn't become 0, which it will become in roughly O(log n) time.
 */
 int myPowEff(int x, int n) {
+    // Early return statements
+    if (x == 0) return 0;   // 0 raised to any power is 0.
+    if (n == 0) return 1;   // any value raised to the power 0 is 1.
+
     int ans = 1;
     while (n > 0) {
         if (n % 2 == 1) {
@@ -87,10 +106,30 @@ int myPowEff(int x, int n) {
             n = n / 2;
         }
     }
+
     return ans;
 }
 
-// What if x is a double value and n can be negative as well ?
+// Other implementation
+int myPowEff2(int x, int n) {
+    if (x == 0) return 0;
+    if (n == 0) return 1;
+
+    int ans = 1;
+    while (n > 0) {
+        // n & 1 checks if n is odd
+        if (n & 1) 
+            ans = ans * x;
+            // no need to explicitly do n = n - 1
+        
+        x = x * x;
+        n /= 2;
+    }
+
+    return ans;
+} 
+
+// *What if x is a double value and n can be negative as well ?
 /*
 >> If n is -ve :-
 Suppose we need to calculate 5 ^ (-2), we know that 5^(-2) is same as 1/(5^2)
@@ -108,6 +147,9 @@ So, we need to store ans as double as well.
 If x is double, we simply need to declare the ans variable as double instead of int.
 */
 double myPow(double x, int n) {
+    if (x == 0) return 0.0;
+    if (n == 0) return 1.0;
+
     bool isNegative = (n < 0) ? true : false;
     n = abs(n);
 
@@ -128,21 +170,40 @@ double myPow(double x, int n) {
     return ans;
 }
 
-// Recursive Implementation
+double myPow2(double x, int n) {
+    if (x == 0) return 0.0;
+    if (n == 0) return 1.0;
+
+    bool isNegative = (n < 0) ? true : false;
+    n = abs(n);
+
+    double ans = 1;
+    while (n > 0) {
+        if (n & 1) 
+            ans *= x;
+        
+        x *= x;
+        n /= 2;
+    }
+    
+    return (isNegative) ? 1.0 / ans : ans;
+}
+
+// *Recursive Implementation
 
 // helper method: calculates power considering n is +ve
 // it uses `n` as long long for the reason that if initially n == INT_MIN, then its absolute value is outside int range.
-double power(double x, long long n) {
+double powerHelper(double x, long long n) {
     if (n == 0)
         return 1;
     
     if (n % 2 == 0) 
-        return power(x * x, n / 2);
+        return powerHelper(x * x, n / 2);
     
-    return x * power(x * x, n / 2);
+    return x * powerHelper(x * x, n / 2);
 
     /*
-    double half = power(x, n / 2);
+    double half = powerHelper(x, n / 2);
     
     if (n % 2 == 0) 
         return half * half;
@@ -152,6 +213,8 @@ double power(double x, long long n) {
 }
 
 double myPowRecursive(double x, int n) {
+    if (x == 0) return 0;
+    
     // if n == INT_MIN, for that case, taking abs(n) will be outside int limits, so we store its absolute value in long long
     long long N = n;
 
@@ -160,7 +223,7 @@ double myPowRecursive(double x, int n) {
         N = -N;
     }
 
-    return power(x, N);
+    return powerHelper(x, N);
 }
 
 int main() {

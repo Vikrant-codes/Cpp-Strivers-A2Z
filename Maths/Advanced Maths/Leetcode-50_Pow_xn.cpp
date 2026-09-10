@@ -25,7 +25,12 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-// Time Complexity : O(log n)
+// *The solution for this problem uses concepts of `Fast Exponentiation`
+// See "Maths/Advanced Maths/PowerExponentiation.cpp" to understand the idea of Fast Exponentiation
+
+// Fast-Exponentiation: Time Complexity : O(log n)
+
+// Iterative Solution
 double myPowIterative(double x, int n) {
     if (n == 0) return 1;
     
@@ -59,7 +64,7 @@ double myPowIterative(double x, int n) {
 }
 
 // Recursive Solution
-double myPow(double x, int n) {
+double myPowRec(double x, int n) {
     if (n == 0) return 1;
 
     long long N = n;
@@ -69,9 +74,9 @@ double myPow(double x, int n) {
     double ans = 1;
 
     if (N % 2 == 1)
-        ans = x * myPow(x * x, N / 2);
+        ans = x * myPowRec(x * x, N / 2);
     else 
-        ans = myPow(x * x, N / 2);
+        ans = myPowRec(x * x, N / 2);
     
     if (isNegative) ans = 1.0/ans;
     return ans;
@@ -93,17 +98,17 @@ Since x value has been turned to x = 1/x... multiplying by x inside power would 
 
 // helper method: calculates power considering n is +ve
 // it uses `n` as long long for the reason that if initially n == INT_MIN, then its absolute value is outside int range.
-double power(double x, long long n) {
+double powerHelper(double x, long long n) {
     if (n == 0)
         return 1;
     
     if (n % 2 == 0) 
-        return power(x * x, n / 2);
+        return powerHelper(x * x, n / 2);
     
-    return x * power(x * x, n / 2);
+    return x * powerHelper(x * x, n / 2);
 
     /*
-    double half = power(x, n / 2);
+    double half = powerHelper(x, n / 2);
     
     if (n % 2 == 0) 
         return half * half;
@@ -121,9 +126,27 @@ double myPowRecursive(double x, int n) {
         N = -N;
     }
 
-    return power(x, N);
+    return powerHelper(x, N);
 }
 
+// *Go-to solution (no comments)
+double myPow(double x, int n) {
+    if (x == 0) return 0;
+    if (n == 0) return 1;
+    
+    double ans = 1;
+    long long N = abs(n);
+
+    while (N > 0) {
+        if (N & 1)
+            ans *= x;
+        
+        x *= x;
+        N /= 2;
+    }
+
+    return (n > 0) ? ans : 1.0 / ans;
+}
 
 int main() {
     return 0;
