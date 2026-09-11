@@ -38,6 +38,7 @@ int myPowNaive(int x, int n) {
     return ans;
 }
 
+// *Fast Exponentiation / Binary Exponentiation 
 // Optimal Approach :- Time Complexity : O(log n) __ Space Complexity : O(1)
 /*
 We want to compute x^n

@@ -151,6 +151,8 @@ int countGoodNumbers(long long n) {
     
     // x = ceil(n / 2), y = floor(n / 2)
 
+    // x = (n+1) / 2, y = n/2
+
     int val1 = power(5, x);
     int val2 = power(4, y);
     

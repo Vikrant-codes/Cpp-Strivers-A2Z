@@ -94,7 +94,7 @@ int power(long long base, long long exp) {
     return ans % constant;
 }
 
-int countGoodNumbers(long long n) {
+int countGoodNumbers1(long long n) {
     long long x = n / 2, y = n / 2;
     // x is the exponent term corresponding to count of even index positions. power(5, x)
     // y is the exponent term corresponding to count of odd index positions. power(4, y)
@@ -109,9 +109,28 @@ int countGoodNumbers(long long n) {
     return (1LL * val1 * val2) % constant;
 }
 
-// ChatGPT's solution / using Standard implementation of fast-exponentiation
-int MOD = 1e9+7;
+// Other Recursive implementation
+const int MOD = 1e9+7;
 
+int findPower(long long a, long long b) {
+    if (b == 0) 
+        return 1;
+
+    long long half = findPower(a, b/2);
+    
+    long long result = (half * half) % MOD;
+    
+    if (b % 2 == 1) 
+        result = (result * a) % MOD;
+    
+    return result;
+}
+
+int countGoodNumbers2(long long n) {
+    return (1LL * findPower(5, (n+1)/2) * findPower(4, n/2)) % MOD;
+}
+
+// ChatGPT's solution / using Standard implementation of fast-exponentiation (Iterative implementation)
 long long powerX(long long base, long long exp) {
     long long ans = 1;
 
@@ -126,8 +145,7 @@ long long powerX(long long base, long long exp) {
     return ans;
 }
 
-
-int countGoodNumbers(long long n) {
+int countGoodNumbers3(long long n) {
     long long even = (n + 1) / 2;
     long long odd = n / 2;
 
