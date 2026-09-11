@@ -137,9 +137,9 @@
 <details>
 <summary>Get a Strong Hold</summary>
 
-- Recursive Implementation of atoi
-- Pow(x, n)
-- Count Good Numbers
+- Recursive Implementation of atoi => Leetcode - 8. String to Integer (atoi)
+- Pow(x, n) => Leetcode - 50. Pow(x, n)
+- Count Good Numbers => Leetcode - 1922. Count Good Numbers 
 - Sort a Stack using Recursion
 - Reverse a Stack
 
