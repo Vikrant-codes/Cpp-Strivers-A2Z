@@ -170,6 +170,98 @@ int maxProduct2(vector<int> &arr, int k) {
     return maxPro;
 }
 
+// Optimal Approach (Greedy) :- Time Complexity : O(n log n) __ Space Complexity : O(1)
+/*
+>> Greedy Approach Using Sorting
+
+The idea is to sort the array and greedily choose elements. 
+
+The following are different cases that arise in this approach after sorting
+
+• If Max is 0 and k is Odd: 
+    Here if we don't include 0 in subsequence then product will be less than 0, 
+    Since the product of an odd number of negative integers gives a negative integer. Hence answer is 0.
+• If Max is Negative and k is Odd:
+    Here the product will be less than 0. We take the product of the smallest (absolute value wise) k elements.
+• If Max is Positive and k is Odd: 
+    Here the max positive number must present in the subsequence. 
+    Now we need to add k-1 more elements to the subsequence.  
+    Since k is odd, k-1 becomes even. So the problem boils down to the following case.
+• If k is Even: 
+    Total pairs required to be added in subsequence is k/2. So for simplicity, our new k is k/2. 
+    Now since arr[] is sorted, the first pair with the maximum of either arr[0]*arr[1] OR arr[n-1]*arr[n-2]. 
+    Same way we pick other pairs.
+
+-> Let us understand with an example:
+Input: arr[] = [1, 2, -1, -3, -6, 4], k = 4
+
+After sorting: [-6, -3, -1, 1, 2, 4]. Since k is even, we need to select 2 pairs.
+
+First pair: (-6) × (-3) = 18, while 2 × 4 = 8. Choose (-6, -3), so product = 18.
+
+Now the remaining elements are [-1, 1, 2, 4].
+
+Second pair: (-1) × 1 = -1, while 2 × 4 = 8. Choose (2, 4).
+
+Final product = 18 × 8 = 144.
+
+>> Complexity Analysis:- 
+- Sorting takes O(n log n)
+- Picking the best elements take O(n)
+- Sorting time dominates giving time complexity O(n log n)
+
+-> Space Complexity : O(1), since no extra memory is used
+*/
+int maxProduct(vector<int> &arr, int k) {
+    int n = arr.size();
+    
+    sort(arr.begin(), arr.end());
+    
+    int product = 1;
+    
+    // largest element is 0 and k is odd
+    if (arr[n-1] == 0 && (k & 1))
+        return 0;
+        
+    // all elements are negative and k is odd
+    if (arr[n-1] < 0 && (k & 1)) {
+        // maximum product = product of last k elements (least negative product)
+        for (int i = n - 1; i >= n - k; i--)
+            product *= arr[i];
+        
+        return product;
+    }
+    
+    int left = 0, right = n-1;
+    
+    // if k is odd.. include the largest element
+    if (k & 1) {
+        product *= arr[right];
+        right--;
+        k--;
+    }
+    
+    // Process remaining elements in pairs
+    k /= 2; 
+    
+    for (int i = 0; i < k; i++) {
+        int leftProduct = arr[left] * arr[left + 1];
+        int rightProduct = arr[right] * arr[right - 1];
+        
+        // Choose the better pair
+        if (leftProduct > rightProduct) {
+            product *= leftProduct;
+            left += 2;
+        }
+        else {
+            product *= rightProduct;
+            right -= 2;
+        }
+    }
+    
+    return product;
+}
+
 int main() {
     return 0;
 }
