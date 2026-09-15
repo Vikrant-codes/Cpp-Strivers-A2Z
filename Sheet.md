@@ -166,6 +166,14 @@
 <br>
 
 <details>
+<summary>Other Problems (from Recursion Playlist)</summary>
+
+- Permutations of an Array/String => Leetcode - 46. Permutations
+
+</details>
+<br>
+
+<details>
 <summary>Trying out all Combos / Hard</summary>
 
 - Palindrome partitioning
