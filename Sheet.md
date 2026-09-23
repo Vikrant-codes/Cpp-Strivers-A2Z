@@ -366,7 +366,7 @@
 <summary>Trying out all Combos / Hard</summary>
 
 - Palindrome partitioning => Leetcode - 131. Palindrome Partitioning
-- Word Search
+- Word Search => Leetcode - 79. Word Search
 - N Queen
 - Rat in a Maze
 - Word Break

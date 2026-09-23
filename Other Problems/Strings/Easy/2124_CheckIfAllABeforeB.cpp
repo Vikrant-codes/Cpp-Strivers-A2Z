@@ -85,6 +85,28 @@ bool checkString2(string s) {
 }
 
 /*
+We can also check it like this: 
+Find the first occurrence of 'b' in string, 
+Now no 'a' should appear in the remaining portion of string.
+So, we just traverse from this first occurrence of 'b' till string end, and if any 'a' is encountered, we return false.
+*/
+bool checkString3(string s) {
+    int n = s.length();
+    int i = 0;
+
+    // find the first occurrence of 'b'
+    while (i < n && s[i] == 'a') i++;
+    // now, no 'a' should appear from this index to end of string, if 'a' comes, we return false
+    while (i < n) {
+        if (s[i] == 'a') 
+            return false;
+        i++;
+    }
+
+    return true;
+}
+
+/*
 Approach - 3
 Another way to think about the "all A's before all B's" condition is that 
 - no 'a' should be followed by a 'b', i.e., if index `i` has 'a' then `i-1` must not be a 'b'
@@ -93,7 +115,7 @@ or conversely
 
 Or, we just have to check that string don't have any occurrence of the substring "ba".
 */
-bool checkString3(string s) {
+bool checkString4(string s) {
     int n = s.length();
     
     for (int i = 0; i < n-1; i++)
