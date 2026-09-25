@@ -1,4 +1,4 @@
-# Striver's A2Z Sheet + Some other problems
+# Striver's A2Z Sheet + some extra problems
 
 ## Step - 1 : Learn The Basics
 
@@ -67,6 +67,8 @@
 - Basic Hashing
 - Counting Frequencies of Array Elements
 - Highest Occurring Element in an Array
+- Second Highest Occurring Element
+- Sum of Highest and Lowest Frequency
 
 </details>
 <br>

@@ -129,6 +129,24 @@ int gcd(int a, int b) {
 }
 
 // my implementation
+int GCD(int n1,int n2) {
+    if (n1 > n2) 
+        return GCD(n2, n1);
+
+    while (n2 % n1 != 0) {
+        int rem = n2 % n1;
+        n2 = n1;
+        n1 = rem;
+    }
+
+    return n1;
+}
+/*
+We don't need to explicitly handle the case when n1 > n2, as in the while loop, 
+the values will be re-assigned and n1 will become the smaller value (since it is re-assigned the value of remainder),
+and n2 will then become the bigger value.
+*/
+
 int myGCD(int a, int b) {
     int rem = b % a;
     while (rem != 0) {

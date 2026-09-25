@@ -73,7 +73,7 @@ Since, (1.618)ⁿ < 2ⁿ
 many books simply write O(2ⁿ) because it's easier to remember.
 
 More precise answer
-- Exact asymptotic: Θ(φⁿ)
+- Exact asymptotic: O(φⁿ)
 - Simpler interview answer: O(2ⁿ)
 
 >> Space Complexity

@@ -28,6 +28,22 @@ int majorityHash(vector<int> arr){
     for(auto y : mpp)  if(y.second > arr.size()/2) return y.first;
     return -1;
 }
+/*
+int majorityElement(vector<int>& nums) {
+    int n = nums.size();
+    unordered_map<int, int> freq;
+
+    for (int x : nums) 
+        freq[x]++;
+    
+    for (auto& pair : freq) 
+        if (pair.second > n/2)
+            return pair.first;
+    
+    return -1;
+}
+*/
+
 
 // Optimal Approach : 'Moore's Voting Algorithm' -> Time Complexity : O(n) __ Space Complexity : O(1)
 /*
@@ -69,6 +85,24 @@ int MooreVotingAlgo(vector<int> arr){
 	for(int x : arr) if (x == el) cnt++;
     return cnt > arr.size()/2 ? el : -1;
 }
+
+/*
+int majorityElement(vector<int>& nums) {
+    int ans = nums[0];
+    int freq = 0;
+
+    for (int x : nums) {
+        if (x == ans) freq++;
+        else freq--;
+        if (freq==0) {
+            ans = x;
+            freq = 1;
+        }
+    }
+        
+    return ans;
+}
+*/
 
 int main() {
     vector<int> arr = {7,7,5,7,5,1,5,7,5,5,7,7,5,5,5,5};
