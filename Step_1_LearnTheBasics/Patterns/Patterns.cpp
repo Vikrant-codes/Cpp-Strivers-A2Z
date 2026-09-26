@@ -2,16 +2,16 @@
 using namespace std;
 
 /*
-* * * * * 
-* * * * * 
-* * * * * 
-* * * * * 
-* * * * * 
+***** 
+***** 
+***** 
+***** 
+***** 
 */
-void ptrn1(int n) {
+void pattern1(int n) {
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j < n; j++) {
-			cout << "* ";
+			cout << "*";
 		}
 		cout << endl;
 	}
@@ -19,15 +19,15 @@ void ptrn1(int n) {
 
 /*
 * 
-* * 
-* * * 
-* * * * 
-* * * * * 
+** 
+*** 
+**** 
+***** 
 */
-void ptrn2(int n) {
+void pattern2(int n) {
 	for(int i = 0; i < n; i++) {
 		for(int j = 0; j <= i; j++) {
-			cout << "* ";
+			cout << "*";
 		}
 		cout << endl;
 	}
@@ -40,7 +40,7 @@ void ptrn2(int n) {
 1 2 3 4 
 1 2 3 4 5
 */
-void ptrn3(int n) {
+void pattern3(int n) {
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= i; j++) {
 			cout << j << " ";
@@ -56,7 +56,7 @@ void ptrn3(int n) {
 4 4 4 4 
 5 5 5 5 5 
 */
-void ptrn4(int n) {
+void pattern4(int n) {
 	for(int i = 1; i <= n; i++) {
 		for(int j = 1; j <= i; j++) {
 			cout << i << " ";
@@ -66,16 +66,16 @@ void ptrn4(int n) {
 }
 
 /*
-* * * * * 
-* * * * 
-* * * 
-* * 
+***** 
+**** 
+*** 
+** 
 * 
 */
-void ptrn5(int n) {
+void pattern5(int n) {
 	for(int i = n; i > 0; i--){
 		for(int j = 1; j <= i; j++){
-			cout << "* ";
+			cout << "*";
 		}
 		cout << endl;
 	}
@@ -83,7 +83,7 @@ void ptrn5(int n) {
 	/*
 	for (int i = 0; i < n; i++) {
         for (int j = 0; j < n-i; j++) {
-            cout << "* ";
+            cout << "*";
         }
         cout << endl;
     }
@@ -97,7 +97,7 @@ void ptrn5(int n) {
 1 2 
 1 
 */
-void ptrn6(int n) {
+void pattern6(int n) {
 	for(int i = n; i > 0; i--) {
         for(int j = 1; j <= i; j++) {
             cout << j << " ";
@@ -121,15 +121,19 @@ void ptrn6(int n) {
  *******
 *********
 */
-void ptrn7(int n) {
+void pattern7(int n) {
 	for(int i = 1; i <= n; i++) {
+		// spaces
 		for(int j = 1; j <= n-i; j++) {
 			cout << " ";
 		}
+		
+		// stars
 		for(int j = 1; j <= 2*i-1; j++) {
 			cout << "*";
 		}
-		cout << "\n";
+
+		cout << endl;
 	}
 }
 
@@ -140,15 +144,19 @@ void ptrn7(int n) {
    ***
     *
 */
-void ptrn8(int n) {
+void pattern8(int n) {
 	for(int i = n; i > 0; i--) {
+		// spaces
 		for(int j = 1; j <= n-i; j++) {
 			cout << " ";
 		}
+
+		// stars
 		for(int j = 1; j <= 2*i-1; j++) {
 			cout << "*";
 		}
-		cout << "\n";
+		
+		cout << endl;
 	}
 }
 
@@ -164,14 +172,14 @@ void ptrn8(int n) {
    ***
     *
 */
-void ptrn9(int n) {
-	ptrn7(n);
-	ptrn8(n);
+void pattern9(int n) {
+	pattern7(n);
+	pattern8(n);
 }
 
 /*
 *
-**
+**  
 ***
 ****
 *****
@@ -180,16 +188,19 @@ void ptrn9(int n) {
 **
 *
 */
-void ptrn10(int n) {
+void pattern10(int n) {
 	/*
-	ptrn2(n);
-	ptrn5(n-1);
+	pattern2(n);
+	pattern5(n-1);
 	*/
+
 	for(int i = 1; i <= 2*n-1; i++) {
-		int stars = i <= n ? i : 2*n-i;
+		int stars = (i <= n) ? i : 2*n-i;
+
 		for(int j = 0; j<stars; j++) {
 			cout << "*";
 		}
+
 		cout << endl;
 	}
 }
@@ -201,18 +212,18 @@ void ptrn10(int n) {
 0 1 0 1 
 1 0 1 0 1 
 */
-void ptrn11(int n) {
-	/*
-	for(int i = 1; i <= n; i++) {
-        int bit = i % 2 == 0 ? 0 : 1;
+void pattern11(int n) {
+    for (int i = 1; i <= n; i++) {
+        int bit = (i % 2);		// same as, `int bit = (i % 2 == 0) ? 0 : 1;`
+
         for (int j = 1; j <= i; j++) {
             cout << bit << " ";
-            // bit = (bit == 0) ? 1 : 0;
-            bit = 1 - bit;      // flip the bit
+            bit = 1 - bit;      // flip the bit, same as `bit = (bit == 0) ? 1 : 0;`
         }
+        
         cout << endl;
     }
-	*/
+    
 	/*
 	for(int i = 1; i <= n; i++) {
 		for(int j = i; j > 0; j--) {
@@ -222,15 +233,6 @@ void ptrn11(int n) {
 		cout << endl;
 	}
 	*/
-	int start;
-	for(int i=0; i<n; i++) {
-		start = i%2==0 ? 1 : 0;
-		for(int j=0; j<=i; j++) {
-			cout << start << " ";
-			start = 1 - start; // flips value of start 0 becomes 1 and 1 becomes 0
-		}
-		cout << endl;
-	}
 }
 
 /*
@@ -240,17 +242,23 @@ void ptrn11(int n) {
 1 2 3 4     4 3 2 1 
 1 2 3 4 5 5 4 3 2 1 
 */
-void ptrn12(int n) {
-	for(int i=1; i<=n; i++) {
-        for(int j=1; j<=i; j++) {
+void pattern12(int n) {
+	for (int i = 1; i <= n; i++) {
+        // numbers
+        for (int j = 1; j <= i; j++) {
             cout << j << " ";
         }
-        for(int k=1; k<=2*n-2*i; k++) {
+        
+		// spaces
+        for (int j = 1; j <= 2 * (n - i); j++) {
             cout << " " << " ";
         }
-        for(int j=i; j>0; j--) {
+        
+		// numbers
+        for (int j = i; j >= 1; j--) {
             cout << j << " ";
         }
+
         cout << endl;
     }
 }
@@ -262,12 +270,11 @@ void ptrn12(int n) {
 7 8 9 10 
 11 12 13 14 15 
 */
-void ptrn13(int n) {
-	int st = 1;
-    for(int i=0; i<n; i++) {
-        for(int j=0; j<=i; j++) {
-            cout << st << " ";
-            st++;
+void pattern13(int n) {
+	int x = 1;
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++) {
+            cout << x++ << " ";
         }
         cout << endl;
     }
@@ -280,13 +287,22 @@ A B C
 A B C D 
 A B C D E
 */
-void ptrn14(int n) {
-	for(int i=0; i<n; i++) {
-		for(char ch = 'A'; ch <= 'A'+i; ch++) {
+void pattern14(int n) {
+	for(int i = 0; i < n; i++) {
+		for(char ch = 'A'; ch <= 'A' + i; ch++) {
 			cout << ch << " ";
 		}
 		cout << endl;
 	}
+
+	/*
+	for (int i = 0; i < n; i++) {
+        for (int j = 0; j <= i; j++) {
+            cout << (char)('A' + j) << " ";
+        }
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -296,13 +312,22 @@ A B C
 A B 
 A 
 */
-void ptrn15(int n) {
-	for(int i=n; i>0; i--) {
-        for(char ch='A'; ch < 'A'+i; ch++) {
+void pattern15(int n) {
+	for(int i = n; i > 0; i--) {
+        for(char ch = 'A'; ch < 'A' + i; ch++) {
             cout << ch << " ";
         }
         cout << endl;
     }
+
+	/*
+	for (int i = n; i > 0; i--) {
+        for (int j = 0; j < i; j++) {
+            cout << (char)('A' + j) << " ";
+        }
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -312,10 +337,10 @@ C C C
 D D D D 
 E E E E E 
 */
-void ptrn16(int n) {
-	for(int i=0; i<n; i++) {
+void pattern16(int n) {
+	for(int i = 0; i < n; i++) {
 		char ch = 'A' + i;
-		for(int j=0; j<=i; j++) {
+		for(int j = 0; j <= i; j++) {
 			cout << ch << " ";
 		}
 		cout << endl;
@@ -329,19 +354,46 @@ void ptrn16(int n) {
  ABCDCBA
 ABCDEDCBA
 */
-void ptrn17(int n) {
-	for(int i=1; i<=n; i++) {
-		for(int j=0; j<n-i; j++) {
+void pattern17(int n) {
+	for(int i = 1; i <= n; i++) {
+		// spaces
+		for(int j = 0; j < n - i; j++) {
 			cout << " ";
 		}
+
+		// characters
 		char ch = 'A';
-		for(int j=1; j<=2*i-1; j++) {
+		for(int j = 1; j <= 2 * i - 1; j++) {
 			cout << ch;
 			if(j < i) ch++;
 			else ch--;
 		}
+
 		cout << endl;
 	}
+
+	/*
+	for (int i = 0; i < n; i++) {
+        // spaces
+        for (int j = 0; j < n - i - 1; j++) {
+            cout << " ";
+        }
+
+        char ch = 'A';
+        // chars increasing
+        for (int j = 0; j <= i; j++) {
+            cout << ch++;
+        }
+
+        ch -= 2;
+        // chars decreasing
+        for (int j = 0; j < i; j++) {
+            cout << ch--;
+        }
+
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -351,13 +403,23 @@ C D E
 B C D E 
 A B C D E 
 */
-void ptrn18(int n) {
-	for(int i = 1; i<=n; i++) {
-		for(char ch = 'A'+n-i; ch < 'A' + n; ch++) {
+void pattern18(int n) {
+	for(int i = 1; i <= n; i++) {
+		for(char ch = 'A' + n - i; ch < 'A' + n; ch++) {
 			cout << ch << " ";
 		}
 		cout << endl;
 	}
+
+	/*
+	for (int i = 1; i <= n; i++) {
+        char ch = 'A' + n - i;
+        for (int j = 1; j <= i; j++) {
+            cout << ch++ << " ";
+        }
+        cout << endl;
+    }
+	*/
 }
 
 /*
@@ -372,7 +434,7 @@ void ptrn18(int n) {
 * * * *     * * * * 
 * * * * * * * * * * 
 */
-void ptrn19(int n) {
+void pattern19(int n) {
 	// Increasing Void
 	for(int i=0;i<n;i++) {
 		for(int j=0;j<n-i;j++) {
@@ -412,7 +474,7 @@ void ptrn19(int n) {
 * *             * * 
 *                 * 
 */
-void ptrn20(int n) {
+void pattern20(int n) {
 	int spaces = 2*n-2;
 	for(int i=1; i<=2*n-1; i++) {
 		int stars = i<=n ? i : 2*n-i;
@@ -438,7 +500,7 @@ void ptrn20(int n) {
 *       * 
 * * * * * 
 */
-void ptrn21(int n) {
+void pattern21(int n) {
 	for(int i=1; i<=n; i++) {
 		for(int j=1; j<=n; j++) {
 			char ch = (i==1 || i==n || j==1 || j==n) ? '*' : ' ';
@@ -459,7 +521,7 @@ void ptrn21(int n) {
 5 4 4 4 4 4 4 4 5 
 5 5 5 5 5 5 5 5 5
 */
-void ptrn22(int n) {
+void pattern22(int n) {
 	for(int i=0; i<2*n-1; i++) {
 		for(int j=0; j<2*n-1; j++) {
 			int top = i;
@@ -473,14 +535,14 @@ void ptrn22(int n) {
 }
 
 void (*patterns[22])(int) = {
-	ptrn1, ptrn2, ptrn3, ptrn4, ptrn5, ptrn6, ptrn7, ptrn8, ptrn9, ptrn10, ptrn11, 
-	ptrn12, ptrn13, ptrn14, ptrn15, ptrn16, ptrn17, ptrn18, ptrn19, ptrn20, ptrn21, ptrn22
+	pattern1, pattern2, pattern3, pattern4, pattern5, pattern6, pattern7, pattern8, pattern9, pattern10, pattern11, 
+	pattern12, pattern13, pattern14, pattern15, pattern16, pattern17, pattern18, pattern19, pattern20, pattern21, pattern22
 };
 // This is a declaration and initialization of an array of function pointers in C/C++.
 /*
 void (*patterns[22])(int) = {
-    ptrn1, ptrn2, ptrn3, ptrn4, ptrn5, ptrn6, ptrn7, ptrn8, ptrn9, ptrn10, ptrn11, 
-	ptrn12, ptrn13, ptrn14, ptrn15, ptrn16, ptrn17, ptrn18, ptrn19, ptrn20, ptrn21, ptrn22
+    pattern1, pattern2, pattern3, pattern4, pattern5, pattern6, pattern7, pattern8, pattern9, pattern10, pattern11, 
+	pattern12, pattern13, pattern14, pattern15, pattern16, pattern17, pattern18, pattern19, pattern20, pattern21, pattern22
 };
 
 Break it down:-
@@ -492,8 +554,8 @@ So: patterns is an array containing 22 functions, where each function has this s
 	void someFunction(int);
 
 We can call them like this:
-	patterns[0](5);   // calls ptrn1(5)
-	patterns[1](10);  // calls ptrn2(10)
+	patterns[0](5);   // calls pattern1(5)
+	patterns[1](10);  // calls pattern2(10)
 
 A simpler mental model: 
 patterns[i] means: “the i-th function”
