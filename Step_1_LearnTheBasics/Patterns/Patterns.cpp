@@ -423,89 +423,164 @@ void pattern18(int n) {
 }
 
 /*
-* * * * * * * * * * 
-* * * *     * * * * 
-* * *         * * * 
-* *             * * 
-*                 * 
-*                 * 
-* *             * * 
-* * *         * * * 
-* * * *     * * * * 
-* * * * * * * * * * 
+********** 
+****  **** 
+***    *** 
+**      ** 
+*        *
+*        *
+**      ** 
+***    *** 
+****  **** 
+**********
 */
 void pattern19(int n) {
+
+    for (int i = 0; i < 2*n; i++) {
+        int stars = (i < n) ? (n - i) : (i - n + 1);
+        int spaces = 2 * (n - stars);		// spaces = 2 * n - 2 * stars
+
+        // stars
+        for (int j = 0; j < stars; j++) {
+            cout << "*";
+        }
+
+        // spaces
+        for (int j = 0; j < spaces; j++) {
+            cout << " ";
+        }
+
+        // stars
+        for (int j = 0; j < stars; j++) {
+            cout << "*";
+        }
+
+        cout << endl;
+    }
+
+	// Method - 2 : Separately printing increasing void & decreasing void
+	/*
 	// Increasing Void
-	for(int i=0;i<n;i++) {
-		for(int j=0;j<n-i;j++) {
-			cout << "* ";
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j < n - i; j++) {
+			cout << "*";
 		}
-		for(int j=1;j<=2*i;j++) {
-			cout << "  ";
+		for(int j = 1; j <= 2 * i; j++) {
+			cout << " ";
 		}
-		for(int j=0;j<n-i;j++) {
-			cout << "* ";
+		for(int j = 0; j < n - i; j++) {
+			cout << "*";
 		}
 		cout << endl;
 	}
+	
 	// Decreasing Void
-	for(int i=0;i<n;i++) {
-		for(int j=0; j<=i; j++){
-			cout << "* ";
+	for(int i = 0; i < n; i++) {
+		for(int j = 0; j <= i; j++){
+			cout << "*";
 		}
-		for(int j=0;j<2*(n-i-1);j++) {
-			cout << "  ";
+		for(int j = 0; j < 2 * (n - i - 1); j++) {
+			cout << " ";
 		}
-		for(int j=0; j<=i; j++){
-			cout << "* ";
+		for(int j = 0; j <= i; j++){
+			cout << "*";
 		}
 		cout << endl;
 	}
+	
+	// `decreasing void` can also be printed using the same code as `increasing void`, by just changing the outer for loop
+	// Another way to print Decreasing Void
+	for(int i = n-1; i >= 0; i--) {
+		for(int j = 0; j < n - i; j++) {
+			cout << "*";
+		}
+		for(int j = 1; j <= 2 * i; j++) {
+			cout << " ";
+		}
+		for(int j = 0; j < n - i; j++) {
+			cout << "*";
+		}
+		cout << endl;
+	}
+	*/
 }
 
 /*
-*                 * 
-* *             * * 
-* * *         * * * 
-* * * *     * * * * 
-* * * * * * * * * * 
-* * * *     * * * * 
-* * *         * * * 
-* *             * * 
-*                 * 
+*        * 
+**      ** 
+***    *** 
+****  **** 
+********** 
+****  **** 
+***    *** 
+**      ** 
+*        * 
 */
 void pattern20(int n) {
+
+	for (int i = 1; i < 2*n; i++) {
+        int stars = (i <= n) ? i : (2*n - i);
+        int spaces = 2 * (n - stars);			// spaces = 2 * n - 2 * stars
+
+        // stars
+        for (int j = 0; j < stars; j++) {
+            cout << "*";
+        }
+
+        // spaces 
+        for (int j = 0; j < spaces; j++) {
+            cout << " ";
+        }
+
+        // stars
+        for (int j = 0; j < stars; j++) {
+            cout << "*";
+        }
+
+        cout << endl;
+    }
+
+	/*
 	int spaces = 2*n-2;
-	for(int i=1; i<=2*n-1; i++) {
-		int stars = i<=n ? i : 2*n-i;
-		for(int j=0; j<stars; j++) {
-			cout << "* ";
+
+	for(int i = 1; i <= 2 * n - 1; i++) {
+		int stars = (i <= n) ? i : (2 * n - i);
+	
+		for(int j = 0; j < stars; j++) {
+			cout << "*";
 		}
-		for(int j=0; j<spaces; j++) {
-			cout << "  ";
+	
+		for(int j = 0; j < spaces; j++) {
+			cout << " ";
 		}
-		for(int j=0; j<stars; j++) {
-			cout << "* ";
+	
+		for(int j = 0; j < stars; j++) {
+			cout << "*";
 		}
+	
 		cout << endl;
-		if(i<n) spaces-=2;
-		else spaces+=2;
+
+		if (i < n) spaces -= 2;
+		else spaces += 2;
 	}
+	*/
 }
 
 /*
-* * * * * 
-*       * 
-*       * 
-*       * 
-* * * * * 
+*****
+*   *
+*   *
+*   *
+*****
 */
 void pattern21(int n) {
-	for(int i=1; i<=n; i++) {
-		for(int j=1; j<=n; j++) {
-			char ch = (i==1 || i==n || j==1 || j==n) ? '*' : ' ';
+	for(int i = 1; i <= n; i++) {
+		for(int j = 1; j <= n; j++) {
+			char ch = (i == 1 || i == n || j == 1 || j == n) ? '*' : ' ';
+		
 			cout << ch << " ";
 		}
+
 		cout << endl;
 	}
 }
@@ -522,16 +597,45 @@ void pattern21(int n) {
 5 5 5 5 5 5 5 5 5
 */
 void pattern22(int n) {
-	for(int i=0; i<2*n-1; i++) {
-		for(int j=0; j<2*n-1; j++) {
+
+/*
+5 5 5 5 5 5 5 5 5 					5 5 5 5 5 5 5 5 5 				0 0 0 0 0 0 0 0 0 
+5 4 4 4 4 4 4 4 5 					5 5 5 5 5 5 5 5 5 				0 1 1 1 1 1 1 1 0 
+5 4 3 3 3 3 3 4 5 					5 5 5 5 5 5 5 5 5 				0 1 2 2 2 2 2 1 0 
+5 4 3 2 2 2 3 4 5 					5 5 5 5 5 5 5 5 5               0 1 2 3 3 3 2 1 0 
+5 4 3 2 1 2 3 4 5        --->		5 5 5 5 5 5 5 5 5 		-		0 1 2 3 4 3 2 1 0
+5 4 3 2 2 2 3 4 5 					5 5 5 5 5 5 5 5 5 				0 1 2 3 3 3 2 1 0 
+5 4 3 3 3 3 3 4 5 					5 5 5 5 5 5 5 5 5 				0 1 2 2 2 2 2 1 0 
+5 4 4 4 4 4 4 4 5 					5 5 5 5 5 5 5 5 5 				0 1 1 1 1 1 1 1 0 
+5 5 5 5 5 5 5 5 5					5 5 5 5 5 5 5 5 5  				0 0 0 0 0 0 0 0 0 
+
+The pattern can be best understood by considering it as subtraction of the two grid patterns as above
+One of the two patterns is made of all `n` values, while the other one can be build by considering the row & column values.
+*/
+
+	for (int i = 0; i < 2*n - 1; i++) {
+        for (int j = 0; j < 2*n - 1; j++) {
+            int x = (i < n) ? i : (2*(n-1) - i);
+            int y = (j < n) ? j : (2*(n-1) - j);
+
+            cout << n - min(x, y) << " ";
+        }
+        cout << endl;
+    }
+
+	/*
+	for(int i = 0; i < 2*n - 1; i++) {
+		for(int j = 0; j < 2*n - 1; j++) {
 			int top = i;
 			int left = j;
-			int right = 2*n-2-j;
-			int bottom = 2*n-2-i;
+			int right = 2*n - 2 - j;
+			int bottom = 2*n - 2 - i;
+
 			cout << n - min(min(top, bottom), min(left, right)) << " ";
 		}
 		cout << endl;
 	}
+	*/
 }
 
 void (*patterns[22])(int) = {
