@@ -5,15 +5,15 @@ using namespace std;
 
 int main() {
     /*
-        maps take logarithmic time for both storing and fetching. This logarithmic complexity is due to storing in sorted order.
-        But unordered_map stores without order so it can perform the operations in O(1), hence unordered_map is preferred over map for hashing.
-
-        Complexity Ananlysis -->
-        map : Best, Average & Worst Case --> O(log n)
-        unordered_map : Best & Average Case --> O(1) , Worst Case --> O(n).. Worst case happens due to internal collisions
-
-        Even though the worst case complexity of unordered_map is higher than map but we still prefer unordered_map since worst cases are very rare
-        Map is used for hashing only when we get TLE using unordered_map (worst case occuring) 
+    maps take logarithmic time for both storing and fetching. This logarithmic complexity is due to storing in sorted order.
+    But unordered_map stores without order so it can perform the operations in O(1), hence unordered_map is preferred over map for hashing.
+    
+    Complexity Ananlysis -->
+    map : Best, Average & Worst Case --> O(log n)
+    unordered_map : Best & Average Case --> O(1) , Worst Case --> O(n).. Worst case happens due to internal collisions
+    
+    Even though the worst case complexity of unordered_map is higher than map but we still prefer unordered_map since worst cases are very rare
+    Map is used for hashing only when we get TLE using unordered_map (worst case occuring) 
     */ 
     // In maps we can even take pairs or any data structure as keys but in unordered_map we can't take complex data structures as keys ...
     // only int, double, char, long etc can be used as keys for unordered_map

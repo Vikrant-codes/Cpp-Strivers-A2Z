@@ -70,9 +70,10 @@
 <details>
 <summary> Learn Basic Hashing </summary>
 
-- Basic Hashing
-- Counting Frequencies of Array Elements
+- Intro & Basics of Hashing
+- Counting Frequencies of array elements
 - Highest Occurring Element in an Array
+- Highest/Lowest frequency elements
 - Second Highest Occurring Element
 - Sum of Highest and Lowest Frequency
 
