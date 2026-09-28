@@ -1,5 +1,3 @@
-// GFG - All divisors of a Number : Easy
-
 #include <iostream>
 #include <vector>
 #include <algorithm>
@@ -153,62 +151,6 @@ vector<int> getDivisors(int n) {
         small.push_back(large[i]);
     
     return small;
-}
-
-/*
-GFG - Sum of Divisors : Basic
-
-Given a natural number n, calculate sum of all its proper divisors. 
-A proper divisor of a natural number is the divisor that is strictly less than the number.
-
-Examples :-
-
-Input: n = 10 __ Output: 8 
-Explanation: Proper divisors 1 + 2 + 5 = 8. 
-
-Input: n = 6 __ Output: 6
-Explanation: Proper divisors 1 + 2 + 3 = 6. 
-
-Constraints :-
-• 2 <= n <= 10^6
-*/
-long long int divSumNaive(int n) {
-    long long int sum = 0;
-    
-    for (int i = 1; i < n; i++) 
-        if (n % i == 0)
-            sum += i;
-            
-    return sum;
-}
-
-// Extracting factors in pairs
-long long int divSum(int n) {
-    long long int sum = 1;
-    
-    // why we initilized sum as 1?
-    /*
-    If we ran the loop from 1 to √n, then we would have to manually handle the condition for factor pair (1, n).
-    Since, we don't want to include `n` in the sum of factors of n, so we would need to use handle this using condition 
-        if (n / i != i && n / i != n)
-            sum += (n / i);
-
-    So, either we need to handle this case using conditions like `if(n/i != i && n/i != n)` or `if(n/i != i && i != 1)`
-    or, we can simply run the loop starting from 2.
-    For loop starting from 2, we would have no need to handle the case for when the factor pair is `n` itself.
-    In this case, we need to initialize sum as `1`, since we are not considering the divisor `1` during loop.
-    */
-
-    for (int i = 2; i*i <= n; i++) {
-        if (n % i == 0) {
-            sum += i;
-            
-            if (n / i != i)
-                sum += (n / i);
-        }
-    }
-    
-    return sum;
 }
 
 int main() {

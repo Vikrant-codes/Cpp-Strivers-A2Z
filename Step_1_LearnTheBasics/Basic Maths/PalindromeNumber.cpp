@@ -49,6 +49,7 @@ Constraints :-
 Follow up: Could you solve it without converting the integer to a string?
 */
 
+// Time Complexity : O(log10(n))
 bool isPalindrome(int x) {
     // if number is negative, it cannot be a palindrome
     if (x < 0) 

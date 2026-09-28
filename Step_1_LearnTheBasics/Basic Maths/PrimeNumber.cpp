@@ -1,5 +1,3 @@
-// GFG - Prime Number : Easy
-
 /*
 >> Prime Number
 A prime number is a natural number greater than 1 that has exactly two factors: 1 and itself.
@@ -44,7 +42,7 @@ So, we can just check for divisors in this range and conclude whether the number
 While checking for divisibility in the range [2, n-1], this range doesn't exist for n = 1 & 2.
 So, we must handle these cases as loop won't run for n = 1 and n = 2.
 
-Again to check for divisors from this range, this can be done in either O(n) or O(sqrt(n)).
+Again to check for divisors from this range, this can be done in either O(n) or O(√n).
 */
 
 // <-- Count factors approach --> 
@@ -60,10 +58,10 @@ bool isPrimeNaive(int n) {
     return cnt == 2;
 }
 
-// Efficient Approach : Time Complexity: O(sqrt(n)) __ Space Complexity: O(1)
+// Efficient Approach : Time Complexity: O(√n) __ Space Complexity: O(1)
 /*
 We just need to count all the factors (divisors) of n and check whether the count equals 2. 
-We already know how to get all the divisors of a number 'n' in sqrt(n) time.
+We already know how to get all the divisors of a number 'n' in √n (sqrt n) time.
 So, we simply use that approach to count the divisors / factors of n and check if that count equals 2.
 */
 bool isPrime(int n) {
@@ -94,7 +92,7 @@ bool isPrimeNaiveX(int n) {
     return true;
 }
 
-// Efficient Approach : Time Complexity : O(sqrt(n)) __ Space Complexity : O(1)
+// Efficient Approach : Time Complexity : O(√n) __ Space Complexity : O(1)
 bool isPrimeX(int n) {
     if (n < 2) return false;
     

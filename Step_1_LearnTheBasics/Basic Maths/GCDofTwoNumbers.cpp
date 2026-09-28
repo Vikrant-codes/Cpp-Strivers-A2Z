@@ -1,5 +1,3 @@
-// GFG - GCD of two numbers : Basic
-
 /*
 >> Greatest Common Divisor (GCD) or Highest Common Factor (HCF)
 The Greatest Common Divisor (GCD), also known as the Highest Common Factor (HCF), of two numbers 
@@ -47,12 +45,14 @@ int gcdNaive(int a, int b) {
 }
 
 /*
-Since we need the greatest common factor 
-instead of checking from 1 to min(a, b) and storing the common divisor as gcd each time
-we can directly check from min(a, b) to 1 in decreasing order, 
-in this way, the first common factor found will be the maximum (greatest).
-So, we won't have to store / track the maximum common divisor and return only the first found divisor.
-But, in worst cases, this solution will also run for O(min(a, b)) for ex- a = 11, b = 17
+Since we need the greatest common divisor, 
+so instead of checking from 1 to min(a, b) and storing the common divisor as gcd each time,
+we can directly check from min(a, b) to 1 in decreasing order.
+In this way, the first common factor found will be the maximum (greatest) and we can directly return that.
+So, we won't have to store / track the maximum common divisor and as we can return the first divisor found.
+But, in worst cases, this solution will also run for O(min(a, b)) for ex- a = 11, b = 17.
+(This worst case is when the two numbers are co-primes).
+So, its complexity is still the same as above naive approach, which is O(min(a, b)).
 */
 int gcdNaive2(int a, int b) {
     int m = min(a, b);

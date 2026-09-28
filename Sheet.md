@@ -34,13 +34,19 @@
 <details>
 <summary> Know Basic Maths </summary>
 
-- Count Digits of a Number
-- Reverse a Number
+- Count digits of a number
+- Count odd digits in the number
+- Get the largest digit in the number
+- Reverse a number
 - Palindrome Number
+- Armstrong Number
+- Factorial of a number
 - GCD / HCF of two numbers
-- Armstrong Numbers
+- LCM of two numbers
 - Print / Get Divisors of a Number
+- Check for Perfect Number
 - Prime Number
+- Count of Prime numbers till n
 
 </details>
 <br>

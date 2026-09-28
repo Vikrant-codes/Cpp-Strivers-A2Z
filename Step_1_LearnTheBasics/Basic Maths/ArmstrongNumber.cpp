@@ -1,5 +1,3 @@
-// GFG - Armstrong Numbers : Easy
-
 /*
 >> Armstrong Numbers 
 
@@ -41,7 +39,7 @@ bool isArmstrong(int n) {
     return sum == n;       
 }
 
-// GFG Variant 
+// GFG - Armstrong Numbers : Easy 
 /*
 GFG - Armstrong Numbers : Easy
 

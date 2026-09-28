@@ -18,6 +18,7 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
+// Time Complexity : O(log10(n))
 int reverseNumber(int n) {
     int rev = 0;
 
