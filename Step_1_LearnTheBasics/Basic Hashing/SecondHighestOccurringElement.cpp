@@ -25,7 +25,34 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-int secondMostFrequentElement(vector<int>& nums) {
+// Naive Approach: Time Complexity : O(n + 2k) __ Space Complexity : O(k)
+/*
+>> Intuition
+
+We can use an unordered_map to store the frequency of every element.
+Then, we first traverse the map and find the maximum frequency among all elements.
+After that, we traverse the map again and look only at elements whose frequency is less than the maximum frequency, 
+because an element having the maximum frequency cannot be the second most frequent element.
+Among these remaining elements, we track the element with the highest frequency. This gives us the second highest frequency.
+While doing this, if two elements have the same frequency, we keep the smaller value.
+We also initialize ans to -1. This handles the case where 
+no element has a frequency smaller than the maximum frequency — meaning there is no second most frequent element.
+
+So the thought process is:
+• Count frequency of every element.
+• Find the maximum frequency.
+• Ignore all elements having that maximum frequency.
+• Among the remaining elements, find the highest frequency.
+• If frequencies tie, choose the smaller element.
+• If nothing remains, return -1.
+
+>> Complexity Analysis
+Let n be the size of the array and k the number of distinct elements.
+
+Time: O(n) average — O(n) to build the frequency map + O(2*k) for the two map traversals.
+Space: O(k) — the frequency map stores the distinct elements.
+*/
+int secondMostFrequentElementNaive(vector<int>& nums) {
     unordered_map<int, int> freq;
 
     for (int x : nums)
@@ -46,6 +73,44 @@ int secondMostFrequentElement(vector<int>& nums) {
 
     return ans;
 }
+
+// Optimal Approach: Time Complexity : O(n + k) __ Space Complexity : O(k)
+/*
+>> Intuition
+
+Just like the previous approach, we can use an unordered_map to store the frequency of every element.
+However, instead of first finding the maximum frequency and then making another traversal to find the second maximum, 
+we can try to find secondMaxFreqEle in a single traversal of the frequency map.
+
+To do this, we maintain two elements while traversing:
+• maxFreqEle → element having the highest frequency seen so far
+• secondMaxFreqEle → element having the second-highest frequency seen so far
+
+Now, for every (num, count) pair:
+•   If count > freq[maxFreqEle], then num has become the new maximum-frequency element. 
+    Therefore, the old maxFreqEle now becomes the second maximum, 
+    so we first move it to secondMaxFreqEle, and then update maxFreqEle.
+
+•   If count == freq[maxFreqEle], both elements have the same maximum frequency. 
+    So we keep the smaller value as maxFreqEle.
+    
+    This tie-breaking is important because the current maxFreqEle might become secondMaxFreqEle later 
+    when we encounter an element with an even higher frequency. 
+    Therefore, we make sure maxFreqEle itself always contains the smallest value among elements having the maximum frequency.
+
+•   Otherwise, count is smaller than the maximum frequency, so num can potentially become secondMaxFreqEle. 
+    We update it if its frequency is greater than the current second maximum frequency. 
+    If the frequencies are equal, we keep the smaller value.
+
+Thus, with maxFreqEle and secondMaxFreqEle being maintained together, 
+we can find the required answer in one traversal of the frequency map.
+
+>> Complexity Analysis
+Let n be the size of the array and k the number of distinct elements.
+
+Time: O(n) average — O(n) to build the frequency map + O(k) for the single map traversal.
+Space: O(k) — the frequency map stores each distinct element.
+*/
 
 int secondMostFrequentElement(vector<int>& nums) {
     unordered_map<int, int> freq;

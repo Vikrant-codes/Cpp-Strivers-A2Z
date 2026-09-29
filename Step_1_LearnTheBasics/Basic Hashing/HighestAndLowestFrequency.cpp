@@ -1,10 +1,13 @@
 /*
 Highest / Lowest Frequency Elements
 
-Given an array of n elements.
-Return the highest and lowest frequency elements in a result vector.
+Given an integer array nums, find:
+1. The element with the highest frequency.
+2. The element with the lowest frequency.
+
 If there are multiple elements that have the highest frequency or lowest frequency, pick the smallest element.
-The result vector must have the highest frequency element at 0th index and lowest frequency element at 1st index.
+
+Return the result as: {mostFrequentElement, leastFrequentElement}
 
 Examples :-
 
@@ -29,20 +32,37 @@ Constraints :-
 #include <unordered_map>
 using namespace std;
 
-// Time Complexity : O(n) __ Space Complexity : O(n)
+// Time Complexity : O(n + k) __ Space Complexity : O(k)
 /*
-We can use an unordered map to store the frequency of all elements.
+We can use an unordered_map to store the frequency of every element in the array.
     `unordered_map<int, int> freq;`
-Then, we can traverse the map and track the maximum and minimum frequency element.
 
-Initially, we consider the first array element to be the maximum and minimum frequency element.
-then, we traverse the map and for each (num, count) pair of map,
-if the current element's freq (`count`) is greater than the frequency of max_freq_element,
-we update our max_freq_element, by re-assigning the value of `num` to it.
-Also, in case when count == freq[max_freq_element], we track it such that max_freq_element holds the smaller value.
+Once we have the frequencies, we can traverse the map and keep track of the element with the maximum frequency 
+and the element with the minimum frequency.
 
-Similarly, we can also track the minimum frequency element, 
-while making sure it holds the smaller value in case of count == freq[min_freq_element].
+Initially, we consider the first array element as both the maximum-frequency and minimum-frequency element.
+
+Then, while traversing the map, for every (num, count) pair:
+• If the current element's frequency count is greater than the frequency of maxFreqEle, we update maxFreqEle to num.
+• If count is equal to the frequency of maxFreqEle, then both elements have the same frequency, 
+    so we need to apply the tie-breaking condition: the smaller value should be chosen. 
+    Therefore, we update maxFreqEle only if num < maxFreqEle.
+
+Similarly, we track the minimum-frequency element:
+• If count is less than the frequency of minFreqEle, we update minFreqEle to num.
+• If count is equal to the frequency of minFreqEle, we again apply the tie-breaking condition and keep the smaller value.
+
+So, while traversing the frequency map, we are essentially maintaining two candidates:
+maxFreqEle → highest frequency, and smallest value in case of a tie
+minFreqEle → lowest frequency, and smallest value in case of a tie
+
+This lets us find both required elements in a single traversal of the frequency map.
+
+>> Complexity Analysis
+Let n be the size of the array and k be the number of distinct elements.
+
+Time: O(n) average — O(n) to build the frequency map + O(k) to traverse it, where k ≤ n.
+Space: O(k) — the frequency map stores each distinct element and its frequency.
 */
 vector<int> getFrequencies(vector<int>& nums) {
     unordered_map<int, int> freq;

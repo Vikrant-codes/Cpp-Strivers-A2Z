@@ -32,6 +32,17 @@ Constraints :-
 using namespace std;
 
 // Time Complexity : O(n) __ Space Complexity : O(1), if we consider the space for result vector then O(n)
+/*
+Since every element x lies in the range 1 to n, 
+we can use an array freq of size n, where index x-1 represents the number x.
+
+We traverse arr once and simply increment freq[x-1] for every occurrence of x. 
+The resulting array contains the frequency of every number from 1 to n.
+
+>> Complexity Analysis
+Time: O(n) — one traversal of the input array.
+Space: O(n) — frequency array of size n.
+*/
 vector<int> frequencyCount(vector<int>& arr) {
     int n = arr.size();
     

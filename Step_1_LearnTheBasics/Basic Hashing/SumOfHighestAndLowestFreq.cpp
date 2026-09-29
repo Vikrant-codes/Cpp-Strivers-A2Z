@@ -21,6 +21,18 @@ Constraints :-
 #include<bits/stdc++.h>
 using namespace std;
 
+// Time Complexity : O(n + k) __ Space Complexity : O(k)
+/*
+>> Intuition
+We can use an unordered_map to store the frequency of every element.
+Then, in a single traversal of the frequency map, we track the maximum frequency and minimum frequency seen so far. 
+Finally, we return their sum.
+
+>> Complexity Analysis
+Let n = size of array nums, k = number of distinct elements.
+Time: O(n) + O(k)
+Space: O(k)
+*/
 int sumHighestAndLowestFrequency(vector<int>& nums) {
     unordered_map<int, int> freq;
 
