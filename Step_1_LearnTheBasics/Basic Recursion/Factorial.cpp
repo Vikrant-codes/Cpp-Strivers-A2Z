@@ -3,6 +3,25 @@
 #include <iostream>
 using namespace std;
 
+/*
+TUF - 921. Factorial of a Given Number
+
+Given an integer n, return the factorial of n.
+Factorial of a non-negative integer, is the multiplication of all integers smaller than or equal to n 
+(use 64-bits to return answer).
+
+Examples :-
+
+Input : n = 3 __ Output : 6
+Explanation : Factorial = 1 * 2 * 3 => 6
+
+Input : n = 5 __ Output : 120
+Explanation : Factorial = 1 * 2 * 3 * 4 * 5 => 120
+
+Constraints :-
+• 0 <= n <= 15
+*/
+
 // Time Complexity : O(n) __ Space Complexity : O(n)
 /*
 >> Time Complexity: O(n)
@@ -21,6 +40,15 @@ fact(0)
 ---
 There are about n stack frames.
 */
+
+long long int factorial(int n){
+	if (n == 0) 
+        return 1;
+        
+    return 1LL * n * factorial(n-1);
+}
+
+// <---------------------------->
 
 // Using Parameterized Recursion
 
@@ -51,12 +79,5 @@ int fact(int n) {
 }
 
 int main() {
-    int n = 5;
-
-    fact(n, 1);
-
-    cout << "Factorial is: " << factX(n, 1) << endl;
-    cout << "Factorial is: " << fact(n) << endl;
-
     return 0;
 }

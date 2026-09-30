@@ -123,40 +123,37 @@ We use fast-exponentiation to efficiently find the two exponents.
 */
 
 // Using Recursive implementation of Fast-Exponentiation
-int constant = 1e9+7;
-
-int power(long long base, long long exp) {
+int fastExp(long long base, long long exp) {
     if (exp == 0) return 1;
 
     long long val = base * base;
-    val = val % constant;
+    val = val % MOD;
     
     long long ans;
     
     if (exp % 2 == 0) 
-        ans = power(val, exp / 2);
+        ans = fastExp(val, exp / 2);
     
     else
-        ans = base * power(val, exp / 2);
+        ans = base * fastExp(val, exp / 2);
 
-    return ans % constant;
+    return ans % MOD;
 }
 
 int countGoodNumbers(long long n) {
+    // x is the exponent term corresponding to count of even index positions. pow(5, x)
+    // y is the exponent term corresponding to count of odd index positions. pow(4, y)
     long long x = n / 2, y = n / 2;
-    // x is the exponent term corresponding to count of even index positions. power(5, x)
-    // y is the exponent term corresponding to count of odd index positions. power(4, y)
-
     if (n % 2 == 1) x++;
     
     // x = ceil(n / 2), y = floor(n / 2)
+    // x = (n+1) / 2, y = n / 2
+    // x = n / 2 + (n % 2), y = n / 2
 
-    // x = (n+1) / 2, y = n/2
-
-    int val1 = power(5, x);
-    int val2 = power(4, y);
+    int val1 = fastExp(5, x);
+    int val2 = fastExp(4, y);
     
-    return (1LL * val1 * val2) % constant;
+    return (1LL * val1 * val2) % MOD;
 }
 
 int main() {

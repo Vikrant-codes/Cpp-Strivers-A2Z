@@ -92,8 +92,8 @@ using namespace std;
 // helper method to recursively process the digits in the string and convert it to an integer.
 
 // Using long long to store the current number to avoid overflow during the calculation.
-int helperLongLong(string& s, int i, int n, bool isPositive, long long num) {
-    if (i == n || ! isdigit(s[i]) ) {
+int helperLongLong(string& s, int i, bool isPositive, long long num) {
+    if (i == s.length() || ! isdigit(s[i]) ) {
         return (int) (isPositive ? num : -num);
     }
 
@@ -105,12 +105,12 @@ int helperLongLong(string& s, int i, int n, bool isPositive, long long num) {
     
     if (isPositive && num == INT_MAX) return INT_MAX;
 
-    return helper(s, i+1, n, isPositive, num);
+    return helperLongLong(s, i+1, isPositive, num);
 }
 
 // Using only int variables to store the number and check for overflow before it happens.
-int helper(string& s, int i, int n, bool isPositive, int num) {
-    if (i == n || ! isdigit(s[i]) ) {
+int helper(string& s, int i, bool isPositive, int num) {
+    if (i == s.length() || ! isdigit(s[i]) ) {
         return isPositive ? num : -num;
     }
 
@@ -138,7 +138,7 @@ int helper(string& s, int i, int n, bool isPositive, int num) {
 
     num = num * 10 + dig;
 
-    return helper(s, i+1, n, isPositive, num);
+    return helper(s, i+1, isPositive, num);
 }
 
 int myAtoi(string s) {
@@ -162,8 +162,10 @@ int myAtoi(string s) {
     // return helperLongLong(s, i, n, isPositive, num);
 
     // Using only int variables to store the number and check for overflow before it happens.
-    int num = 0;
-    return helper(s, i, n, isPositive, num);
+    // int num = 0;
+    // return helper(s, i, isPositive, num);
+
+    return helper(s, i, isPositive, 0);
 }
 
 int main() {

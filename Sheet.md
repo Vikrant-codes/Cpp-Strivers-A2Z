@@ -60,8 +60,11 @@
 - Print n to 1 using recursion
 - Sum of first n numbers
 - Factorial of a given number
-- Reverse an array
-- Check if string is palindrome
+- Sum of array elements using recursion
+- Reverse a string using recursion
+- Check if string is palindrome using recursion
+- Reverse an array using recursion
+- Check array is sorted using recursion
 - Fibonacci Number
 
 </details>
@@ -338,8 +341,8 @@
 - Recursive Implementation of atoi => Leetcode - 8. String to Integer (atoi)
 - Pow(x, n) => Leetcode - 50. Pow(x, n)
 - Count Good Numbers => Leetcode - 1922. Count Good Numbers 
+- Reverse a Stack using Recursion
 - Sort a Stack using Recursion
-- Reverse a Stack
 
 </details>
 <br>
@@ -347,12 +350,12 @@
 <details>
 <summary>Subsequences Pattern</summary>
 
-- Generate Binary Strings without consecutive 1s
-- Generate Parentheses => Leetcode - 22. Generate Parentheses
-- Power Set => Leetcode - 78. Subsets
 - Learn All Patterns of Subsequences (Theory)
-- Count all subsequences with sum K
 - Check if there exists a subsequence with sum K
+- Count all subsequences with sum K
+- Generate Binary Strings without consecutive 1s
+- Power Set => Leetcode - 78. Subsets
+- Generate Parentheses => Leetcode - 22. Generate Parentheses
 - Combination Sum => Leetcode - 39. Combination Sum
 - Combination Sum II => Leetcode - 40. Combination Sum II
 - Subsets I
