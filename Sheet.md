@@ -26,7 +26,6 @@
 <summary> Learn C++ STL / Java Collections </summary>
 
 - C++ STL
-- Java Collections
 
 </details>
 <br>
@@ -34,19 +33,23 @@
 <details>
 <summary> Know Basic Maths </summary>
 
+- Swap two numbers
 - Count digits of a number
 - Count odd digits in the number
 - Get the largest digit in the number
 - Reverse a number
 - Palindrome Number
 - Armstrong Number
+- Disarium Number
 - Factorial of a number
-- GCD / HCF of two numbers
-- LCM of two numbers
 - Print / Get Divisors of a Number
 - Check for Perfect Number
+- GCD / HCF of two numbers
+- LCM of two numbers
+- Perfect Square
 - Prime Number
 - Count of Prime numbers till n
+- Fibonacci Number & Sequence
 
 </details>
 <br>
@@ -55,17 +58,18 @@
 <summary> Learn Basic Recursion </summary>
 
 - Understand recursion by printing something n times
-- Print name n times using recursion
-- Print 1 to n using recursion
-- Print n to 1 using recursion
+- Print name n times / 1 to n / n to 1 using recursion
 - Sum of first n numbers
+- Power using recursion
 - Factorial of a given number
-- Sum of array elements using recursion
-- Reverse a string using recursion
-- Check if string is palindrome using recursion
 - Reverse an array using recursion
-- Check array is sorted using recursion
-- Fibonacci Number
+- Sum of array elements using recursion
+- Check if an array is sorted using recursion
+- Reverse a string using recursion
+- Check if a string is palindrome using recursion
+- Check if a number is prime using recursion
+- Sum of Digits in a Given Number => Leetcode - 258. Add Digits
+- Fibonacci Number => Leetcode - 509. Fibonacci Number
 
 </details>
 <br>
@@ -74,7 +78,7 @@
 <summary> Learn Basic Hashing </summary>
 
 - Intro & Basics of Hashing
-- Counting Frequencies of array elements
+- Frequencies in a Limited Array
 - Highest Occurring Element in an Array
 - Highest/Lowest frequency elements
 - Second Highest Occurring Element
@@ -351,10 +355,23 @@
 <summary>Subsequences Pattern</summary>
 
 - Learn All Patterns of Subsequences (Theory)
+- Print all subsequences
+- Print all subsequences with sum K
+- Find all subsequences with sum K
+- Print any one subsequence with sum K
 - Check if there exists a subsequence with sum K
 - Count all subsequences with sum K
+- Generate All Binary Strings
+- Generate All Binary Strings from given string having placeholders
 - Generate Binary Strings without consecutive 1s
 - Power Set => Leetcode - 78. Subsets
+
+</details>
+<br>
+
+<details>
+<summary>Medium</summary>
+
 - Generate Parentheses => Leetcode - 22. Generate Parentheses
 - Combination Sum => Leetcode - 39. Combination Sum
 - Combination Sum II => Leetcode - 40. Combination Sum II
@@ -362,13 +379,6 @@
 - Subsets II => Leetcode - 90. Subsets II
 - Combination Sum III => Leetcode - 216. Combination Sum III
 - Letter Combinations of a Phone Number => Leetcode - 17. Letter Combinations of a Phone Number
-
-</details>
-<br>
-
-<details>
-<summary>Other Problems (from Recursion Playlist)</summary>
-
 - Permutations of an Array/String => Leetcode - 46. Permutations
 
 </details>
@@ -379,11 +389,11 @@
 
 - Palindrome partitioning => Leetcode - 131. Palindrome Partitioning
 - Word Search => Leetcode - 79. Word Search
-- N Queen
 - Rat in a Maze
-- Word Break
+- N Queen
 - M Coloring Problem
 - Sudoku Solver
+- Word Break
 - Expression Add Operators
 
 </details>

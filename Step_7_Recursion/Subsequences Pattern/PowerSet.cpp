@@ -57,7 +57,7 @@ Conceptually, this is why subsequence generation is a binary recursion tree and 
 #include <bits/stdc++.h>
 using namespace std;
 
-// The power set have two implementations -- using Recursion & Bit Manipulation
+// The power set problem have two solutions -- using Recursion (Backtracking) & Bit Manipulation
 
 // Leetcode - 78. Subsets
 /*

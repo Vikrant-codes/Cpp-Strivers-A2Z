@@ -1,8 +1,11 @@
-// Get the nth term of Fibonacci Series using Recursion
-// Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 55
-// 0 is often considered as the 0th term of fibonacci series
+/*
+Get the nth term of Fibonacci Series using Recursion
 
-// Leetcode - 509. Fibonacci Number
+Fibonacci Series: 0 1 1 2 3 5 8 13 21 34 55
+
+0 is often considered as the 0th term of fibonacci series
+*/
+
 /*
 Leetcode - 509. Fibonacci Number : Easy
 
@@ -133,18 +136,13 @@ It's commonly simplified to O(2ⁿ).
 The space complexity is O(n) due to the maximum recursion depth.
 */
 
-int fibonacci(int n) {
+int fib(int n) {
     if (n <= 1)
         return n;
 
-    return fibonacci(n - 1) + fibonacci(n - 2);
+    return fib(n - 1) + fib(n - 2);
 }
 
 int main() {
-    cout << "Fibonacci Series: ";
-
-    for (int i = 0; i <= 20; i++)
-        cout << fibonacci(i) << " ";
-
     return 0;    
 }

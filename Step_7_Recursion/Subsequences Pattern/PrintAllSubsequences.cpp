@@ -193,7 +193,6 @@ N-Queens, Sudoku solvers, and many other backtracking algorithms.
 */
 
 // Time Complexity : O(n * 2^n) __ Space Complexity : O(n)
-
 // Time complexity to get the subsequences is O(2^n), the extra O(n) is due to printing each subsequence.
 
 // helper method -> prints the passed subsequence. Takes O(n), where n = length of subsequence
@@ -213,12 +212,12 @@ void fun(int arr[], int n, int ind, vector<int>& ds) {
         return;
     }
 
-    // take / pick the current element (will be added to subsequence) ,push it into the data structure list
+    // take / pick the current element (will be added to subsequence), push it into the subsequence list
     ds.push_back(arr[ind]);         
     fun(arr, n, ind + 1, ds);
+    ds.pop_back();              // undo the choice                 
 
-    // not take/pick the current element (will not be added to subsequence), so remove it from the data structure list
-    ds.pop_back();                  
+    // not take/pick the current element (will not be added to subsequence), so remove it from the subsequence list
     fun(arr, n, ind + 1, ds);
 }
 
