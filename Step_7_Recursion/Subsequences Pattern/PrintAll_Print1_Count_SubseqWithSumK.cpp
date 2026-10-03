@@ -25,11 +25,15 @@ void printAllSubseqK(vector<int>& arr, int k, int ind, vector<int>& ds, int sum)
     }
 
     ds.push_back(arr[ind]);
-    sum += arr[ind];
-    printAllSubseqK(arr, k, ind+1, ds, sum);
+    
+    // sum += arr[ind];
+    // printAllSubseqK(arr, k, ind+1, ds, sum);
+    // sum -= arr[ind];
+
+    printAllSubseqK(arr, k, ind+1, ds, sum + arr[ind]);
 
     ds.pop_back();
-    sum -= arr[ind];
+
     printAllSubseqK(arr, k, ind+1, ds, sum);
 }
 
@@ -57,11 +61,9 @@ void printSubseqK(vector<int>& arr, int k, int ind, vector<int>& ds, int sum, bo
     }
 
     ds.push_back(arr[ind]);
-    sum += arr[ind];
-    printSubseqK(arr, k, ind+1, ds, sum, found);
-
+    printSubseqK(arr, k, ind+1, ds, sum + arr[ind], found);
     ds.pop_back();
-    sum -= arr[ind];
+
     printSubseqK(arr, k, ind+1, ds, sum, found);
 }
 */
@@ -77,13 +79,11 @@ bool printSubseqK(vector<int>& arr, int k, int ind, vector<int>& ds, int sum) {
     }
 
     ds.push_back(arr[ind]);
-    sum += arr[ind];
     
-    if (printSubseqK(arr, k, ind+1, ds, sum)) 
+    if (printSubseqK(arr, k, ind+1, ds, sum + arr[ind])) 
         return true;
 
     ds.pop_back();
-    sum -= arr[ind];
     
     if (printSubseqK(arr, k, ind+1, ds, sum)) 
         return true;
@@ -98,21 +98,23 @@ bool printSubseqK(vector<int>& arr, int k, int ind, vector<int>& ds, int sum) {
 // only maintaining the current sum of subsequence elements is enough which can be done by sum int variable.
 int countSubseqK(vector<int>& arr, int k, int ind, int sum) {
     if (ind == arr.size()) {
-        if (sum == k) {
-            return 1;
-        }
-        return 0;
+        // if (sum == k) {
+        //     return 1;
+        // }
+        // return 0;
+
+        return (sum == k) ? 1 : 0;
     }
 
-    sum += arr[ind];
+    // // count valid subsequences in the pick branch
+    // int left = countSubseqK(arr, k, ind + 1, sum + arr[ind]);
 
-    int left = countSubseqK(arr, k, ind + 1, sum);
+    // // count valid subsequences in the not-pick branch
+    // int right = countSubseqK(arr, k, ind + 1, sum);
 
-    sum -= arr[ind];
+    // return left + right;
 
-    int right = countSubseqK(arr, k, ind + 1, sum);
-
-    return left + right;
+    return countSubseqK(arr, k, ind + 1, sum + arr[ind]) + countSubseqK(arr, k, ind + 1, sum);
 }
 
 // Time & Space Complexity

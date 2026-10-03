@@ -157,13 +157,12 @@ void stringRecur(int i, string &s, vector<string> &ans) {
     stringRecur(i+1, s, ans);
     
     // Case 2: Try placing '1' at current position. Skip the next position when we place a '1' to avoid consecutive 1's
+    
     s[i] = '1';
     
-    // Skip next position to avoid consecutive 1's
-    stringRecur(i+2, s, ans);  
+    stringRecur(i+2, s, ans);    // Skip next position to avoid consecutive 1's
     
-    // Backtrack: Restore the current position back to '0'
-    s[i] = '0';
+    s[i] = '0';                  // Backtrack: Restore the current position back to '0' (undo the choice)
 }
 
 vector<string> generateBinaryStringsGFG(int n) {

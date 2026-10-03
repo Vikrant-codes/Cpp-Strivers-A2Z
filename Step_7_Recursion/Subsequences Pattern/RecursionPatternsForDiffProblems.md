@@ -1,27 +1,27 @@
-# Basic Structure of different recursive patterns
+# Basic Structure of different subsequence pick/not-pick decision based recursive problems
 
-## 1. Print all Subsequences 
+## 1. Print / Find all Subsequences 
 *for each element of arr, there can be two conditions: take the element or don't take the element. We explore both scenarios and do the same for further elements.*
 
 ```
 void fun(ind, list) {
     // Base Case
     (if ind == n) {
-        print(list);
+        print(list) / result.add(list);
         return;
     }
 
     // take current element condition
     list.add(arr[ind]);
     fun(ind + 1, list);
+    list.remove(arr[ind]);
 
     // not take current element condition
-    list.remove(arr[ind]);
     fun(ind + 1, list);
 }
 ```
 
-## 2. Print all solutions (Print all subsequences whose sum is K)
+## 2. Print/Find all solutions (Print/Find all subsequences whose sum is K)
 *if base condition satisfied, check the required condition, if true print current solution.*
 
 ```
@@ -29,7 +29,7 @@ void fun() {
     // Base Case
     (base condition) {
         if (condition satisfied) 
-            print(current_solution);
+            print(current_solution) or result.add(current_solution);
 
         return;
     }
@@ -41,30 +41,28 @@ void fun() {
 }
 ```
 
-Example: Print all subsequences whose sum is K
+Example: Print/Find all subsequences whose sum is K
 ```
 void fun(ind, list, sum) {
     // Base Case
     (if ind == n) {
         if (sum == k) {
-            print(list);
+            print(list) or result.add(list);
         }
         return;
     }
 
     // take current element condition
     list.add(arr[ind]);
-    sum += arr[ind];
-    fun(ind + 1, list, sum);
-
-    // not take current element condition
+    fun(ind + 1, list, sum + arr[ind]);
     list.remove(arr[ind]);
-    sum -= arr[ind];
+    
+    // not take current element condition
     fun(ind + 1, list, sum);
 }
 ```
 
-## 3. Print any 1 solution (Print any 1 subsequence with sum k)
+## 3. Print any 1 solution / Check if any solution exists (Print any 1 subsequence with sum k)
 *return true/false depending on solution found or not, avoid further recursive calls if any solution is found.*
 
 ```
@@ -113,18 +111,15 @@ bool fun(ind, list, sum) {
 
     // take current element condition
     list.add(arr[ind]);
-    sum += arr[ind];
-    if (fun(ind + 1, list, sum)) return true;
+    if (fun(ind + 1, list, sum + arr[ind])) return true;
+    list.remove(arr[ind]);
 
     // not take current element condition
-    list.remove(arr[ind]);
-    sum -= arr[ind];
     if (fun(ind + 1, list, sum)) return true;
 
     return false;
 }
 ```
-
 
 ## 4. Count all solutions which satisfies some condition (Count all subsequences whose sum is k)
 *return 1 or 0 depending on condition satisfied, add the returned values of all recursive calls and return this final sum value.*
@@ -148,6 +143,8 @@ int fun() {
     // right = fun();
     // return left + right;
 
+    // or, we could simply do `return left_fun() + right_fun();`
+
     // for multiple recursive calls, we can do it like this
     
     sum = 0;
@@ -168,22 +165,19 @@ int fun(ind, sum) {
     // Base Case
     (if ind == n) {
         if (sum == k) {
-            print(list);
             return 1;
         }
         return 0;
     }
 
     // take current element condition
-    sum += arr[ind];
-
-    left = fun(ind + 1, sum);
+    left = fun(ind + 1, sum + arr[ind]);
 
     // not take current element condition
-    sum -= arr[ind];
-    
     right = fun(ind + 1, sum);
 
     return left + right;
+
+    // return fun(ind + 1, sum + arr[ind]) + fun(ind + 1, sum);
 }
 ```

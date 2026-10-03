@@ -36,7 +36,7 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-// Recursive Approach
+// Recursive Approach (Backtracking)
 
 /*
 The key idea is to make two choices at every index: either include the current candidate in the combination or skip it.
@@ -142,7 +142,7 @@ where, M = ⌊ T / min(candidates) ​⌋, K = number of valid combinations prod
 */
 
 // Striver's solution
-void findCombination(vector<int>& arr, int ind, int k,  vector<vector<int>>& ans, vector<int>& ds) {
+void findCombination(vector<int>& arr, int ind, int k, vector<vector<int>>& ans, vector<int>& ds) {
     if (ind == arr.size()) {
         if (k == 0) 
             ans.push_back(ds);
@@ -170,21 +170,37 @@ vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
     return ans;
 }
 
-// With early exit conditions : taking advantage of problem constraints
+// Early return conditions: taking advantage of the problem constraints
 /*
-Depending on the value of k, we might have some early exit conditions
-• k == 0 → We have formed a valid combination whose sum equals the target. 
-  Store it and return because there is no need to add anything further.
-• i == arr.size() → We've considered all candidates. If k is still non-zero, 
-  no valid combination can be formed from the remaining elements.
-• k < 0 → Since all candidates are positive, once the remaining target becomes negative, 
-  the current path can never produce a valid combination. So we can immediately stop exploring it.
+The problem constraints tells us that `2 <= candidates[i] <= 40`,
+this means the candidate array won't have any negative element or zero.
+There is a valid reason as to why such constraints were designed this way.
+
+The important thing is that, these constraints can help us utilize some early exit conditions when 
+we are forming valid combinations having sum `target` or `k`.
+
+>> Condition 1:- the combination sum becomes equal to target (k == 0):
+Assume while recursing, at some index `ind`, the target sum `k` becomes 0, 
+it means we have found a valid combination with target sum.
+Now, there will be no meaning in picking any further elements since it will make the combination sum exceed `k`,
+also since the array don't have negatives or zero, we can absolutely not pick any further elements.
+So, instead of simulating the pick/not-pick till `ind` reaches array end, we can directly return false.
+
+>> Condition 2:- the combination sum has become more than target (k < 0):
+If we don't use the `if (arr[ind] <= k)` picking condition, 
+then this condition will arise when combination sum becomes more than target, i.e., k becomes negative,
+since array don't have any negative values, there is no way this combination sum can then be reduced,
+so we can also have an early return condition for this case as well.
 
 The important part is that k < 0 is only safe because candidates are positive. 
 If negative numbers were allowed, exceeding the target wouldn't necessarily mean the path is impossible.
+
+Since, we are doing early return when k becomes zero, it means ind will reach array end only when combination is not valid.
+So, we only add the combination to the result when k becomes zero.
+In cases, ind reaches arr end or k has become negative, we simply return.
 */
-void findCombination2(vector<int>& arr, int i, int k,  vector<vector<int>>& res, vector<int>& ds) {
-    // array don't have negatives & zero, so we can do early return when sum of ds becomes k or exceeds k
+void getCombination(vector<int>& arr, int i, int k,  vector<vector<int>>& res, vector<int>& ds) {
+    // array don't have negatives & zero, so we can do early return when combination sum becomes k or exceeds k
     if (k == 0) {
         res.push_back(ds);
         return;
@@ -196,18 +212,18 @@ void findCombination2(vector<int>& arr, int i, int k,  vector<vector<int>>& res,
 
     // pick current element, even if picking it makes k negative, it would be handled by the early exit condition
     ds.push_back(arr[i]);
-    findCombination2(arr, i, k - arr[i], res, ds);
+    getCombination(arr, i, k - arr[i], res, ds);
     ds.pop_back();
     
     // not pick current element and move to consider the next element
-    findCombination2(arr, i + 1, k, res, ds);
+    getCombination(arr, i + 1, k, res, ds);
 }
 
 vector<vector<int>> combinationSum2(vector<int>& candidates, int target) {
     vector<vector<int>> res = {};
     vector<int> ds = {};
 
-    findCombination2(candidates, 0, target, res, ds);
+    getCombination(candidates, 0, target, res, ds);
 
     return res;
 }

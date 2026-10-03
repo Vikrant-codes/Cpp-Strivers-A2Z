@@ -52,18 +52,21 @@ void findSubseq(vector<int>& arr, int k, vector<int>& subseq, int i, int sum, ve
 
     // pick the current element
     subseq.push_back(arr[i]);
-    sum += arr[i];
-    findSubseq(arr, k, subseq, i + 1, sum, res);
+    
+    // sum += arr[i];
+    // findSubseq(arr, k, subseq, i + 1, sum, res);
+    // sum -= arr[i];
+
+    findSubseq(arr, k, subseq, i + 1, sum + arr[i], res);
+
+    subseq.pop_back();      // undo pick choice
 
     // not pick the current element
-    subseq.pop_back();
-    sum -= arr[i];
     findSubseq(arr, k, subseq, i + 1, sum, res);
 }
 
 vector<vector<int>> subsequencesSumK(vector<int>& arr, int k) {
     vector<vector<int>> res;
-
     vector<int> subseq = {};
 
     findSubseq(arr, k, subseq, 0, 0, res);
