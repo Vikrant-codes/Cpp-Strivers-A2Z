@@ -113,7 +113,7 @@ void generateAll(int n, string curr, vector<string>& res) {
     generateAll(n, curr + ')', res);
 }
 
-vector<string> generateParenthesisNaive(int n) {
+vector<string> generateParenthesesNaive(int n) {
     vector<string> res;
     generateAll(n, "", res);
     return res;
@@ -193,21 +193,20 @@ The algorithm generates exactly the valid combinations, rather than all 4ⁿ pos
 Each valid combination has length 2n, so producing/copying the output takes: Time: O(2n · Cₙ)
 
 -> Auxiliary space
-The recursion depth is at most 2n, and comb itself has at most 2n characters:
+The recursion depth is at most 2n, and str itself has at most 2n characters:
 Auxiliary Space: O(2n)
 The returned res is not normally counted as auxiliary space. 
 Including the output: Output Space: O(2n · Cₙ)
 */
 
-
 // My Implementation
 /*
 Backtracking
-The comb string is shared across recursive calls.
+The str string is shared across recursive calls.
 So after exploring a choice, we undo it:
-    comb.push_back('(');
+    str.push_back('(');
     fun(...);
-    comb.pop_back();
+    str.pop_back();
 This is the classic backtracking pattern:
     make choice
         ↓
@@ -218,7 +217,7 @@ This is the classic backtracking pattern:
     try next choice
 
 For example:-
-    comb = "("
+    str = "("
 
         add '('
         → "(("
@@ -231,56 +230,33 @@ For example:-
         → explore...
         → pop ')'
         → "("
-This allows the same comb object to be reused throughout the recursion.
+This allows the same str object to be reused throughout the recursion.
 */
-void fun(int n, int open, int close, string& comb, vector<string>& res) {
+void fun(int n, int open, int close, string& str, vector<string>& res) {
     if (open == n && close == n) {
-        res.push_back(comb);
+        res.push_back(str);
         return;
     }
 
     if (open < n) {
-        open++;
-        comb.push_back('(');
-        fun(n, open, close, comb, res);
-        comb.pop_back();
-        open--;
+        str.push_back('(');
+        fun(n, open + 1, close, str, res);
+        str.pop_back();
     }
 
     if (close < open) {
-        close++;
-        comb.push_back(')');
-        fun(n, open, close, comb, res);
-        comb.pop_back();
-        close--;
+        str.push_back(')');
+        fun(n, open, close + 1, str, res);
+        str.pop_back();
     }
 }
 
-void fun2(int n, int open, int close, string& comb, vector<string>& res) {
-    if (open == n && close == n) {
-        res.push_back(comb);
-        return;
-    }
-
-    if (open < n) {
-        comb.push_back('(');
-        fun2(n, open, close, comb, res);
-        comb.pop_back();
-    }
-
-    if (close < open) {
-        comb.push_back(')');
-        fun2(n, open, close, comb, res);
-        comb.pop_back();
-    }
-}
-
-vector<string> generateParenthesisMySol(int n) {
-    string comb = "";
-    comb.reserve(2*n);      // reserve space beforehand so no re-allocation is required when adding characters
+vector<string> generateParenthesesMySol(int n) {
+    string str = "";
+    str.reserve(2*n);      // reserve space beforehand so no re-allocation is required when adding characters
     vector<string> res;
 
-    fun(n, 0, 0, comb, res);
+    fun(n, 0, 0, str, res);
 
     return res;
 }
@@ -290,7 +266,7 @@ vector<string> generateParenthesisMySol(int n) {
 This implementation looks much cleaner but essentially follows the same idea.
 The main difference is how curr is managed.
 
-Previous implementation uses `string& comb`
+Previous implementation uses `string& str`
 So, we passed the same string by reference through all recursive calls and manually modified it:
 thus, we need to push_back() and pop_back() manually to explicitly explore the recursive branch and do backtracking/undo.
 
@@ -308,7 +284,7 @@ Each recursive call gets its own copy of curr, so there is nothing to undo when 
 The two implementations have the same recursion/backtracking logic, but:
 | Previous                   | This one                           |
 | -------------------------- | ---------------------------------- |
-| `string& comb`             | `string curr`                      |
+| `string& str`              | `string curr`                      |
 | Mutates one shared string  | Creates a new string for each call |
 | Needs `push_back/pop_back` | No explicit undo                   |
 | Less string copying        | More string copying                |
@@ -324,9 +300,53 @@ void backtrack(int n, int open, int close, string curr, vector<string>& res) {
     if (close < open) backtrack(n, open, close + 1, curr + ')', res);
 }
 
-vector<string> generateParenthesis(int n) {
+vector<string> generateParentheses(int n) {
     vector<string> res;
     backtrack(n, 0, 0, "", res);
+    return res;
+}
+
+// GFG - Generate Parentheses
+/*
+Given a number n, return all the combinations of balanced parentheses of length n.
+Note: A sequence of parentheses is balanced if every opening bracket has a corresponding closing bracket in the correct order.
+For example, "(())", "()()", and "(()())" are balanced, whereas ")()(", "))((", and "()))" are not.
+
+Examples :-
+
+Input: n = 6
+Output: ["((()))", "(()())", "(())()", "()(())", "()()()"]
+Explanation: These are the only possible valid balanced parentheses.
+
+Input: n = 4
+Output: ["(())", "()()"]
+Explanation: These are the only possible valid balanced parentheses.
+
+Constraints :-
+• 1 ≤ n ≤ 16
+• n % 2 == 0
+*/
+
+// The problem is same, except here `n` represents the length of balanced parentheses, and not the count of pairs.
+
+void generate(int n, int open, int close, string str, vector<string>& res) {
+        
+    if (str.size() == n) {
+        res.push_back(str);
+        return;
+    }
+    
+    if (open < n / 2) generate(n, open + 1, close, str + "(", res);
+    if (close < open) generate(n, open, close + 1, str + ")", res);
+    
+}
+  
+vector<string> generateParenthesesGFG(int n) {
+    
+    vector<string> res;
+    
+    generate(n, 0, 0, "", res);
+    
     return res;
 }
 

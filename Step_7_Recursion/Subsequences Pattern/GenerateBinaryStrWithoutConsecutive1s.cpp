@@ -146,6 +146,8 @@ Step by step approach:
 // Recursive helper function to generate binary strings
 void stringRecur(int i, string &s, vector<string> &ans) {
     // Base case: If we've filled all positions, add the string to results
+    // we are using `>=` in base condition, since suppose we add `1` at the n-1th position, 
+    // then we move index 2 steps ahead making its value >n, so we use `>=` condition to handle this
     if (i >= s.length()) {
         ans.push_back(s);
         return;

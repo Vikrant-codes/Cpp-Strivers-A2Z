@@ -959,11 +959,8 @@
 <details>
 <summary> Other Basic Maths Problems </summary>
 
-- Swap Two Numbers
 - GFG - LCM and GCD
 - Implementation of GCD & LCM
-- Perfect Square
-- Disarium Number
 - Piecewise Calculation Problems
 
 </details>
