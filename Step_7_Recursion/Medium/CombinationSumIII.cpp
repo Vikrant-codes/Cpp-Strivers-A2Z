@@ -123,13 +123,12 @@ where R is the number of valid combinations.
 */
 void findCombinations(vector<int>& arr, int ind, int k, int n, vector<vector<int>>& ans, vector<int>& ds) {
     if (k == 0) {
-        if (n == 0) {
+        if (n == 0)
             ans.push_back(ds);
-        }
         return;
     }
 
-    // if ind has reached array end / n has become negative / not enough characters to pick anymore 
+    // if ind has reached array end / n has become negative / not enough element left to pick 
     if (ind == arr.size() || n < 0 || k > (arr.size() - ind)) 
         return;
     
@@ -143,7 +142,7 @@ void findCombinations(vector<int>& arr, int ind, int k, int n, vector<vector<int
     findCombinations(arr, ind + 1, k, n, ans, ds);
 }
 
-vector<vector<int>> combinationSum3(int k, int n) {
+vector<vector<int>> combinationSum3Naive(int k, int n) {
     if (n > 45) return {};  // sum of all 1-9 digits is 45, so if n > 45, no valid combination exists
 
     vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -156,7 +155,42 @@ vector<vector<int>> combinationSum3(int k, int n) {
     return ans;
 }
 
+// We don't actually need to use an array of integers 1 to 9 to generate the combinations,
+// we can generate the combinations by considering current digit, rather than dealing with an array of integers 1 to 9.
+void getCombinations(int dig, int k, int n, vector<int>& curr, vector<vector<int>>& ans) {
+    // Valid combination found (length `k` and sum `n`)
+    if (k == 0) {
+        if (n == 0)
+            ans.push_back(curr);
+        return;
+    }
+
+    if (dig > 9 || n < 0 || k > (10 - dig))
+        return;
+    
+    // pick current digit
+    curr.push_back(dig);
+    getCombinations(dig + 1, k - 1, n - dig, curr, ans);        // recurse with next digit
+    curr.pop_back();                // undo
+
+    // not-pick current digit
+    getCombinations(dig + 1, k, n, curr, ans);
+}
+
+vector<vector<int>> combinationSum3(int k, int n) {
+    if (n > 45) return {};
+
+    vector<int> curr;
+    vector<vector<int>> ans;
+    
+    getCombinations(1, k, n, curr, ans);
+    
+    return ans;
+}
+
+
 // Other Solution (Striver's sheet & ChatGPT): Time Complexity : O(2^9 ∙ k) __ Space Complexity : O(R ∙ k)
+// Using for-loop based subsequence generation
 /*
 >> Intuition
 We need to find all combinations of exactly k distinct numbers from 1 to 9 whose sum is equal to n.
@@ -196,15 +230,10 @@ The combination is valid only when the remaining sum is also zero:
 
 >> Pruning
 Because all numbers are positive, if the current number is greater than the remaining sum:
-|   if (i > n)
-|       break;
 then all subsequent numbers will also be greater than n, so none of them can produce a valid combination.
-We can therefore stop the loop immediately.
-
-We also stop when:
-|   if (start > 9)
-|       return;
-because there are no numbers left to consider.
+We can therefore stop the loop immediately / return.
+|   if (i > n)
+|       break or return;
 
 >> Complexity Analysis
 There are only 9 possible numbers.
@@ -227,20 +256,14 @@ void fun(int start, int k, int n, vector<int>& curr, vector<vector<int>>& ans) {
         return;
     }
 
-    // No numbers left to pick
-    if (start > 9) return;
-
-    for (int dig = start; dig <= 9; dig++) {
-        // if current digit `dig` exceeds `n`, we can't pick it or any further digits
-        // as adding them to combination would only make the sum exceed n (n becomes -ve), so break/return
-        if (dig > n) 
-            break;
+    for (int i = start; i <= 9; i++) {
+        // if current digit `i` exceeds `n`, we can't pick it or any further digits
+        // as adding them to the combination would only make the sum exceed n (n becomes -ve), so break/return
+        if (i > n) return;
         
-        curr.push_back(dig);
-    
-        fun(dig + 1, k - 1, n - dig, curr, ans);
-    
-        curr.pop_back();     
+        curr.push_back(i);                        // choose, (pick current digit)
+        fun(i + 1, k - 1, n - i, curr, ans);      // recurse
+        curr.pop_back();                          // undo choice
     }
 }
 

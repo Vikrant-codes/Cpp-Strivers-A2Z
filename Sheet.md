@@ -373,10 +373,10 @@
 <summary>Medium</summary>
 
 - Generate Parentheses => Leetcode - 22. Generate Parentheses
-- Combination Sum => Leetcode - 39. Combination Sum
-- Combination Sum II => Leetcode - 40. Combination Sum II
 - Subsets I
 - Subsets II => Leetcode - 90. Subsets II
+- Combination Sum => Leetcode - 39. Combination Sum
+- Combination Sum II => Leetcode - 40. Combination Sum II
 - Combination Sum III => Leetcode - 216. Combination Sum III
 - Letter Combinations of a Phone Number => Leetcode - 17. Letter Combinations of a Phone Number
 - Permutations of an Array/String => Leetcode - 46. Permutations

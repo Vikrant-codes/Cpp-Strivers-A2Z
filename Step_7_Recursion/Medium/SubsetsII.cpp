@@ -244,7 +244,7 @@ because the output-generation cost dominates the O(2^n) traversal.
 3. Result:- There are K unique subsets, each of maximum length L: O(KL)
 Therefore, auxiliary space including the output: O(n+KL)
 */
-void findSubsets1(vector<int>& arr, int ind, vector<int>& subset, vector<vector<int>>& res) {
+void getSubsets(vector<int>& arr, int ind, vector<int>& subset, vector<vector<int>>& res) {
     if (ind == arr.size()) {
         res.push_back(subset);
         return;
@@ -252,7 +252,7 @@ void findSubsets1(vector<int>& arr, int ind, vector<int>& subset, vector<vector<
 
     // pick the current element
     subset.push_back(arr[ind]);
-    findSubsets1(arr, ind + 1, subset, res);
+    getSubsets(arr, ind + 1, subset, res);
     subset.pop_back();
 
     // not-pick the current element
@@ -260,7 +260,7 @@ void findSubsets1(vector<int>& arr, int ind, vector<int>& subset, vector<vector<
     int j = ind+1;
     while (j < arr.size() && arr[j] == arr[ind]) j++;
 
-    findSubsets1(arr, j, subset, res);
+    getSubsets(arr, j, subset, res);
 }
 
 vector<vector<int>> subsetsWithDup1(vector<int>& nums) {
@@ -269,12 +269,13 @@ vector<vector<int>> subsetsWithDup1(vector<int>& nums) {
     vector<int> subset;
     vector<vector<int>> res;
     
-    findSubsets1(nums, 0, subset, res);
+    getSubsets(nums, 0, subset, res);
 
     return res;
 }
 
 // Approach-2 (Striver's Solution) : O(n logn + 2^n + K L) or O(n . 2^n) in the worst case __ Space Complexity : O(n + KL)
+// Using the for-loop based subsequence generation, while skipping duplicates at same recursive level
 /*
 >> Intuition
 
@@ -406,7 +407,7 @@ Therefore auxiliary space: O(n)
 The result contains K unique subsets, each up to length L: O(KL)
 So space complexity including the output: O(n + KL)
 */
-void findSubsets(vector<int>& arr, int ind, vector<int>& subset, vector<vector<int>>& res) {
+void generateSubsets(vector<int>& arr, int ind, vector<int>& subset, vector<vector<int>>& res) {
     // Add the current subset to result
     res.push_back(subset);
 
@@ -415,7 +416,7 @@ void findSubsets(vector<int>& arr, int ind, vector<int>& subset, vector<vector<i
         if (i != ind && arr[i] == arr[i-1]) continue;
 
         subset.push_back(arr[i]);
-        findSubsets(arr, i+1, subset, res);
+        generateSubsets(arr, i+1, subset, res);
         subset.pop_back();
     }
 }
@@ -426,7 +427,7 @@ vector<vector<int>> subsetsWithDup(vector<int>& nums) {
     vector<int> subset;
     vector<vector<int>> res;
     
-    findSubsets(nums, 0, subset, res);
+    generateSubsets(nums, 0, subset, res);
     return res;
 }
 
