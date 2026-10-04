@@ -91,16 +91,17 @@ void getPermutations(vector<int>& nums, vector<bool>& picked, vector<int>& curr,
     }
 
     for (int i = 0; i < nums.size(); i++) {
+        // if current element is already picked, don't add it to permutation again
         if (picked[i] == true) 
             continue;
         
-        curr.push_back(nums[i]);
+        curr.push_back(nums[i]);                       // choose
         picked[i] = true;
+        
+        getPermutations(nums, picked, curr, result);   // recurse
     
-        getPermutations(nums, picked, curr, result);
-    
+        picked[i] = false;                             // undo choice
         curr.pop_back();
-        picked[i] = false;
     }
 }
 
@@ -115,6 +116,7 @@ vector<vector<int>> permute1(vector<int>& nums) {
 }
 
 // Striver's implementation
+/*
 void recurPermute(vector<int>& ds, vector<int>& nums, vector<vector<int>>& ans, int freq[]) {
     if (ds.size() == nums.size()) {
         ans.push_back(ds);
@@ -132,7 +134,7 @@ void recurPermute(vector<int>& ds, vector<int>& nums, vector<vector<int>>& ans, 
     }
 }
 
-vector<vector<int>> permute2(vector<int>& nums) {
+vector<vector<int>> permute(vector<int>& nums) {
     vector<int> ds;
     vector<vector<int>> ans;
     int freq[nums.size()];
@@ -140,6 +142,76 @@ vector<vector<int>> permute2(vector<int>& nums) {
     recurPermute(ds, nums, ans, freq);
     
     return ans;
+}
+*/
+
+// Better Approach : Time Complexity : O(n × n!) __ Space Complexity : O(2n)
+/*
+In the previous approach, we were using an extra array to get the knowledge of which elements are picked and which aren't.
+But we can actually manipulate the nums array itself in a way that lets us store this knowledge in nums itself.
+So, we won't have to use a separate picked array.
+
+The constraints specify `-10 <= nums[i] <= 10`, so we can use a marker value outside of this range, 
+like -99 or -999 or 11 etc, and when we pick an element, we can update the value at that index with this marker value.
+So, if while selecting the values to insert in permutation, if we see this marker_value, 
+we will know the actual value of that index was already used, and we skip adding this.
+
+This allows us to manage the information of picked elements without the need of a separate picked array.
+
+Imagine we use the value `-999` as a marker value, 
+then we can check `if (nums[i] == -999)` to ensure the current element is not already picked.
+
+When picking am element, we firstly add its value to the current permutation, 
+then after we can update the value at the current picked element index, with the marker value.
+Something like
+| curr.push_back(nums[i]);
+| nums[i] = -999;  
+Then we can make the recursion call to explore the further choices in this branch, but after we come back,
+we need to undo the choice and restore the value at current index.
+
+To restore the value, we need the value, so we can store the value in some temp variable, before overriding it, 
+so later we can use the temp stored value for restoring the value.
+
+>> Complexity Analysis
+The approach works same as previous approach but here we have eliminated the extra space `picked` array.
+So, its time complexity is essentially the same as previous approach, just the space complexity is a little less.
+
+The space complexity for this approach is O(n) + O(n) = O(2n)
+- O(n) for recursive stack space
+- O(n) for storing current permutation
+*/
+void recurPermutations(vector<int>& nums, vector<int>& curr, vector<vector<int>>& result) {
+    if (curr.size() == nums.size()) {
+        result.push_back(curr);
+        return;
+    }
+
+    for (int i = 0; i < nums.size(); i++) {
+        if (nums[i] == -999) 
+            continue;
+        
+        curr.push_back(nums[i]); // choose current element, add it to current permutation
+        int temp = nums[i];      // store the value into a temp variable, so value is not lost after marking
+        nums[i] = -999;          // mark the current no., which allows us to later know that the no. is picked
+    
+        recurPermutations(nums, curr, result);          // recursively explore the further branches
+    
+        nums[i] = temp;          // restore the value at current index
+
+        // we could also use `curr.back()` to restore current element's value, this would eliminate the need of temp variable
+        // nums[i] = curr.back();
+
+        curr.pop_back();         // remove element from current permutation
+    }
+}
+
+vector<vector<int>> permute(vector<int>& nums) {
+    vector<int> curr;
+    vector<vector<int>> result;
+
+    recurPermutations(nums, curr, result);
+    
+    return result;
 }
 
 // Optimal Approach : Time Complexity : O(n × n!) __ Space Complexity : O(n)
@@ -150,10 +222,10 @@ At any index ind, we need to decide which element should be placed at this posit
 Instead of maintaining a separate picked array, 
 we can use the array itself to keep track of which elements are already being used.
 
-Suppose we are currently filling index ind.
-All positions before ind have already been fixed, 
-so the elements from ind onward are the elements that are still available for selection.
-We can try placing each of these remaining elements at position ind.
+Suppose we are currently filling index `ind`.
+All positions before `ind` have already been fixed, 
+so the elements from index `ind` onwards, are the elements that are still available for selection.
+We can try placing each of these remaining elements at position `ind`.
 
 For example, for [1, 2, 3], when filling index 0, we can:
 - Keep 1 at index 0
@@ -210,9 +282,11 @@ void getPermute(vector<int>& nums, int ind, vector<vector<int>>& ans) {
     }
 }
 
-vector<vector<int>> permute3(vector<int>& nums) {
+vector<vector<int>> permute(vector<int>& nums) {
     vector<vector<int>> ans;
+
     getPermute(nums, 0, ans);
+
     return ans;
 }
 
