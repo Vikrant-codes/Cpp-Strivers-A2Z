@@ -24,7 +24,8 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
  
-// 😺 My solution
+// My solution: Time Complexity : O(n² ∙ n!) __ Space Complexity : O(n³)
+
 /*
 >> Intuition & Approach
 
@@ -149,7 +150,40 @@ vector<vector<string>> solveNQueens(int n) {
 }
 
 
-// Striver's Naive Solution
+// Striver's Naive Solution: Time Complexity : O(n² ∙ n!) __ Space Complexity : O(n²)
+
+/*
+>> Intuition
+
+The idea is to place queens column by column, ensuring that every column contains exactly one queen. 
+For the current column, we try placing a queen in each row where it is safe, 
+and recursively explore the possibilities for the next column. 
+Once a recursive call finishes, we remove the queen and try the next row in the current column. 
+This allows us to explore different arrangements without permanently affecting other branches.
+
+Before placing a queen, we check whether its position is safe by looking at the 
+left row, upper-left diagonal, and lower-left diagonal. 
+We only need to check these directions because we process columns from left to right, 
+meaning all previously placed queens are in earlier columns. 
+The current column and the columns to its right do not contain any queens yet, 
+so checking those directions is unnecessary.
+
+>> Complexity Analysis
+
+-> Time Complexity:  O(n² ∙ n!)
+At each recursive call, we iterate through up to n rows to find a safe position. 
+For each position, isSafeToPlace() takes O(n) time in the worst case because it scans the row and diagonals. 
+The search explores up to O(n!) candidate arrangements, giving an overall upper bound of O(n² ∙ n!).
+
+-> Space Complexity: O(n²) auxiliary space
+The board occupies O(n²) space, 
+while the recursion stack has a maximum depth of O(n), as we place one queen per column. 
+Since the board is modified in place and restored during backtracking, 
+we do not create separate board copies for each recursive call. 
+
+Hence, the auxiliary space complexity is O(n^2), excluding the output. 
+Storing S valid solutions requires an additional O(S ∙ n²) space.
+*/
 
 bool isSafeToPlace(int row, int col, vector<string>& board, int n) {
     // check upper diagonal
@@ -205,6 +239,129 @@ vector<vector<string>> solveNQueensStriver(int n) {
     return ans;
 }
 
+
+// Striver's Optimal Solution: Time Complexity : O(n ∙ n!) __ Space Complexity : O(n²)
+
+/*
+>> Intuition
+
+In the previous approach, before placing a queen, 
+we traversed the row and both diagonals to check whether the position was safe. 
+Each safety check could take O(n) time.
+
+We optimize this by using three hash arrays to track occupied rows and diagonals, 
+allowing us to check whether a position is safe in O(1) time.
+
+- leftRow[row]: tells us whether a queen already occupies the given row.
+- lowerDiagonal[row + col]: tells us whether a queen occupies the same lower-left to upper-right diagonal.
+- upperDiagonal[n - 1 + col - row]: tells us whether a queen occupies the same upper-left to lower-right diagonal.
+
+When placing a queen, we check these three arrays. If all three entries are 0, the position is safe. 
+We place the queen, mark the corresponding entries as 1, and recursively try the next column. 
+When backtracking, we remove the queen and reset those entries to 0.
+
+This avoids repeatedly traversing the board to check safety, reducing each safety check from O(n) to O(1).
+
+>> Why these diagonal indices?
+
+Consider a 4 x 4 board. Rows and columns are indexed from 0 to 3.
+
+1. Lower diagonal: row + col
+Cells on the same diagonal have the same row + column.
+
+     0  1  2  3
+    -----------
+  0 |0  1  2  3
+  1 |1  2  3  4
+  2 |2  3  4  5
+  3 |3  4  5  6
+
+Each cell shows `row + col`. Equal values identify the same diagonal.
+For example, the cells (0,3), (1,2), (2,1), and (3,0) all have a sum of 3. They lie on the same diagonal.
+Therefore, row + col uniquely identifies a diagonal of this orientation. 
+Its possible values range from 0 to 2n-2, so we need 2n-1 entries.
+
+2. Upper diagonal: n - 1 + col - row
+Cells on the same diagonal have the same col − row. We add n − 1 to avoid negative indices.
+
+     0  1  2  3
+    -----------
+  0 |3  4  5  6
+  1 |2  3  4  5
+  2 |1  2  3  4
+  3 |0  1  2  3
+
+Each cell shows n − 1 + col − row, with n = 4.
+For example, the cells (0,0), (1,1), (2,2), and (3,3) all have an index of 3. They lie on the same diagonal.
+
+The expression col - row is constant along this diagonal, but it can be negative. 
+Adding n - 1 shifts the range from -(n-1) to (n-1) into valid array indices from 0 to (2n-2).
+
+In short: each diagonal gets a unique index, and every cell belonging to that diagonal uses the same index. 
+We can therefore check diagonal conflicts with a simple array lookup instead of scanning the board.
+
+>> Complexity Analysis
+
+-> Time Complexity: O(n ∙ n!)
+Since each safety check takes O(1) time using the three hash arrays, we avoid the O(n) traversal required in the previous approach. 
+The algorithm explores possible queen placements through backtracking, with at most O(n!) candidate arrangements to explore. 
+Each recursive call also iterates through up to n rows, giving an overall upper bound of O(n ∙ n!).
+
+-> Space Complexity: O(n²) auxiliary space
+The chessboard occupies O(n²) space. 
+The three hash arrays together require O(n) + O(2n-1) + O(2n-1) space, 
+and the recursion stack has a maximum depth of O(n). 
+Therefore, the auxiliary space complexity is O(n²), dominated by the board. 
+Additionally, storing S valid solutions requires O(S ∙ n²) output space.
+*/
+
+void recSolve(int col, int n, vector<string>& board, vector<vector<string>>& ans, 
+    vector<int>& leftRow, vector<int>& upperDiagonal, vector<int>& lowerDiagonal) {
+
+    if (col == n) {
+        ans.push_back(board);
+        return;
+    }
+
+    for (int row = 0; row < n; row++) {
+        // place queen only if it is safe to place
+    
+        // we can also use the condition: leftRow[row] + lowerDiagonal[row+col] + upperDiagonal[n-1+col-row] == 0 
+        if (leftRow[row] == 0 && lowerDiagonal[row + col] == 0 && upperDiagonal[n-1 + col - row] == 0) {
+            // place the queen
+            board[row][col] = 'Q';
+            // update in hash arrays
+            leftRow[row] = 1;
+            lowerDiagonal[row + col] = 1;
+            upperDiagonal[n-1 + col - row] = 1;
+    
+            // recursive call to place queens in next column
+            recSolve(col + 1, n, board, ans, leftRow, upperDiagonal, lowerDiagonal);
+    
+            // undo the changes (unplace the queen & undo the changes to hash arrays)
+            board[row][col] = '.';
+            leftRow[row] = 0;
+            lowerDiagonal[row + col] = 0;
+            upperDiagonal[n-1 + col - row] = 0;
+        }
+    }
+}
+
+vector<vector<string>> solveNQueens(int n) {
+    vector<vector<string>> ans;
+
+    vector<string> board(n);
+    string s(n, '.');
+    for (int i = 0; i < n; i++) {
+        board[i] = s;
+    }
+    
+    vector<int> leftRow(n), upperDiagonal(2*n-1), lowerDiagonal(2*n-1);
+    
+    recSolve(0, n, board, ans, leftRow, upperDiagonal, lowerDiagonal);
+    
+    return ans;
+}
 
 
 int main() {
