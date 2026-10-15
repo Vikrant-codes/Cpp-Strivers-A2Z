@@ -363,6 +363,76 @@ vector<vector<string>> solveNQueens(int n) {
     return ans;
 }
 
+// GFG - N-Queen Problem
+/*
+GFG - N-Queen Problem : Hard
+
+The N-Queens puzzle is the problem of placing N queens on an N * N chessboard such that no two queens attack each other. 
+Two queens attack each other if they are placed in the same row, the same column, or the same diagonal.
+
+Given an integer n representing the number of queens, find all distinct solutions to this puzzle. 
+Each solution should be represented as an array of size n, where the ith element (1-based indexing) 
+denotes the column position of the queen placed in the ith row.
+
+Note: You may return the solutions in any order.
+
+Examples :-
+
+Input: n = 1 __ Output: [1]
+Explanation: Only one queen can be placed in the single cell available.
+
+Input: n = 4 __ Output: [[2, 4, 1, 3], [3, 1, 4, 2]]
+Explanation: There are 2 possible solutions for n = 4.
+
+Input: n = 3 __ Output: []
+Explanation: There are no possible solutions for n = 3.
+
+Constraints :-
+• 1 ≤ n ≤ 10
+*/
+
+void solvePuzzle(
+    int row, int n, vector<vector<int>>& ans, vector<int>& pos,
+    vector<int>& btmCol, vector<int>& btmLeftDiagonal, vector<int> btmRightDiagonal
+) {
+    
+    if (row == n) {
+        ans.push_back(pos);
+        return;
+    }
+    
+    for (int col = 0; col < n; col++) {
+        
+        if (btmCol[col] == 0 && btmLeftDiagonal[row + col] == 0 && 
+        btmRightDiagonal[n - 1 + col - row] == 0) {
+            
+            pos.push_back(col + 1);     // 1-based indexing, so add 'col+1' as the position
+            btmCol[col] = 1;
+            btmLeftDiagonal[row + col] = 1;
+            btmRightDiagonal[n - 1 + col - row] = 1;
+            
+            solvePuzzle(row + 1, n, ans, pos, btmCol, btmLeftDiagonal, btmRightDiagonal);
+            
+            pos.pop_back();
+            btmCol[col] = 0;
+            btmLeftDiagonal[row + col] = 0;
+            btmRightDiagonal[n - 1 + col - row] = 0;
+            
+        }
+    }
+}
+
+vector<vector<int>> nQueen(int n) {
+    vector<vector<int>> ans;
+    vector<int> pos;
+    
+    vector<int> btmCol(n), btmLeftDiagonal(2*n-1), btmRightDiagonal(2*n-1);
+    
+    solvePuzzle(0, n, ans, pos, btmCol, btmLeftDiagonal, btmRightDiagonal);
+    
+    return ans;
+}
+
 
 int main() {
     int n = 4;
