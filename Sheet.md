@@ -90,22 +90,25 @@
 ## Step - 2 : Learn Important Sorting Techniques
 
 <details>
-<summary>Sorting - I</summary>
+<summary>Sorting Algorithms</summary>
 
 - Selection Sort
 - Bubble Sort
+- Recursive Bubble Sort
 - Insertion Sort
+- Recursive Insertion Sort
+- Merge Sort
+- Quick Sort
 
 </details>
 <br>
 
 <details>
-<summary>Sorting - II</summary>
+<summary>Other Sorting Algos</summary>
 
-- Merge Sort
-- Recursive Bubble Sort
-- Recursive Insertion Sort
-- Quick Sort
+- Bidirectional Bubble Sort
+- Counting Sort
+- Sort an Array => Leetcode - 912 : Sort an Array
 
 </details>
 <br>

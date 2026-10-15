@@ -24,7 +24,7 @@ void bubble_sort(int arr[], int n) {
     bubble_sort(arr, n-1);
 }
 
-// Optimised Recursive Bubble Sort (Early exit when no swap happens during a pass)
+// Optimized Recursive Bubble Sort (Early exit when no swap happens during a pass)
 /*
 Time Complexity: O(n) - Best Case __ O(n^2) - Average & Worst Case
 Space Complexity: O(n) - Recursive Stack Space
@@ -33,17 +33,17 @@ Space Complexity: O(n) - Recursive Stack Space
 void bubbleSort(int arr[], int n) {
     if (n == 1) return;
 
-    bool didSwap = false;       // Flag to check if any swap occurred in this pass
+    bool swapped = false;       // Flag to check if any swap occurred in this pass
 
     for (int j = 0; j <= n-2; j++) {
         if (arr[j] > arr[j+1]) {
             swap(arr[j], arr[j+1]);
-            didSwap = true;             // set the flag variable since we did swap values
+            swapped = true;             // set the flag variable since we did swap values
         }
     }
 
     // If no swap happened, array is already sorted, so no need to perform further passes, return
-    if (!didSwap) return;
+    if (!swapped) return;
 
     bubbleSort(arr, n-1);
 }

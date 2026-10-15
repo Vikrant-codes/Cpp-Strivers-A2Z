@@ -3,11 +3,8 @@ using namespace std;
 
 // Recursive implementation of Insertion Sort
 /*
-Time Complexity: 
-    O(n) - Best Case
-    O(n^2) - Average & Worst Case
-    
-Space Complexity: O(n) - Recursive Stack Space
+Time Complexity: O(n) — Best Case, O(n^2) — Average & Worst Case
+Space Complexity: O(n) — Recursive Stack Space
 */
 
 void insertion_sort(int arr[], int i, int n) {
@@ -16,14 +13,14 @@ void insertion_sort(int arr[], int i, int n) {
 
     int j = i;
     // Shift the element to the left while it's smaller than its predecessor
-    while (j > 0 && arr[j] < arr[j-1]) {
+    while (j > 0 && arr[j] < arr[j - 1]) {
         // Swap arr[j] and arr[j-1]
-        swap(arr[j], arr[j-1]);
+        swap(arr[j], arr[j - 1]);
         j--;
     }
 
     // Recurse for the next index
-    insertion_sort(arr, i+1, n);
+    insertion_sort(arr, i + 1, n);
 }
 
 int main() {
