@@ -20,8 +20,8 @@ Explanation: "bbaA" is also a valid answer, but "Aabb" is incorrect.
 Note that 'A' and 'a' are treated as two different characters.
  
 Constraints :-
-1 <= s.length <= 5 * 10^5
-s consists of uppercase and lowercase English letters and digits.
+• 1 <= s.length <= 5 * 10^5
+• s consists of uppercase and lowercase English letters and digits.
 */
 
 #include<bits/stdc++.h>
@@ -61,22 +61,26 @@ Total Time Complexity :- O(n + k log k) ≈ O(n) (since k ≪ n)
 */
 string frequencySort(string s) {
     unordered_map<char, int> freq;
-    for (char ch : s) freq[ch]++;
+
+    for (char& ch : s) freq[ch]++;
 
     vector<pair<char, int>> v (freq.begin(), freq.end());
-
-    sort (v.begin(), v.end(), [] (auto &a, auto &b) {
+    
+    // sort the vector (in decreasing order of frequencies)
+    sort(v.begin(), v.end(), [] (auto &a, auto &b) {
         return a.second > b.second;
     });
     
     string ans = "";
-    for (auto ele : v) {
-        char x = ele.first;
-        int y = ele.second;
-        while (y--) {
-            ans += x;
-        } 
+    
+    for (auto& p : v) {
+        char ch = p.first;
+        int cnt = p.second;
+        while (cnt--) {
+            ans += ch;
+        }
     }
+    
     return ans;
 }
 
@@ -111,6 +115,103 @@ Example comparison:
 
 After many such comparisons, final order becomes: ('a',3), ('c',2), ('b',1)
 */
+
+// If string had only 'lowercase' characters, we could directly use a freq vector instead of using map. 
+/*
+string frequencySort(string s) {
+    vector<pair<char, int>> freq;
+
+    // initialize the freq pair vector
+    for (char ch = 'a'; ch <= 'z'; ch++) {
+        freq.push_back({ch, 0});
+    } 
+    
+    // update frequencies
+    for (char& ch : s) {
+        int ind = ch - 'a';
+        freq[ind].second++;
+    }
+
+    // sort the frequency vector (in decreasing order of frequencies)
+    sort(freq.begin(), freq.end(), [] (auto &a, auto &b) {
+        return a.second > b.second;
+    });
+
+    string ans = "";
+    for (auto& p : freq) {
+        char ch = p.first;
+        int cnt = p.second;
+        while (cnt--) {
+            ans += ch;
+        }
+    }
+
+    return ans;
+}
+*/
+
+// TUF - 303. Sort Characters by Frequency
+/*
+TUF - 303. Sort Characters by Frequency
+
+You are given a string s. Return the array of unique characters, sorted by highest to lowest occurring characters.
+If two or more characters have same frequency then arrange them in alphabetic order.
+
+Examples :-
+
+Input : s = "tree" __ Output : ['e', 'r', 't' ]
+Explanation :
+The occurrences of each character are as shown below :
+e --> 2
+r --> 1
+t --> 1.
+The r and t have same occurrences , so we arrange them by alphabetic order.
+
+Input : s = "raaaajj" __ Output : ['a' , 'j', 'r' ]
+Explanation :
+The occurrences of each character are as shown below :
+a --> 4
+j --> 2
+r --> 1
+
+Constraints :-
+• 1 <= s.length <= 10^5
+• s consist of only lowercase English characters. 
+*/
+
+// s can only have lowercase English characters, so we can use a freq vector of pair of char & int, instead of a map.
+vector<char> frequencySort(string& s){
+	vector<pair<char, int>> freq;
+
+    // initialize the freq pair vector with default frequencies 0 for 'a' to 'z'
+    for (char ch = 'a'; ch <= 'z'; ch++) {
+        freq.push_back({ch, 0});
+    }
+    
+    // update frequencies 
+    for (char& ch : s) {
+        int ind = ch - 'a';
+        freq[ind].second++;
+    }
+    
+    // sort the freq vector, decr. order of frequencies (alphabetical order for same frequency)
+    sort(freq.begin(), freq.end(), [](auto &a, auto &b) {
+        // if (a.second == b.second)
+        //     return a.first < b.first;       // alphabetical order for same frequency
+        // return a.second > b.second;         // decreasing order by frequency
+        return (a.second == b.second) ? (a.first < b.first) : (a.second > b.second);
+    });
+    
+    vector<char> ans;
+    
+    int ind = 0;
+    while (ind < 26 && freq[ind].second != 0) {
+        ans.push_back(freq[ind].first);
+        ind++;
+    }
+    
+    return ans;
+}
 
 int main() {
     return 0;
