@@ -31,7 +31,25 @@
 <br>
 
 <details>
-<summary> Know Basic Maths </summary>
+<summary> Basic Arrays </summary>
+
+- Sum of Array Elements
+- Count of odd numbers in Array
+- Reverse an array
+
+</details>
+<br>
+
+<details>
+<summary> Basic Strings </summary>
+
+- 
+
+</details>
+<br>
+
+<details>
+<summary> Basic Maths </summary>
 
 - Swap two numbers
 - Count digits of a number
@@ -55,7 +73,7 @@
 <br>
 
 <details>
-<summary> Learn Basic Recursion </summary>
+<summary> Basic Recursion </summary>
 
 - Understand recursion by printing something n times
 - Print name n times / 1 to n / n to 1 using recursion
@@ -75,7 +93,7 @@
 <br>
 
 <details>
-<summary> Learn Basic Hashing </summary>
+<summary> Basic Hashing </summary>
 
 - Intro & Basics of Hashing
 - Frequencies in a Limited Array
@@ -94,8 +112,8 @@
 
 - Selection Sort
 - Bubble Sort
-- Recursive Bubble Sort
 - Insertion Sort
+- Recursive Bubble Sort
 - Recursive Insertion Sort
 - Merge Sort
 - Quick Sort
@@ -118,19 +136,20 @@
 <details>
 <summary>Easy</summary>
 
-- Largest & Smallest Element
-- Second Largest & Second Smallest Element 
-- Check if the Array is Sorted
-- Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
-- Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
-- Left Rotate Array by one place
-- Left Rotate Array by k places
-- Move Zeros to end
 - Linear Search
+- Largest/Smallest Element
+- Second Largest / Second Smallest Element 
+- Check if the Array is Sorted
+- Maximum Consecutive Ones => Leetcode - 485. Max Consecutive Ones
+- Rotate Array to the left/right by one step
+- Rotate Array to the left by k steps
+- Rotate Array to the right by k steps => Leetcode - 189. Rotate Array
+- Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
+- Move Zeros to end
+- Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
 - Union of Two Sorted Arrays
 - Intersection of Two Sorted Arrays
 - Find Missing Number
-- Maximum Consecutive Ones
 - Find the number that appears once, and other numbers twice
 - Longest SubArray with given sum K (positives)
 - Longest SubArray with sum K

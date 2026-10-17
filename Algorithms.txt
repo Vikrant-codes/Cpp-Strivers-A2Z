@@ -1,3 +1,10 @@
+# Arrays
+
+- Juggling Algorithm : Rotate array to left/right by k steps =>  Leetcode - 189. Rotate Array
+
+
+
+
 1.) Dutch National Flag Algorithm --> Problem : Sort012 (Array - Medium) / SortColors (Leetcode - Medium)
 2.) Moore's Voting Algorithm --> Problem : Majority Element (Array - Medium)
 3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
@@ -9,12 +16,4 @@ ________________________________________________________________________________
 > Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)
 > Sieve of Eratosthenes --> Used to count primes --> Problem : Leetcode - 204. Count Primes
 
-•
-→
-°
-√
-²
--
-–
-—
-⁂
+• → ° √ ² — ⁂

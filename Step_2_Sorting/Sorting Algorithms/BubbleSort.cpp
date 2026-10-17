@@ -19,7 +19,7 @@ Therefore, we need n - 1 passes in the worst case.
 
 >> Complexity Analysis
 
->>> Time Complexity: O(n²) in best, average, and worst cases.
+>>> Time Complexity: O(n²) — best, average, and worst case.
 
 >>> Space Complexity: O(1) — sorting is done in-place.
 */

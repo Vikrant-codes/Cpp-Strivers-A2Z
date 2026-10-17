@@ -3,8 +3,8 @@ using namespace std;
 
 // Recursive implementation of Bubble Sort (Normal Bubble Sort)
 /*
-Time Complexity: O(n^2) - Best, Average & Worst Case
-Space Complexity: O(n) - Recursive Stack Space
+Time Complexity: O(n²) — Best, Average & Worst Case
+Space Complexity: O(n) — Recursive Stack Space
 */
 
 void bubble_sort(int arr[], int n) {
@@ -26,8 +26,8 @@ void bubble_sort(int arr[], int n) {
 
 // Optimized Recursive Bubble Sort (Early exit when no swap happens during a pass)
 /*
-Time Complexity: O(n) - Best Case __ O(n^2) - Average & Worst Case
-Space Complexity: O(n) - Recursive Stack Space
+Time Complexity: O(n) — Best Case, O(n²) — Average & Worst Case
+Space Complexity: O(n) — Recursive Stack Space
 */ 
 
 void bubbleSort(int arr[], int n) {

@@ -2,15 +2,39 @@
 #include <vector>
 using namespace std;
 
-// Left Rotate an Array by 1 Place
+// Left Rotate an Array by 1 step
 /*
-Left-rotating an array by one place means shifting every element one position to the left 
-and moving the very first element to the last (end) position. 
-
-For example, if you start with [1, 2, 3, 4, 5], a single left rotation changes it to [2, 3, 4, 5, 1].
+Left-rotating an array by one step means shifting every element one position to its left 
+and moving the first element of the array to the last index position (n-1th index).
+For example, if we start with [1, 2, 3, 4, 5], a single left rotation changes it to [2, 3, 4, 5, 1].
 */
 
-// Optimal Approach : Time Complexity : O(n) __ Space Complexity : O(1)
+/*
+TUF - 832. Left Rotate Array by One
+
+Given an integer array nums, rotate the array to the left by one.
+Note: There is no need to return anything, just modify the given array.
+
+Examples :-
+
+Input: nums = [1, 2, 3, 4, 5]
+Output: [2, 3, 4, 5, 1]
+Explanation:
+Initially, nums = [1, 2, 3, 4, 5]
+Rotating once to left -> nums = [2, 3, 4, 5, 1]
+
+Input: nums = [-1, 0, 3, 6]
+Output: [0, 3, 6, -1]
+Explanation:
+Initially, nums = [-1, 0, 3, 6]
+Rotating once to left -> nums = [0, 3, 6, -1]
+
+Constraints :-
+• 1 <= nums.length <= 10^5
+• -10^4 <= nums[i] <= 10^4
+*/
+
+// Optimal Approach: Time Complexity : O(n) __ Space Complexity : O(1)
 /*
 - Save the first element into a temp variable, so its value is not lost when we shift the other elements to the left.
 - Left shift other elements:- element at index 'i' moves to 'i - 1'
@@ -20,22 +44,22 @@ void leftRotate(vector<int>& arr) {
     int n = arr.size();
     int temp = arr[0];
 
-    for (int i = 0; i < n-1; i++) 
+    for (int i = 0; i < n-1; i++) {
         arr[i] = arr[i+1];
+    }
 
     arr[n-1] = temp;
 }
 
 // ------------------------------------------------------------------------------------------------------------------------------
 
-// Right Rotate an Array by 1 Place
-
+// Right Rotate an Array by 1 step
 /*
-Right-rotating an array by one place means shifting every element one position to the right 
-and moving the last element to the first position. 
-
-For example, if you start with [1, 2, 3, 4, 5], a single right rotation changes it to [5, 1, 2, 3, 4].
+Right-rotating an array by one step means shifting every element one position to its right 
+and moving the last element of the array to the first index position (0th index).
+For example, if we start with [1, 2, 3, 4, 5], a single right rotation changes it to [5, 1, 2, 3, 4].
 */
+
 /*
 GFG - Rotate Array by One : Basic
 

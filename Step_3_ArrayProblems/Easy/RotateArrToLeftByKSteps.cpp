@@ -1,4 +1,4 @@
-// Left Rotate an Array by K steps
+// Rotate an array to the left by k steps
 
 // GFG - Rotate Array : Medium
 /*
@@ -198,6 +198,18 @@ In this way, we get the required left rotated array.
     - Reverse the whole array (all n elements) : This takes O(n)
 So, total: O(k) + O(n-k) + O(n) = O(k + n - k + n) = O(2n)
 */
+void rotateArrayReversal1(vector<int>& nums, int d) {
+    int n = nums.size();
+    d = d % n;
+
+    vector<int>::iterator it = nums.begin();
+    
+    reverse(it, it + d);
+    reverse(it + d, it + n);
+    reverse(it, it + n);
+}
+
+// Without using the built-in reverse method & iterator
 void reverse(vector<int>& arr, int start, int end) {
     while (start < end) {
         // swap arr[start], arr[end]
@@ -209,7 +221,7 @@ void reverse(vector<int>& arr, int start, int end) {
         end--;
     }
 }
-void rotateArrReversal(vector<int>& arr, int d) {
+void rotateArrReversal2(vector<int>& arr, int d) {
     int n = arr.size();
     d = d % n;
     
@@ -421,12 +433,6 @@ void rotateArr2(vector<int>& arr, int k) {
         }
     }
 }
-
-// ------------------------------------------------------------------------------------------------------------------------------
-
-// Right Rotate Array by K places
-// The similar approaches can be applied for right rotation as well
-// See "Other Similar Problems -> 189_RotateArray"
 
 int main() {
     return 0;

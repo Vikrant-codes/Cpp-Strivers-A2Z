@@ -3,7 +3,7 @@ using namespace std;
 
 // Recursive implementation of Insertion Sort
 /*
-Time Complexity: O(n) — Best Case, O(n^2) — Average & Worst Case
+Time Complexity: O(n) — Best Case, O(n²) — Average & Worst Case
 Space Complexity: O(n) — Recursive Stack Space
 */
 

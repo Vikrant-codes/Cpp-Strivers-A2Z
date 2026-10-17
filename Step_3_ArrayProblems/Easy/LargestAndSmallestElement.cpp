@@ -99,7 +99,8 @@ int smallestNaive(vector<int> &arr) {
 int smallest(vector<int> &arr) {
     int n = arr.size();
     int mn = arr[0];
-    // we can also initialize 'mn' with the maximum value that arr[i] can have, like INT_MAX or any other value depending on constraints
+    // we can also initialize 'mn' with the maximum value that arr[i] can have, 
+    // like INT_MAX or any other value depending on constraints
     
     for (int i = 0; i < n; i++)
         if (arr[i] < mn)

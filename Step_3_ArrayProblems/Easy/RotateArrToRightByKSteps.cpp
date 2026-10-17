@@ -1,4 +1,4 @@
-// Right Rotate Array by K Places
+// Rotate an array to the right by k steps
 
 /*
 Leetcode - 189. Rotate Array : Medium
@@ -33,7 +33,7 @@ Could you do it in-place with O(1) extra space?
 #include<bits/stdc++.h>
 using namespace std;
 
-// The approaches for this problem are similar to that of "Left Rotate Array by K places"
+// The approaches for right-rotation are similar to that of "Left Rotate Array by K places"
 /*
 We can't directly over-write the values using nums[i] = nums[(n + (i - k)) % n] 
 because doing so will result in losing some values.
