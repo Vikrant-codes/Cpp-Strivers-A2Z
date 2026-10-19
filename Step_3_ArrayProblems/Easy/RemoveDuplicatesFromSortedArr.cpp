@@ -11,20 +11,6 @@ After removing duplicates, return the number of unique elements k.
 The first k elements of nums should contain the unique numbers in sorted order. 
 The remaining elements beyond index k - 1 can be ignored.
 
-Custom Judge:
-
-The judge will test your solution with the following code:
-|    int[] nums = [...]; // Input array
-|    int[] expectedNums = [...]; // The expected answer with correct length
-|
-|    int k = removeDuplicates(nums); // Calls your implementation
-|
-|    assert k == expectedNums.length;
-|    for (int i = 0; i < k; i++) {
-|        assert nums[i] == expectedNums[i];
-|    }
-If all assertions pass, then your solution will be accepted.
-
 Examples :-
 
 Input: nums = [1,1,2]
@@ -42,26 +28,28 @@ Constraints :-
 • -100 <= nums[i] <= 100
 • nums is sorted in non-decreasing order.
 */
-#include <iostream>
-#include <set>
-#include <vector>
+
+#include <bits/stdc++.h>
 using namespace std;
 
-// Naive Approach : Time Complexity : O(N log N) + O(N) __ Space Complexity : O(1)
+// Naive Approach (Using Set): Time Complexity : O(n log n) + O(n) __ Space Complexity : O(1)
 /*
-Since we need to remove duplicates and get the unique values only, the first thing that comes to mind is using a set.
-As set have the property to store only distinct values and automatically keeps them in sorted order.
-- Use a set which will store the unique values: set<int> uniqueValues
-- Traverse the array & insert its elements in a set (which will not store duplicate values, only 1 occurrence of each value).
-- Now, we need to retrieve the unique values from the set and re-write them into nums array.
+Since we need to remove duplicates and get the unique values only, 
+the first thing that comes to mind is using a set.
+As sets store only distinct values and we can use ordered set to keep the elements in sorted order.
+
+- Use a set to store the unique/distinct values: set<int> uniqueValues
+- Traverse the array & insert its elements in the set.
+- Now, retrieve the unique values from the set and re-write them into nums array.
 - To do so, we place a pointer k at index 0, 
   and start traversing in the set to get the unique elements one by one in sorted order.
-- For each unique element, we re-write the value at kth index of nums array, and increment k to move pointer to the next position.
+  For each unique element, we re-write the value at kth index of nums array, 
+  and increment k to move pointer to the next position.
 - When traversal ends, we have re-written the nums array such that 
   the elements before current position of pointer k are unique.
   i.e., the elements at indices 0 to k-1, are unique.
-  We need to return the count of these unique elements which will be equal to k itself.
-- So, we can simply return k.
+- We need to return the count of these unique elements which will be equal to k itself.
+  So, we can simply return k.
 
 >> Approach
 
@@ -121,15 +109,16 @@ As set have the property to store only distinct values and automatically keeps t
     When re-writing ends, the value of k equals the couunt of distinct elements, so we can return k
     We can also return set.size() as it also tells us the count of distinct elements
 
->> Time and Space Complexity
->>> Time Complexity: O(n log n) + O(n)
+>> Complexity Analysis:
+-> Time Complexity: O(n log n) + O(n)
     - Inserting each of the n elements into a set takes O(log n) time. So: O(n) * O(log n) = O(n log n)
     - Re-writing the values of arr takes another traversal which could be O(n) in worst case (when all values are unique)
     - So, total: O(n log n) + O(n)
->>> Space Complexity: O(n)
+
+-> Space Complexity: O(n)
     The set stores up to n unique elements.
 */
-int removeDuplicatesSet(vector<int>& nums) {
+int removeDuplicatesNaive(vector<int>& nums) {
     set<int> uniqueValues;
 
     // forEach loop runs n times .... log n for each insertion in set. So, total : O(n log n)
@@ -148,7 +137,7 @@ int removeDuplicatesSet(vector<int>& nums) {
     return k;       // we can also return the size of set as it also denotes the count of unique elements
 }
 
-// Better (Using Frequency Array) : Time Complexity : O(n) + O(201) ~ O(n) __ Space Complexity : O(201) ~ O(1)
+// Better Approach (Using Frequency Array): Time Complexity : O(n) + O(201) ~ O(n) __ Space Complexity : O(201) ~ O(1)
 /*
 If we look at the constraints, -100 <= nums[i] <= 100, we will observe that the range of values of array is very small.
 We can use a frequency vector for such small range to store the frequencies of all elements and 
@@ -165,8 +154,8 @@ Now, we need to get the distinct values of the array in sorted order.
 If we traverse the freq vector, then it might contain 0s or count of occurrences at some index i.
 This freq[i] tells us whether the corresponding value (i - 100) exists in the nums array or not. 
 
-We maintain a pointer k (initialized at 0), to re-write the distinct values in nums.
-We tarverse the freq vector and for non-zero values of freq (freq[i] != 0), we re-write value in nums at kth position.
+We maintain a pointer k (initialized as 0), to re-write the distinct values in nums.
+We traverse the freq vector and for non-zero values of freq (freq[i] != 0), we re-write value in nums at kth position.
 
 When traversal of freq vector ends, k denotes the count of distinct values of nums.
 */
@@ -179,16 +168,18 @@ int removeDuplicatesBetter(vector<int>& nums) {
         freq[x + 100]++;
     
     int k = 0;
-    for (int i = 0; i < 201; i++)
-        if (freq[i] != 0)
+    for (int i = 0; i < 201; i++) {
+        if (freq[i] != 0) {
             // for index i of freq, the corresponding element value is i - 100 
             // since i = x + 100 => x = i - 100
             nums[k++] = (i - 100);
+        }
+    }
 
     return k;
 }
 
-// Optimal Approach (Two Pointers) : Time Complexity : O(n) __ Space Complexity : O(1) 
+// Optimal Approach (Two Pointers): Time Complexity : O(n) __ Space Complexity : O(1) 
 /*
 >> Intuition
 
@@ -239,9 +230,10 @@ Since the array is sorted, every time nums[j] != nums[i], we've found a new uniq
 so we advance the writer and overwrite the next position. 
 This lets us remove duplicates in-place without any extra data structure.
 */
-int removeDuplicates(vector<int>& arr) {
-    int i = 0;
+int removeDuplicates1(vector<int>& arr) {
     int n = arr.size();
+    int i = 0;
+
     for(int j = 1; j < n; j++){
         if(arr[i] != arr[j]){
             i++;
@@ -250,6 +242,7 @@ int removeDuplicates(vector<int>& arr) {
             // arr[++i] = arr[j];
         }
     }
+
     return i+1;
 }
 
@@ -266,23 +259,65 @@ int removeDuplicates2(vector<int>& nums) {
     int n = nums.size();
     int i = 1;
 
-    for (int j = 1; j < n; j++)
-        if (nums[j] != nums[i - 1])
+    for (int j = 1; j < n; j++) {
+        if (nums[j] != nums[i - 1]) {
             nums[i++] = nums[j];
             // nums[i] = nums[j]; 
             // i++;
+        }
+    }
     
     return i;
 }
 
-int main() {
-    vector<int> arr = {1,1,2,2,3,4,5,5,6};
-    int dist = removeDuplicates(arr);
+// GFG Variant
+/*
+GFG - Remove Duplicates Sorted Array : Easy
 
-    for(int x : arr) 
-        cout << x << " ";
+You are given a sorted array arr[] containing positive integers. 
+Your task is to remove all duplicate elements from this array such that each element appears only once. 
+Return an array containing these distinct elements in the same order as they appeared.
+
+Examples :-
+
+Input: arr[] = [2, 2, 2, 2, 2] __ Output: [2]
+Explanation: After removing all the duplicates only one instance of 2 will remain i.e. [2] ,
+so modified array will contains 2 at first position and you should return array containing [2] after modifying the array.
+
+Input: arr[] = [1, 2, 4] __ Output: [1, 2, 4]
+Explanation:  As the array does not contain any duplicates so you should return [1, 2, 4].
+
+Constraints :-
+• 1 ≤ arr.size() ≤ 10^5
+• 1 ≤ arr[i] ≤ 10^6
+*/
+
+// Optimal Approach: Time Complexity : O(n) __ Space Complexity : O(1) 
+/*
+Unlike the LeetCode variant, we don't need to modify the original array in-place. 
+Instead, we create a separate result vector res and add only the distinct elements to it.
+
+Since the array is sorted, duplicate elements will always be next to each other. 
+We traverse the array and add distinct elements to res. 
+To check whether the current element is already present in res, we compare it with the last element we added (res.back()). 
+Because the array is sorted, if the current element is a duplicate, it must be equal to the last element in res. 
+So, we add the current element only if it is different from res.back(); otherwise, we skip it.
+*/
+vector<int> removeDuplicatesGFG(vector<int> &arr) {
+    int n = arr.size();
     
-    cout << "\nUnique Element Count: " << dist;
+    vector<int> res;
+    res.push_back(arr[0]);
+    
+    for (int i = 1; i < n; i++) {
+        if (arr[i] != res.back()) {
+            res.push_back(arr[i]);
+        }
+    }
+        
+    return res;
+}
 
+int main() {
     return 0;
 }

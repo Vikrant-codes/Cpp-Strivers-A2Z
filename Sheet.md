@@ -139,17 +139,18 @@
 - Linear Search
 - Largest/Smallest Element
 - Second Largest / Second Smallest Element 
+- First & Second Smallest (GFG)
 - Check if the Array is Sorted
 - Maximum Consecutive Ones => Leetcode - 485. Max Consecutive Ones
 - Rotate Array to the left/right by one step
 - Rotate Array to the left by k steps
 - Rotate Array to the right by k steps => Leetcode - 189. Rotate Array
 - Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
-- Move Zeros to end
+- Move Zeros to end => Leetcode - 283. Move Zeroes
 - Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
+- Find Missing Number => Leetcode - 268. Missing Number 
 - Union of Two Sorted Arrays
 - Intersection of Two Sorted Arrays
-- Find Missing Number
 - Find the number that appears once, and other numbers twice
 - Longest SubArray with given sum K (positives)
 - Longest SubArray with sum K
