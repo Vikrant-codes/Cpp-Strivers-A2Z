@@ -151,9 +151,7 @@
 - Find Missing Number => Leetcode - 268. Missing Number 
 - Union of Two Sorted Arrays
 - Intersection of Two Sorted Arrays
-- Find the number that appears once, and other numbers twice
-- Longest SubArray with given sum K (positives)
-- Longest SubArray with sum K
+- Longest subArray with sum K 
 
 </details>
 <br>
