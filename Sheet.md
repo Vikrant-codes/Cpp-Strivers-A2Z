@@ -151,6 +151,7 @@
 - Find Missing Number => Leetcode - 268. Missing Number 
 - Union of Two Sorted Arrays
 - Intersection of Two Sorted Arrays
+
 - Longest subArray with sum K 
 
 </details>
@@ -159,14 +160,14 @@
 <details>
 <summary>Medium</summary>
 
+- Majority Element I => Leetcode - 169. Majority Element
+- Leaders in an Array
+- Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 - 2Sum Problem
 - Sort an array of 0's, 1's and 2's
-- Majority Element (> n/2 elements)
 - Kadane's Algo Maximum Subarray Sum
 - Stock Buy and Sell
-- Rearrange array in alternating positive and negative items
 - Next Permutation
-- Leaders in an Array
 - Longest Consecutive Sequence in Array
 - Set Matrix Zeros
 - Rotate Matrix by 90 degrees
@@ -423,40 +424,36 @@
 ## Step - 8 : Bit Manipulation
 
 <details>
-<summary>Learn Bit Manipulation</summary>
+<summary>Theory</summary>
 
 - Introduction to Bit Manipulation
-- Check if ith bit is set
+
+</details>
+<br>
+
+<details>
+<summary>Bit Fundamentals</summary>
+
+- Check if the i-th bit is set
 - Check if a number is odd
 - Check if a number is power of 2
 - Count the number of set bits
-- Set/Unset the rightmost unset bit
+- Set the rightmost unset bit
 - Swap two numbers
-- Divide two integers without using the multiplication, division and mod operator
 
 </details>
 <br>
 
 <details>
-<summary>Interview Problems</summary>
+<summary>Problems</summary>
 
-- Count number of bits to be flipped to convert A to B
-- Find the number that appears odd number of times
+- Minimum bit flips to convert number
+- Single Number I
+- Single Number II
+- Single Number III
+- Divide two integers without multiplication, division and mod operator
 - Power Set
-- Find xor of numbers from L to R
-- Find the two numbers appearing odd number of times
-
-</details>
-<br>
-
-<details>
-<summary>Advanced Maths</summary>
-
-- Print Prime Factors of a Number
-- All Divisors of a Number
-- Sieve of Eratosthenes
-- Find Prime Factorisation of a Number using Sieve
-- Pow(x, n) -- Fast Exponentiation
+- XOR of numbers in a given range
 
 </details>
 <br>

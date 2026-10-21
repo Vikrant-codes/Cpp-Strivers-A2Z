@@ -1,19 +1,19 @@
 # Arrays
 
-- Juggling Algorithm : Rotate array to left/right by k steps =>  Leetcode - 189. Rotate Array
+| Juggling Algorithm
+-- Problem: Rotate array to the left / right by k steps
 
+| Boyer–Moore Voting Algorithm
+-- Problem: Majority Element
 
-
-
-1.) Dutch National Flag Algorithm --> Problem : Sort012 (Array - Medium) / SortColors (Leetcode - Medium)
-2.) Moore's Voting Algorithm --> Problem : Majority Element (Array - Medium)
-3.) Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
-4.) Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
-5.) Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
-6.) Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Problem : Detect loop in Linked List
+Dutch National Flag Algorithm --> Problem : Sort012 (Array - Medium) / SortColors (Leetcode - Medium)
+Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
+Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
+Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
+Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Problem : Detect loop in Linked List
 _____________________________________________________________________________________________________
 
 > Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)
 > Sieve of Eratosthenes --> Used to count primes --> Problem : Leetcode - 204. Count Primes
 
-• → ° √ ² — ⁂
+• → ° √ ² ₂ — ⁂
