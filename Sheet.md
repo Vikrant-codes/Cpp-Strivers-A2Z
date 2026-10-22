@@ -51,7 +51,6 @@
 <details>
 <summary> Basic Maths </summary>
 
-- Swap two numbers
 - Count digits of a number
 - Count odd digits in the number
 - Get the largest digit in the number
@@ -163,6 +162,7 @@
 - Majority Element I => Leetcode - 169. Majority Element
 - Leaders in an Array
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
+
 - 2Sum Problem
 - Sort an array of 0's, 1's and 2's
 - Kadane's Algo Maximum Subarray Sum
@@ -434,12 +434,14 @@
 <details>
 <summary>Bit Fundamentals</summary>
 
-- Check if the i-th bit is set
-- Check if a number is odd
-- Check if a number is power of 2
-- Count the number of set bits
-- Set the rightmost unset bit
 - Swap two numbers
+- Check if a number is odd
+- Check if the i-th bit is set
+- Set, Unset (or Clear) and Toggle the i-th bit
+- Unset (or Clear or Remove) the last (rightmost) set bit
+- Count the number of set bits => Leetcode - 191. Number of 1 Bits
+- Check if a number is power of 2 => Leetcode - 231. Power of Two
+- Set the rightmost unset bit
 
 </details>
 <br>

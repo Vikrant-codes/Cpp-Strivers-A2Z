@@ -2,11 +2,16 @@
 using namespace std;
 
 // Time Complexity : O(log₂ n) __ Space Complexity : O(log₂ n)
-
+/*
+Convert the number into its binary representation 
+by repeatedly taking n % 2 to obtain the last bit and n /= 2 to remove that bit. 
+Since the bits are extracted from right to left, 
+reverse the resulting string to get the correct binary representation.
+*/
 string convert2Binary(int n) {
     string res = "";
 
-    while (n != 0) {
+    while (n) {     // while (n != 0)
         if (n & 1) res += '1';  // similar to condition, if (n % 2 == 1)  
         else res += '0';
 
@@ -14,11 +19,11 @@ string convert2Binary(int n) {
     }
 
     reverse(res.begin(), res.end());
-
+     
     return res;
 }
 
-// Time Complexity : O(binary.size()) __ Space Complexity : O(1)
+// Time Complexity : O(len), where len = size of binary string __ Space Complexity : O(1)
 
 int convert2Decimal(string& binary) {
     int n = binary.size();
