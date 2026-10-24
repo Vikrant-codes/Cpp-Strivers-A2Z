@@ -26,11 +26,14 @@ We are using a string to store the binary representation of n, which takes O(log
 
 string convert2Binary(int n) {
     string res = "";
+
     while (n != 0) {
         if (n & 1) res += '1';  
         else res += '0';
+    
         n = n >> 1;
     }
+
     reverse(res.begin(), res.end());
     return res;
 }
@@ -39,11 +42,14 @@ int convert2Decimal(string& binary) {
     int n = binary.size();
     int num = 0;
     int multiplier = 1;         // initial multiplier is 2^0, which is 1.
+    
     for (int i = n - 1; i >= 0; i--) {
         if (binary[i] == '1')
             num = num + multiplier;
+    
         multiplier *= 2;
     }
+
     return num;
 }
 

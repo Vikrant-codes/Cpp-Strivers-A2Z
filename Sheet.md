@@ -133,7 +133,7 @@
 ## Step - 3 : Arrays
 
 <details>
-<summary>Easy</summary>
+<summary>Fundamentals</summary>
 
 - Linear Search
 - Largest/Smallest Element
@@ -145,6 +145,13 @@
 - Rotate Array to the left by k steps
 - Rotate Array to the right by k steps => Leetcode - 189. Rotate Array
 - Check if the Array is Sorted II : Sorted & Rotated => Leetcode - 1752. Check if Array Is Sorted and Rotated 
+
+</details>
+<br>
+
+<details>
+<summary>Easy</summary>
+
 - Move Zeros to end => Leetcode - 283. Move Zeroes
 - Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
 - Find Missing Number => Leetcode - 268. Missing Number 
@@ -163,7 +170,8 @@
 - Leaders in an Array
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 
-- 2Sum Problem
+- Two Sum
+
 - Sort an array of 0's, 1's and 2's
 - Kadane's Algo Maximum Subarray Sum
 - Stock Buy and Sell
@@ -427,6 +435,7 @@
 <summary>Theory</summary>
 
 - Introduction to Bit Manipulation
+- Flip a Bit
 
 </details>
 <br>
@@ -439,9 +448,9 @@
 - Check if the i-th bit is set
 - Set, Unset (or Clear) and Toggle the i-th bit
 - Unset (or Clear or Remove) the last (rightmost) set bit
+- Set the rightmost unset bit
 - Count the number of set bits => Leetcode - 191. Number of 1 Bits
 - Check if a number is power of 2 => Leetcode - 231. Power of Two
-- Set the rightmost unset bit
 
 </details>
 <br>
@@ -449,12 +458,12 @@
 <details>
 <summary>Problems</summary>
 
-- Minimum bit flips to convert number
+- Minimum bit flips to convert number => Leetcode - 2220. Minimum Bit Flips to Convert Number, and 461. Hamming Distance
 - Single Number I
 - Single Number II
 - Single Number III
 - Divide two integers without multiplication, division and mod operator
-- Power Set
+- Power Set (using Bit Manipulation)
 - XOR of numbers in a given range
 
 </details>
