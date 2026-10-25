@@ -169,8 +169,10 @@
 - Majority Element I => Leetcode - 169. Majority Element
 - Leaders in an Array
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
+- Two Sum => Leetcode - 1. Two Sum
+- Two Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
 
-- Two Sum
+- 3 Sum => Leetcode - 15. 3Sum
 
 - Sort an array of 0's, 1's and 2's
 - Kadane's Algo Maximum Subarray Sum
@@ -459,7 +461,8 @@
 <summary>Problems</summary>
 
 - Minimum bit flips to convert number => Leetcode - 2220. Minimum Bit Flips to Convert Number, and 461. Hamming Distance
-- Single Number I
+- Single Number I => Leetcode - 136. Single Number
+
 - Single Number II
 - Single Number III
 - Divide two integers without multiplication, division and mod operator

@@ -32,83 +32,116 @@ Constraints :-
 • -10^9 <= target <= 10^9
 • Only one valid answer exists.
 
-Follow-up: Can you come up with an algorithm that is less than O(n2) time complexity?
+Follow-up: Can you come up with an algorithm that is less than O(n²) time complexity?
 */
 
 #include<bits/stdc++.h>
 using namespace std;
 
+// Brute Force Approach: Time Complexity : O(n²) __ Space Complexity : O(1)
+/*
+Check every possible pair of elements using two nested loops. 
+For each pair, if their sum equals target, return their indices. 
+Start j from i + 1 to avoid reusing the same element or checking duplicate pairs.
 
+>> Complexity Analysis
+-> Time complexity: O(n²) — We check all possible pairs in the worst case.
+-> Space complexity: O(1) — Only a constant amount of extra space is used.
+*/
+vector<int> twoSumBrute(vector<int>& nums, int target) {
+    int n = nums.size();
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {
+            if (nums[i] + nums[j] == target) {
+                return {i, j};
+            }
+        }
+    }
+
+    return {-1, -1};        // dummy return, if no solution is found
+}
+
+// Two-pass Hash Table Approach: Time Complexity : O(2n) __ Space Complexity : O(n)
+/*
+>> Approach (Two-pass Hash Table)
+
+To improve our runtime complexity, we need a more efficient way to check if the complement exists in the array. 
+If the complement exists, we need to get its index. 
+What is the best way to maintain a mapping of each element in the array to its index? A hash table.
+
+We can reduce the lookup time from O(n) to O(1) by trading space for speed. 
+A hash table is well suited for this purpose because it supports fast lookup in near constant time. 
+I say "near" because if a collision occurred, a lookup could degenerate to O(n) time. 
+However, lookup in a hash table should be amortized O(1) time as long as the hash function was chosen carefully.
+
+>> Algorithm
+
+First, store each element and its index in a hash map for quick lookup.
+Then, traverse the array again. 
+For each element nums[i], calculate its complement, target - nums[i]. 
+If the complement exists in the map and its index is different from i, we have found the required pair.
+
+Note: The condition hash[comp] != i ensures we don't use the same element twice. 
+Since the map stores only one index per value, duplicate values are handled by retaining the last occurrence.
+
+>> Complexity Analysis
+
+-> Time complexity: O(2n) average — Two separate traversals, with average O(1) hash map operations.
+-> Space complexity: O(n) — The hash map can store up to n elements.
+*/
+vector<int> twoSumBetter(vector<int>& nums, int target) {
+    unordered_map<int, int> hash;
+
+    for (int i = 0; i < nums.size(); i++) {
+        hash[nums[i]] = i;
+    }
+    
+    for (int i = 0; i < nums.size(); i++) {
+        int comp = target - nums[i];        // complement of nums[i], for target sum
+        // check if complement exists, if it does exist, ensure that its index is not equal to i itself.
+        if (hash.find(comp) != hash.end() && hash[comp] != i) {
+            return {i, hash[comp]};
+        }
+    }
+
+    return {};          // If no valid pair is found, return an empty vector
+}
+
+// Optimal Approach (One Pass Hash Table): Time Complexity : O(n) __ Space Complexity : O(n)
+/*
+>> Optimal Approach: One Pass Hash Table
+
+We can further optimize the two-pass approach by checking for the complement 
+and inserting elements into the hash table in a single traversal.
+As we iterate through the array, 
+we check whether the current element's complement (target - nums[i]) already exists in the hash table. 
+If it does, we have found the pair and can immediately return both indices. 
+Otherwise, we insert the current element and its index into the hash table.
+
+Note: We check for the complement before inserting the current element, ensuring we never use the same element twice.
+
+>> Complexity Analysis:
+-> Time: O(n) average — We traverse the array once, with average O(1) hash table lookups and insertions.
+-> Space: O(n) — In the worst case, the hash table stores up to n elements.
+*/
+vector<int> twoSum(vector<int>& nums, int target) {
+    unordered_map<int, int> hash;
+
+    for (int i = 0; i < nums.size(); i++) {
+        int comp = target - nums[i];        // complement of nums[i], for target sum
+    
+        // check if complement already exists in the hash table
+        if (hash.find(comp) != hash.end()) {
+            return {hash[comp], i};         // complement appears before nums[i], so we return {hash[comp], i}
+        }
+    
+        hash[nums[i]] = i;                  // Insert the current element in hash table
+    }
+
+    return {};   // Return an empty vector if no solution is found (it is guaranteed a valid solution always exists)
+}
 
 int main() {
     return 0;
 }
-
-// /*
-// Given an array of integers arr[] and an integer target. 
-// 1st variant : Return true if there exists two numbers such that their sum is equal to target.
-// 2nd variant : Return the indices of the two numbers, in case no such pair exists return [-1,-1] 
-// */
-// #include <iostream>
-// #include <vector>
-// #include <unordered_map>
-// #include <algorithm>
-// using namespace std;
-
-// // Brute Force Approach -> Time Complexity : O(n^2) __ Space Complexity : O(1)
-// pair<int, int> TwoSumBrute(vector<int> arr, int target){
-//     int n = arr.size();
-//     for(int i=0; i<n; i++){
-//         for(int j=i+1; j<n; j++){
-//             if(arr[i]+arr[j] == target){
-//                 return {i, j};
-//             }
-//         }
-//     }
-//     return {-1,-1};
-// }
-
-// // Better ApproACH (using Hashing) -> Time Complexity : O(n) __ Space Complexity : O(n)
-// // Time Complexity : unordered_map --> O(n) {best case}, O(n^2) {worst case} .... map --> O(n log n)
-// pair<int, int> TwoSumHash(vector<int> arr, int target){
-//     unordered_map<int, int> mpp;
-//     for(int i=0; i<arr.size(); i++){
-//         int pair = target - arr[i];
-//         // Check if pair element exists in the map
-//         if(mpp.find(pair) != mpp.end()){
-//             return{mpp[pair], i}; 
-//         }
-//         mpp[arr[i]] = i;        // add the current element to the map
-//     }
-//     return {-1,-1};
-// }
-
-// // Optimal Approach -> Time Complexity : O(n log n) __ Space Complexity : O(1)
-// /*
-// Sort the array and then use 2 pointer approach to find the 2 sum pair elements. Take a left pointer & right pointer (initially at 0 & end). 
-// Check if left & right element sum == target. If it is greater than move right to left (do right --) , so to lower the sum ..
-// If the sum is lower than move left towards right (do left ++). return once we find the the pair.
-// */
-// bool TwoSum2Pointer(vector<int> arr, int target){
-//     int n = arr.size(), left = 0, right = n - 1;
-//     sort(arr.begin(), arr.end());
-//     for(int i=0; i<n; i++){
-//         if (arr[left] + arr[right] == target) return true;
-//         else if (arr[left] + arr[right] > target) right--;
-//         else left++; 
-//     }
-//     return false;
-// }
-
-// int main() {
-//     vector<int> arr = {2,6,5,8,11,9};
-//     int target = 14;
-//     pair<int, int> ans = TwoSumHash(arr, target);
-//     cout << "Indices : " << ans.first << " _ " << ans.second << endl;
-//     cout << "Elements : " << arr[ans.first] << " _ " << arr[ans.second];
-
-//     bool x = TwoSum2Pointer(arr, target);
-//     if(x) cout << "\nPair exists" << endl;
-//     else cout << "\nPair does not exist" << endl;
-//     return 0;
-// }
