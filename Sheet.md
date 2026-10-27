@@ -171,7 +171,6 @@
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 - Two Sum => Leetcode - 1. Two Sum
 - Two Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
-
 - 3 Sum => Leetcode - 15. 3Sum
 
 - Sort an array of 0's, 1's and 2's
@@ -192,7 +191,6 @@
 
 - Pascal's triangle
 - Majority Element II
-- 3Sum Problem
 - 4Sum Problem
 - Largest Subarray with 0 sum
 - Count no. of subarrays with given XOR K

@@ -47,7 +47,7 @@ int singleNumberBrute(vector<int>& nums) {
     return -1;
 }
 
-// Better Approach (Hash Map): Time Complexity : O(n) __ Space Complexity : O(n)
+// Better Approach (Hash Map): Time Complexity : O(n) __ Space Complexity : O( (n-1)/2 + 1)
 /*
 >> Intuition
 
@@ -59,7 +59,7 @@ Then, traverse the map and return the element whose frequency is 1.
 
 Complexity Analysis:
 - Time: O(n) average — Building the frequency map takes O(n) average time, followed by a traversal of the map.
-- Space: O(n) — In the worst case, the map stores up to n distinct elements.
+- Space: O((n-1)/2 + 1) — Every array element appears twice except for one, so count of distinct elements is: (n-1)/2 + 1
 */
 int singleNumberHashMap(vector<int>& nums) {
     unordered_map<int, int> freq;
