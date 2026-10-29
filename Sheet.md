@@ -43,8 +43,6 @@
 <details>
 <summary> Basic Strings </summary>
 
-- 
-
 </details>
 <br>
 
@@ -459,18 +457,46 @@
 <summary>Problems</summary>
 
 - Minimum bit flips to convert number => Leetcode - 2220. Minimum Bit Flips to Convert Number, and 461. Hamming Distance
+- Power Set (using Bit Manipulation) => Leetcode - 78. Subsets
 - Single Number I => Leetcode - 136. Single Number
-
-- Single Number II
+- Single Number II => Leetcode - 137. Single Number II
 - Single Number III
-- Divide two integers without multiplication, division and mod operator
-- Power Set (using Bit Manipulation)
 - XOR of numbers in a given range
+- Divide two integers without multiplication, division and mod operator
 
 </details>
 <br>
 
-## Step - 9 : Stack & Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]
+
+## Step - 9 : Sliding Window & Two Pointers
+
+<details>
+<summary>Medium Problems</summary>
+
+- Longest Substring Without Repeating Characters
+- Max Consecutive Ones III
+- Fruit Into Baskets
+- longest repeating character replacement
+- Binary subarray with sum
+- Count number of nice subarrays
+- Number of substring containing all three characters
+- Maximum point you can obtain from cards
+
+</details>
+<br>
+
+<details>
+<summary>Hard Problems</summary>
+
+- Longest Substring with At Most K Distinct Characters
+- Subarray with k different integers
+- Minimum Window Substring
+- Minimum Window Subsequence
+
+</details>
+<br>
+
+## Step - 10 : Stack & Queues [Learning, Pre-In-Post-fix, Monotonic Stack, Implementation]
 
 <details>
 <summary>Learning</summary>
@@ -530,77 +556,8 @@
 </details>
 <br>
 
-## Step - 10 : Sliding Window & Two Pointers
 
-
-<details>
-<summary>Medium Problems</summary>
-
-- Longest Substring Without Repeating Characters
-- Max Consecutive Ones III
-- Fruit Into Baskets
-- longest repeating character replacement
-- Binary subarray with sum
-- Count number of nice subarrays
-- Number of substring containing all three characters
-- Maximum point you can obtain from cards
-
-</details>
-<br>
-
-
-<details>
-<summary>Hard Problems</summary>
-
-- Longest Substring with At Most K Distinct Characters
-- Subarray with k different integers
-- Minimum Window Substring
-- Minimum Window Subsequence
-
-</details>
-<br>
-
-## Step - 11 : Heaps [Learning, Medium and Hard Problems]
-
-<details>
-<summary>Learning</summary>
-
-- Introduction to Priority Queues using Binary Heaps
-- Min Heap and Max Heap Implementation
-- Check if an array represents a min-heap or not
-- Convert min Heap to max Heap
-
-</details>
-<br>
-
-<details>
-<summary>Medium Problems</summary>
-
-- Kth largest element in an array [use priority queue]
-- Kth smallest element in an array [use priority queue]
-- Sort K sorted array
-- Merge M sorted Lists
-- Replace each array element by its corresponding rank
-- Task Scheduler
-- Hands of Straights
-
-</details>
-<br>
-
-<details>
-<summary>Hard Problems</summary>
-
-- Design twitter
-- Connect `n` ropes with minimal cost
-- Kth largest element in a stream of running integers
-- Maximum Sum Combination
-- Find Median from Data Stream
-- K most frequent elements
-
-</details>
-<br>
-
-## Step - 12 : Greedy Algorithms
+## Step - 11 : Greedy Algorithms
 
 <details>
 <summary>Easy</summary>
@@ -632,7 +589,8 @@
 </details>
 <br>
 
-## Step - 13 : Binary Trees
+
+## Step - 12 : Binary Trees
 
 <details>
 <summary>Traversals</summary>
@@ -693,7 +651,7 @@
 </details>
 <br>
 
-## Step - 14 : Binary Search Trees
+## Step - 13 : Binary Search Trees
 
 <details>
 <summary>Concepts</summary>
@@ -724,6 +682,48 @@
 
 </details>
 <br>
+
+
+## Step - 14 : Heaps [Learning, Medium and Hard Problems]
+
+<details>
+<summary>Learning</summary>
+
+- Introduction to Priority Queues using Binary Heaps
+- Min Heap and Max Heap Implementation
+- Check if an array represents a min-heap or not
+- Convert min Heap to max Heap
+
+</details>
+<br>
+
+<details>
+<summary>Medium Problems</summary>
+
+- Kth largest element in an array [use priority queue]
+- Kth smallest element in an array [use priority queue]
+- Sort K sorted array
+- Merge M sorted Lists
+- Replace each array element by its corresponding rank
+- Task Scheduler
+- Hands of Straights
+
+</details>
+<br>
+
+<details>
+<summary>Hard Problems</summary>
+
+- Design twitter
+- Connect `n` ropes with minimal cost
+- Kth largest element in a stream of running integers
+- Maximum Sum Combination
+- Find Median from Data Stream
+- K most frequent elements
+
+</details>
+<br>
+
 
 ## Step - 15 : Graphs
 

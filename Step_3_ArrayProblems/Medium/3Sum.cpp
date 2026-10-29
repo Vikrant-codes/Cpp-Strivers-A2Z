@@ -204,8 +204,8 @@ vector<vector<int>> threeSum(vector<int>& nums) {
             else if (sum > 0) k--;  // if sum > 0, we need to decrease the sum, so move k
             // else, sum == 0
             else {
-                vector<int> temp = {nums[i], nums[j], nums[k]};
-                ans.push_back(temp);
+                ans.push_back({nums[i], nums[j], nums[k]});
+
                 // move j & k to the next distinct values (skip duplicates)
                 do {
                     j++;

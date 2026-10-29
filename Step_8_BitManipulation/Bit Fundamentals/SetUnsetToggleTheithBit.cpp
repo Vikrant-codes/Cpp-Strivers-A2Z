@@ -87,7 +87,7 @@ int clearBit(int n, int i) {
 
 // Toggle the i-th bit
 /*
-• 1 << i creates a mask with only the \(i\)-th bit set to 1.
+• 1 << i creates a mask with only the i-th bit set to 1.
 • n ^ mask uses bitwise XOR to flip that bit: 0 becomes 1, and 1 becomes 0. All other bits remain unchanged.
 */
 int toggleBit(int n, int i) {
