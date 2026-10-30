@@ -418,7 +418,7 @@
 - Palindrome partitioning => Leetcode - 131. Palindrome Partitioning
 - Word Search => Leetcode - 79. Word Search
 - Rat in a Maze
-- N Queen
+- N Queens => Leetcode - 51. N-Queens
 - M Coloring Problem
 - Sudoku Solver
 - Word Break
@@ -460,13 +460,12 @@
 - Power Set (using Bit Manipulation) => Leetcode - 78. Subsets
 - Single Number I => Leetcode - 136. Single Number
 - Single Number II => Leetcode - 137. Single Number II
-- Single Number III
+- Single Number III => Leetcode - 260. Single Number III
 - XOR of numbers in a given range
 - Divide two integers without multiplication, division and mod operator
 
 </details>
 <br>
-
 
 ## Step - 9 : Sliding Window & Two Pointers
 

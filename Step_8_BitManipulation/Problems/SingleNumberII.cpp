@@ -20,7 +20,35 @@ Constraints :-
 #include <bits/stdc++.h>
 using namespace std;
 
-// Naive Approach : Time Complexity : O(n) __ Space Complexity : O( (n-1)/3 + 1 )
+// Brute Force Approach: Time Complexity : O(n²) __ Space Complexity : O(1)
+/*
+>> Intuition
+For each element, count how many times it appears in the array by comparing it with every other element. 
+If its frequency is 1, we have found the element that occurs only once, so return it.
+
+>> Complexity Analysis:
+- Time: O(n²) — For each element, we traverse the entire array to count its frequency.
+- Space: O(1) — Only a constant amount of extra space is used.
+*/
+int singleNumberBrute(vector<int>& nums) {
+    int n = nums.size();
+
+    for (int i = 0; i < n; i++) {
+        int cnt = 0;
+
+        for (int j = 0; j < n; j++) {
+            if (nums[i] == nums[j])
+                cnt++;
+        }
+
+        if (cnt == 1)
+            return nums[i];
+    }
+
+    return -1;
+}
+
+// Naive Approach: Time Complexity : O(n) __ Space Complexity : O( (n-1)/3 + 1 )
 /*
 We can use a hash map to store each element and its frequency. 
 First, traverse the array and increment the frequency of each element. 
@@ -122,7 +150,7 @@ int singleNumberSorting(vector<int>& nums) {
     return nums[n - 1];
 }
 
-// Approach-3 (Bit Manipulation): Time Complexity : O(32 x n) __ Space Complexity : O(1)
+// Bit Manipulation Approach: Time Complexity : O(32 x n) __ Space Complexity : O(1)
 /*
 >> Intuition
 
@@ -458,6 +486,41 @@ int singleNumber2(vector<int>& nums) {
 
 // Optimal Approach - 3: Time Complexity : O(n) __ Space Complexity : O(1)
 /*
+>> Intuition
+
+We maintain two integers, ones and twos, to keep track of how many times each bit has appeared.
+- ones tracks bits that have appeared an odd number of times (once, before being reset at three).
+- twos tracks bits that have appeared twice.
+
+We iterate through every number in the array and update these two bitmasks:
+
+1. Initialize ones and twos to 0. Both masks initially have all bits unset because we haven't processed any numbers yet.
+
+2. Update twos using the current number: `twos |= ones & num;`
+   ones & num identifies bits that are already set in ones and are also set in the current number. 
+   These bits have appeared once before and are now appearing for the second time, so we mark them in twos using OR.
+
+3. Update ones using XOR: `ones ^= num;`
+   XOR toggles the bits present in the current number. 
+   If a bit appears for the first time, it gets set in ones. 
+   If it appears for the second time, it gets unset. 
+   If it appears for the third time, it gets set again.
+
+4. Identify bits that have appeared three times: `mask = ~(ones & twos);`
+   After the previous two updates, bits that have appeared three times are set in both ones and twos. 
+   We identify these common bits using AND and 
+   invert the result to create a mask that has 0 at those positions and 1 everywhere else.
+
+5. Remove bits that have appeared three times: `ones &= mask;               twos &= mask;`
+   Applying the mask clears those bits from both integers, effectively resetting their count to zero. 
+   This allows us to track their occurrences again from the beginning.
+
+6. Return ones after processing the entire array. Since every number except the unique one appears exactly three times, 
+   all bits belonging to the repeated numbers will eventually be reset. 
+   The bits belonging to the unique number remain set in ones.
+
+>> Approach
+
 1. Initialize two integers ones and twos to track bits seen once and twice.
 2. Iterate over each number in the array.
 3. Update twos with bits that are set in both ones and the current number (twos |= ones & num).
