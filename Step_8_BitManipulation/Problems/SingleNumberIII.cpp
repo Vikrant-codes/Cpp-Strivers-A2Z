@@ -215,6 +215,63 @@ vector<int> singleNumber(vector<int>& nums) {
     return {bucket1, bucket2};
 }
 
+// Similar GFG Problem -- Two odd Occuring
+/*
+GFG - Two odd Occuring : Medium
+
+Given an unsorted array, arr[] of positive numbers that contains 
+even number of occurrences for all numbers except two numbers. 
+Return that two numbers in decreasing order which has odd occurrences.
+
+Examples :-
+
+Input: arr = [4, 2, 4, 5, 2, 3, 3, 1]
+Output: [5, 1] 
+Explanation: 5 and 1 have odd occurrences.
+
+Input: arr[] = [1, 7, 5, 7, 5, 4, 7, 4]
+Output: [7, 1]
+Explanation: 7 and 1 have odd occurrences.
+
+Constraints :-
+• 2 ≤ arr.size() ≤ 10^6
+• 1 ≤ arr[i]≤ 10^7
+*/
+
+/*
+The problem is quite similar to the leetcode one.
+In this problem, we are told that all numbers except two have even no. of occurrences.
+We can use the same approach as the even occurrence number would cancel out during XOR 
+leaving us with the xor of the two odd occurring numbers.
+We can then use two buckets to separate out the two odd occurring numbers, on the basis of some set bit of XOR.
+
+We just need to return the two numbers in decreasing order in this case.
+
+Also since arr[i] value is in range [1, 10^7], we can declare xorr as int instead of long long.
+*/
+vector<int> twoOddNum(vector<int>& arr) {
+    int xorr = 0;
+    
+    for (int num : arr) xorr ^= num;
+    
+    int rightmostBit = (xorr & xorr - 1) ^ xorr;
+    
+    int b1 = 0, b2 = 0;
+    
+    for (int num : arr) {
+        if (num & rightmostBit)
+            b1 ^= num;
+        else 
+            b2 ^= num;
+    }
+    
+    int x = min(b1, b2);
+    int y = max(b1, b2);
+    
+    return {y, x};
+}
+
+
 int main() {
     return 0;
 }
