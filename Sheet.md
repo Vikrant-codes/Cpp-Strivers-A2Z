@@ -430,10 +430,12 @@
 ## Step - 8 : Bit Manipulation
 
 <details>
-<summary>Theory</summary>
+<summary>Introduction & Tricks</summary>
 
 - Introduction to Bit Manipulation
+- Built-in C++ bit manipulation methods
 - Flip a Bit
+- Bitwise Tricks
 
 </details>
 <br>
@@ -463,6 +465,8 @@
 - Single Number III => Leetcode - 260. Single Number III
 - XOR of numbers in a given range
 - Divide two integers without multiplication, division and mod operator => Leetcode - 29. Divide Two Integers
+- Sum of Two Integers => Leetcode - 371. Sum of Two Integers
+- XOR of numbers occuring twice => Leetcode - 3158. Find the XOR of Numbers Which Appear Twice
 
 </details>
 <br>
