@@ -418,7 +418,8 @@
 - Palindrome partitioning => Leetcode - 131. Palindrome Partitioning
 - Word Search => Leetcode - 79. Word Search
 - Rat in a Maze
-- N Queens => Leetcode - 51. N-Queens
+- N-Queens => Leetcode - 51. N-Queens
+- N-Queens II => Leetcode - 52. N-Queens II
 - M Coloring Problem
 - Sudoku Solver
 - Word Break
@@ -474,6 +475,17 @@
 ## Step - 9 : Sliding Window & Two Pointers
 
 <details>
+<summary>Constant Window</summary>
+
+- Maximum Packages within Time
+- Maximum Average Subarray => Leetcode - 643. Maximum Average Subarray I
+- Maximum no. of vowels in a fixed size substring => Leetcode - 1456. Maximum Number of Vowels in a Substring of Given Length
+
+- Maximum Points You Can Obtain from Cards
+
+</details>
+
+<details>
 <summary>Medium Problems</summary>
 
 - Longest Substring Without Repeating Characters
@@ -483,7 +495,6 @@
 - Binary subarray with sum
 - Count number of nice subarrays
 - Number of substring containing all three characters
-- Maximum point you can obtain from cards
 
 </details>
 <br>
