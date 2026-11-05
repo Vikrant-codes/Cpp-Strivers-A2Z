@@ -420,8 +420,8 @@
 - Rat in a Maze
 - N-Queens => Leetcode - 51. N-Queens
 - N-Queens II => Leetcode - 52. N-Queens II
+- Sudoku Solver => Leetcode - 37. Sudoku Solver
 - M Coloring Problem
-- Sudoku Solver
 - Word Break
 - Expression Add Operators
 
@@ -480,8 +480,7 @@
 - Maximum Packages within Time
 - Maximum Average Subarray => Leetcode - 643. Maximum Average Subarray I
 - Maximum no. of vowels in a fixed size substring => Leetcode - 1456. Maximum Number of Vowels in a Substring of Given Length
-
-- Maximum Points You Can Obtain from Cards
+- Maximum Points You Can Obtain from Cards => Leetcode - 1423. Maximum Points You Can Obtain from Cards
 
 </details>
 
