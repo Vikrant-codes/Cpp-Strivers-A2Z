@@ -105,7 +105,7 @@
 ## Step - 2 : Learn Important Sorting Techniques
 
 <details>
-<summary>Sorting Algorithms</summary>
+<summary> Sorting Algorithms </summary>
 
 - Selection Sort
 - Bubble Sort
@@ -119,7 +119,7 @@
 <br>
 
 <details>
-<summary>Other Sorting Algos</summary>
+<summary> Other Sorting Algos </summary>
 
 - Bidirectional Bubble Sort
 - Counting Sort
@@ -131,7 +131,7 @@
 ## Step - 3 : Arrays
 
 <details>
-<summary>Fundamentals</summary>
+<summary> Fundamentals </summary>
 
 - Linear Search
 - Largest/Smallest Element
@@ -148,7 +148,7 @@
 <br>
 
 <details>
-<summary>Easy</summary>
+<summary> Easy </summary>
 
 - Move Zeros to end => Leetcode - 283. Move Zeroes
 - Remove Duplicates from Sorted Array => Leetcode - 26. Remove Duplicates from Sorted Array
@@ -162,7 +162,7 @@
 <br>
 
 <details>
-<summary>Medium</summary>
+<summary> Medium </summary>
 
 - Majority Element I => Leetcode - 169. Majority Element
 - Leaders in an Array
@@ -185,7 +185,7 @@
 <br>
 
 <details>
-<summary>Hard</summary>
+<summary> Hard </summary>
 
 - Pascal's triangle
 - Majority Element II
@@ -368,7 +368,7 @@
 ## Step - 7 : Recursion
 
 <details>
-<summary>Get a Strong Hold</summary>
+<summary> Get a Strong Hold </summary>
 
 - Recursive Implementation of atoi => Leetcode - 8. String to Integer (atoi)
 - Pow(x, n) => Leetcode - 50. Pow(x, n)
@@ -380,7 +380,7 @@
 <br>
 
 <details>
-<summary>Subsequences Pattern</summary>
+<summary> Subsequences Pattern </summary>
 
 - Learn All Patterns of Subsequences (Theory)
 - Print all subsequences
@@ -398,7 +398,7 @@
 <br>
 
 <details>
-<summary>Medium</summary>
+<summary> Medium </summary>
 
 - Generate Parentheses => Leetcode - 22. Generate Parentheses
 - Subsets I
@@ -413,7 +413,7 @@
 <br>
 
 <details>
-<summary>Trying out all Combos / Hard</summary>
+<summary> Trying out all Combos / Hard </summary>
 
 - Palindrome partitioning => Leetcode - 131. Palindrome Partitioning
 - Word Search => Leetcode - 79. Word Search
@@ -421,9 +421,11 @@
 - N-Queens => Leetcode - 51. N-Queens
 - N-Queens II => Leetcode - 52. N-Queens II
 - Sudoku Solver => Leetcode - 37. Sudoku Solver
-- M Coloring Problem
-- Word Break
+- M-Coloring Problem
+
 - Expression Add Operators
+
+- Word Break
 
 </details>
 <br>
@@ -431,7 +433,7 @@
 ## Step - 8 : Bit Manipulation
 
 <details>
-<summary>Introduction & Tricks</summary>
+<summary> Introduction & Tricks </summary>
 
 - Introduction to Bit Manipulation
 - Built-in C++ bit manipulation methods
@@ -442,7 +444,7 @@
 <br>
 
 <details>
-<summary>Bit Fundamentals</summary>
+<summary> Bit Fundamentals </summary>
 
 - Swap two numbers
 - Check if a number is odd
@@ -457,7 +459,7 @@
 <br>
 
 <details>
-<summary>Problems</summary>
+<summary> Problems </summary>
 
 - Minimum bit flips to convert number => Leetcode - 2220. Minimum Bit Flips to Convert Number, and 461. Hamming Distance
 - Power Set (using Bit Manipulation) => Leetcode - 78. Subsets
@@ -475,7 +477,7 @@
 ## Step - 9 : Sliding Window & Two Pointers
 
 <details>
-<summary>Constant Window</summary>
+<summary> Constant Window </summary>
 
 - Maximum Packages within Time
 - Maximum Average Subarray => Leetcode - 643. Maximum Average Subarray I
@@ -485,9 +487,15 @@
 </details>
 
 <details>
+<summary> Longest and Smallest Window Problems </summary>
+
+- Longest Substring Without Repeating Characters => Leetcode - 3. Longest Substring Without Repeating Characters
+
+</details>
+
+<details>
 <summary>Medium Problems</summary>
 
-- Longest Substring Without Repeating Characters
 - Max Consecutive Ones III
 - Fruit Into Baskets
 - longest repeating character replacement
