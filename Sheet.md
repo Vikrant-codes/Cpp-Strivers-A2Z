@@ -167,9 +167,10 @@
 - Majority Element I => Leetcode - 169. Majority Element
 - Leaders in an Array
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
-- Two Sum => Leetcode - 1. Two Sum
-- Two Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
+- 2 Sum => Leetcode - 1. Two Sum
+- 2 Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
 - 3 Sum => Leetcode - 15. 3Sum
+- 4 Sum => Leetcode - 18. 4Sum 
 
 - Sort an array of 0's, 1's and 2's
 - Kadane's Algo Maximum Subarray Sum
