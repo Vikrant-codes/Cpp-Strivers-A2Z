@@ -1,13 +1,13 @@
 # Arrays
 
-| Juggling Algorithm
--- Problem: Rotate array to the left / right by k steps
+| Juggling Algorithm — Problem: Rotate array to the left / right by k steps
 
-| Boyer–Moore Voting Algorithm
--- Problem: Majority Element
+| Boyer–Moore Voting Algorithm — Problem: Majority Element
 
-Dutch National Flag Algorithm --> Problem : Sort012 (Array - Medium) / SortColors (Leetcode - Medium)
-Kadane's Algorithm --> Problem : Maximum SubArray Sum (Array - Medium)
+| Dutch National Flag Algorithm — Problem: Sort an array of 0s, 1s and 2s
+
+| Kadane's Algorithm — Problem: Maximum SubArray Sum
+
 Extended Boyer Moore’s Voting Algorithm --> Problem : Majority Element II (Array - Hard)
 Modified Kadane's Algorithm --> Problem : Maximum SubArray Product (Array - Hard)
 Floyd’s Cycle Detection (Tortoise and Hare) Algorithm --> Problem : Detect loop in Linked List
@@ -15,16 +15,3 @@ ________________________________________________________________________________
 
 > Euclid’s Algorithm --> Used for finding GCD (Greatest Common Divisor) or HCF (Highest Common Factor)
 > Sieve of Eratosthenes --> Used to count primes --> Problem : Leetcode - 204. Count Primes
-
-• 
-→ 
-° 
-√ 
-² 
-³ 
-⁴
-₂ 
-— 
-∙ 
-× 
-Σ

@@ -171,9 +171,9 @@
 - 2 Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
 - 3 Sum => Leetcode - 15. 3Sum
 - 4 Sum => Leetcode - 18. 4Sum 
+- Sort an array of 0's, 1's and 2's => Leetcode - 75. Sort Colors
+- Kadane's Algorithm — Maximum Subarray Sum => Leetcode - 53. Maximum Subarray
 
-- Sort an array of 0's, 1's and 2's
-- Kadane's Algo Maximum Subarray Sum
 - Stock Buy and Sell
 - Next Permutation
 - Longest Consecutive Sequence in Array
