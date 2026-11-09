@@ -155,6 +155,8 @@
 - Find Missing Number => Leetcode - 268. Missing Number 
 - Union of Two Sorted Arrays
 - Intersection of Two Sorted Arrays
+- Leaders in an Array
+- Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 
 - Longest subArray with sum K 
 
@@ -165,21 +167,19 @@
 <summary> Medium </summary>
 
 - Majority Element I => Leetcode - 169. Majority Element
-- Leaders in an Array
-- Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 - 2 Sum => Leetcode - 1. Two Sum
 - 2 Sum II => Leetcode - 167. Two Sum II - Input Array Is Sorted
 - 3 Sum => Leetcode - 15. 3Sum
 - 4 Sum => Leetcode - 18. 4Sum 
 - Sort an array of 0's, 1's and 2's => Leetcode - 75. Sort Colors
 - Kadane's Algorithm — Maximum Subarray Sum => Leetcode - 53. Maximum Subarray
+- Next Permutation => Leetcode - 31. Next Permutation 
+- Set Matrix Zeroes => Leetcode - 73. Set Matrix Zeroes
 
-- Stock Buy and Sell
-- Next Permutation
-- Longest Consecutive Sequence in Array
-- Set Matrix Zeros
 - Rotate Matrix by 90 degrees
 - Print the matrix in spiral manner
+- Stock Buy and Sell
+- Longest Consecutive Sequence in Array
 - Count subarrays with given sum
 
 </details>
