@@ -175,9 +175,9 @@
 - Kadane's Algorithm — Maximum Subarray Sum => Leetcode - 53. Maximum Subarray
 - Next Permutation => Leetcode - 31. Next Permutation 
 - Set Matrix Zeroes => Leetcode - 73. Set Matrix Zeroes
+- Print the matrix in spiral manner => Leetcode - 54. Spiral Matrix
+- Rotate matrix by 90 degrees => Leetcode - 48. Rotate Image
 
-- Rotate Matrix by 90 degrees
-- Print the matrix in spiral manner
 - Stock Buy and Sell
 - Longest Consecutive Sequence in Array
 - Count subarrays with given sum
@@ -1021,7 +1021,6 @@
 <details>
 <summary> Advanced Maths </summary>
 
-- Leetcode - 7. Reverse Integer
 - Print All Prime Factors of a Number
 - GFG - Prime Factorization
 - Power Exponentiation
