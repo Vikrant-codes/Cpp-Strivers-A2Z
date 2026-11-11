@@ -158,6 +158,7 @@
 - Leaders in an Array
 - Rearrange Array Elements by Sign => Leetcode - 2149. Rearrange Array Elements by Sign
 
+
 - Longest subArray with sum K 
 
 </details>
@@ -177,6 +178,10 @@
 - Set Matrix Zeroes => Leetcode - 73. Set Matrix Zeroes
 - Print the matrix in spiral manner => Leetcode - 54. Spiral Matrix
 - Rotate matrix by 90 degrees => Leetcode - 48. Rotate Image
+- Pascal's Triangle I
+- Pascal's Triangle II => Leetcode - 119. Pascal's Triangle II
+- Pascal's Triangle III => Leetcode - 118. Pascal's Triangle
+
 
 - Stock Buy and Sell
 - Longest Consecutive Sequence in Array
@@ -188,7 +193,6 @@
 <details>
 <summary> Hard </summary>
 
-- Pascal's triangle
 - Majority Element II
 - 4Sum Problem
 - Largest Subarray with 0 sum
