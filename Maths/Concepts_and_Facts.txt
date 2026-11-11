@@ -1,4 +1,132 @@
 -------------------------------------------------------------------------------------------
+🟣 Binomial Theorem & Expansion
+-------------------------------------------------------------------------------------------
+
+>> What is a binomial?
+A binomial is simply an algebraic expression containing two terms.
+Examples: a + b, x + 2, 2x - 3, etc.
+
+The binomial theorem tells us how to expand a binomial raised to a power without multiplying everything manually.
+
+For example: (a + b)² = (a + b) (a + b) = a² + 2ab + b²
+Similarly, (a + b)³ = a³ + 3a²b + 3ab² + b³
+
+Notice the coefficients:
+- For power 2: 1, 2, 1
+- For power 3: 1, 3, 3, 1
+Where do these numbers come from? That's the interesting part.
+
+>> Understanding the coefficients
+
+Let's take: (a + b)³ = (a + b) (a + b) (a + b)
+When expanding, we must select either a or b from each of the three brackets.
+
+To obtain `a³`, we must select a from all three brackets.
+There is only one way to do that.
+
+To obtain `a²b`, we need:
+- a from the first two brackets and b from the third.
+- a from the first and third, b from the second.
+- a from the second and third, b from the first.
+There are three ways.
+Therefore, the coefficient of `a²b` is 3.
+
+Likewise, to obtain `ab²`, there are three ways to select two bs and one a.
+
+Finally, there is only one way to obtain `b³`.
+
+Hence: (a + b)³ = a³ + 3a²b + 3ab² + b³
+
+The important observation: The coefficients represent the number of ways to select the terms from the brackets.
+
+>> Expansion formula
+---------------------------------------------
+|        n         n    n      (n-k)    k   |
+| (a + b)    =     Σ     C   a         b    |
+|                 k=0     k                 |
+---------------------------------------------
+
+>> Pascal's Triangle
+There's a beautiful pattern in these coefficients.
+
+          1
+        1  1
+      1  2  1
+    1  3   3  1
+  1  4  6   4  1
+1  5  10  10  5  1
+
+Each number is the sum of the two numbers directly above it.
+
+Each row gives the coefficients for the corresponding power:
+
+Power  | Coefficients
+0	   | 1
+1	   | 1, 1
+2	   | 1, 2, 1
+3	   | 1, 3, 3, 1
+4	   | 1, 4, 6, 4, 1
+5	   | 1, 5, 10, 10, 5, 1
+
+For example: (a+b)^4
+Using row 4: a^4 + 4 a^3 b + 6 a^2 b^2 + 4 a b^3 + b^4
+
+>> The connection with nCr (Combinations)
+
+Now comes the most important connection.
+
+Remember how we counted the ways to obtain a²b in (a+b)³ ?
+We were essentially choosing which one of the three brackets contributes b.
+That's exactly a combination!
+
+We can represent the coefficients using: nCr = n! / {r! * (n-r)!}
+
+The coefficient of a²b is: 3C1 = 3
+Why? Because we're choosing 1 position out of 3 positions for b.
+
+Similarly, the coefficient of ab² is: 3C2 = 3
+We're choosing 2 positions out of 3 for b.
+
+This gives us the general binomial expansion:
+---------------------------------------------
+|        n         n    n      (n-k)    k   |
+| (a + b)    =     Σ     C   a         b    |
+|                 k=0     k                 |
+---------------------------------------------
+
+>> One important thing: calculating consecutive coefficients
+
+Suppose we want coefficients for (a+b)^5.
+
+Instead of calculating every combination using factorials separately, we can calculate consecutive coefficients using:
+--------------------------------------
+| C(n,r+1) = C(n,r) × (n-r) / (r+1)  |
+--------------------------------------
+
+Start with: 
+C(5,0) = 1
+
+Then:
+
+C(5,1) = 1 × 5 / 1 = 5
+
+C(5,2) = 5 × 4 / 2 = 10
+
+C(5,3) = 10 × 3 / 3 = 10
+
+C(5,4) = 10 × 2 / 4 = 5
+
+C(5,5) = 5 × 1 / 5 = 1
+
+Notice that every division gives an integer.
+
+This is the special relationship between consecutive binomial coefficients: 
+the multiplication and division together produce the next exact combination value.
+
+The resulting coefficients are:
+1, 5, 10, 10, 5, 1
+
+-------------------------------------------------------------------------------------------
 🟡 Catalan numbers
 -------------------------------------------------------------------------------------------
 The Catalan numbers are a sequence of natural numbers that occur in various counting problems, 

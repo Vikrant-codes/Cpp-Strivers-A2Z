@@ -425,7 +425,6 @@
 - M-Coloring Problem
 
 - Expression Add Operators
-
 - Word Break
 
 </details>
@@ -1021,6 +1020,8 @@
 <details>
 <summary> Advanced Maths </summary>
 
+- Permutations - Calculate nPr
+- Combinations - Calculate nCr
 - Print All Prime Factors of a Number
 - GFG - Prime Factorization
 - Power Exponentiation
