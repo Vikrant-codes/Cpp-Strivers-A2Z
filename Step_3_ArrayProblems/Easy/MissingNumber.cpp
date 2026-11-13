@@ -95,17 +95,6 @@ int missingNumberHashing(vector<int>& nums) {
     
     return -1;
 }
-/*
-Approach 2 :-
-We can use XOR to find the missing number. The XOR of a number with itself is 0 and the XOR of a number with 0 is the number itself.
-So if we XOR all the numbers from 0 to n and also XOR all the elements of the array, the result will be the missing number.
-ex - consider the array [0,1,4,3] and the missing number is 2 since range is [0,4].
-XOR of all numbers from 0 to 4 = 0^1^2^3^4 = 4
-XOR of all elements of the array = 0^1^4^3 = 6
-So the final XOR will be 4^6 = 2 which is the missing number.
-This can be shown as (0^1^2^3^4) ^ (0^1^4^3) = (0^0) ^ (1^1) ^ (2) ^ (3^3) ^ (4^4) = 0 ^ 0 ^ 2 ^ 0 ^ 0 .... since xor of a no. with itself is zero
-thus (0^1^2^3^4) ^ (0^1^4^3) = 0 ^ 0 ^ 2 ^ 0 ^ 0 = 2 ... since xor of zero with any number is that number itself
-*/
 
 // Optimal Approach-1 (Mathematical Approach): Time Complexity: O(n) __ Space Complexity: O(1)
 /*

@@ -178,9 +178,6 @@
 - Set Matrix Zeroes => Leetcode - 73. Set Matrix Zeroes
 - Print the matrix in spiral manner => Leetcode - 54. Spiral Matrix
 - Rotate matrix by 90 degrees => Leetcode - 48. Rotate Image
-- Pascal's Triangle I
-- Pascal's Triangle II => Leetcode - 119. Pascal's Triangle II
-- Pascal's Triangle III => Leetcode - 118. Pascal's Triangle
 
 
 - Stock Buy and Sell
@@ -193,16 +190,21 @@
 <details>
 <summary> Hard </summary>
 
-- Majority Element II
-- 4Sum Problem
-- Largest Subarray with 0 sum
-- Count no. of subarrays with given XOR K
-- Merge Overlapping Subintervals
-- Merge two sorted array without extra space
-- Find the repeating and missing number
+- Pascal's Triangle I
+- Pascal's Triangle II => Leetcode - 119. Pascal's Triangle II
+- Pascal's Triangle III => Leetcode - 118. Pascal's Triangle
+- Majority Element II => Leetcode - 229. Majority Element II
+- Find the repeating and missing number => Leetcode - 645. Set Mismatch
+
 - Count Inversions
 - Reverse Pairs
 - Maximum Product Subarray
+- Merge two sorted array without extra space
+
+
+- Merge Overlapping Subintervals
+- Count no. of subarrays with given XOR K
+- Largest Subarray with 0 sum
 
 </details>
 <br>

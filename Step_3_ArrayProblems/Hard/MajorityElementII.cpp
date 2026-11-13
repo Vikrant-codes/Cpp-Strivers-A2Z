@@ -1,113 +1,242 @@
 /*
 Leetcode - 229. Majority Element II : Medium
-Given an integer array of size n, find all elements that appear more than ⌊ n/3 ⌋ times. ( ⌊ n/3 ⌋ means floor(n/3) )
-*/
 
-/*
-Observation: How many integers can occur more than floor(N/3) times in the given array:
-If we closely observe, in the given array, there can be a maximum of two integers that can occur more than floor(N/3) times. 
-Let’s understand it using the following scenario:
-Assume there are 8 elements in the given array. Now, if there is any majority element, it should occur more than floor(8/3) = 2 times. 
-So, the majority of elements should occur at least 3 times. Now, if we imagine there are 3 majority elements, then the total occurrence of them 
-will be 3X3 = 9 i.e. greater than the size of the array. But this should not happen. That is why there can be a maximum of 2 majority elements.
+Given an integer array of size n, find all elements that appear more than ⌊n / 3⌋ times.
+
+Examples :-
+
+Input: nums = [3,2,3] __ Output: [3]
+
+Input: nums = [1] __ Output: [1]
+
+Input: nums = [1,2] __ Output: [1,2]
+
+Constraints :-
+• 1 <= nums.length <= 5 * 10^4
+• -10^9 <= nums[i] <= 10^9
+
+Follow up: Could you solve the problem in linear time and in O(1) space?
 */
 
 #include <bits/stdc++.h>
 using namespace std;
 
-// Brute Force Approach :- Time Complexity : O(n^2) __ Space Complexity : O(1)
-// Approach :- For each element check if it occurs more than ⌊ n/3 ⌋ times, if it does then add it to the resultant vector.
-vector<int> MajorityBrute(vector<int> arr) {
-    vector<int> res;
-    int n = arr.size();
-    for(int i=0; i<n; i++) {
-        // Check that the current element is not already present in the res vector .. i.e. loop only when either res is empty or res[0] != arr[i]
-        if (res.size()==0 || res[0] != arr[i]) {
-            int cnt = 0;                // to store the count of current element in the vector 
-            for(int j=0; j<n; j++) {
-                if(arr[j] == arr[i]) cnt++;
-            }
-            if(cnt > n/3) res.push_back(arr[i]);       // if count exceeds n/3 add the element to the res vector
-        }
-        if (res.size() == 2) break;             // there can be at most two majority elements so if the vector size becomes 2 break out of loop
-    }
-    return res;
-}
-
-// Better Approach (using Hashing) : Time Complexity : O(n) / O(n log n) {depends on map/unordered_map} __ Space Complexity : O(n)
 /*
-Approach :- use a map to store the frequency of all elements .. loop through the map and add any element which have frequency of more than n/3
-This can be further simplified to do the functioning in a single for loop. For each element increment the count of that element in the map and 
-if the count becomes equal to the minimum majority limit i.e. ( floor(n/3) + 1 ) add that element to the res vector. 
-Also if res count reaches 2 then break out of the loop. 
-ex - consider arr = [1,1,1,1,2,3,3,3]
-for i = 0: mpp[1] = 1
-for i = 1: mpp[1] = 2
-for i = 2: mpp[1] = 3 ... now this mpp[arr[i]] becomes equal to minimum frequency required so add it to res vector
-for i = 3: mpp[1] = 4 ... since we have already added it, it isn't added again (this is why we used == to check such condition)
-for i = 4: mpp[2] = 1
-for i = 5: mpp[3] = 1
-for i = 6: mpp[3] = 2
-for i = 7: mpp[3] = 3 ... now add 3 to res vector
+>> Important observation — There can be at most 2 majority elements
+
+Before solving the problem, there's one important observation:
+| There can be at most two elements that appear more than \(n/3\) times.
+
+-> Mathematical reasoning
+Suppose there are 3 majority elements.
+Each of them must appear more than `n/3` times, i.e. freq > n / 3.
+Therefore, their combined frequency would be:
+Total Frequency > (n/3 + n/3 + n/3) 
+    => Total Frequency > n
+
+But the total number of elements in the array is only n.
+This is a contradiction!
+Therefore, there can be at most 2 majority elements.
+
+-> Easy way to understand
+Imagine an array of 9 elements.
+For an element to be a majority element, it must appear more than 3 times, meaning at least 4 times.
+Could 3 different elements each appear at least 4 times?
+That would require at least 12 positions, but we only have 9.
+Hence, at most 2 majority elements are possible.
 */
-vector<int> MajorityBetter(vector<int> arr) {
-    unordered_map<int, int> mpp;
-    vector<int> res;
-    int n = arr.size();
-    int min_freq = n/3 + 1;
 
-    for(int i=0; i<n; i++) {
-        mpp[arr[i]]++;
-        if (mpp[arr[i]] == min_freq) res.push_back(arr[i]);
-        if (res.size() == 2) break;
-    }
-    return res;
-}
-
-// Optimal Approach (Extended Boyer Moore’s Voting Algorithm) : Time Complexity : O(n) __ Space Complexity : O(1)
+// Brute Force Approach :- Time Complexity : O(n²) __ Space Complexity : O(1)
 /*
-Approach :- The approach is similar to Moore's Voting Algorithm approach used in Majority Element I. Here since there can be at most 2 majority 
-elements so we use two counters (cnt1 & cnt2, initially both 0) and consider two elements to be majority (ele1 & ele2). While iterationg if cnt1 == 0 
-means we have to initialize ele1 and we do so only if the current element is not equal to ele2. Similarly we do the same procedure for cnt2 & ele2.
-If the current element is equal to either ele1 or ele2 then we increment the respective counter. Also if none of the condition is true i.e. when we 
-hace both cnt1 & cnt2 non-zero and the current element is unequal to both ele1 & ele2 then we decrement both the counters. At the end of the loop 
-we count the occurences of both ele1 & ele2 to verify whether these two are indeed majority element or not.
+>> Intuition — Brute Force (Nested Loops)
+
+The simplest approach is to calculate the frequency of each element and check whether it appears more than n/3 times.
+
+- Traverse the array and consider each element as a potential majority element.
+
+- Before calculating its frequency, check whether it has already been processed. 
+  We use ans.empty() || ans[0] != nums[i] for this.
+    - If ans is empty, no majority element has been found yet, so we process the current element.
+    - Otherwise, we process it only if it is different from ans[0].
+    - This avoids recounting an element that has already been identified as a majority element. 
+      For example, if 1 has already been added to ans, we skip subsequent occurrences of 1.
+
+- If the element hasn't already been processed, traverse the entire array and count its occurrences.
+
+- If its frequency is greater than n/3, add it to the answer.
+
+- Since there can be at most two majority elements, we stop traversing as soon as ans.size() == 2.
+
+Complexity:
+- Time: O(n²) — for each element, we may traverse the entire array to calculate its frequency.
+- Auxiliary space: O(1) — the answer vector can contain at most two elements.
 */
 vector<int> majorityElement(vector<int>& nums) {
     int n = nums.size();
-    int cnt1 = 0, cnt2 = 0, ele1 = INT_MIN, ele2 = INT_MIN;
-    for(int i=0; i<n; i++){
-        if(cnt1 == 0 && ele2 != nums[i]) {
+    vector<int> ans;
+
+    for(int i = 0; i < n; i++) {
+        if(ans.empty() || ans[0] != nums[i]) {
+            int cnt = 0;
+
+            for(int j = 0; j < n; j++) {
+                if(nums[j] == nums[i])
+                    cnt++;
+            }
+
+            if(cnt > n/3)
+                ans.push_back(nums[i]);
+        }
+
+        if(ans.size() == 2)
+            break;
+    }
+
+    return ans;
+}
+
+// Better Approach (HashMap): Time Complexity : O(2n) __ Space Complexity : O(n)
+/*
+We can improve the brute-force approach by using a HashMap to store the frequency of every element.
+
+>> Intuition
+- Traverse the array and store the frequency of every element in a HashMap.
+- Once the frequency map is ready, iterate through it.
+- If an element's frequency is greater than n/3, add it to the answer.
+
+>> Complexity
+- Time: O(2n) on average — one traversal to build the map and another to iterate through it.
+- Auxiliary space: O(n) — in the worst case, all elements are distinct.
+*/
+vector<int> majorityElementHashMap1(vector<int>& nums) {
+    int n = nums.size();
+    unordered_map<int, int> mpp;
+    vector<int> ans;
+
+    for (int num : nums)
+        mpp[num]++;
+
+    for (auto& [num, freq] : mpp) {
+        if (freq > n/3) {
+            ans.push_back(num);
+        } 
+    }
+
+    return ans;
+}
+
+// Optimized HashMap Approach: Time Complexity : O(n) __ Space Complexity : O(n)
+/*
+>> Intuition
+We know that an element must appear more than n/3 times to qualify as a majority element.
+Therefore, the minimum frequency required is:
+    threshold = floor(n / 3) + 1
+
+Instead of waiting until the entire frequency map is constructed, 
+we can check the frequency while traversing the array.
+- Increment the frequency of the current element.
+- Whenever its frequency reaches threshold, add it to the answer.
+- Since an element can reach this threshold only once, 
+  there is no need to check for duplicates or iterate through the map again.
+
+>> Complexity
+- Time: O(n) on average — only one traversal of the array.
+- Auxiliary space: O(n) — HashMap storage.
+*/
+vector<int> majorityElementHashMap2(vector<int>& nums) {
+    int n = nums.size();
+    int threshold = n/3 + 1;
+
+    unordered_map<int, int> mp;
+    vector<int> ans;
+
+    for(int num : nums) {
+        mp[num]++;
+
+        if(mp[num] == threshold)
+            ans.push_back(num);
+
+        if (ans.size() == 2)
+            break;
+    }
+
+    return ans;
+}
+
+// Optimal Approach (Extended Moore's Voting Algorithm): Time Complexity : O(n) __ Space Complexity : O(1)
+/*
+>> Optimal — Extended Moore's Voting Algorithm
+
+Let's recall the original Moore's Voting Algorithm used in Majority Element I.
+When an element appears more than n/2 times, we can pair it against different elements and cancel those pairs. 
+Since the majority element appears more than all other elements combined, it cannot be completely eliminated.
+
+Now, here our threshold is n/3, and we have already established that there can be at most two majority elements.
+This gives us the key idea:
+We only need two candidates and their respective counts.
+
+We use the following rules while traversing the array:
+1. If the current element matches the first candidate, increment its count.
+2. Else if it matches the second candidate, increment its count.
+3. Else if the first candidate's count is zero, assign the current element as the first candidate.
+4. Else if the second candidate's count is zero, assign the current element as the second candidate.
+5. Otherwise, decrement both counts.
+
+-> Why do we decrement both counts?
+Think of it as cancelling a group of three different elements:
+- One occurrence of the first candidate.
+- One occurrence of the second candidate.
+- The current element.
+We eliminate all three because none of them gets an advantage from this group.
+
+>> Important: We need a second traversal!
+After the first traversal, the two candidates are only potential majority elements.
+We must count their actual occurrences in the original array and 
+verify whether their frequencies are greater than n/3.
+
+>> Complexity
+- Time: O(2n) — two traversals of the array, each taking linear time.
+- Auxiliary space: O(1) — we only maintain two candidates and their counts.
+*/
+vector<int> majorityElement(vector<int>& nums) {
+    int n = nums.size();
+    
+    int cnt1 = 0, cnt2 = 0;
+    int el1 = 0, el2 = 0;
+
+    // First pass: Find potential candidates
+    for (int num : nums) {
+        if (num == el1) cnt1++;
+        else if (num == el2) cnt2++;
+        else if (cnt1 == 0) {
+            el1 = num;
             cnt1 = 1;
-            ele1 = nums[i];
         }
-        else if(cnt2 == 0 && ele1 != nums[i]) {
+        else if (cnt2 == 0) {
+            el2 = num;
             cnt2 = 1;
-            ele2 = nums[i];
         }
-        else if(nums[i] == ele1) cnt1++;
-        else if(nums[i] == ele2) cnt2++;
         else {
-            cnt1--;
-            cnt2--;
+            cnt1--; cnt2--;
         }
     }
 
-    // verify whether the two elements ele1 & ele2 are majority or not
-    vector<int> res;
+    vector<int> ans;
+
+    // Second pass: Verify candidates
     cnt1 = 0, cnt2 = 0;
-    for(int i=0; i<n; i++) {
-        if (nums[i] == ele1) cnt1++;
-        else if (nums[i] == ele2) cnt2++;
+
+    for (int num : nums) {
+        if (num == el1) cnt1++;
+        else if (num == el2) cnt2++;
     }
-    if (cnt1 > n/3) res.push_back(ele1);
-    if (cnt2 > n/3) res.push_back(ele2);
-    return res;
+
+    if (cnt1 > n/3) ans.push_back(el1);
+    if (cnt2 > n/3) ans.push_back(el2);
+    
+    return ans;
 }
 
 int main() {
-    vector<int> arr = {1,1,1,2,2,3,3,3};
-    vector<int> majority = majorityElement(arr);
-    for(int x : majority) cout << x << " ";
     return 0;
 }
