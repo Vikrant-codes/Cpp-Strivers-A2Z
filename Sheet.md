@@ -496,14 +496,14 @@
 <summary> Longest and Smallest Window Problems </summary>
 
 - Longest Substring Without Repeating Characters => Leetcode - 3. Longest Substring Without Repeating Characters
+- Max Consecutive Ones III => Leetcode - 1004. Max Consecutive Ones III
+- Fruit Into Baskets => Leetcode - 904. Fruit Into Baskets
 
 </details>
 
 <details>
 <summary>Medium Problems</summary>
 
-- Max Consecutive Ones III
-- Fruit Into Baskets
 - longest repeating character replacement
 - Binary subarray with sum
 - Count number of nice subarrays
