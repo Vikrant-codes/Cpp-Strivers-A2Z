@@ -499,6 +499,8 @@
 - Max Consecutive Ones III => Leetcode - 1004. Max Consecutive Ones III
 - Fruit Into Baskets => Leetcode - 904. Fruit Into Baskets
 
+- Longest Substring With At Most K Distinct Characters
+
 </details>
 
 <details>
@@ -515,7 +517,6 @@
 <details>
 <summary>Hard Problems</summary>
 
-- Longest Substring with At Most K Distinct Characters
 - Subarray with k different integers
 - Minimum Window Substring
 - Minimum Window Subsequence

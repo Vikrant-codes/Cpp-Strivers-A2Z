@@ -106,9 +106,8 @@ Otherwise, mp.size() won't correctly represent the number of distinct fruit type
 int totalFruit(vector<int>& fruits) {
     int n = fruits.size();
 
-    int l = 0, r = 0;
     int maxLen = 0;
-
+    int l = 0, r = 0;
     unordered_map<int, int> mp;
 
     while(r < n) {
@@ -158,9 +157,8 @@ If the window becomes valid again as we continue expanding, we can potentially f
 int totalFruit(vector<int>& fruits) {
     int n = fruits.size();
     
-    int l = 0, r = 0;
     int maxLen = 0;
-
+    int l = 0, r = 0;
     unordered_map<int, int> mp;
 
     while(r < n) {
